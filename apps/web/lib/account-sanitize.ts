@@ -14,7 +14,7 @@ import { isDatabaseConfigured } from "@/lib/config";
 import { sendEmail } from "@/lib/email";
 
 // The sanitization runner — the business end of account deletion
-// (docs/accounts-security-spec.md §Deletion, the Camp 404 "Lost Cat" precedent).
+// (docs/technical-spec/02-accounts-and-account-security.md §Deletion, the Camp 404 "Lost Cat" precedent).
 //
 // This is the ONLY place application rows are erased, and it never deletes our
 // own `users` row (it survives as the "Departed Burner" stub). It DOES hard-delete

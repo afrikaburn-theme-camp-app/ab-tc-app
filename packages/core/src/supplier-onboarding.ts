@@ -1,4 +1,4 @@
-// Supplier onboarding checklist (docs/supplier-spec.md §"Onboarding
+// Supplier onboarding checklist (docs/technical-spec/12-suppliers.md §"Onboarding
 // checklist"). The seven steps come from the real Supplier Depot registration
 // procedure (docs/sources/quaggapedia/supplier-depot.md). This module is the
 // code catalog + the pure derivations over a stored step-state map:

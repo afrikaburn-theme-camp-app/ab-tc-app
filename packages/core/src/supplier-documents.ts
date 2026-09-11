@@ -1,5 +1,5 @@
-// Supplier documents & acknowledgements (docs/accounts-security-spec.md
-// §"Supplier documents — org-controlled").
+// Supplier documents & acknowledgements (docs/technical-spec/12-suppliers.md
+// §"Supplier documents").
 //
 // The org CRUDs a per-edition list of documents/links suppliers must read. A
 // document may be `requiredAck` (carries an acknowledgement checkbox) and may

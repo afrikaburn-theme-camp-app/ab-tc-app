@@ -30,7 +30,7 @@ import { getActiveEdition } from "./edition";
 import { insertNotifications } from "./notifications";
 
 // Persistence + activation service for the questionnaire builder
-// (questionnaire-spec §"Engine mechanics"). Project questionnaires are stored
+// (docs/technical-spec/10-questionnaire-engine.md §"Engine mechanics"). Project questionnaires are stored
 // in the shared `questionnaire_definitions`/`_activations`/`_responses` spine;
 // a project definition is namespaced by its key so a camp's builder can list
 // only its own. Audience resolution is delegated to @quagga/core's pure

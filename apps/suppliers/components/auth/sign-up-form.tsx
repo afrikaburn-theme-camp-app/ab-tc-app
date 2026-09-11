@@ -27,7 +27,7 @@ import { authClient } from "@/lib/auth-client";
 import { registerSupplier } from "@/lib/actions/register";
 
 // Supplier sign-up (canvas `K3zNk` desktop / `h83pUG` mobile), per
-// docs/accounts-security-spec.md §"Supplier portal sign-up":
+// docs/technical-spec/12-suppliers.md §"Sign-up":
 //
 //   business name · contact person · email · ONE password field (show toggle,
 //   15+, length strength) · service category · "I've read the supplier basics"

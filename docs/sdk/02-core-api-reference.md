@@ -615,7 +615,7 @@ credential-cheap bulk-enumeration endpoint over Burn identities.
 `setPrivacyFlags` is a **request**, not an assertion. The server runs `enforcePrivacyFlags`
 (`privacy.ts:108-116`), which forces every `ALWAYS_PRIVATE_FIELDS` member to `false` regardless of
 input, and the returned object is the enforced state. The SDK does not pre-filter, because a
-client-side filter is the failure mode `docs/auth-platform-spec.md:626-630` names. Attempting to
+client-side filter is the failure mode `docs/technical-spec/01-auth-and-identity.md` names. Attempting to
 set a hard-locked field public returns `ValidationError` with the offending keys — the
 `privacyViolations` list (`privacy.ts:123-127`) — rather than silently correcting.
 
@@ -1173,7 +1173,7 @@ try {
 ### 9. Typed responses and DTO shapes
 
 Every response body is produced server-side by a **zod output schema whose `.parse()` is the PII
-stripper** — `docs/auth-platform-spec.md:626-630`, decision 2, which does not exist today.
+stripper** — `docs/technical-spec/01-auth-and-identity.md`, decision 2, which does not exist today.
 `packages/core/src/privacy.ts` is 127 lines and holds the three field-class tuples
 (`HARD_LOCKED_PRIVATE_FIELDS`, `SAFETY_VISIBLE_FIELDS`, `ALWAYS_PRIVATE_FIELDS`) plus six
 predicates — `isHardLockedPrivate`, `isSafetyVisibleField`, `isAlwaysPrivate`, `canBePublic`,

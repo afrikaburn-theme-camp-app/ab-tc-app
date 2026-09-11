@@ -83,7 +83,7 @@ abort rather than reason from priors — it landed 942 tool calls with 3 errors.
 - `apps/org/lib/queries.ts:952-960` — `REGISTRATION_CONTACT_KEYS`, 7 contact columns that sit
   **outside** `HARD_LOCKED_PRIVATE_FIELDS` and are guarded today by a module-private `const`.
 - `grep -rn stripHardLocked` returns **zero hits** — the PII stripper that
-  `docs/auth-platform-spec.md` §9.4 decision 2 committed to was never built.
+  `docs/technical-spec/01-auth-and-identity.md` §9.4 decision 2 committed to was never built.
 
 **Not verified, and flagged in place:** every claim about `better-auth`'s api-key plugin
 (`node_modules` is absent from this environment), the exact store line counts, and the
@@ -100,4 +100,4 @@ stops an ordinary org row overwriting an `engineer` and erasing its carve-out.
 
 Two remain open and depend on nothing here: `REGISTRATION_CONTACT_KEYS` is still a
 module-private `const` inside `apps/org`, and the unconditional PII stripper
-`auth-platform-spec.md` §9.4 decision 2 committed to is still unbuilt.
+`docs/technical-spec/01-auth-and-identity.md` §9.4 decision 2 committed to is still unbuilt.

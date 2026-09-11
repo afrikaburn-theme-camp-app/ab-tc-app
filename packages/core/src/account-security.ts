@@ -1,4 +1,4 @@
-// Account management & security domain logic (docs/accounts-security-spec.md,
+// Account management & security domain logic (docs/technical-spec/02-accounts-and-account-security.md,
 // grounded in NIST SP 800-63B-4 Jul 2025 + OWASP auth guidance).
 //
 // PURITY CONTRACT (as with the rest of @quagga/core): no I/O, no env, no DB, no

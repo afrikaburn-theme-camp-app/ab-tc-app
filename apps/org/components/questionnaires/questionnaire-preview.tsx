@@ -22,7 +22,7 @@ import {
 import { QuestionField } from "@/components/questionnaire/field";
 import { ContentBlockView } from "@/components/questionnaire/content-block";
 
-// Author preview (questionnaire-spec §"Builder v2": the "Preview" control next
+// Author preview (docs/technical-spec/10-questionnaire-engine.md §"Builder v2": the "Preview" control next
 // to "Send"). Renders the CURRENT draft the way a respondent walks it —
 // branch-aware (core `nextPageId`), content blocks inline, every question kind
 // answerable — WITHOUT activating anything. Nothing is persisted; the state is

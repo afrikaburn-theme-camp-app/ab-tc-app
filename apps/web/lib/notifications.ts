@@ -15,7 +15,7 @@ import { db, schema } from "./db";
 import { isDatabaseConfigured } from "./config";
 import { getCurrentCampUser } from "./session";
 
-// Notifications backend for the participant app (docs/notifications-spec.md).
+// Notifications backend for the participant app (docs/technical-spec/11-bulletins-and-notifications.md).
 // The header bell reads `getUnreadNotificationCount`; the /notifications surface
 // reads `listNotificationGroups`. Event hooks write via `insertNotifications`.
 // Every read is scoped to the CURRENT user server-side — a caller can never see

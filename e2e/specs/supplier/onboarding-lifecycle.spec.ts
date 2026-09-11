@@ -1,5 +1,5 @@
 // specs/supplier/onboarding-lifecycle.spec.ts — the seven-step Supplier Depot
-// checklist, driven end to end (M3-28, docs/supplier-spec.md §Onboarding).
+// checklist, driven end to end (M3-28, docs/technical-spec/12-suppliers.md §Onboarding).
 //
 // The rule that matters (packages/core supplier-onboarding.ts):
 //   - self-service steps (agreement) flip pending↔completed instantly;

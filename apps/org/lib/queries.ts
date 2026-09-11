@@ -1234,7 +1234,7 @@ export interface OfficerContactRow {
 
 /**
  * Accepted officers for a camp, with their org-shared contact details
- * (questionnaire-spec §"Officers are ALSO registrations"). Assigning an officer
+ * (docs/technical-spec/05-camp-roles-and-officers.md §"Officers are ALSO registrations"). Assigning an officer
  * is an officer registration; ACCEPTANCE is the SINGLE path that shares an
  * officer's name/email/phone with AfrikaBurn — so this query filters to
  * `consent = accepted`. Pending/declined officers never surface contact here,

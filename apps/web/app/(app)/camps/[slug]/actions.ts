@@ -46,7 +46,7 @@ async function groupIdForSlug(slug: string): Promise<string | null> {
 /**
  * Resolve the slug to a group and confirm the caller holds a given project
  * permission (lead/admin always pass via the backstop). The single authz gate
- * the role/officer actions share (questionnaire-spec §"Roles v2" CRUD).
+ * the role/officer actions share (docs/technical-spec/05-camp-roles-and-officers.md §"Roles v2" CRUD).
  */
 async function requirePermission(
   slug: string,
@@ -138,7 +138,7 @@ export async function leaveCampAction(
   return result;
 }
 
-// --- Custom project roles (questionnaire-spec §"Custom project roles") ----
+// --- Custom project roles (docs/technical-spec/05-camp-roles-and-officers.md §"Custom project roles") ----
 
 const CreateRoleInput = z.object({
   slug: z.string().min(1),

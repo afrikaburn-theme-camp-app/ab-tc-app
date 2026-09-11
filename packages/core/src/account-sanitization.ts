@@ -1,6 +1,6 @@
 // Account sanitization — the Camp 404 "Lost Cat" precedent.
 //
-// docs/accounts-security-spec.md §Deletion: deleting an account is NEVER a row
+// docs/technical-spec/02-accounts-and-account-security.md §Deletion: deleting an account is NEVER a row
 // delete. After the 14-day grace period we ERASE the person and KEEP the shape:
 // every personal field is nulled or replaced with a stub, while `memberships`,
 // `questionnaire_responses`, `required_actions`, `supplier_document_acks` and

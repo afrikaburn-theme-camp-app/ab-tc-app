@@ -1,5 +1,5 @@
 // specs/supplier/standing.spec.ts — the supplier sees its OWN standing in plain
-// language, and nothing more (docs/supplier-spec.md §Surfaces; M3-28).
+// language, and nothing more (docs/technical-spec/12-suppliers.md §Surfaces; M3-28).
 //
 // A fresh supplier starts in "Good standing" — no god needed. The org-driven
 // transitions (watch / suspended) need a pre-provisioned god account, so those

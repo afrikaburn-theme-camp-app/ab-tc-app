@@ -14,7 +14,7 @@
   "jRusG": "Library-only payment badge/PaymentDetailsBlock components: reserved for future logistics apps (payment-REFERENCE tracking is allowed there per synthesis); used on no page frame — the audit itself proves pages are payment-free.",
   "oQjM8": "AppShell bell unread badge: absolute-positioned on the bell's corner by design (standard notification pattern).",
   "FOCTm": "AppShell (apricot) bell unread badge: same intentional corner overlap as oQjM8.",
-  "POryy": "Supplier onboarding copy: describes the real AB Supplier Depot deposit procedure (paid to AfrikaBurn off-platform, status tracked here) — legitimate payment mention per docs/supplier-spec.md guardrails.",
+  "POryy": "Supplier onboarding copy: describes the real AB Supplier Depot deposit procedure (paid to AfrikaBurn off-platform, status tracked here) — legitimate payment mention per docs/technical-spec/12-suppliers.md guardrails.",
   "b4q0A": "Supplier fee copy: reworded 25 Jul to state receipt-confirmation only; mention of payment is the lawful tracked-only kind.",
   "X1own": "Role color swatch / role chip: renders a USER-CHOSEN role color (data, not theme) — raw hex is correct here per Roles v2 spec (roles have color + emoji).",
   "kPC7T": "Role color swatch / role chip: renders a USER-CHOSEN role color (data, not theme) — raw hex is correct here per Roles v2 spec (roles have color + emoji).",

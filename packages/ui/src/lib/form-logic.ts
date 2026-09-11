@@ -45,7 +45,7 @@ export function wordCountStatus(
   };
 }
 
-/** Minimum password length (accounts-security-spec §Security principles: 15+,
+/** Minimum password length (docs/technical-spec/02-accounts-and-account-security.md §"Security principles": 15+,
  *  no composition rules, no forced rotation, no confirm-twice). */
 export const PASSWORD_MIN_LENGTH = 15;
 

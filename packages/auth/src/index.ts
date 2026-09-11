@@ -1,4 +1,4 @@
-// @quagga/auth — the shared self-hosted Better Auth foundation (auth-platform-spec).
+// @quagga/auth — the shared self-hosted Better Auth foundation (docs/technical-spec/01-auth-and-identity.md).
 //
 // The wiring agent consumes this package as follows:
 //

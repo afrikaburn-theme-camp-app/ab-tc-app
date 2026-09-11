@@ -78,7 +78,7 @@ export default async function CampQuestionnairesPage({
   if (!camp) notFound();
 
   // Access + CTA: lead/admin OR any member holding `manage_questionnaires`
-  // (questionnaire-spec §"Roles v2"). UI hiding is never the security boundary —
+  // (docs/technical-spec/05-camp-roles-and-officers.md §"Roles v2"). UI hiding is never the security boundary —
   // the create action re-enforces the audience scope server-side.
   const viewerPerms = await getMemberPermissions(camp.id, user.id);
   if (

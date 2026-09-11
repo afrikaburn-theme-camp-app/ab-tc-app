@@ -17,8 +17,8 @@ import { dayGroupHeading, toRowItem } from "@/components/notifications/format";
 // /notifications — the supplier inbox (canvas `swSq4` desktop / `OSqoc`
 // mobile), sage accent.
 //
-// WHAT A SUPPLIER SEES, and nothing else (docs/supplier-spec.md +
-// docs/notifications-spec.md):
+// WHAT A SUPPLIER SEES, and nothing else (docs/technical-spec/12-suppliers.md +
+// docs/technical-spec/11-bulletins-and-notifications.md):
 //   · org confirmations of their own onboarding steps (deposit received,
 //     briefing attended, registration fee received…);
 //   · changes to their own STANDING — the VALUE only. The org's notes timeline

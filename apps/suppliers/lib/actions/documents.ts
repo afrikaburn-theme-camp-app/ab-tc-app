@@ -17,7 +17,7 @@ import { lockOnboardingSteps } from "@/lib/onboarding-store";
 import { runAction, type ActionResult } from "./result";
 
 // Supplier-side acknowledgement of an org-published document
-// (docs/accounts-security-spec.md §"Supplier documents"). Acknowledging the last
+// (docs/technical-spec/12-suppliers.md §"Supplier documents"). Acknowledging the last
 // outstanding document bound to an onboarding step COMPLETES that step; undoing
 // an acknowledgement reverts it. Both directions run through
 // `applyDocumentAcksToSteps` in @quagga/core, which re-applies the org-confirmed

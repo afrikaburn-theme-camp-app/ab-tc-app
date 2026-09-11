@@ -1,4 +1,4 @@
-// Questionnaire DEFINITION validation (questionnaire-spec §"Builder v2 —
+// Questionnaire DEFINITION validation (docs/technical-spec/10-questionnaire-engine.md §"Builder v2 —
 // Google Forms parity"). Zod gives us the shape; this module gives us the
 // STRUCTURAL integrity that a shape check can't express:
 //

@@ -1,4 +1,4 @@
-// Custom per-project roles (questionnaire-spec §"Custom project roles"). These
+// Custom per-project roles (docs/technical-spec/05-camp-roles-and-officers.md §"Custom project roles"). These
 // are labels — used for organisation + questionnaire audiences — and are
 // SEPARATE from the structural `memberships.role` ladder (god/org_staff/lead/
 // admin/member), which governs permissions. Defaults are seeded on project
@@ -29,7 +29,7 @@ export interface DefaultProjectRole {
 }
 
 /**
- * Roles seeded on every new project (Camp 404 basis, questionnaire-spec §"Role
+ * Roles seeded on every new project (Camp 404 basis, docs/technical-spec/05-camp-roles-and-officers.md §"Role
  * kinds"): Captain (captain kind, all perms), Team lead (default kind,
  * manage_questionnaires scoped to the baseline audience + view_member_details),
  * Burner (baseline kind, no perms — every member holds it). `is_default` marks
@@ -72,7 +72,7 @@ export const DEFAULT_PROJECT_ROLES: readonly DefaultProjectRole[] = [
 /** Max length of a custom role label (UI + boundary guard). */
 export const PROJECT_ROLE_NAME_MAX = 60;
 
-/** Max number of roles a single project may hold (questionnaire-spec §"Custom
+/** Max number of roles a single project may hold (docs/technical-spec/05-camp-roles-and-officers.md §"Custom
  * project roles CRUD": "cap 20 roles/project"). Counts defaults + custom. */
 export const PROJECT_ROLE_CAP = 20;
 
@@ -174,7 +174,7 @@ export function defaultProjectRoleRows(groupId: string): ProjectRoleInsert[] {
 }
 
 /**
- * The officer role rows to materialise for a camp (questionnaire-spec §"Officer
+ * The officer role rows to materialise for a camp (docs/technical-spec/05-camp-roles-and-officers.md §"Officer
  * roles"). One row per catalog entry; not aliasable, so name/emoji/color come
  * straight from the catalog. `sort` starts after the defaults. Idempotent via
  * the caller's `unique(group_id, name_normalized)` upsert.
@@ -199,7 +199,7 @@ export function officerRoleRows(
 
 /**
  * After the default rows exist, Team lead's `manage_questionnaires` scope is
- * re-pointed from `"all"` to the baseline role's id (questionnaire-spec: Team
+ * re-pointed from `"all"` to the baseline role's id (docs/technical-spec/05-camp-roles-and-officers.md: Team
  * lead is scoped to Burner audiences). Returns the patch to apply, or null when
  * the roles aren't as expected. Pure — the caller does the DB update.
  */

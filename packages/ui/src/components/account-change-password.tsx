@@ -12,7 +12,7 @@ import { toast } from "@quagga/ui/components/toast";
 // apps. Backed by Better Auth's `change-password`, which re-authenticates with
 // the current password server-side — we never verify a password ourselves.
 //
-// Per accounts-security-spec: ONE new-password field (no confirm-twice), a
+// Per docs/technical-spec/02-accounts-and-account-security.md: ONE new-password field (no confirm-twice), a
 // show/hide toggle, paste allowed, length-based strength.
 //
 // THE POLICY IS INJECTED, not imported. `assess` is @quagga/core's

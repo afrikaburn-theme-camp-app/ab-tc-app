@@ -1,4 +1,4 @@
-// Security notifications & emails (docs/accounts-security-spec.md §"Security
+// Security notifications & emails (docs/technical-spec/02-accounts-and-account-security.md §"Security
 // notifications"). Two outputs from one set of facts:
 //   - an in-app `security`-kind notification row (the existing inbox), and
 //   - a Resend email body (the env-less seam in each app's lib/email.ts — it

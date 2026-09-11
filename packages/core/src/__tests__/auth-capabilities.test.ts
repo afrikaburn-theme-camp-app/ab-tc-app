@@ -10,7 +10,7 @@ import {
 import { AuthCapabilityKey } from "@quagga/types";
 
 // These tests pin the SHIPPED reality of self-hosted Better Auth
-// (docs/auth-platform-spec.md). They are not aspirational: the twoFactor and
+// (docs/technical-spec/01-auth-and-identity.md). They are not aspirational: the twoFactor and
 // passkey plugins are now installed (migration 0015), so the matrix marks them
 // supported and these assertions moved with it — deliberately, in one place.
 

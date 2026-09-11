@@ -30,7 +30,7 @@ import {
   type Questionnaire,
 } from "@quagga/types";
 
-// The Builder v2 block palette (questionnaire-spec §"Builder v2 — Google Forms
+// The Builder v2 block palette (docs/technical-spec/10-questionnaire-engine.md §"Builder v2 — Google Forms
 // parity"). A palette kind is an AUTHORING affordance; several of them map onto
 // the same engine kind with a different render variant:
 //

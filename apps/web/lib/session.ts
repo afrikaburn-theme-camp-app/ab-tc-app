@@ -203,7 +203,7 @@ export async function requireCampUser(): Promise<CampUser> {
  * The route a user is currently GATED to, or null when nothing blocks them. The
  * first pending blocking `required_action` (creation order = priority) maps to
  * its fill route: the Burner Bio → /onboarding; a questionnaire activation →
- * /questionnaires/<id>. This is the hard-gate spine (questionnaire-spec
+ * /questionnaires/<id>. This is the hard-gate spine (docs/technical-spec/10-questionnaire-engine.md
  * §"Engine mechanics"): while it returns non-null, the app routes the user
  * there before anything else. Falls back to /onboarding for an unroutable key.
  */

@@ -1,6 +1,6 @@
 import { z } from "zod";
 
-// Supplier model v2 (docs/supplier-spec.md). The old `vetting_status`
+// Supplier model v2 (docs/technical-spec/12-suppliers.md). The old `vetting_status`
 // (listed/registered/flagged) and `source` (ab_sheet/manual) vocabularies are
 // DEAD — replaced by org-set `standing`, a derived onboarding checklist, and an
 // org-internal notes timeline. Keep every enum here in sync with the matching
@@ -135,7 +135,7 @@ export const SupplierImportRow = z.object({
 export type SupplierImportRow = z.infer<typeof SupplierImportRow>;
 
 // --- Supplier documents (org-controlled) ---------------------------------
-// docs/accounts-security-spec.md §"Supplier documents — org-controlled".
+// docs/technical-spec/12-suppliers.md §"Supplier documents".
 // The org CRUDs a per-edition list of documents/links suppliers must read; a
 // `required_ack` document carries an acknowledgement checkbox on the supplier
 // portal, and may BIND to an onboarding step (e.g. the Supplier Agreement binds

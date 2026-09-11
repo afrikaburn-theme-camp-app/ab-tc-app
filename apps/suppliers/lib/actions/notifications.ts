@@ -28,7 +28,7 @@ export async function fetchRecentNotifications(): Promise<
   return rows.map((row) => toRowItem(row, now));
 }
 
-// Portal notification mutations (docs/notifications-spec.md). Server-side
+// Portal notification mutations (docs/technical-spec/11-bulletins-and-notifications.md). Server-side
 // authz: a supplier marks only their OWN rows read — every WHERE pins
 // `user_id` to the gated session's `dbUserId`, so a forged notification id
 // simply matches nothing. The UI is never the boundary.

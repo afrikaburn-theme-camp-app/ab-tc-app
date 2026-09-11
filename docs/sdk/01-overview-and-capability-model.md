@@ -37,7 +37,7 @@ surface is a function of the API key's rights**. It is three things and nothing 
   the predicate kernel in strangers' `node_modules` reintroduces exactly that table, across
   a version axis nobody controls.
 - **It is not the security boundary.** The server re-runs the identical guards on every
-  call. `docs/architecture.md:118` states the law: _"Hiding a control is never the security
+  call. `docs/technical-spec/00-architecture.md` states the law: _"Hiding a control is never the security
   boundary."_ `AGENTS.md:136-138` repeats it. A type error and a local refusal are DX; the
   403 is the boundary. This sentence belongs verbatim in the published README, or someone
   will assume the types are the enforcement.
@@ -211,7 +211,7 @@ sanitized_at · created_at` and nothing else. There is likewise **no `integratio
 > enabled in `packages/auth/src/config.ts`. Everything this shard says about
 > `users.kind = 'service'`, `integrations.status` and `apikey.permissions` is a **proposed**
 > schema, specified in the backend shard, and lands as a new append-only migration
-> (`docs/architecture.md:121-123`: migrations are append-only and run on deploy against
+> (`docs/technical-spec/00-architecture.md`: migrations are append-only and run on deploy against
 > production). Read every mention of them below as "the new tables", not as description.
 
 Anchoring on an ordinary `users` row is what lets `resolveOrgSession`
@@ -330,7 +330,7 @@ affordance that eventually gets a `true`.
 
 | Never a scope                                                                                                           | Where it is defined                                                                                                       | Why it cannot become one                                                                                                                                                                                                                                                                                                   |
 | ----------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| The 7 `HARD_LOCKED_PRIVATE_FIELDS` — `saId`, `passport`, `phone`, `onsiteContactName/Phone`, `offsiteContactName/Phone` | `packages/core/src/privacy.ts:39-47`                                                                                      | No access path of any kind exists in-product. `enforcePrivacyFlags` forces them false on every write (`:108-116`); `publicBioView` gates again on `canBePublic` (`packages/core/src/bio.ts:364-365`). `docs/auth-platform-spec.md:626-630` requires one unconditional stripper precisely so they "can never be scoped-in". |
+| The 7 `HARD_LOCKED_PRIVATE_FIELDS` — `saId`, `passport`, `phone`, `onsiteContactName/Phone`, `offsiteContactName/Phone` | `packages/core/src/privacy.ts:39-47`                                                                                      | No access path of any kind exists in-product. `enforcePrivacyFlags` forces them false on every write (`:108-116`); `publicBioView` gates again on `canBePublic` (`packages/core/src/bio.ts:364-365`). `docs/technical-spec/01-auth-and-identity.md` requires one unconditional stripper precisely so they "can never be scoped-in". |
 | `medical` (`SAFETY_VISIBLE_FIELDS`)                                                                                     | `packages/core/src/privacy.ts:57`                                                                                         | The consent is "your camp leads and AfrikaBurn's safety/org staff" (`:12-21`). An integrator is neither. Exposing it would also make the integrator's own log the compliance record for `bio.medical.view` (`packages/core/src/medical-access.ts:142`).                                                                    |
 | Officer contact release                                                                                                 | `packages/core/src/officers.ts:196`                                                                                       | A per-edition consent given to AfrikaBurn, not a permission. Widening it to a third party breaks the consent the burner actually gave.                                                                                                                                                                                     |
 | The medical access log                                                                                                  | domain description at `packages/core/src/org-domains.ts:128-129`                                                          | _"a list that names the burners who have disclosed a health condition."_                                                                                                                                                                                                                                                   |
@@ -345,7 +345,7 @@ Consequence for the SDK's error surface: **the SDK must never emit "this key is 
 authorised for phone number."** That sentence implies some key could be. Those fields are
 absent from the response type, with no error branch and no remediation link.
 
-The PII strip itself is **not** an SDK function. `docs/auth-platform-spec.md:626-630` puts
+The PII strip itself is **not** an SDK function. `docs/technical-spec/01-auth-and-identity.md` puts
 it in `@quagga/core` and calls for it to be built now; grep confirms it does not exist
 (`stripHardLocked` returns zero hits repo-wide, and there is no `/api/me`). It is
 implemented as a **zod output schema whose `.parse()` at the response boundary is the
@@ -853,7 +853,7 @@ Four things must exist before the model above is true rather than aspirational. 
 specified in the backend shard; they are listed here because the capability model is
 **unsound without them**.
 
-1. **The zod response schemas.** §9.4 decision 2 of `docs/auth-platform-spec.md:626-630`
+1. **The zod response schemas.** §9.4 decision 2 of `docs/technical-spec/01-auth-and-identity.md`
    requires one unconditional PII-strip helper, and it does not exist (`stripHardLocked`:
    zero hits; no `/api/me`). Implemented as output schemas in `@quagga/types/responses`,
    with a build-failing recursive assertion that no forbidden field name appears in any

@@ -13,7 +13,7 @@ const URL_RE = /^https?:\/\/[^\s/$.?#][^\s]*$/i;
 const TIME_RE = /^([01]\d|2[0-3]):[0-5]\d$/;
 const ALNUM_RE = /^[a-z0-9 ]+$/i;
 
-// --- Builder v2 (questionnaire-spec §"Builder v2 — Google Forms parity") ---
+// --- Builder v2 (docs/technical-spec/10-questionnaire-engine.md §"Builder v2 — Google Forms parity") ---
 // Everything below lives INSIDE the `definition` jsonb — no schema columns.
 // Every field added here is optional (or defaulted on a brand-new kind), so a
 // definition written before Builder v2 still parses and renders unchanged.

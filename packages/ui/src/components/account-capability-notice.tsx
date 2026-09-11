@@ -4,7 +4,7 @@ import { cn } from "@quagga/ui/lib/utils";
 
 // The honest "we can't do this yet" block, shared by all three apps.
 //
-// THE RULE (docs/accounts-security-spec.md §"Provider capability probe"): a
+// THE RULE (docs/technical-spec/02-accounts-and-account-security.md §"Capability matrix"): a
 // surface for a capability our auth server does not expose must say so plainly
 // and offer NO control that pretends otherwise.
 //

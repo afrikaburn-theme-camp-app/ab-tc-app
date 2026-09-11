@@ -29,7 +29,7 @@
  *     public sheet snapshot) + each supplier's per-edition onboarding step map.
  *     This is a CATALOG camps pick from, not user content. Suppliers seed with
  *     `userId = null` on purpose, so a real supplier can later self-register and
- *     claim their row by email overlap (docs/supplier-spec.md).
+ *     claim their row by email overlap (docs/technical-spec/12-suppliers.md).
  *   - one org-authored questionnaire TEMPLATE (definition only — no activation,
  *     no audience, no responses), so the console has a real form to send live.
  *
@@ -455,7 +455,7 @@ export async function seedReferenceData(db: Db): Promise<void> {
     console.log(`[seed] questionnaire template: ${safetyDef.key}`);
 
     // --- Suppliers ---------------------------------------------------------------
-    // Supplier model v2 (docs/supplier-spec.md) + the REAL AfrikaBurn Suppliers
+    // Supplier model v2 (docs/technical-spec/12-suppliers.md) + the REAL AfrikaBurn Suppliers
     // List (parser v2). Standing, category, and returning are seeded straight
     // from the imported sheet data (Status → standing, Category normalised,
     // Returning Supplier? → returning), and each supplier's onboarding step map

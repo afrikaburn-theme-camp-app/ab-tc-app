@@ -1,6 +1,6 @@
 import { z } from "zod";
 
-// Account management & security vocabularies (docs/accounts-security-spec.md).
+// Account management & security vocabularies (docs/technical-spec/02-accounts-and-account-security.md).
 //
 // IMPORTANT CONTEXT — what the identity provider actually gives us. We run
 // SELF-HOSTED Better Auth (@quagga/auth, better-auth 1.6.25), mounted in-process
@@ -9,7 +9,7 @@ import { z } from "zod";
 // backup codes (twoFactor plugin) and WebAuthn passkeys (@better-auth/passkey),
 // both landed in migration 0015 — is now real. The capability matrix is the
 // machine-readable record of what actually ships — see `AUTH_CAPABILITIES` in
-// @quagga/core for the authority, and `docs/accounts-security-spec.md` for the
+// @quagga/core for the authority, and `docs/technical-spec/02-accounts-and-account-security.md` for the
 // narrative. Nothing in this file assumes a capability the stack does not expose.
 //
 // Keep every enum here in sync with the matching pgEnum in @quagga/db schema.ts.

@@ -14,7 +14,7 @@ import type { NotificationFilter, NotificationKind } from "@quagga/types";
 import { getDb, schema } from "./db";
 import { isDatabaseConfigured } from "./config";
 
-// Notifications backend for the Supplier Portal (docs/notifications-spec.md).
+// Notifications backend for the Supplier Portal (docs/technical-spec/11-bulletins-and-notifications.md).
 // Suppliers only ever get THEIR OWN supplier events (standing value changes +
 // org-confirmed onboarding steps — never org-internal notes). Reads are scoped
 // to the `users.id` the caller resolved through the portal gate (session.dbUserId).

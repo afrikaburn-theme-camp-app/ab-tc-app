@@ -35,7 +35,7 @@ import type {
 // "Row Safety Baron"). Officers are org-defined catalog roles: NOT aliasable
 // (no rename, no recolour — hence the lock glyph) and assignment is a CONSENT
 // flow, because acceptance is the only path that shares a member's contact
-// details with AfrikaBurn (questionnaire-spec §"Officers are ALSO
+// details with AfrikaBurn (docs/technical-spec/05-camp-roles-and-officers.md §"Officers are ALSO
 // registrations"; POPIA consent-based processing).
 
 const CONSENT_TAG: Record<RoleAssignmentConsent, string> = {

@@ -11,7 +11,7 @@ import { toast } from "@quagga/ui/components/toast";
 import type { RoleVM, SetRolePermissionsAction } from "./types";
 
 // The privilege block of a role editor (canvas ZyKzw "Priv Box"): one labelled
-// switch per privilege from questionnaire-spec §"Roles v2" privileges table,
+// switch per privilege from docs/technical-spec/05-camp-roles-and-officers.md §"Roles v2" privileges table,
 // with `manage_questionnaires` expanding into its sub-scopes (audience_roles +
 // may_block). UI-only — every write goes through `setRolePermissionsAction`,
 // which re-checks `manage_roles` server-side and runs `enforceKindPermissions`
@@ -261,7 +261,7 @@ export function PrivilegeEditor({
     role.permissions,
   );
   // Captain privileges are locked to all — the kind predicate decides, never a
-  // hardcoded role name (questionnaire-spec §"Role kinds").
+  // hardcoded role name (docs/technical-spec/05-camp-roles-and-officers.md §"Role kinds").
   const locked = isPermissionsLockedKind(role.kind);
   const disabled = !canManageRoles || locked;
   const dirty = JSON.stringify(perms) !== JSON.stringify(role.permissions);

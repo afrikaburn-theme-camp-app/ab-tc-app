@@ -4,7 +4,7 @@ import { timingSafeEqual } from "node:crypto";
 import { sweepDueDeletions } from "@/lib/account-sanitize";
 import { isDatabaseConfigured } from "@/lib/config";
 
-// The deletion sweeper (docs/accounts-security-spec.md §Deletion). Finds every
+// The deletion sweeper (docs/technical-spec/02-accounts-and-account-security.md §Deletion). Finds every
 // deletion request whose 14-day grace period has elapsed and SANITIZES the
 // account — anonymize to a "Departed Burner" stub, preserving memberships,
 // questionnaire responses and audit history.

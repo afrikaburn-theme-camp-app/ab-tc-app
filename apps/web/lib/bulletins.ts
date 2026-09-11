@@ -6,7 +6,7 @@ import { db, schema } from "./db";
 import { isDatabaseConfigured } from "./config";
 import { getCurrentCampUser } from "./session";
 
-// Participant-side bulletin reads (docs/notifications-spec.md §Surfaces).
+// Participant-side bulletin reads (docs/technical-spec/11-bulletins-and-notifications.md §Surfaces).
 // A bulletin is only readable by a participant who RECEIVED it — i.e. has a
 // notification row for it. This is the read-side enforcement of the same
 // audience: an org_internal bulletin (or any broadcast a user wasn't in the

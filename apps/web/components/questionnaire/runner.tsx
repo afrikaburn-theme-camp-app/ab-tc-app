@@ -30,7 +30,7 @@ import { BurnsAndVolunteeringStep, type BioExtrasState } from "./burns-step";
 import type { CampSearchResult } from "@/lib/groups-store";
 import { navigateOnwards } from "@/lib/client-navigation";
 
-// Runner v2 (questionnaire-spec §"Respondent (runner) UX"). Every navigation
+// Runner v2 (docs/technical-spec/10-questionnaire-engine.md §"Respondent (runner) UX"). Every navigation
 // and completeness decision is delegated to the @quagga/core questionnaire
 // runtime — `nextPageId` (branching), `deriveProgress` (progress + the
 // branch-resolved path), `presentationBlocks`/`presentationOptions` (seeded,

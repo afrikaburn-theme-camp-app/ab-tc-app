@@ -1,4 +1,4 @@
-// Questionnaire RUNTIME (questionnaire-spec §"Builder v2" logic + respondent
+// Questionnaire RUNTIME (docs/technical-spec/10-questionnaire-engine.md §"Builder v2" logic + respondent
 // UX). Everything the runner needs to decide *what a respondent sees next* and
 // *whether they are done*, derived purely from a definition + the answers so
 // far. The server re-derives the same things at submit time, so a respondent

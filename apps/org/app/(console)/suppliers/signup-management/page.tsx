@@ -19,7 +19,7 @@ import { DocumentsTable } from "@/components/supplier-documents/documents-table"
 // /suppliers/signup-management — the org's per-edition supplier document list
 // (canvas `U7929T` desktop / `D6IGel` mobile), apricot console accent.
 //
-// docs/accounts-security-spec.md §"Supplier documents — org-controlled": the
+// docs/technical-spec/12-suppliers.md §"Supplier documents": the
 // org CRUDs the documents and links suppliers must read or download before
 // onboarding — title, source, `required_ack`, sort order, and an optional
 // binding to the onboarding step the acknowledgement completes.

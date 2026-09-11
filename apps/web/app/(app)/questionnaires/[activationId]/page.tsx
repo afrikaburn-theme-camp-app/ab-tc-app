@@ -88,7 +88,7 @@ export default async function QuestionnaireFillPage({
     );
   }
 
-  // Blocking gate (questionnaire-spec §"Engine mechanics"): a HARD gate whose
+  // Blocking gate (docs/technical-spec/10-questionnaire-engine.md §"Engine mechanics"): a HARD gate whose
   // ONLY reachable actions are filling it in and signing out.
   //
   // THE STRIPPED CHROME IS THE LAYOUT'S JOB NOW. This page used to draw its own

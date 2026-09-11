@@ -1,5 +1,5 @@
 // Security events — display mapping for the account "recent security events" feed
-// (docs/accounts-security-spec.md §"recent security events").
+// (docs/technical-spec/02-accounts-and-account-security.md §"Security events log").
 //
 // PURITY CONTRACT (as with the rest of @quagga/core): no I/O, no env, no DB. The
 // `security_events` table stores only the typed `kind` (plus request context);

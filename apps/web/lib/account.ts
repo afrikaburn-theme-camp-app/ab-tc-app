@@ -32,7 +32,7 @@ import { db, schema } from "@/lib/db";
 import { isDatabaseConfigured } from "@/lib/config";
 
 // Read side of the account surfaces (/account, /account/security,
-// /account/delete) — docs/accounts-security-spec.md.
+// /account/delete) — docs/technical-spec/02-accounts-and-account-security.md.
 //
 // PROVIDER REALITY (self-hosted Better Auth via @quagga/auth): we now run our
 // OWN Better Auth in-process, so the server API `auth.api.*` exposes the full

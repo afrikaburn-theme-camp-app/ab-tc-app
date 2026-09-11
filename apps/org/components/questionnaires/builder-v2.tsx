@@ -78,7 +78,7 @@ import { BlockingBadge } from "@/components/questionnaire/blocking-badge";
 import { saveDefinitionV2 } from "@/app/(console)/questionnaires/builder-actions";
 import { previewAudienceCount } from "@/lib/questionnaires/actions";
 
-// Builder v2 (questionnaire-spec §"Builder v2 — Google Forms parity").
+// Builder v2 (docs/technical-spec/10-questionnaire-engine.md §"Builder v2 — Google Forms parity").
 //
 // The editor state IS the definition: a `Questionnaire` mutated immutably. That
 // buys two things for free — question ids never drift on reorder (we move the

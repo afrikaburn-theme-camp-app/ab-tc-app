@@ -32,7 +32,7 @@ import { cn } from "@quagga/ui/lib/utils";
 
 import { ResponseViewer } from "@/components/questionnaire/response-viewer";
 
-// Results v2 (questionnaire-spec §"Author/admin features": response summary
+// Results v2 (docs/technical-spec/10-questionnaire-engine.md §"Author/admin features": response summary
 // with per-question charts + CSV export).
 //
 // Every number on this screen comes from @quagga/core's `aggregateResponses`;

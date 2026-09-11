@@ -102,10 +102,11 @@ sequencing).
 `architecture.md`, `component-spec.md`, `flows.md`, `questionnaire-spec.md`,
 `notifications-spec.md`, `supplier-spec.md`, `accounts-security-spec.md` and
 `auth-platform-spec.md` moved into `technical-spec/` (see that folder's
-index for exactly where) as part of the 2026-09-11 restructure; each old
-path now holds a short redirect rather than being removed outright, so any
-existing code comment or external link pointing at the old path still
-resolves to an explanation instead of a dangling link.
+index for exactly where) as part of the 2026-09-11 restructure. The old
+paths held short redirects for a transition period; those redirects have
+since been removed outright, so any surviving code comment or external link
+pointing at an old path is stale and should be repointed at the successor
+doc named in that folder's index.
 
 ## Technical language guide
 

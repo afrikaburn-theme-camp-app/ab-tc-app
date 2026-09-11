@@ -14,7 +14,7 @@ import { getDb, schema, type DbHandle } from "./db";
 import { isDatabaseConfigured } from "./config";
 import { resolveOrgSession } from "./session";
 
-// Notifications backend for the Organiser Console (docs/notifications-spec.md).
+// Notifications backend for the Organiser Console (docs/technical-spec/11-bulletins-and-notifications.md).
 // Console staff have inboxes too (org-internal bulletins, org-targeted events).
 // Reads are scoped to a `users.id` the caller resolved through the console gate;
 // the header count falls back to resolving the session itself.

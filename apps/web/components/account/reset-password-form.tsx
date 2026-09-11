@@ -15,7 +15,7 @@ import { resetPassword } from "@/lib/account-actions";
 // `revokeSessionsOnPasswordReset` invalidates every session on success — which
 // is exactly what the note under the button promises.
 //
-// ONE field, per accounts-security-spec: no confirm-twice, show/hide toggle,
+// ONE field, per docs/technical-spec/02-accounts-and-account-security.md: no confirm-twice, show/hide toggle,
 // paste allowed, length-based strength. The 15-character rule is enforced by the
 // same @quagga/core `assessPassword` the server action runs.
 //

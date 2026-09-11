@@ -18,7 +18,7 @@ interface Invitation {
 
 /**
  * The member's own officer registrations — the consent moment
- * (questionnaire-spec §"Officers are ALSO registrations") AND the consent they
+ * (docs/technical-spec/05-camp-roles-and-officers.md §"Officers are ALSO registrations") AND the consent they
  * have already given.
  *
  * Accepted roles are listed because CONSENT THAT CANNOT BE WITHDRAWN IS NOT

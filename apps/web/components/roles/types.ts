@@ -65,7 +65,7 @@ export type AssignOfficerAction = typeof assignOfficerAction;
 export type UnassignOfficerAction = typeof unassignOfficerAction;
 
 /**
- * What each officer is FOR (Quaggapedia receipts, quoted in questionnaire-spec
+ * What each officer is FOR (Quaggapedia receipts, quoted in docs/technical-spec/05-camp-roles-and-officers.md
  * §"Officer roles"). Requirement state itself is never hardcoded here — it comes
  * from `officerRequirements()` in @quagga/core via the store.
  */

@@ -1,5 +1,5 @@
 // THE single shared Better Auth configuration, mounted independently by all
-// three apps (auth-platform-spec §2.1: one betterAuth() config, drizzleAdapter
+// three apps (docs/technical-spec/01-auth-and-identity.md: one betterAuth() config, drizzleAdapter
 // pointed at the same Neon DB, each app runs its own in-process copy — not a
 // proxy, not a central auth server). Keeping this identical across apps is what
 // makes a session minted by one valid in the others.
@@ -135,7 +135,7 @@ export function buildAuthOptions(env: AuthEnv = process.env) {
     //
     // So: no endpoint until the flow that notifies the CURRENT address and
     // honours the revocation window is actually wired. Turning this back on
-    // means implementing that first — see docs/accounts-security-spec.md.
+    // means implementing that first — see docs/technical-spec/02-accounts-and-account-security.md §"Security principles".
     user: {
       changeEmail: { enabled: false },
     },
@@ -217,7 +217,7 @@ export function buildAuthOptions(env: AuthEnv = process.env) {
       ...resolveRateLimit(env),
     },
 
-    // Optional second factors / passwordless accelerators (auth-platform-spec §3).
+    // Optional second factors / passwordless accelerators (docs/technical-spec/01-auth-and-identity.md).
     // Both are self-host-only Better Auth plugins — the whole reason we moved off
     // managed Neon. Neither is ever the ONLY way in: password (or Google) stays
     // the primary credential, so a lost passkey or authenticator is never a dead
@@ -226,7 +226,7 @@ export function buildAuthOptions(env: AuthEnv = process.env) {
       twoFactor({
         // Names the account in authenticator apps ("AfrikaBurn Contributors").
         issuer: AUTH_RP_NAME,
-        // FOOTGUN GUARD (auth-platform-spec §3): the raw backup-code option
+        // FOOTGUN GUARD (docs/technical-spec/01-auth-and-identity.md): the raw backup-code option
         // defaults to plaintext storage. Store them ENCRYPTED — plaintext
         // recovery codes in our Neon DB would be a POPIA + security failure.
         backupCodeOptions: { storeBackupCodes: "encrypted" },

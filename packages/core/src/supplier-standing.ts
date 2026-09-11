@@ -1,5 +1,5 @@
 // Supplier standing helpers + camp-side picker eligibility
-// (docs/supplier-spec.md §"The supplier model" + §"Guardrails"). Standing is
+// (docs/technical-spec/12-suppliers.md §"The supplier model" + §"Guardrails"). Standing is
 // the org's single verdict; the camp-side picker keys off it (suspended
 // excluded) plus onboarding completeness (incomplete suppliers are shown with
 // an "onboarding incomplete" tag, not hidden). Pure logic — no I/O.

@@ -40,7 +40,7 @@ import type {
 // breaks the generator for everyone after you (see AGENTS.md rule 1; the chain
 // was broken this way between 0024 and 0028 and had to be repaired).
 //
-// Authentication/identity is SELF-HOSTED Better Auth (docs/auth-platform-spec.md).
+// Authentication/identity is SELF-HOSTED Better Auth (docs/technical-spec/01-auth-and-identity.md).
 // The Better Auth core tables (`user`, `session`, `account`, `verification`) and
 // the DB rate-limit table (`rate_limit`) live in THIS database, owned by
 // `@quagga/db` and mounted per app by `@quagga/auth`'s `drizzleAdapter`. They sit
@@ -89,7 +89,7 @@ export const inviteKindEnum = pgEnum("invite_kind", [
   "lead_transfer",
 ]);
 
-// Roles v2 (questionnaire-spec §"Role kinds"). `kind` governs permanence +
+// Roles v2 (docs/technical-spec/05-camp-roles-and-officers.md §"Role kinds"). `kind` governs permanence +
 // assignment semantics; `color` is a curated palette key (token-mapped, not hex).
 export const projectRoleKindEnum = pgEnum("project_role_kind", [
   "captain",
@@ -121,7 +121,7 @@ export const roleColorEnum = pgEnum("role_color", [
   "neutral",
 ]);
 
-// Officer assignment consent (questionnaire-spec §"Officers are ALSO
+// Officer assignment consent (docs/technical-spec/05-camp-roles-and-officers.md §"Officers are ALSO
 // registrations"). Non-officer assignments are always `accepted`.
 export const roleAssignmentConsentEnum = pgEnum("role_assignment_consent", [
   "pending",
@@ -153,7 +153,7 @@ export const sectionReviewStatusEnum = pgEnum("section_review_status", [
   "resolved",
 ]);
 
-// Supplier model v2 (docs/supplier-spec.md). `vetting_status` + `source` are
+// Supplier model v2 (docs/technical-spec/12-suppliers.md). `vetting_status` + `source` are
 // dead; `standing` is the org's single verdict, `supplier_note_kind` types the
 // org-internal timeline. Step states are stored as jsonb (not an enum column)
 // on `supplier_onboarding`.
@@ -179,7 +179,7 @@ export const supplierNoteKindEnum = pgEnum("supplier_note_kind", [
   "note",
 ]);
 
-// Org-controlled supplier documents (docs/accounts-security-spec.md §"Supplier
+// Org-controlled supplier documents (docs/technical-spec/12-suppliers.md §"Supplier
 // documents"). `link` = external URL, `file` = uploaded asset; `url` carries
 // both, so the distinction is purely how the portal labels the action and who
 // owns the artifact's lifetime.
@@ -188,7 +188,7 @@ export const supplierDocumentSourceEnum = pgEnum("supplier_document_source", [
   "link",
 ]);
 
-// Account management & security (docs/accounts-security-spec.md). Both enums
+// Account management & security (docs/technical-spec/02-accounts-and-account-security.md). Both enums
 // mirror Zod enums in @quagga/types accounts.ts (the validation authority).
 export const accountDeletionStatusEnum = pgEnum("account_deletion_status", [
   "pending",
@@ -210,7 +210,7 @@ export const paymentStatusEnum = pgEnum("payment_status", [
   "waived",
 ]);
 
-// Security events (docs/accounts-security-spec.md §"recent security events").
+// Security events (docs/technical-spec/02-accounts-and-account-security.md §"Security events log").
 // The account security page's feed reads a real append-only log of what happened
 // to the account, rather than deriving it from `notifications`. Kinds mirror the
 // SecurityEventLogKind Zod enum in @quagga/types accounts.ts and the label map in
@@ -228,7 +228,7 @@ export const securityEventKindEnum = pgEnum("security_event_kind", [
   "deletion_cancelled",
 ]);
 
-// Notifications & bulletins (docs/notifications-spec.md, build-spec §Notifications).
+// Notifications & bulletins (docs/technical-spec/11-bulletins-and-notifications.md, build-spec §Notifications).
 // One inbox, two origins: personal event notifications + org `bulletin`
 // broadcasts. Kinds mirror the NotificationKind Zod enum in @quagga/types and
 // the leading-glyph map in @quagga/ui's NotificationItem — keep all three in
@@ -304,7 +304,7 @@ export const users = pgTable(
     // `username.ts` (never duplicated in SQL or in a form).
     username: text("username"),
     // Set when the account has been SANITIZED after a completed deletion request
-    // (docs/accounts-security-spec.md §Deletion — the "Lost Cat" precedent). The
+    // (docs/technical-spec/02-accounts-and-account-security.md §Deletion — the "Lost Cat" precedent). The
     // row survives so memberships, questionnaire responses, and audit events keep
     // referential integrity, but every personal field is erased and the identity
     // renders as the "Departed Burner" stub. A non-null value is also the tombstone
@@ -335,7 +335,7 @@ export const users = pgTable(
 // capability matrix (@quagga/core auth-capabilities) tracks which are live.
 //
 // WHY THESE SIT BESIDE `users` RATHER THAN BECOMING IT (the near-irreversible call,
-// auth-platform-spec §2.3 / decision 2). We deliberately keep TWO tables:
+// docs/technical-spec/01-auth-and-identity.md §2.3 / decision 2). We deliberately keep TWO tables:
 //   - `user`  — the lean auth identity Better Auth owns (credentials, email,
 //               verification, OAuth links via `account`, sessions via `session`).
 //   - `users` — our app/profile identity, with `sanitized_at` (migration 0011),
@@ -344,7 +344,7 @@ export const users = pgTable(
 //               → `user.id`.
 // The join stays LOGICAL — there is intentionally NO database foreign key from
 // `users.auth_user_id` to `user.id`. That is what protects the "Lost Cat"
-// sanitization design (accounts-security-spec §Deletion): the sanitizer
+// sanitization design (docs/technical-spec/02-accounts-and-account-security.md §Deletion): the sanitizer
 // (`sanitizeAccount`) hard-deletes the Better Auth `user` row (cascading its
 // `session`/`account` rows, and erasing the identity's email PII + password hash),
 // while our `users` row SURVIVES in its sanitized "Departed Burner" stub form so
@@ -451,7 +451,7 @@ export const verification = pgTable(
   }),
 );
 
-// DB-backed rate-limit store (auth-platform-spec §6 — the single most dangerous
+// DB-backed rate-limit store (docs/technical-spec/01-auth-and-identity.md §6 — the single most dangerous
 // silent regression to get wrong). @quagga/auth sets `rateLimit.storage:'database'`
 // so limiter counters are SHARED across serverless lambdas; that requires this
 // table to exist. Model name `rateLimit` (adapter key), physical table `rate_limit`.
@@ -992,7 +992,7 @@ export const projectRoles = pgTable(
     nameNormalized: text("name_normalized").notNull(),
     isDefault: boolean("is_default").notNull().default(false),
     sort: integer("sort").notNull().default(0),
-    // Roles v2 (questionnaire-spec §"Roles v2"). `kind` = permanence/assignment
+    // Roles v2 (docs/technical-spec/05-camp-roles-and-officers.md §"Roles v2"). `kind` = permanence/assignment
     // class; `color`/`emoji` = display; `permissions` = the privilege OBJECT
     // (keys + config, e.g. manage_questionnaires scope). `officerKey` is the
     // stable org catalog anchor for `officer`-kind rows (null otherwise).
@@ -1029,7 +1029,7 @@ export const memberRoleAssignments = pgTable(
     projectRoleId: uuid("project_role_id")
       .notNull()
       .references(() => projectRoles.id, { onDelete: "cascade" }),
-    // Officer consent (questionnaire-spec §"Officers are ALSO registrations").
+    // Officer consent (docs/technical-spec/05-camp-roles-and-officers.md §"Officers are ALSO registrations").
     // Non-officer assignments are `accepted` immediately; officer assignments
     // start `pending` and the member must accept. `orgVisible` is set true on an
     // officer's acceptance — the SINGLE explicit channel that shares an
@@ -1558,7 +1558,7 @@ export const requiredActions = pgTable(
 );
 
 // --- Suppliers -----------------------------------------------------------
-// Supplier model v2 (docs/supplier-spec.md). `source`/`vetting_status` are
+// Supplier model v2 (docs/technical-spec/12-suppliers.md). `source`/`vetting_status` are
 // gone; the org sees three things only — did they onboard (derived from
 // `supplier_onboarding`), what `standing` are they in, and the notes trail
 // (`supplier_notes`). `userId` optionally links a supplier to a burner account
@@ -1664,7 +1664,7 @@ export const supplierNotes = pgTable(
 
 // --- Supplier documents --------------------------------------------------
 // Org-controlled, per-edition list of documents/links suppliers must read
-// (docs/accounts-security-spec.md §"Supplier documents — org-controlled"). The
+// (docs/technical-spec/12-suppliers.md §"Supplier documents — org-controlled"). The
 // org console CRUDs these; the supplier portal renders them as the Documents
 // panel on the onboarding page. `required_ack` rows carry an acknowledgement
 // checkbox; `step_key` optionally BINDS the document to an onboarding step, so
@@ -1990,7 +1990,7 @@ export const notifications = pgTable(
 );
 
 // --- Account deletion requests -------------------------------------------
-// docs/accounts-security-spec.md §Deletion. Deleting an account is NEVER a row
+// docs/technical-spec/02-accounts-and-account-security.md §Deletion. Deleting an account is NEVER a row
 // delete. Re-auth to request → a 14-day grace period (cancelled by simply
 // signing in) → then SANITIZATION (the Camp 404 "Lost Cat" precedent): personal
 // fields are erased and the identity is anonymized to a "Departed Burner" stub
@@ -2045,7 +2045,7 @@ export const accountDeletionRequests = pgTable(
 );
 
 // --- Email change requests -----------------------------------------------
-// docs/accounts-security-spec.md §"Email change": confirm via the NEW address,
+// docs/technical-spec/02-accounts-and-account-security.md §"Email change": confirm via the NEW address,
 // notify the OLD address with a revocation link, revocable for 48h.
 //
 // WHY WE OWN THIS TABLE. Managed Neon Auth's SERVER SDK exposes no
@@ -2110,7 +2110,7 @@ export const emailChangeRequests = pgTable(
 );
 
 // --- Security events ------------------------------------------------------
-// docs/accounts-security-spec.md §"recent security events". An append-only log of
+// docs/technical-spec/02-accounts-and-account-security.md §"Security events log". An append-only log of
 // what actually happened to an account, recorded at the moment each account action
 // succeeds. This REPLACES the earlier stopgap where the security page derived its
 // feed from `notifications` (which conflated inbox messages with the event record).

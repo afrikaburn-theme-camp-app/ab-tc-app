@@ -9,7 +9,7 @@ import type { SupplierOnboardingStepKey } from "@quagga/types";
 // binding. Derived from the @quagga/core catalog rather than hand-listed, so
 // the picker can never drift from the rule the server enforces.
 //
-// THE RULE (docs/accounts-security-spec.md §"Binding rule", enforced in
+// THE RULE (docs/technical-spec/12-suppliers.md §"Binding rule", enforced in
 // `validateDocumentBinding` and re-checked at apply time in
 // `applyDocumentAcksToSteps`): a document may only bind to a step the SUPPLIER
 // completes themselves. Org-confirmed steps (deposit, briefing, registration

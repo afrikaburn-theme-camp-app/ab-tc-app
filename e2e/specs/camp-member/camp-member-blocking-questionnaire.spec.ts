@@ -2,7 +2,7 @@
 //
 // Persona: CAMP MEMBER. A camp lead can send a BLOCKING questionnaire; for the
 // member that is a hard gate — the app is unusable until it's answered, and the
-// ONLY reachable actions are filling it in and signing out (questionnaire-spec
+// ONLY reachable actions are filling it in and signing out (docs/technical-spec/10-questionnaire-engine.md
 // §"Engine mechanics"; roadmap M3-27's blocking clause, member side).
 //
 // This spec proves the gate both TRAPS (every other surface redirects back to

@@ -3,7 +3,7 @@ import { Badge } from "@quagga/ui/components/badge";
 
 /**
  * The explicit blocking-status badge required on EVERY questionnaire surface
- * (questionnaire-spec, Ryan 24 Jul): a blocking questionnaire is a hard gate, so
+ * (docs/technical-spec/10-questionnaire-engine.md, Ryan 24 Jul): a blocking questionnaire is a hard gate, so
  * it always carries a destructive/warning "Required — blocks the app until done"
  * badge, and non-blocking ones a muted "Optional". Never render a questionnaire
  * without one of these.

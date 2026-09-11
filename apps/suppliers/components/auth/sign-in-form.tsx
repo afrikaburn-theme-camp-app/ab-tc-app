@@ -18,8 +18,8 @@ import { authClient } from "@/lib/auth-client";
 // The failure message is the SINGLE generic string from @quagga/core
 // (`enumerationSafeMessage("sign_in")`) — identical whether the address is
 // unknown, the password is wrong, or the account is locked out. Nothing here
-// may branch on account existence (docs/accounts-security-spec.md §"No user
-// enumeration"; `leaksAccountExistence` is the regression guard on that copy).
+// may branch on account existence (docs/technical-spec/02-accounts-and-account-security.md §"Security principles"
+// — enumeration safety; `leaksAccountExistence` is the regression guard on that copy).
 //
 // No strength meter on this field: on sign-in it is noise, and it would leak
 // nothing useful anyway.

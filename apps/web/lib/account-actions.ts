@@ -58,7 +58,7 @@ import {
 } from "@/lib/account";
 import { hashToken, newToken } from "@/lib/account-tokens";
 
-// Write side of the account surfaces (docs/accounts-security-spec.md).
+// Write side of the account surfaces (docs/technical-spec/02-accounts-and-account-security.md).
 //
 // THE HONESTY RULE, enforced everywhere below: never report success for
 // something that did not happen. The self-hosted Better Auth server API
@@ -106,8 +106,8 @@ async function run(
 }
 
 /**
- * Best-effort append to the `security_events` log (docs/accounts-security-spec.md
- * §"recent security events"). THIN: it records the request context (IP + user
+ * Best-effort append to the `security_events` log (docs/technical-spec/02-accounts-and-account-security.md
+ * §"Security events log"). THIN: it records the request context (IP + user
  * agent) at the moment an account action succeeds. It must NEVER break or roll
  * back the primary action — a failed insert, or a missing request context, is
  * swallowed. Feeds the account security page's "recent security events" card.

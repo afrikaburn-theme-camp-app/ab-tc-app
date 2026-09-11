@@ -1,7 +1,7 @@
 import { Info } from "lucide-react";
 import type { ContentBlock } from "@quagga/types";
 
-// Builder v2 content blocks (questionnaire-spec §"Content & structure blocks").
+// Builder v2 content blocks (docs/technical-spec/10-questionnaire-engine.md §"Content & structure blocks").
 // These take NO answer: they never appear in the response map, never count
 // towards progress, and never gate completion — `pageQuestions()` /
 // `visibleQuestions()` filter them out upstream, so this component is purely

@@ -1,6 +1,6 @@
 // specs/supplier/self-registration.spec.ts — the supplier's front door.
 //
-// Journey (M3-28, docs/supplier-spec.md §Surfaces): a business self-registers in
+// Journey (M3-28, docs/technical-spec/12-suppliers.md §Surfaces): a business self-registers in
 // the portal — ONE password field (NIST: no confirm-password), a service
 // category, and the supplier-basics acknowledgement — and lands on its own
 // onboarding checklist with the registration step already done. Then it can sign
@@ -63,7 +63,7 @@ test.describe("supplier self-registration", () => {
     await suppliersPage.goto("/signup");
 
     // Exactly one password field, and never a "confirm password" (NIST SP
-    // 800-63B-4 forbids the confirm-twice pattern — docs/accounts-security-spec.md).
+    // 800-63B-4 forbids the confirm-twice pattern — docs/technical-spec/02-accounts-and-account-security.md).
     await expect(suppliersPage.getByLabel(/^Password/)).toBeVisible();
     await expect(suppliersPage.getByLabel(/confirm password/i)).toHaveCount(0);
 

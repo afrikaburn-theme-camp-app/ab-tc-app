@@ -18,7 +18,7 @@ package before the migration is generated. Two things ARE verified in-repo and a
 marked ⚠: the pin (`packages/auth/package.json:26` declares `"better-auth": "1.6.25"`, and
 `pnpm-lock.yaml:2667` resolves it — `@better-auth/passkey` is pinned to the same version at
 `:22`), and the `userId` → `referenceId` rename on the API Key plugin, which
-`docs/auth-platform-spec.md` §2.4 records in its 1.5 breaking-change list.
+`docs/technical-spec/01-auth-and-identity.md` §2.4 records in its 1.5 breaking-change list.
 
 ---
 
@@ -452,7 +452,7 @@ the next number is **0029**. Everything below is additive and backfill-free, whi
 the append-only law requires (`packages/db/src/schema.ts:26-31`, AGENTS.md rule 2). Generated
 by `pnpm --filter @quagga/db db:generate` after hand-placing the tables in
 `packages/db/src/schema.ts` — never by `npx auth migrate`, which is Kysely-only and would
-fight the discipline (`docs/auth-platform-spec.md` §2.3).
+fight the discipline (`docs/technical-spec/01-auth-and-identity.md` §2.3).
 
 **(1) `user_kind` enum + `users.kind`.** The cheapest item on this list and the one most
 likely to be skipped. Without it a service row appears in the burner directory, in
@@ -509,7 +509,7 @@ export const apikey = pgTable(
     prefix: text("prefix"),
     key: text("key").notNull(),
     // `referenceId`, NOT `userId`. This one is not ⚠: the rename is recorded in
-    // this repo, at docs/auth-platform-spec.md §2.4 — "API Key plugin moved to
+    // this repo, at docs/technical-spec/01-auth-and-identity.md §2.4 — "API Key plugin moved to
     // `@better-auth/api-key` (`userId`→`referenceId`)" — in the 1.5 breaking-
     // change list the pin was chosen against. TEXT, referencing `user.id`
     // (Better Auth's lean identity table, whose id is text), never `users.id`
@@ -546,7 +546,7 @@ export const apikey = pgTable(
 ⚠ One shape question still to settle against the installed package before generating:
 whether `configId` is present on 1.6.25. **Match whatever the CLI emits, exactly** — a
 mismatch here is a silent adapter field-mapping failure, not a compile error. Note
-`docs/auth-platform-spec.md` §2.3 is explicit about the procedure: `npx auth generate`
+`docs/technical-spec/01-auth-and-identity.md` §2.3 is explicit about the procedure: `npx auth generate`
 emits Drizzle table code, hand-place it into `packages/db/src/schema.ts`, then
 `pnpm --filter @quagga/db db:generate` produces the append-only SQL — and **never**
 `npx auth migrate`, "that is Kysely-only and never touches a Drizzle project".
@@ -859,7 +859,7 @@ The console shows both keys, the old one badged with its expiry and a countdown,
 | --------------- | ---------------------------------------------------------------------------------- | ------------------------------- |
 | one key         | `apikey.enabled = false` + `integration_keys.revoked_at`                           | that credential                 |
 | one integration | `integrations.status = 'suspended'` — checked in **our** wrapper, not the plugin's | every key the integration holds |
-| everything      | the existing kill switch (`docs/auth-platform-spec.md` §8.11)                      | all API traffic                 |
+| everything      | the existing kill switch (`docs/compliance-and-incident-response.md` §"Kill switch")                      | all API traffic                 |
 
 All three are instant because every verification is a database read against the hash. **The
 cookie-cache caveat does not apply** — `AUTH_SESSION.cookieCacheMaxAgeSeconds = 300`
@@ -1016,7 +1016,7 @@ Successful **reads are not audited** — one row per directory listing would bur
 `bio.medical.view` is untouched and unreachable: no scope reaches medical notes.
 
 **`apikey.metadata` is integrator-adjacent JSON and is never copied into `audit_events.meta`
-unfiltered** — `docs/auth-platform-spec.md:692` requires the audit scrubber strip token-like
+unfiltered** — `docs/technical-spec/01-auth-and-identity.md` requires the audit scrubber strip token-like
 keys, and this is a new inbound path into `meta`.
 
 #### 4.3.11 Invariant tests — each with a named assertion. **Blocking.**
@@ -1120,7 +1120,7 @@ content type, and the SDK ships the same table compiled in.
 
 ### 4.5 THE PII STRIPPER — §9.4 DECISION 2. **BLOCKING.**
 
-`docs/auth-platform-spec.md:626-630` requires ONE unconditional strip helper in
+`docs/technical-spec/01-auth-and-identity.md` requires ONE unconditional strip helper in
 `@quagga/core`, reused by first-party **and** integrator responses, so hard-locked fields can
 never be scoped in, and says to _"build the stripper now even though only first-party calls
 it — a per-caller filter is the failure mode that leaks PII when a scope or filter is
@@ -1322,9 +1322,9 @@ credential.
 
 Every verification is one round trip on the stateless `neon-http` driver
 (`packages/db/src/index.ts:37-39`, no transactions), so every statement here must stay
-single-statement. Layer 1 is the compute shield. `docs/auth-platform-spec.md:721` says "No
+single-statement. Layer 1 is the compute shield. `docs/technical-spec/01-auth-and-identity.md` says "No
 Redis/Upstash at launch"; an external API is the volume argument that reopens it, and
-`auth-platform-spec.md:744` records that Vercel WAF rate-limit rules are Pro+ and blocked on
+`docs/technical-spec/01-auth-and-identity.md` records that Vercel WAF rate-limit rules are Pro+ and blocked on
 an open decision. Neither blocks v0.1 — a `public:*`-only read API at v0.1 volumes is served
 by layers 1–2.
 
@@ -1532,7 +1532,7 @@ schemas, the platform's PII guarantee is "we remembered."
    is absent from this checkout. The field defaults, endpoint paths and the
    `enableSessionForAPIKeys` bypass come from the auth survey's read of the published
    tarball. (The `userId`→`referenceId` rename is the one exception — it is recorded in this
-   repo at `docs/auth-platform-spec.md` §2.4.) Task 9 is "install and re-verify" before task
+   repo at `docs/technical-spec/01-auth-and-identity.md` §2.4.) Task 9 is "install and re-verify" before task
    10 generates a migration that is append-only and therefore permanent.
 6. **Bulletins are not a public surface, and `public:bulletins:read` is deleted.** They were
    in the v0.1 tranche in an earlier draft. `bulletins.audience` is the same jsonb

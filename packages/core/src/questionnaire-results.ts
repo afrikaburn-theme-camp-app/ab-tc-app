@@ -1,4 +1,4 @@
-// Questionnaire RESULTS aggregation (questionnaire-spec §"Author/admin
+// Questionnaire RESULTS aggregation (docs/technical-spec/10-questionnaire-engine.md §"Author/admin
 // features": "response summary view with per-question charts"). One aggregate
 // per question, shaped for the chart the question type deserves — choice
 // counts as bars, scales/ratings as histograms with an average.

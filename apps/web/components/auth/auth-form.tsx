@@ -18,12 +18,12 @@ import { navigateOnwards } from "@/lib/client-navigation";
 
 // Branded email/password + Google auth form (design canvas frame u87N7). One
 // password field (no confirm), show/hide toggle, length-based strength on
-// sign-up. All messages are enumeration-safe per docs/accounts-security-spec.md
+// sign-up. All messages are enumeration-safe per docs/technical-spec/02-accounts-and-account-security.md
 // — nothing reveals whether an account exists.
 
 export type AuthMode = "sign-in" | "sign-up";
 
-// Minimum password length (accounts-security-spec: 15+, no composition rules).
+// Minimum password length (docs/technical-spec/02-accounts-and-account-security.md: 15+, no composition rules).
 const PASSWORD_MIN_LENGTH = 15;
 
 // Deliberately generic: same message whether the email is unknown or the

@@ -1,5 +1,5 @@
 // specs/supplier/claim-by-email.spec.ts — the email-overlap claim (M3-28,
-// docs/supplier-spec.md; apps/suppliers/lib/session.ts resolveSupplierForUser).
+// docs/technical-spec/12-suppliers.md; apps/suppliers/lib/session.ts resolveSupplierForUser).
 //
 // THE RULE: when a supplier signs in with a VERIFIED email that matches an
 // accountless catalog row's free-text contact, the portal ATTACHES that user to

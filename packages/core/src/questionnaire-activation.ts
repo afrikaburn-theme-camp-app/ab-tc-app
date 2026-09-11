@@ -1,4 +1,4 @@
-// Questionnaire activation lifecycle (questionnaire-spec §"Engine mechanics").
+// Questionnaire activation lifecycle (docs/technical-spec/10-questionnaire-engine.md §"Engine mechanics").
 // An ACTIVATION = definition × edition × audience × options. Activating it
 // resolves the audience (see ./audience) into `required_actions` rows keyed
 // `questionnaire:<activation_id>`; submitting a response flips that row to

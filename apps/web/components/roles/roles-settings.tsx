@@ -25,7 +25,7 @@ import type {
 // groups — OFFICERS (org registrations, consent-gated), CORE ROLES (seeded
 // fixtures: captain locked, baseline everyone-holds-it, defaults renameable)
 // and CUSTOM ROLES (create/edit/delete). One row open at a time keeps it
-// scannable (questionnaire-spec §"Roles v2" / §"Role kinds" / §"Officer roles").
+// scannable (docs/technical-spec/05-camp-roles-and-officers.md §"Roles v2" / §"Role kinds" / §"Officer roles").
 
 interface Props {
   slug: string;

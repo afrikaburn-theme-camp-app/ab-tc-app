@@ -47,7 +47,7 @@ import type { BurnerBioFields, BioExtras } from "./bio";
 //
 //   2. **THERE IS NO PURGE JOB.** ./id-retention is a pure, tested RULE with no
 //      caller anywhere in this repo — nothing reads it, and nothing ever writes
-//      `buildIdPurgePatch()` to the database. docs/accounts-security-spec.md
+//      `buildIdPurgePatch()` to the database. docs/technical-spec/02-accounts-and-account-security.md
 //      says so explicitly ("Wiring a scheduled purge job that applies this is a
 //      LATER task"). So no ID data is currently deleted on any schedule, and any
 //      argument here that leans on one being deleted is unsound.

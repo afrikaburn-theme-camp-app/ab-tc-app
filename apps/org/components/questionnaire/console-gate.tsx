@@ -20,7 +20,7 @@ interface ConsoleGateProps {
  * The org-internal blocking gate: a hard interstitial that replaces the entire
  * console until the current staff member answers. Only the fill view and sign-
  * out are reachable — exactly the participant-app blocking gate, applied to the
- * console (questionnaire-spec: org-internal ones gate the console instead).
+ * console (docs/technical-spec/10-questionnaire-engine.md: org-internal ones gate the console instead).
  */
 export function ConsoleGate({
   activationId,

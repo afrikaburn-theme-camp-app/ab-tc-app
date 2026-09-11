@@ -8,7 +8,7 @@ import type { NotificationKind } from "@quagga/types";
 // PRIVACY: these helpers only touch text the @quagga/core payload builders
 // already produced. A supplier's inbox carries their own step confirmations,
 // their own STANDING VALUE changes, and org bulletins — never the org-internal
-// notes timeline (docs/supplier-spec.md: notes are org-only, and the standing
+// notes timeline (docs/technical-spec/12-suppliers.md: notes are org-only, and the standing
 // hook writes the label only).
 
 const MINUTE = 60_000;

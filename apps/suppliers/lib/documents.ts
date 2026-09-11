@@ -14,7 +14,7 @@ import {
 import { getDb, schema, type DbOrTx } from "@/lib/db";
 import { isDatabaseConfigured } from "@/lib/config";
 
-// Read side of the supplier Documents panel (docs/accounts-security-spec.md
+// Read side of the supplier Documents panel (docs/technical-spec/12-suppliers.md
 // §"Supplier documents"). The org CRUDs the per-edition list in the console;
 // this loads it for the signed-in supplier along with their acknowledgements.
 //

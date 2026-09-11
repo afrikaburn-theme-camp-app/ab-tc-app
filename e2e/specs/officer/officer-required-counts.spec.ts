@@ -1,4 +1,4 @@
-// Outstanding required-officer counts reflect reality (M3-26; questionnaire-spec
+// Outstanding required-officer counts reflect reality (M3-26; docs/technical-spec/05-camp-roles-and-officers.md
 // §"Outstanding-officers indicator" + §"Free camps: officers are entirely
 // optional"). The badge is a live count of unassigned REQUIRED officers, and it
 // exists ONLY for a camp with a registration in flight — a free camp shows no

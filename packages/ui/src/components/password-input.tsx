@@ -11,7 +11,7 @@ import {
 } from "../lib/form-logic";
 
 // PasswordInput — the single password field (canvas Input `SVgkj` password
-// variant), per accounts-security-spec: ONE field, show/hide toggle, PASTE
+// variant), per docs/technical-spec/02-accounts-and-account-security.md: ONE field, show/hide toggle, PASTE
 // ALLOWED, length-based strength bar, 15+ minimum feedback. Deliberately NO
 // composition rules and NO confirm-twice field.
 //

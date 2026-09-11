@@ -1,4 +1,4 @@
-// ID / passport retention (docs/accounts-security-spec.md §"ID document —
+// ID / passport retention (docs/technical-spec/02-accounts-and-account-security.md §"ID document —
 // lawful purpose + retention"; Ryan, 26 Jul 2026).
 //
 // LAWFUL PURPOSE. SA ID / passport are collected on `burner_bios` for a single

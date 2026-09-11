@@ -1,5 +1,5 @@
 // specs/supplier/documents.spec.ts — supplier document acknowledgement drives a
-// bound onboarding step (M3-28, docs/supplier-spec.md / accounts-security-spec.md
+// bound onboarding step (M3-28, docs/technical-spec/12-suppliers.md
 // §"Supplier documents"). The org publishes a required document BOUND to the
 // self-service "Supplier agreement signed" step; acknowledging it completes that
 // step, and withdrawing the acknowledgement reverts it — a green step whose

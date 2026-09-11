@@ -1,7 +1,7 @@
 // Officer journey — the POPIA phone-sharing boundary (M3-26, the crux).
 //
 // This is the ONLY path in the whole product that shares a burner's phone with
-// AfrikaBurn (auth-platform-spec §8.1 / §9.2; questionnaire-spec §"Officers are
+// AfrikaBurn (docs/compliance-and-incident-response.md §"Lawful basis"; docs/technical-spec/05-camp-roles-and-officers.md §"Officers are
 // ALSO registrations"). So the assertion is precise and two-sided IN ONE TEST:
 //   BEFORE acceptance — a PENDING officer's phone is NOWHERE on the org review
 //                       (the server query filters consent='accepted' AND

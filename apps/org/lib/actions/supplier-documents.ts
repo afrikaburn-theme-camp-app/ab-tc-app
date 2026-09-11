@@ -23,7 +23,7 @@ import {
 import { runAction, type ActionResult } from "./result";
 
 // Org CRUD for the per-edition supplier document list
-// (docs/accounts-security-spec.md §"Supplier documents — org-controlled", the
+// (docs/technical-spec/12-suppliers.md §"Supplier documents", the
 // console's "Supplier sign-up management" section). Org-only, server-side authz
 // via `requireOrgSession`; every write validates through @quagga/core and is
 // audited.

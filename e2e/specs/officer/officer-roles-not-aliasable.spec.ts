@@ -1,5 +1,5 @@
-// Officer roles are NOT aliasable (M3-26; questionnaire-spec §"Officers cannot be
-// aliased"; auth-platform-spec §9.2 invariant 8). Org-facing officer vocabulary
+// Officer roles are NOT aliasable (M3-26; docs/technical-spec/05-camp-roles-and-officers.md §"Officers cannot be
+// aliased"; docs/technical-spec/01-auth-and-identity.md invariant 8). Org-facing officer vocabulary
 // stays uniform across every camp, so a camp cannot rename, recolour, or delete
 // an officer role — unlike its own custom roles.
 //

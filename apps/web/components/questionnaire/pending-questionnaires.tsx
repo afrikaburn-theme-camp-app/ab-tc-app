@@ -25,7 +25,7 @@ function formatDue(due: Date | null): string | null {
 }
 
 /**
- * "Pending questionnaires" card — the non-blocking surface (questionnaire-spec
+ * "Pending questionnaires" card — the non-blocking surface (docs/technical-spec/10-questionnaire-engine.md
  * §Surfaces). Blocking ones normally gate the app before this renders, but any
  * that reach here still carry the explicit Required badge. Covers both
  * project- and org-authored sends.

@@ -2,7 +2,7 @@ import { AlertTriangle, Circle } from "lucide-react";
 import { Badge } from "@quagga/ui/components/badge";
 
 // Blocking status must be explicit EVERYWHERE a questionnaire is shown
-// (questionnaire-spec §"Engine mechanics", Ryan 24 Jul): a required one is a
+// (docs/technical-spec/10-questionnaire-engine.md §"Engine mechanics", Ryan 24 Jul): a required one is a
 // hard gate; an optional one never impedes navigation. This one badge is reused
 // on pending cards, list rows, the fill page, and the author's views so the
 // treatment is identical across every surface.

@@ -258,7 +258,7 @@ export function isGoogleConfigured(env: AuthEnv): boolean {
 
 /**
  * The WebAuthn Relying Party ID for passkeys. THE ONE near-irreversible passkey
- * decision (auth-platform-spec §3): scope it to the registrable APEX so a single
+ * decision (docs/technical-spec/01-auth-and-identity.md): scope it to the registrable APEX so a single
  * passkey works across app./org./suppliers. A passkey scoped to a subdomain would
  * NOT work on the others and cannot be widened without re-enrolling every user.
  *

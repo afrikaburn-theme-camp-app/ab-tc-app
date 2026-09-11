@@ -40,7 +40,7 @@ export type CreateQuestionnaireResult =
 
 /**
  * Create a project questionnaire and send it (build + activate in one step,
- * questionnaire-spec §Surfaces). Lead/admin only — authorised through the core
+ * docs/technical-spec/10-questionnaire-engine.md §Surfaces). Lead/admin only — authorised through the core
  * `canAuthorAudience` predicate against the actor's membership.
  */
 export async function createQuestionnaireAction(
@@ -72,7 +72,7 @@ export async function createQuestionnaireAction(
   }
 
   // Authz + scope: lead/admin OR a member holding manage_questionnaires WITHIN
-  // their configured audience_roles + may_block scope (questionnaire-spec
+  // their configured audience_roles + may_block scope (docs/technical-spec/05-camp-roles-and-officers.md
   // §"Roles v2" — server-side enforcement).
   const permissionMembership = await getMemberPermissions(groupId, user.id);
   if (!permissionMembership) {

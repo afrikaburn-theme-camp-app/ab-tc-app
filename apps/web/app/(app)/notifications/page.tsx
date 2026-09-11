@@ -18,7 +18,7 @@ import { toRowItem } from "@/components/notifications/format";
 
 // /notifications — the participant inbox (canvas `X6YN3` desktop / `qLjMS`
 // mobile). One stream, two origins: personal event notifications and org
-// bulletin broadcasts (docs/notifications-spec.md). Every read is scoped to the
+// bulletin broadcasts (docs/technical-spec/11-bulletins-and-notifications.md). Every read is scoped to the
 // signed-in user inside lib/notifications.ts — this page never takes a user id
 // from the request.
 

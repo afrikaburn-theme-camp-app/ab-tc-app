@@ -1,4 +1,4 @@
-// Officer roles (questionnaire-spec §"Officer roles — org-defined, condition-
+// Officer roles (docs/technical-spec/05-camp-roles-and-officers.md §"Officer roles — org-defined, condition-
 // triggered"). An org-defined catalog of responsible-person roles with STABLE
 // keys (the org targeting anchor). Camps may not alias them; display name/emoji/
 // color are fixed here. Their trigger conditions run over a camp's registration
@@ -24,7 +24,7 @@ export interface OfficerCatalogEntry {
 }
 
 /**
- * The officer catalog (questionnaire-spec table). Order = display order on the
+ * The officer catalog (docs/technical-spec/05-camp-roles-and-officers.md table). Order = display order on the
  * settings page Officers section.
  */
 export const OFFICER_CATALOG: readonly OfficerCatalogEntry[] = [
@@ -94,7 +94,7 @@ export function soundLevelFromValue(value: string | null | undefined): number {
 
 /**
  * Evaluate the trigger condition for every catalog officer. Returns a full map
- * (all 5 keys). Requirement rules (questionnaire-spec table):
+ * (all 5 keys). Requirement rules (docs/technical-spec/05-camp-roles-and-officers.md table):
  *   - lnt_officer        → always REQUIRED (supersedes the contact-only LNT lead)
  *   - safety_officer     → always recommended
  *   - fire_safety_officer→ always REQUIRED for registered camps (Ryan, 24 Jul:
@@ -136,7 +136,7 @@ export interface OutstandingOfficers {
 }
 
 /**
- * Count unassigned REQUIRED officers (questionnaire-spec §"Outstanding-officers
+ * Count unassigned REQUIRED officers (docs/technical-spec/05-camp-roles-and-officers.md §"Outstanding-officers
  * indicator"). Requirements apply ONLY to camps with an approved registration
  * OR one in flight — free camps get no badge and no requirement counts.
  *

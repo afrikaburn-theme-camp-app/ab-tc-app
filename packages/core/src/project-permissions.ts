@@ -1,4 +1,4 @@
-// Project permissions (questionnaire-spec §"Roles v2 — permissions, color,
+// Project permissions (docs/technical-spec/05-camp-roles-and-officers.md §"Roles v2 — permissions, color,
 // emoji"). Custom-role permissions are GRANTS ON TOP for plain members; the
 // structural `lead`/`admin` roles are the permission BACKSTOP — they implicitly
 // hold every project permission and this can never be revoked, so no permission
@@ -135,7 +135,7 @@ export function enforceKindPermissions(
  * Does assigning this role grant role-/member-management authority — i.e. would
  * handing it to someone escalate them onto the manage_roles/manage_members axis?
  * Captain (locked to all) always qualifies. Used to gate assignment: the
- * escalation clause (questionnaire-spec §"Roles v2" CRUD) only sanctions a
+ * escalation clause (docs/technical-spec/05-camp-roles-and-officers.md §"Roles v2" CRUD) only sanctions a
  * `manage_roles` holder granting such privileges, so an `assign_roles`-only
  * holder must not be able to hand out (or self-assign) an elevating role.
  */

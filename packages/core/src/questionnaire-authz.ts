@@ -1,4 +1,4 @@
-// Questionnaire authorization (questionnaire-spec §"Guardrails" + §"Authoring
+// Questionnaire authorization (docs/technical-spec/10-questionnaire-engine.md §"Guardrails" + §"Authoring
 // levels"). Who may author / activate / view results at each level:
 //   - ORG level (org_internal / org_outbound): org_staff or god on the org
 //     group.
@@ -107,7 +107,7 @@ export function canManageProjectRoles(
 /**
  * The project_role ids a ProjectAudience targets for scope-checking. "everyone"
  * (baseline) resolves to the baseline role id — targeting the whole camp IS
- * targeting the baseline (questionnaire-spec §"Role kinds").
+ * targeting the baseline (docs/technical-spec/05-camp-roles-and-officers.md §"Role kinds").
  */
 export function projectAudienceTargetRoleIds(
   audience: ProjectAudience,
@@ -123,7 +123,7 @@ export function projectAudienceTargetRoleIds(
  * May the actor AUTHOR/SEND a PROJECT questionnaire to this audience? Project
  * questionnaires may be authored by lead/admin OR any member holding
  * `manage_questionnaires` — but ONLY within their configured scope
- * (audience_roles + may_block), ENFORCED server-side here (questionnaire-spec
+ * (audience_roles + may_block), ENFORCED server-side here (docs/technical-spec/05-camp-roles-and-officers.md
  * §"Roles v2"; resolves the previously-skipped scope-enforcement finding).
  *
  * `baselineRoleId` is the camp's baseline role id (for the "everyone" audience);

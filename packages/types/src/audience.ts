@@ -2,7 +2,7 @@ import { z } from "zod";
 import { Questionnaire } from "./questionnaire";
 import { OfficerKey } from "./roles";
 
-// Questionnaire audience targeting + activation inputs (questionnaire-spec
+// Questionnaire audience targeting + activation inputs (docs/technical-spec/10-questionnaire-engine.md
 // §"Authoring levels & audiences"). The builder writes a
 // `questionnaire_definitions` row (a `Questionnaire` — see ./questionnaire);
 // an ACTIVATION pairs that definition with an edition, an audience spec, and
@@ -28,7 +28,7 @@ export type QuestionnaireAuthoredScope = z.infer<
 >;
 
 /**
- * Org-level OUTBOUND audience selectors (questionnaire-spec table). An outbound
+ * Org-level OUTBOUND audience selectors (docs/technical-spec/10-questionnaire-engine.md table). An outbound
  * activation targets one or more of these; each resolves to a set of user ids
  * in @quagga/core's `resolveAudience`. Grant-requester selectors resolve to
  * empty sets until the MV/art registration flows ship — that is expected.
@@ -83,7 +83,7 @@ export const OrgOutboundAudience = z.object({
 export type OrgOutboundAudience = z.infer<typeof OrgOutboundAudience>;
 
 /**
- * Org OFFICER audience (questionnaire-spec §"Officer roles"): target the members
+ * Org OFFICER audience (docs/technical-spec/05-camp-roles-and-officers.md §"Officer roles"): target the members
  * assigned a given officer role across every REGISTERED camp, regardless of
  * camp-level aliases (officers are never aliasable). E.g. "All registered Sound
  * Officers". Only ACCEPTED officer assignments in registered camps resolve.
