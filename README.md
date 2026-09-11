@@ -27,7 +27,7 @@ Sign in once; the same identity works across all three.
 
 ### 🏕️ Participant
 
-**Deployment URL:** set per environment (see `docs/deploy.md`).
+**Production:** [afrikaburn-contributors-web.vercel.app](https://afrikaburn-contributors-web.vercel.app)
 
 For burners. Your profile, your camp, invites, and the six-section registration
 that gets a camp placed.
@@ -39,7 +39,7 @@ that gets a camp placed.
 
 ### 🎛️ Organiser console
 
-**Deployment URL:** set per environment (see `docs/deploy.md`).
+**Production:** [afrikaburn-contributors-org.vercel.app](https://afrikaburn-contributors-org.vercel.app)
 
 For AfrikaBurn staff. The review queue, questionnaires, bulletins, suppliers,
 the audit trail and the system panel.
@@ -51,7 +51,7 @@ the audit trail and the system panel.
 
 ### 📦 Supplier portal
 
-**Deployment URL:** set per environment (see `docs/deploy.md`).
+**Production:** [afrikaburn-contributors-suppliers.vercel.app](https://afrikaburn-contributors-suppliers.vercel.app)
 
 For the companies camps hire. Sign-up, onboarding steps, documents, and
 standing.
