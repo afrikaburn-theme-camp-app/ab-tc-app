@@ -246,45 +246,64 @@ fi
 
 redeploy_project() {
   local project_id="$1"
-  local deps
-  deps="$(curl -sS "${curl_opts[@]}" "${auth_vercel[@]}" \
-    "${vercel_api}/v6/deployments?projectId=${project_id}&limit=30&teamId=${VERCEL_ORG_ID}")"
+  local deps=""
+  local dep_url=""
+  local dep_id=""
+  local resp=""
+  local new_id=""
 
-  local dep_url
+  deps="$(curl -sS "${curl_opts[@]}" "${auth_vercel[@]}" \
+    "${vercel_api}/v6/deployments?projectId=${project_id}&limit=30&teamId=${VERCEL_ORG_ID}" || true)"
+
+  if ! printf '%s' "$deps" | jq -e '.deployments' >/dev/null 2>&1; then
+    echo "  warning: could not list deployments for ${project_id}; skip redeploy"
+    printf '%s\n' "$deps" | head -c 300
+    echo
+    return 0
+  fi
+
+  # meta keys vary by git provider / Vercel version.
   dep_url="$(printf '%s' "$deps" | jq -r --arg ref "$HEAD_REF" '
     [.deployments[]?
-      | select(.meta.gitBranch == $ref or .meta.githubCommitRef == $ref)
-      | select((.target // "preview") != "production")
+      | select(
+          (.meta.gitBranch // .meta.githubCommitRef // .meta.gitlabBranch // "") == $ref
+        )
+      | select((.target // "") != "production")
     ][0].url // empty
-  ')
-  if [ -z "$dep_url" ]; then
+  ' || true)"
+  dep_id="$(printf '%s' "$deps" | jq -r --arg ref "$HEAD_REF" '
+    [.deployments[]?
+      | select(
+          (.meta.gitBranch // .meta.githubCommitRef // .meta.gitlabBranch // "") == $ref
+        )
+      | select((.target // "") != "production")
+    ][0].uid // empty
+  ' || true)"
+
+  if [ -z "${dep_url}" ] && [ -z "${dep_id}" ]; then
     echo "  no existing preview deployment for ${HEAD_REF} on ${project_id} — skip redeploy"
     return 0
   fi
-  local dep_id
-  dep_id="$(printf '%s' "$deps" | jq -r --arg ref "$HEAD_REF" '
-    [.deployments[]?
-      | select(.meta.gitBranch == $ref or .meta.githubCommitRef == $ref)
-      | select((.target // "preview") != "production")
-    ][0].uid // empty
-  ')
-  echo "  redeploying ${dep_id:-unknown} (https://${dep_url}) on ${project_id}"
+  echo "  redeploying ${dep_id:-unknown} (${dep_url:+https://${dep_url}}) on ${project_id}"
 
   # Prefer CLI when present (local one-shot); API otherwise (CI).
-  if command -v vercel >/dev/null 2>&1; then
-    if vercel redeploy "https://${dep_url}" --scope "${VERCEL_ORG_ID}" --yes 2>&1; then
+  if [ -n "${dep_url}" ] && command -v vercel >/dev/null 2>&1; then
+    if vercel redeploy "https://${dep_url}" --scope "${VERCEL_ORG_ID}" --no-wait 2>&1; then
       return 0
     fi
     echo "  warning: vercel redeploy CLI failed; trying API"
   fi
 
-  local resp
+  if [ -z "${dep_id}" ]; then
+    echo "  warning: no deployment id to redeploy; next push will pick up env"
+    return 0
+  fi
+
   resp="$(curl -sS "${curl_opts[@]}" "${auth_vercel[@]}" -X POST \
     -d "$(jq -n --arg id "$dep_id" '{deploymentId:$id}')" \
-    "${vercel_api}/v13/deployments?teamId=${VERCEL_ORG_ID}&forceNew=1")"
-  local new_id
-  new_id="$(printf '%s' "$resp" | jq -r '.id // .uid // empty')"
-  if [ -z "$new_id" ]; then
+    "${vercel_api}/v13/deployments?teamId=${VERCEL_ORG_ID}&forceNew=1" || true)"
+  new_id="$(printf '%s' "$resp" | jq -r '.id // .uid // empty' || true)"
+  if [ -z "${new_id}" ]; then
     echo "  warning: redeploy response did not include id (next push will pick up env)"
     printf '%s\n' "$resp" | head -c 400
     echo
