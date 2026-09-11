@@ -37,6 +37,70 @@ Examples of unacceptable behavior include:
 - Other conduct which could reasonably be considered inappropriate in a
   professional setting
 
+## Engineering practices — kind, not just nice
+
+The standards above set the floor: what is never acceptable. This section
+sets the practice we aim for day to day in code review, issues and pull
+requests — adapted from [Kind Engineering](https://kind.engineering/), whose
+opening framing is worth keeping in mind throughout:
+
+> "Kind is about being invested in other people, figuring out how to help
+> them, meeting them where they are." — Tanya Reilly
+
+**Be kind, not just nice.** Politeness alone can wave a problem through to
+avoid an awkward conversation; kindness means being invested enough in a
+contributor's growth to give them the honest feedback that helps them
+improve. **Honesty creates trust** — say what you actually think, with care,
+rather than a comfortable half-truth. **Challenge directly, care
+personally**: pair honest feedback with genuine empathy — say specifically
+what worked, what didn't, and what a concrete next step looks like. A vague
+approval helps no one; neither does an unqualified "this is wrong."
+
+**In code review:**
+
+- **Understand the why, not just the how.** Review with curiosity: ask
+  open-ended questions ("what led you to this approach?") rather than
+  making strong-form statements about what's wrong.
+- **Don't assume malice or ineptitude.** Assume missing context first, and
+  ask for it, rather than correcting as if the author should have known
+  better.
+- **Label nitpicks as nitpicks.** Prefix optional, stylistic suggestions
+  with `nit:` so the author can tell them apart from what's blocking. Where
+  a style rule can be enforced by a linter instead of a comment, prefer
+  that — see `.eslintrc`/`prettier` in this repo.
+- **Switch to sync when a thread gets long.** If a review thread runs past
+  a few back-and-forths, move to a real-time conversation (a call, or the
+  project's chat — see `AGENTS.md`) rather than litigating it in public
+  comments. Summarize the outcome back on the PR afterward so the written
+  record stays complete.
+
+**For psychological safety:**
+
+- **Ask for feedback before giving it.** Modelling "what went well, what
+  went poorly, what should we repeat" invites the same honesty back.
+- **Be inclusive, and amplify quieter voices.** Not everyone's best
+  feedback arrives live in a meeting or a comment thread in the moment —
+  make room for written follow-ups and asynchronous review.
+- **No blame culture.** An individual mistake is usually also a process,
+  tooling, or environment gap. Investigate root causes, not scapegoats —
+  "we succeed together, we fail together."
+- **Reframe failure as learning.** "The cost of failure is education"
+  (Devin Carraway) — an incident or a broken build is worth a calm,
+  blameless retro, not a search for who to blame. This project's own
+  `AGENTS.md` §Verification already treats a wrong assumption caught late
+  as something to learn from and document, not something to punish.
+
+**Receiving feedback**: know your own preferences (public/private,
+written/verbal) and say so; listen and thank before you respond; take a
+beat before reacting rather than answering while defensive; ask for
+specifics or an example if a comment is too vague to act on.
+
+**Giving feedback**: account for how the review will land, not just how
+it reads to you when you write it; show your reasoning, not just your
+conclusion; be specific enough that praise feels earned and criticism
+feels actionable; where you can, suggest a concrete next step rather than
+only naming the problem.
+
 ## Enforcement Responsibilities
 
 Community leaders are responsible for clarifying and enforcing our standards
@@ -116,6 +180,9 @@ https://www.contributor-covenant.org/version/2/1/code_of_conduct.html.
 
 Community Impact Guidelines were inspired by
 [Mozilla's code of conduct enforcement ladder][mozilla].
+
+The "Engineering practices" section is adapted from
+[Kind Engineering](https://kind.engineering/).
 
 For answers to common questions about this code of conduct, see the FAQ at
 https://www.contributor-covenant.org/faq. Translations are available at
