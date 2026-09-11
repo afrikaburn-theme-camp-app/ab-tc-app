@@ -254,3 +254,5 @@ the data it verifies, which is also exactly the kickoff demo script.
 
 Every smoke assertion is against **live-created** rows. Nothing is verified
 against a seeded row, because no user-generated seeded row exists.
+
+<!-- neon preview branch verification 2026-09-11T14:20:37Z -->
