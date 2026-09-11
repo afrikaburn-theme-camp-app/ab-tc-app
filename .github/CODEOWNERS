@@ -1,59 +1,14 @@
-# Who must review what.
+# Minimal ownership for this fork. Expand only when a path truly needs a
+# required reviewer — do not copy upstream’s production blast-radius map
+# until this org actually owns that risk.
 #
-# This is not a statement about who is trusted. It is a list of the places where
-# a mistake is expensive or hard to undo, and it exists so that a well-meaning
-# change to one of them cannot merge without the person who knows why it is
-# shaped that way.
-#
-# CODEOWNERS only takes effect once branch protection requires review from code
-# owners — see SECURITY.md §"Repository settings".
+# Patterns are last-match-wins. `/*` is root files only; subtrees need their
+# own rules. CODEOWNERS only bites once branch protection requires code-owner
+# review (intentionally not enforced while setup is in progress).
 
-# Default: nothing is owned, so ordinary app and UI work needs no special review.
+# Base path — root-level files
+/* @BeyersNel
 
-# ---------------------------------------------------------------------------
-# MIGRATIONS — the sharpest edge in the repo.
-#
-# This product is DEPLOYED, with real camps and real people in it. Migrations are
-# append-only and the deploy applies them automatically. A migration merged here
-# runs against production on the next deploy; there is no staging step that would
-# catch it first, and an already-applied migration cannot be edited — only
-# corrected by another one.
-/packages/db/migrations/  @BeyersNel
-/packages/db/src/schema.ts @BeyersNel
-
-# AUTH — sessions, passwords, two-factor, passkeys, the cookie handling.
-# Self-hosted Better Auth pinned to an exact version on purpose: it has a track
-# record of high-severity advisories and we own the patch watch.
-/packages/auth/           @BeyersNel
-
-# CORE — the domain rules every app reads. Permissions, privacy classes, the
-# registration state machine, the submit gate. A change here changes behaviour in
-# three apps at once, usually without touching any of them.
-/packages/core/           @BeyersNel
-
-# CI, licence, and the rules themselves.
-/.github/                 @BeyersNel
-/LICENSE                  @BeyersNel
-/AGENTS.md                @BeyersNel
-/CONTRIBUTING.md          @BeyersNel
-/SECURITY.md              @BeyersNel
-/turbo.json               @BeyersNel
-
-# ---------------------------------------------------------------------------
-# THE PUBLISHED SDK AND THE EXTERNAL API — irrevocable in a way nothing else is.
-#
-# An Apache-2.0 grant on a published version cannot be withdrawn; a scope string
-# that shipped is a promise to code in repositories we do not control; and a /v1
-# handler is the one place data leaves the platform to a party that holds no
-# membership. A migration can at least be corrected by another migration.
-#
-# None of these paths exist yet (docs/sdk/), and the entries are inert until
-# branch protection requires code-owner review. Both are the point: the rule
-# should be in place before the first file lands, not written afterwards.
-/packages/scopes/              @BeyersNel
-/packages/sdk/                 @BeyersNel
-/packages/sdk-react/           @BeyersNel
-/apps/web/app/api/v1/          @BeyersNel
-/apps/web/middleware.ts        @BeyersNel
-/.changeset/                   @BeyersNel
-/docs/sdk/                     @BeyersNel
+# Essential admin / governance surfaces
+/.github/ @BeyersNel
+/LICENSE @BeyersNel
