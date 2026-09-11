@@ -31,21 +31,21 @@ in the app that already owns its store, and `manifest.routes` carries namespace 
 **data**. That decision is what buys us out of the 6,938-line store extraction; the host
 design has to make it invisible to the integrator.
 
-| Namespace                                                                                                | Origin                                             | Owning store (verified)                                                                      |
-| -------------------------------------------------------------------------------------------------------- | -------------------------------------------------- | -------------------------------------------------------------------------------------------- |
-| `capabilities`, `editions`, `groups`, `categories`, `burners`, `suppliers` (directory)                   | `https://api.quagga.ryanjnoble.dev` → **apps/web** | `apps/web/lib/groups-store.ts`, `bio-store.ts`, `edition.ts:25`, `registration-store.ts:279` |
-| `me`, `registrations`, `invites`, `roles`, `questionnaires` (project), `bulletins` (received-only, v0.2) | same origin, **apps/web**                          | `apps/web/lib/{registration,invites,roles,questionnaire}-store.ts`, `bulletins.ts`           |
-| `org/*` (v0.2+)                                                                                          | `https://org.quagga.ryanjnoble.dev`                | `apps/org/lib/queries.ts`, `apps/org/lib/actions/*`                                          |
-| `supplier-self/*` (v1.0)                                                                                 | `https://suppliers.quagga.ryanjnoble.dev`          | `apps/suppliers/lib/*`                                                                       |
+| Namespace                                                                                                | Origin                                        | Owning store (verified)                                                                      |
+| -------------------------------------------------------------------------------------------------------- | --------------------------------------------- | -------------------------------------------------------------------------------------------- |
+| `capabilities`, `editions`, `groups`, `categories`, `burners`, `suppliers` (directory)                   | `https://api.example-apex.org` → **apps/web** | `apps/web/lib/groups-store.ts`, `bio-store.ts`, `edition.ts:25`, `registration-store.ts:279` |
+| `me`, `registrations`, `invites`, `roles`, `questionnaires` (project), `bulletins` (received-only, v0.2) | same origin, **apps/web**                     | `apps/web/lib/{registration,invites,roles,questionnaire}-store.ts`, `bulletins.ts`           |
+| `org/*` (v0.2+)                                                                                          | `https://org.example-apex.org`                | `apps/org/lib/queries.ts`, `apps/org/lib/actions/*`                                          |
+| `supplier-self/*` (v1.0)                                                                                 | `https://suppliers.example-apex.org`          | `apps/suppliers/lib/*`                                                                       |
 
-**`api.quagga.ryanjnoble.dev` is a second Vercel domain alias on the existing `apps/web`
-project, not a new deployment.** The apex is `AUTH_APEX_DOMAIN = "quagga.ryanjnoble.dev"`
+**`api.example-apex.org` is a second Vercel domain alias on the existing `apps/web`
+project, not a new deployment.** The apex is `AUTH_APEX_DOMAIN = "example-apex.org"`
 (`packages/auth/src/env.ts:38`) and the three production origins are enumerated at
 `env.ts:80-84`. Adding a fourth host is a DNS record and a Vercel alias — zero new
 infrastructure, no new `BETTER_AUTH_SECRET` copy, no new lambda cold-start budget.
 
-Why a dedicated host rather than `app.quagga.ryanjnoble.dev/api/v1`: the cookie `Domain=`
-is scoped to `.quagga.ryanjnoble.dev` (`env.ts:72`), so **every request to any subdomain
+Why a dedicated host rather than `app.example-apex.org/api/v1`: the cookie `Domain=`
+is scoped to `.example-apex.org` (`env.ts:72`), so **every request to any subdomain
 carries the participant's session cookie**. An API host that shares an origin with the
 participant app means a browser that is signed in sends both a cookie and an API key, and
 the verifier has to decide which wins on every single request. On a distinct host the
@@ -62,9 +62,9 @@ in v0.2 and the SDK must not hardcode that mapping:
 
 ```jsonc
 "routes": {
-  "capabilities": { "base": "https://api.quagga.ryanjnoble.dev/v1" },
-  "groups":       { "base": "https://api.quagga.ryanjnoble.dev/v1" },
-  "org":          { "base": "https://org.quagga.ryanjnoble.dev/api/v1" }
+  "capabilities": { "base": "https://api.example-apex.org/v1" },
+  "groups":       { "base": "https://api.example-apex.org/v1" },
+  "org":          { "base": "https://org.example-apex.org/api/v1" }
 }
 ```
 
@@ -171,7 +171,7 @@ RFC 9457 `application/problem+json`, with extension members. One envelope, every
   "required_scopes": ["org:update:suppliers"],
   "held_scopes": ["org:read:suppliers", "public:camps:read"],
   "key_id": "key_01J…",
-  "remediation_url": "https://org.quagga.ryanjnoble.dev/integrations/int_01J…/scopes",
+  "remediation_url": "https://org.example-apex.org/integrations/int_01J…/scopes",
   "request_id": "0d1c…",
 }
 ```
@@ -372,7 +372,7 @@ that can mint _and_ redeem plants members in camps silently. Minting is defensib
 
 #### v0.2/v1.0 — the org tranche. **Deferrable.**
 
-Mounted on `org.quagga.ryanjnoble.dev`. Every one of these already funnels through
+Mounted on `org.example-apex.org`. Every one of these already funnels through
 `requireOrgSession({capability, domain})` (`apps/org/lib/session.ts:304-346`), so the scope
 maps 1:1 onto the existing `{capability, domain}` literal at each call site — the SDK adds
 no new authorisation, only an address for it.
@@ -1446,7 +1446,7 @@ days. **[B]** blocks v0.1.
 | 17  | **[B]** The `/v1` handler wrapper: auth → scope gate → rate limit → handler → zod parse → headers → problem+json. One gate, one throw site.                                                                                                                                                                                                                                                                                                                                                                                     | M    | 11, 16     |
 | 18  | **[B]** Rate limiting layers 1–3 (§4.6).                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        | M    | 11         |
 | 19  | **[B]** The 7 remaining v0.1 read endpoints.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    | L    | 6, 17      |
-| 20  | **[B]** `api.quagga.ryanjnoble.dev` Vercel alias; `routes` config; the oracle tests (identical bytes and timing for the three not-visible camp cases).                                                                                                                                                                                                                                                                                                                                                                          | M    | 19         |
+| 20  | **[B]** `api.example-apex.org` Vercel alias; `routes` config; the oracle tests (identical bytes and timing for the three not-visible camp cases).                                                                                                                                                                                                                                                                                                                                                                               | M    | 19         |
 | 21  | **[B]** Observability: structured logger with the forbidden-key walk, `X-Request-Id`, the System panel probe.                                                                                                                                                                                                                                                                                                                                                                                                                   | M    | 17         |
 | 22  | **[B]** Docs/licence/release: `README.md:9`, `README.md:218-224`, `AGENTS.md:34-35` (all assert FSL repo-wide and become false); `packages/sdk/LICENSE` + `NOTICE`; changesets with `privatePackages: {version:false, tag:false}`; separate `release-pr.yml` / `publish.yml`; **never** `id-token: write` inside `ci.yml`; switch the publish leg to `--frozen-lockfile` (the 270 KB lockfile is committed and CI still installs `--no-frozen-lockfile`); the committed operation registry + `git diff --exit-code` drift gate. | L    | 20         |
 
@@ -1463,7 +1463,7 @@ the thing to defend hardest.
 | 25  | Idempotency table + the `Idempotency-Key` contract                                                                  | M    |
 | 26  | The camp read tranche + `self:*`                                                                                    | L    |
 | 27  | The write tranche: registration draft/submit, roles, invites, questionnaire send (the `QuestionnaireVerdict` shape) | XL   |
-| 28  | The org read tranche on `org.quagga.ryanjnoble.dev`                                                                 | L    |
+| 28  | The org read tranche on `org.example-apex.org`                                                                      | L    |
 
 #### Deferred — v1.0
 

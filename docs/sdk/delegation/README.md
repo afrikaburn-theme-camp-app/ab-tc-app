@@ -1,8 +1,14 @@
 # Delegated identity — acting for a burner from outside the monorepo
 
-How an app that does **not** live in this repo — Camp 404 first — reads AfrikaBurn data
-on behalf of a burner who is logged into it, without ever exceeding what that burner may
-do, and with every disclosing read recorded.
+> **Draft — depends on App Specification Decision 005 (proposed).** Nothing
+> in this tree is built; treat every "the consumer is X" statement below as
+> illustrative until Decision 005 is accepted. See
+> `docs/technical-spec/README.md`'s drift register.
+
+How an app that does **not** live in this repo — a camp-specific app first —
+reads AfrikaBurn data on behalf of a burner who is logged into it, without
+ever exceeding what that burner may do, and with every disclosing read
+recorded.
 
 This supersedes the delegation design in [`../04-backend-work-required.md`](../04-backend-work-required.md)
 §4.3.12, which took a bare `subjectUserId` and was found to be an impersonation primitive
@@ -11,16 +17,16 @@ over every burner ([`../06-review.md`](../06-review.md) finding C1). Everything 
 
 ## Read in this order
 
-| Document                                                                     | What it settles                                                                          |
-| ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- |
-| [`00-decision.md`](00-decision.md)                                           | The architecture and its decisions table                                                 |
-| [`01-delegated-identity.md`](01-delegated-identity.md)                       | The flow, the ticket, the three-way intersection — **the load-bearing document**         |
-| [`02-audit-and-the-medical-path.md`](02-audit-and-the-medical-path.md)       | The audit vocabulary, the medical path end to end, subject access                        |
-| [`03-security-measures.md`](03-security-measures.md)                         | Defence in depth, each measure tied to the file that implements it                       |
-| [`04-security-auditing-procedures.md`](04-security-auditing-procedures.md)   | The recurring human process, checklists and incident runbooks                            |
-| [`05-docs-and-contribution-process.md`](05-docs-and-contribution-process.md) | ~42 literal, copy-paste-ready edits across 13 files — **applied, see Status**            |
-| [`06-camp-404-integration.md`](06-camp-404-integration.md)                   | The retrofit guide, written for Camp 404's developer                                     |
-| [`07-review.md`](07-review.md)                                               | Security (15 findings), implementability, completeness — F1/F2 now resolved in `01`/`03` |
+| Document                                                                       | What it settles                                                                          |
+| ------------------------------------------------------------------------------ | ---------------------------------------------------------------------------------------- |
+| [`00-decision.md`](00-decision.md)                                             | The architecture and its decisions table                                                 |
+| [`01-delegated-identity.md`](01-delegated-identity.md)                         | The flow, the ticket, the three-way intersection — **the load-bearing document**         |
+| [`02-audit-and-the-medical-path.md`](02-audit-and-the-medical-path.md)         | The audit vocabulary, the medical path end to end, subject access                        |
+| [`03-security-measures.md`](03-security-measures.md)                           | Defence in depth, each measure tied to the file that implements it                       |
+| [`04-security-auditing-procedures.md`](04-security-auditing-procedures.md)     | The recurring human process, checklists and incident runbooks                            |
+| [`05-docs-and-contribution-process.md`](05-docs-and-contribution-process.md)   | ~42 literal, copy-paste-ready edits across 13 files — **applied, see Status**            |
+| [`06-reference-external-integration.md`](06-reference-external-integration.md) | The retrofit guide, framed around a generic reference camp-app integrator                |
+| [`07-review.md`](07-review.md)                                                 | Security (15 findings), implementability, completeness — F1/F2 now resolved in `01`/`03` |
 
 ## The design in one paragraph
 

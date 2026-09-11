@@ -1,12 +1,12 @@
 # Requirements Synthesis — AfrikaBurn Contributors App
 
-| Field | Value |
-|---|---|
-| **Category** | Planning |
-| **Doc status** | Historical — this was the requirements-gathering document before the App Specification existed; it has been superseded as an authoritative source by the App Specification itself and is retained for historical rationale only |
-| **Normative language** | Descriptive only |
-| **Requirement IDs** | N/A — superseded as an authoritative source by the App Specification |
-| **Owner / Updated** | Repo maintainers, 2026-08-05 |
+| Field                  | Value                                                                                                                                                                                                                           |
+| ---------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Category**           | Planning                                                                                                                                                                                                                        |
+| **Doc status**         | Historical — this was the requirements-gathering document before the App Specification existed; it has been superseded as an authoritative source by the App Specification itself and is retained for historical rationale only |
+| **Normative language** | Descriptive only                                                                                                                                                                                                                |
+| **Requirement IDs**    | N/A — superseded as an authoritative source by the App Specification                                                                                                                                                            |
+| **Owner / Updated**    | Repo maintainers, 2026-08-05                                                                                                                                                                                                    |
 
 _Correlated from all source documents. Plain-text/markdown extractions live in
 [`docs/sources/`](sources/); original PDFs/docx at the repo root. The `AfrikaBurn App/`
@@ -23,10 +23,10 @@ be deleted._
 | Scope: Water / Ice / Gas (2pp each)                                          | Finlay                           | Preliminary (V2)                                                                                 | User stories both sides; processes largely unknown                                                                                                                                                                                                   |
 | Discovery Meeting Agenda                                                     | Finlay                           | —                                                                                                | Meeting plan; confirms V1 = Registration + Containers; AB side still unknown                                                                                                                                                                         |
 | **Quagga Portal App Platform** ([source](sources/quagga-portal-platform.md)) | Graham                           | **Ideation only** — potential ideas, nothing concrete; treat as a survey of concerns, not a spec | Camp-internal topics: onboarding, camper DB, shifts, budgets, fees, WAPs, tickets, layout design, villages, compliance, creative projects                                                                                                            |
-| Ryan's direction                                                             | Ryan                             | Directive                                                                                        | **Assume zero on-site connectivity for all operations**; QR-signature attestation for offline proof of interaction with lazy sync; app must tolerate running offline for extended periods. **The Quagga doc is to be read as topics, not features.** |
+| Product decision (offline scope)                                             | Product owner                    | Directive                                                                                        | **Assume zero on-site connectivity for all operations**; QR-signature attestation for offline proof of interaction with lazy sync; app must tolerate running offline for extended periods. **The Quagga doc is to be read as topics, not features.** |
 | **Quaggapedia corpus** ([index](sources/quaggapedia/INDEX.md))               | AfrikaBurn (official event wiki) | 68 pages + 21 files, mirrored 22 Jul 2026                                                        | Ground truth: Supplier Depot procedure, SOOP sound levels & zone rules, WAPs, Quicket ticketing, DMV/MV licensing, LNT/MOOP, fire & generator rules, event/sound maps, STAR camp-onboarding guideline                                                |
 
-**How to read Graham's Quagga doc (working-group agreement, per Ryan):** it is an
+**How to read Graham's Quagga doc (working-group agreement):** it is an
 ideation scope written without engineering feasibility in view — potential ideas, nothing
 concrete. Its value is as a map of the _concerns_ camps have (people, money, shifts,
 space, tickets, compliance) — not as a feature list to implement. Critically, its
@@ -61,7 +61,7 @@ The two source sets describe **different layers of the same product space** — 
 very different levels of rigour:
 
 - **Layer A — the Participant Portal (camp ⇄ AfrikaBurn).** Finlay's territory, and the **buildable scope**. Annual registration & placement submission, AB review workflow, container transport, water/ice/gas logistics, payments to AB. Grounded and detailed: built from the real 2026 Google Form and last year's working container app.
-- **Layer B — camp-internal tooling.** The Quagga doc's territory, held as a **topic map** (see reading note above). It tells us which concerns exist in camp life; whether any become features depends on demand validation and the fewer-forms test. Notably, Ryan's Camp 404 is a working single-camp implementation of several of these topics — real evidence of which ones matter in practice.
+- **Layer B — camp-internal tooling.** The Quagga doc's territory, held as a **topic map** (see reading note above). It tells us which concerns exist in camp life; whether any become features depends on demand validation and the fewer-forms test. Notably, a working single-camp implementation of several of these topics exists — real evidence of which ones matter in practice.
 
 The layers meet at four joints, and those joints are the architectural spine:
 
@@ -85,7 +85,7 @@ Quaggafontein storage — a nice fit with the container-world vocabulary).
 | Ticketing               | Confirmed rule: "Registration and ticketing are completely separate"                      | Ticket allocation tracking incl. "submit camper details to the event ticketing system" | Keep them separate. No ticket features unless AB/Quicket ever offers an integration worth having (the Quagga doc itself concedes it shouldn't issue tickets).                                                                                                                                           |
 | Payments                | Yoco for camp → AB logistics fees                                                         | Payment gateway for camper → camp treasury (dues, instalments, refunds)                | **Camp dues/treasuries are out, permanently** — the platform never holds funds. Even AB-side fees start as _status tracking_ (booking references + reconciliation); integrated checkout only if AB wants it, via an SA-based provider that accepts international Visa/Mastercard.                       |
 | First release size      | Two workflows, deep                                                                       | Sixteen "Phase 1 modules"                                                              | Finlay's V1 + the shared spine, full stop. Topics stay topics until demand-validated. See [`roadmap.md`](roadmap.md).                                                                                                                                                                                   |
-| Offline                 | On-site flows routed through the single wifi box                                          | "Offline event functionality" parked in Phase 3                                        | **Superseded by Ryan's directive**: assume no on-site connectivity at all; offline + QR attestation is a foundational design constraint (see below).                                                                                                                                                    |
+| Offline                 | On-site flows routed through the single wifi box                                          | "Offline event functionality" parked in Phase 3                                        | **Superseded by a later product decision**: assume no on-site connectivity at all; offline + QR attestation is a foundational design constraint (see below).                                                                                                                                            |
 
 ## Participant & entitlement model
 
@@ -99,7 +99,7 @@ The base unit is the **participant**, not the camp:
 - **The questionnaire system is reused from Camp 404** wholesale: bespoke code questionnaires (Burner Bio) + the builder for camp-authored ones, dispatched via activations and gated via `required_actions`.
 - **Terminology:** user = **burner**. A **camper** is a burner who is a member of a camp. A **group** is anything joinable — the AfrikaBurn **org**, theme camps, art projects, mutant vehicle teams; a **project** is any non-org group (the kind that registers and earns entitlements).
 - **Multi-membership is allowed** (unlikely but legal): one burner can simultaneously be in the org, a theme camp, an art project, and an MV team — Facebook-groups semantics, with context switching in the UI. Memberships are plain many-to-many rows with roles.
-- **Admin tiers:** **god admin** (system-wide maximum privileges — bootstrapped by the first sign-in, i.e. Ryan, via a GOD_EMAILS-style mechanism per Camp 404) → **org roles** (AfrikaBurn staff: coordinator, reviewer, wrangler — held as memberships in the org group, not a stored `is_staff` flag) → **group roles** (lead/admin) → member → burner.
+- **Admin tiers:** **god admin** (system-wide maximum privileges — bootstrapped by the first verified sign-in via a GOD_EMAILS-style mechanism) → **org roles** (AfrikaBurn staff: coordinator, reviewer, wrangler — held as memberships in the org group, not a stored `is_staff` flag) → **group roles** (lead/admin) → member → burner.
 - **Visibility follows registration.** registered groups (any kind — camp, artwork, MV) are **public and indexable** in a group directory; unregistered groups may stay private. No bespoke privacy gates yet — but the schema reserves a per-group visibility/privacy setting so finer controls can be added later without migration pain.
 - **Joinability is a directory attribute:** a group is either _accepting new members_ (open join) or _invite-only_; invites reuse Camp 404's one-time invite-link pattern.
 - **Wranglers are assigned, not ambient:** a wrangler (org role) is a "babysitter for theme camps" — assigned to specific registered camps per edition, checking milestone progress, with a **wrangler board** showing per-camp progress (registration status, bookings, later real milestones).
@@ -139,7 +139,7 @@ is the real R1 deadline, roughly six weeks after kickoff.
 
 - **Repo is public**, licensed **FSL-1.1-ALv2** _(Functional Source License, converting to Apache 2.0 two years after each release; see `LICENSE`)_; history rewritten clean (originals preserved on a local archive branch only).
 - **Containers are a separate app** — only the biggest camps use them; the standard app shows a hint tile. Finlay's container scope = that app's spec. Water likewise separate. Driver manifest: disabled, pending need.
-- **The org/admin side is its own app** (`apps/org`, separate deployment) — account elevation, review dashboards, allocations, wrangler roles. No org business inside the participant app; no seeded staff — god (Ryan) elevates accounts live.
+- **The org/admin side is its own app** (`apps/org`, separate deployment) — account elevation, review dashboards, allocations, wrangler roles. No org business inside the participant app; no seeded staff — a god account elevates accounts live.
 - **Attestations: low priority.** MVP only generates a reproducible keypair stored on the user profile (never user-managed); QR flows arrive with the logistics apps.
 - **Payments = a standard payment-details + reference + status block** wherever money applies. Nothing fancier. "We track, AB collects."
 - **Burner Bio fields and profile mirror Camp 404's** burner profile. **Per-field privacy** with hard-locked never-public classes (ID/passport etc. — "we can't allow people to be stupid").
@@ -147,7 +147,7 @@ is the real R1 deadline, roughly six weeks after kickoff.
 - **"Villages" renamed → collectives** (a camp of camps); questionable feature, parked.
 - **All six registration sections required to submit.** Edition seeded as **AfrikaBurn 2027: 26 April – 2 May 2027** (from afrikaburn.org).
 - **Supplier repository seeds from AB's real public [Suppliers List sheet](https://docs.google.com/spreadsheets/d/1XU2gAt5E9GczVHZWpcD0_CsEeE--iX9aWmnWd19bgMI/edit)**.
-- **Seed camps: real Mad Hatters + Camp 404**, plus fictional filler. Email via **Resend from day one**. Infra on Ryan's Vercel/Neon; namespace `@quagga/`; no Storybook/pencil tooling; vitest on core logic; palette drawn from AfrikaBurn's sites, minimal, non-corporate.
+- **Seed camps: real Mad Hatters + Camp 404**, plus fictional filler. Email via **Resend from day one**. Infra on the maintainer's Vercel/Neon at the time; namespace `@quagga/`; no Storybook/pencil tooling; vitest on core logic; palette drawn from AfrikaBurn's sites, minimal, non-corporate.
 - **Contribution policy:** working group only for now; deliberately restricted — no drive-by AI-assisted contributors.
 
 | Family                         | Roles                                                                                                                                     | Notes                                                                                                                                                                                                                                                                                                                                             |

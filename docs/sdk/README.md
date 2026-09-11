@@ -4,12 +4,22 @@ A proposal for `@afrikaburn/sdk`: a published npm package that lets third-party 
 talk to the Quagga Portal backend, where **the API key's rights decide which of the SDK's
 methods work**.
 
-**Status: specification. Nothing here is built.** The consumer is
-[Camp 404](https://github.com/ryry79261/camp-404) and other apps outside this monorepo.
+**Status: specification. Nothing here is built.** The first reference
+consumer envisioned is a camp-specific app outside this monorepo, alongside
+other such apps.
 
-`06-review.md` contains a review arguing this was too early. **That question is closed** —
-the maintainer has since named the consumer and asked for it. The review is kept for its
-technical findings, which stand; its scheduling verdict does not.
+> **Draft.** This whole tree depends on App Specification Decision 005
+> (backend-first API/SDK direction), which is still `proposed`, not
+> accepted. Nothing here should be read as settled scope until that record
+> is resolved — see `docs/technical-spec/README.md`'s drift register and
+> `GOVERNANCE.md`.
+
+`06-review.md` contains a review arguing this was too early. A maintainer
+has since named a consumer and asked for it, which answers the review's
+scheduling question for as long as this remains one maintainer's
+prioritisation call rather than a working-group decision — that distinction
+matters once Decision 005 is actually resolved. The review is kept for its
+technical findings, which stand.
 
 ## Read in this order
 

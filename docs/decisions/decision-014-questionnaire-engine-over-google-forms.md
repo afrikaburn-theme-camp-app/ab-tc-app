@@ -1,11 +1,30 @@
-# Decision 014 — Registration intake: our own questionnaire engine, not Google Forms
+# ENG-014 — Registration intake: our own questionnaire engine, not Google Forms
 
-| Field | Value |
-| --- | --- |
-| **Status** | **Resolved** |
-| **Decided** | 2026-08-12 |
-| **Decided by** | Ryan Noble |
+```yaml
+id: ENG-014
+title: Registration intake — our own questionnaire engine, not Google Forms
+date: 2026-08-12
+author: Repo maintainers (working group)
+status: accepted
+type: decision
+related:
+  - ../sources/app-specification/app-specification.md#14-annual-registration-and-placement-submission
+tags:
+  - REG
+  - questionnaire-engine
+```
+
+| Field            | Value                                                                                                           |
+| ---------------- | --------------------------------------------------------------------------------------------------------------- |
+| **Status**       | **Accepted**                                                                                                    |
+| **Decided**      | 2026-08-12                                                                                                      |
+| **Decided by**   | Repo maintainers (working group)                                                                                |
 | **Spec section** | [§14 Annual Registration and Placement Submission](../sources/app-specification/app-specification.md) (`REG-*`) |
+
+_Note (2026-09-11): renumbered `ENG-014` in this file's own id to avoid
+colliding with the App Specification's separate "Decision 014" (governance,
+licensing and data-liability thresholds) — the two number spaces are
+independent; see `docs/decisions/README.md`._
 
 ## The question
 
@@ -28,7 +47,7 @@ hardening does not wait on it.
   hands its every quirk to us permanently. The Google Form is the thing being
   retired.
 - **The engine already exists and is better.** The questionnaire spine (ported
-  from Camp 404) does per-field privacy, conditional logic, audience targeting,
+  from an earlier single-camp implementation of the same idea) does per-field privacy, conditional logic, audience targeting,
   per-edition activation, camp-scoped answers and structured results — none of
   which a Google Form does. Form 2 is already built on it.
 - **It removes a blocker nobody could clear.** The dependency was owned by
@@ -37,7 +56,7 @@ hardening does not wait on it.
 
 ## What this does NOT mean
 
-The *content* of AfrikaBurn's registration questions is still theirs. This
+The _content_ of AfrikaBurn's registration questions is still theirs. This
 decision is about the mechanism, not the questions — if AB wants a field, it goes
 in. What changes is that we no longer need their form, their validation rules, or
 access to their Google account to build ours.

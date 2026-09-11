@@ -163,7 +163,7 @@ list`, then `git worktree remove` what has finished.
    `@radix-ui/react-slot` ~1.2.4 (newer breaks typecheck/build). _(The old `better-auth = 1.4.18` pin
    lived in `pnpm.overrides` ONLY because better-auth was a transitive dep of managed
    Neon Auth and had to match Neon's internal version. Self-hosting
-   (docs/auth-platform-spec.md) makes better-auth a first-class direct dependency, so the pin now
+   (docs/technical-spec/01-auth-and-identity.md) makes better-auth a first-class direct dependency, so the pin now
    lives as the exact version in `packages/auth/package.json` and the override was removed. 1.5+
    also unlocks versioned-secret rotation and the OAuth-provider path.)_ **Never auto-bump
    better-auth**: it has a track record of high-severity auth advisories (GHSA-vp58-j275-797x,

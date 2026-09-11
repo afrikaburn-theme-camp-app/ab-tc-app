@@ -1,5 +1,13 @@
 # Simplification audit
 
+| Field                  | Value                                                               |
+| ---------------------- | ------------------------------------------------------------------- |
+| **Category**           | Operational                                                         |
+| **Doc status**         | Historical — archived, point-in-time (2026-08)                      |
+| **Normative language** | Descriptive only                                                    |
+| **Requirement IDs**    | N/A — an internal code audit, not spec-derived                      |
+| **Owner / Updated**    | Repo maintainers, 2026-09-11 (archived; audit itself dated 2026-08) |
+
 A read-only audit of the monorepo for dead code, redundancy, and things that make the
 codebase harder to read or collaborate with. Nothing here is a bug report, and no change
 proposed in this document is intended to alter behaviour.
@@ -735,7 +743,7 @@ index.ts opens with a 145-line "Landed:" manifest listing every module and its e
 
 **Fix.** Delete the phantom bullet at index.ts:48-49. Then reduce the manifest to a module list with one-line purposes (or drop it in favour of the per-module headers, which are already good) — the current form duplicates every module's own doc comment and drifts silently.
 
-> **Verifier.** index.ts:48-49 reads "medical audit READ side (the fail-open path's compensating control): summarizeMedicalAccess, detectMedicalEnumeration — distinct-subject" — truncated, and the only bullet in the section I read (lines 8-70) with no (./module) pointer. Repo-wide `rg -w` for those two names returns exactly two hits: that comment line and apps/org/lib/\_\_tests\_\_/medical-audit-surface.test.ts:123, whose assertion is `expect(stripComments(reader)).not.toMatch(/summarizeMedicalAccess|detectMedicalEnumeration|threshold|alert/i)` under a test titled "is a plain record — no aggregation, threshold or alerting" recording Ryan's 26 Jul 2026 product decision. Neither function is implemented anywhere. Manifest size: header runs lines 1-141 with `export *` starting at 143 (file is 194 lines), so ~134 not 145 — within tolerance.
+> **Verifier.** index.ts:48-49 reads "medical audit READ side (the fail-open path's compensating control): summarizeMedicalAccess, detectMedicalEnumeration — distinct-subject" — truncated, and the only bullet in the section I read (lines 8-70) with no (./module) pointer. Repo-wide `rg -w` for those two names returns exactly two hits: that comment line and apps/org/lib/\_\_tests\_\_/medical-audit-surface.test.ts:123, whose assertion is `expect(stripComments(reader)).not.toMatch(/summarizeMedicalAccess|detectMedicalEnumeration|threshold|alert/i)` under a test titled "is a plain record — no aggregation, threshold or alerting" recording a 26 Jul 2026 product decision. Neither function is implemented anywhere. Manifest size: header runs lines 1-141 with `export *` starting at 143 (file is 194 lines), so ~134 not 145 — within tolerance.
 
 ### `org-roles.ts` re-implements `project-roles.ts`'s name-hygiene helpers verbatim, and one of the copies is dead
 

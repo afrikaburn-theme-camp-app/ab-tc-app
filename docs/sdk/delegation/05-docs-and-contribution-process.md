@@ -1365,7 +1365,7 @@ third; it is the one that will be missed.
 
 ## 10. `.github/CODEOWNERS`
 
-Everything is `@RyRy79261` — sole maintainer. **Standing caveat, stated in the file itself
+Everything is `@afrikaburn-theme-camp-app/maintainers` — sole maintainer. **Standing caveat, stated in the file itself
 (`:8-9`) and confirmed at `AGENTS.md:330-333`: none of this does anything until branch
 protection requires code-owner review.** That does not make the additions wrong; it makes
 enabling protection a prerequisite of the workstream (§5.6).
@@ -1380,31 +1380,31 @@ enabling protection a prerequisite of the workstream (§5.6).
 # that shipped is a promise to code in repositories we do not control; and a /v1
 # handler is the one place data leaves the platform to a party that holds no
 # membership. A migration can at least be corrected by another migration.
-/packages/scopes/         @RyRy79261
-/packages/sdk/            @RyRy79261
-/packages/sdk-react/      @RyRy79261
-/apps/web/app/api/v1/     @RyRy79261
-/apps/web/middleware.ts   @RyRy79261
-/.changeset/              @RyRy79261
+/packages/scopes/         @afrikaburn-theme-camp-app/maintainers
+/packages/sdk/            @afrikaburn-theme-camp-app/maintainers
+/packages/sdk-react/      @afrikaburn-theme-camp-app/maintainers
+/apps/web/app/api/v1/     @afrikaburn-theme-camp-app/maintainers
+/apps/web/middleware.ts   @afrikaburn-theme-camp-app/maintainers
+/.changeset/              @afrikaburn-theme-camp-app/maintainers
 
 # THE LICENCE WALL — two scripts that ARE the boundary. Weakening one is
 # indistinguishable from weakening /LICENSE, which is already owned.
-/scripts/licence-boundary.mjs  @RyRy79261
-/scripts/licence-tarball.mjs   @RyRy79261
+/scripts/licence-boundary.mjs  @afrikaburn-theme-camp-app/maintainers
+/scripts/licence-tarball.mjs   @afrikaburn-theme-camp-app/maintainers
 
 # THE LOCAL KEY MINTER — not a licence control. Its refusal to target anything
 # but the compose stack is the only thing between a convenience and a production
 # key in somebody's shell history.
-/scripts/sdk-local.sh          @RyRy79261
+/scripts/sdk-local.sh          @afrikaburn-theme-camp-app/maintainers
 
 # Pre-existing gaps, closed in the same pass.
 # README.md carries the licence badge and the licence paragraph, and was unowned
 # while AGENTS.md, CONTRIBUTING.md and SECURITY.md were owned.
 # commitlint.config.mjs holds a vocabulary that is now cross-repo.
 # scripts/e2e-local.sh is invoked verbatim by CI and was unowned.
-/README.md                @RyRy79261
-/commitlint.config.mjs    @RyRy79261
-/scripts/e2e-local.sh     @RyRy79261
+/README.md                @afrikaburn-theme-camp-app/maintainers
+/commitlint.config.mjs    @afrikaburn-theme-camp-app/maintainers
+/scripts/e2e-local.sh     @afrikaburn-theme-camp-app/maintainers
 ```
 
 ### 10.2 Amend the existing migrations comment — replace lines 13-22
@@ -1425,8 +1425,8 @@ enabling protection a prerequisite of the workstream (§5.6).
 # SET NULL — which is what a schema generator would plausibly emit — sign-out
 # stops revoking, every test that does not specifically delete a session row
 # still passes, and the property the whole design rests on is silently gone.
-/packages/db/migrations/  @RyRy79261
-/packages/db/src/schema.ts @RyRy79261
+/packages/db/migrations/  @afrikaburn-theme-camp-app/maintainers
+/packages/db/src/schema.ts @afrikaburn-theme-camp-app/maintainers
 ```
 
 ### 10.3 Not owned, deliberately
@@ -1527,7 +1527,7 @@ options:
 
 ```yaml
 - name: Building against the API or the SDK?
-  url: https://github.com/RyRy79261/afrikaburn-contributors-app/discussions
+  url: https://github.com/afrikaburn-theme-camp-app/ab-tc-app/discussions
   about: Integration questions, scope requests and "how do I get a key" go here. A security problem in the API goes to the private advisory link above, even if you are not a contributor.
 ```
 

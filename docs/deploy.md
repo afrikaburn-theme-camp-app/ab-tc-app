@@ -198,7 +198,7 @@ branch — that is production, with real burners' registrations in it.
 - `GOD_EMAILS=<first-maintainer@example.org>,<second-maintainer@example.org>` — first sign-in with a listed (verified) email self-elevates to god (System manager). **List at least two working-group addresses in production** — a single god account is a lockout risk (the System panel itself warns about this).
 - **Optional, web only — `ACCOUNT_SWEEP_SECRET`**: bearer token for
   `/api/account/deletion-sweep`, which sanitizes accounts whose 14-day deletion
-  grace period has elapsed (docs/accounts-security-spec.md §Deletion). **Leave it
+  grace period has elapsed (docs/technical-spec/02-accounts-and-account-security.md §Deletion). **Leave it
   unset until you want the sweeper live** — without it the route refuses to run and
   nothing is ever erased. A **Vercel Cron** entry (`apps/web/vercel.json`) hits the
   route daily at 03:00 UTC. Vercel Cron can only GET and authenticates by injecting

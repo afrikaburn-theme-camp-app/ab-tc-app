@@ -161,8 +161,9 @@ flowchart LR
 ```
 
 Fuller diagrams — system, package graph, request path, data model — are in
-[`docs/architecture.md`](docs/architecture.md). The journeys are in
-[`docs/flows.md`](docs/flows.md).
+[`docs/technical-spec/00-architecture.md`](docs/technical-spec/00-architecture.md).
+Per-feature journeys are documented in each doc under
+[`docs/technical-spec/`](docs/technical-spec/README.md).
 
 ## Contributing
 

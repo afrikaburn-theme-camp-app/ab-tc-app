@@ -4,7 +4,7 @@ This is the operational half of the Relay Ticket design. Every control the
 architecture defines has a moment where it stops being code and becomes somebody
 doing something on a Tuesday. This document is that half, written to be followed.
 
-It binds one volunteer maintainer (Ryan, sole maintainer as of 6 Aug 2026) plus,
+It binds a small volunteer maintainer team (one maintainer as of 6 Aug 2026) plus,
 where a second person is named, one other. Anything that needs a team this project
 does not have is marked **NOT STAFFED** rather than written as if it were.
 
@@ -641,7 +641,7 @@ SELECT created_at, actor_id, action, meta FROM audit_events
 **3 — The question that decides severity.** _Could this key, alone, name a burner?_
 Under the Relay Ticket design the answer is **no**: a key with no ticket reaches
 `public:*` only, and a ticket cannot be minted without a burner completing a
-consent click on `app.quagga.ryanjnoble.dev` behind `requireCampUser()`. Record
+consent click on `app.example-apex.org` behind `requireCampUser()`. Record
 the ceiling **as it stood at the time**, from the `integration.ceiling.changed`
 history, not as it stands now.
 

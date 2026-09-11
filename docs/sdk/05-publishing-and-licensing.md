@@ -267,11 +267,11 @@ script: it has no emit, and adding one would put it in the apps' build path for 
   "engines": { "node": ">=20" },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/RyRy79261/afrikaburn-contributors-app.git",
+    "url": "git+https://github.com/afrikaburn-theme-camp-app/ab-tc-app.git",
     "directory": "packages/sdk"
   },
-  "homepage": "https://github.com/RyRy79261/afrikaburn-contributors-app/tree/main/packages/sdk#readme",
-  "bugs": "https://github.com/RyRy79261/afrikaburn-contributors-app/issues",
+  "homepage": "https://github.com/afrikaburn-theme-camp-app/ab-tc-app/tree/main/packages/sdk#readme",
+  "bugs": "https://github.com/afrikaburn-theme-camp-app/ab-tc-app/issues",
   "keywords": ["afrikaburn", "burn", "theme-camp", "sdk", "api-client"],
   "publishConfig": {
     "access": "public",
@@ -384,7 +384,7 @@ export {};
   "engines": { "node": ">=20" },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/RyRy79261/afrikaburn-contributors-app.git",
+    "url": "git+https://github.com/afrikaburn-theme-camp-app/ab-tc-app.git",
     "directory": "packages/sdk-react"
   },
   "publishConfig": { "access": "public", "provenance": true },
@@ -610,19 +610,19 @@ The Quagga Portal server, apps and domain packages from which this SDK's
 vocabulary is derived are licensed separately under the Functional Source
 License, Version 1.1, ALv2 Future License (FSL-1.1-ALv2). No FSL-licensed
 code is included in this distribution. See
-https://github.com/RyRy79261/afrikaburn-contributors-app/blob/main/LICENSE
+https://github.com/afrikaburn-theme-camp-app/ab-tc-app/blob/main/LICENSE
 ```
 
 **Modified:**
 
-| path                                               | line(s)                            | change                                                                                                                                                                                                                                                                                                                                   |
-| -------------------------------------------------- | ---------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `README.md`                                        | 10                                 | the badge reads `Licence: FSL-1.1-ALv2` and links `LICENSE`. Add a second badge for the published packages.                                                                                                                                                                                                                              |
-| `README.md`                                        | 218-224                            | "**FSL-1.1-ALv2** … Contributions come in under the same terms" becomes false the day an Apache package lands. Split into repo/server = FSL, `packages/sdk` + `packages/sdk-react` = Apache-2.0, and keep "no CLA to sign".                                                                                                              |
-| `AGENTS.md`                                        | 34-35                              | "public repo, **FSL-1.1-ALv2**" — same repo-wide assertion, same correction.                                                                                                                                                                                                                                                             |
-| `AGENTS.md`                                        | 37-44 (the packages line is `:41`) | the layout block lists `packages/ @quagga/{auth,ui,db,core,types,eslint-config,typescript-config}`. Add the three new workspaces and mark which are published.                                                                                                                                                                           |
-| `.github/CODEOWNERS`                               | after `/LICENSE`                   | add `/packages/sdk/ @RyRy79261`, `/packages/sdk-react/ @RyRy79261`, `/packages/scopes/ @RyRy79261`. CODEOWNERS already owns `/LICENSE` and `/packages/core/` on exactly this reasoning — "places where a mistake is expensive or hard to undo". An Apache grant is irrevocable per version; there is no more expensive undo in the repo. |
-| `docs/build-spec.md`                               | 20                                 | hard constraint 2 is "Package namespace `@quagga/`". Amend: `@quagga/` for private workspaces, `@afrikaburn/` for published ones, never both for one thing.                                                                                                                                                                              |
+| path                                               | line(s)                            | change                                                                                                                                                                                                                                                                                                                                                                                                                       |
+| -------------------------------------------------- | ---------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `README.md`                                        | 10                                 | the badge reads `Licence: FSL-1.1-ALv2` and links `LICENSE`. Add a second badge for the published packages.                                                                                                                                                                                                                                                                                                                  |
+| `README.md`                                        | 218-224                            | "**FSL-1.1-ALv2** … Contributions come in under the same terms" becomes false the day an Apache package lands. Split into repo/server = FSL, `packages/sdk` + `packages/sdk-react` = Apache-2.0, and keep "no CLA to sign".                                                                                                                                                                                                  |
+| `AGENTS.md`                                        | 34-35                              | "public repo, **FSL-1.1-ALv2**" — same repo-wide assertion, same correction.                                                                                                                                                                                                                                                                                                                                                 |
+| `AGENTS.md`                                        | 37-44 (the packages line is `:41`) | the layout block lists `packages/ @quagga/{auth,ui,db,core,types,eslint-config,typescript-config}`. Add the three new workspaces and mark which are published.                                                                                                                                                                                                                                                               |
+| `.github/CODEOWNERS`                               | after `/LICENSE`                   | add `/packages/sdk/ @afrikaburn-theme-camp-app/maintainers`, `/packages/sdk-react/ @afrikaburn-theme-camp-app/maintainers`, `/packages/scopes/ @afrikaburn-theme-camp-app/maintainers`. CODEOWNERS already owns `/LICENSE` and `/packages/core/` on exactly this reasoning — "places where a mistake is expensive or hard to undo". An Apache grant is irrevocable per version; there is no more expensive undo in the repo. |
+| `docs/build-spec.md`                               | 20                                 | hard constraint 2 is "Package namespace `@quagga/`". Amend: `@quagga/` for private workspaces, `@afrikaburn/` for published ones, never both for one thing.                                                                                                                                                                                                                                                                  |
 | `commitlint.config.mjs`, `CONTRIBUTING.md:158-165` | §4.2                               |
 
 **SPDX headers.** The repo has none today (grepped, zero hits). This introduces the convention:
@@ -1147,7 +1147,7 @@ all `0.0.0` (verified across every `packages/*/package.json`), and named as hard
 `./report-server`, and carries every authz predicate.
 
 **The gate, and it is a governance gate, not an engineering one.** `git remote` is
-`https://github.com/RyRy79261/afrikaburn-contributors-app` — a personal account — and `LICENSE:9`
+`https://github.com/afrikaburn-theme-camp-app/ab-tc-app` — a personal account — and `LICENSE:9`
 reads "Copyright 2026 Ryan Noble and the Quagga Portal contributors". `@afrikaburn` is a claim on
 a real non-profit's name. **No `@afrikaburn/*` package is published until an AfrikaBurn-controlled
 npm organisation exists and the publishing identity is a member of it.** npm scope ownership is
@@ -1199,7 +1199,7 @@ touches only the two published packages and produces no version churn anywhere e
   "$schema": "https://unpkg.com/@changesets/config@3.0.0/schema.json",
   "changelog": [
     "@changesets/changelog-github",
-    { "repo": "RyRy79261/afrikaburn-contributors-app" },
+    { "repo": "afrikaburn-theme-camp-app/ab-tc-app" },
   ],
   "commit": false,
   "access": "public",
@@ -1250,7 +1250,7 @@ surface each scope gates, and the response DTO types — and each has its own ru
 unless the changeset is `major`"): the emitted scope→operation registry is committed; a job diffs
 it against the last published version's registry (fetched from the tarball on npm), and if any
 operation's required scope changed, it asserts a `major` changeset exists in `.changeset/`. Until
-that job exists, the rule is a review item on `@RyRy79261` via CODEOWNERS (§5.1).
+that job exists, the rule is a review item on `@afrikaburn-theme-camp-app/maintainers` via CODEOWNERS (§5.1).
 
 **Changeset hygiene.** A PR touching `packages/sdk` or `packages/sdk-react` without a changeset is
 a release that silently does not happen. Add to the existing `ci` job:
@@ -1301,7 +1301,7 @@ jobs:
     name: version packages
     runs-on: ubuntu-latest
     # Forks must never open a release PR on this repository.
-    if: github.repository == 'RyRy79261/afrikaburn-contributors-app'
+    if: github.repository == 'afrikaburn-theme-camp-app/ab-tc-app'
     steps:
       - uses: actions/checkout@v4
         with:
@@ -1373,7 +1373,7 @@ jobs:
   publish:
     name: publish to npm
     runs-on: ubuntu-latest
-    if: github.repository == 'RyRy79261/afrikaburn-contributors-app'
+    if: github.repository == 'afrikaburn-theme-camp-app/ab-tc-app'
     # A GitHub environment with required reviewers. The first few releases go
     # through a human; an irrevocable Apache grant on a version is not something
     # to discover after the fact. Remove the reviewer requirement once the
@@ -1446,13 +1446,13 @@ jobs:
 
 #### 8.3 Provenance and trusted publishing
 
-| item         | setting                                                                                                                                                                 |
-| ------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| package.json | `"publishConfig": { "access": "public", "provenance": true }` on both published packages                                                                                |
-| workflow     | `permissions: id-token: write`, only in `publish.yml`                                                                                                                   |
-| npm side     | register the trusted publisher on npmjs.com per package: repository `RyRy79261/afrikaburn-contributors-app`, workflow filename `publish.yml`, environment `npm-publish` |
-| secret       | **none.** No `NPM_TOKEN` in repository secrets. A long-lived publish token in a public repository's secret store is the thing trusted publishing exists to delete.      |
-| effect       | the npm package page shows the commit, the workflow run and the build that produced the tarball, verifiable with `npm audit signatures`                                 |
+| item         | setting                                                                                                                                                               |
+| ------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| package.json | `"publishConfig": { "access": "public", "provenance": true }` on both published packages                                                                              |
+| workflow     | `permissions: id-token: write`, only in `publish.yml`                                                                                                                 |
+| npm side     | register the trusted publisher on npmjs.com per package: repository `afrikaburn-theme-camp-app/ab-tc-app`, workflow filename `publish.yml`, environment `npm-publish` |
+| secret       | **none.** No `NPM_TOKEN` in repository secrets. A long-lived publish token in a public repository's secret store is the thing trusted publishing exists to delete.    |
+| effect       | the npm package page shows the commit, the workflow run and the build that produced the tarball, verifiable with `npm audit signatures`                               |
 
 The trusted-publisher registration binds the workflow **filename**. Renaming `publish.yml` breaks
 publishing until the registration is updated — record that in the file's own header when it is
@@ -1523,7 +1523,7 @@ points at the same host. That host does not exist until v1.0, and a URL in a com
 `packages/scopes/src/docs.ts`. At v0.1 it is the GitHub blob URL —
 
 ```
-https://github.com/RyRy79261/afrikaburn-contributors-app/blob/main/docs/sdk/scopes.md#org-update-suppliers
+https://github.com/afrikaburn-theme-camp-app/ab-tc-app/blob/main/docs/sdk/scopes.md#org-update-suppliers
 ```
 
 — and at v1.0 it flips to `https://developers.afrikaburn.org/scopes/`, with the developers app
@@ -1678,8 +1678,8 @@ table (better-auth's own tables are `user`/`session`/`account`/`verification`/`t
 `passkey`, `:358-573`), and `users` (`:283`) has columns `id`, `auth_user_id`, `email`,
 `username`, `sanitized_at`, `created_at` — **no `kind`**. The API-key storage model is the
 architecture shard's to specify; this script consumes it. It lands as a NEW append-only migration
-authored there, under `/packages/db/migrations/ @RyRy79261` and `/packages/db/src/schema.ts
-@RyRy79261` (`.github/CODEOWNERS:21-22`), and it does not amend an existing migration
+authored there, under `/packages/db/migrations/ @afrikaburn-theme-camp-app/maintainers` and `/packages/db/src/schema.ts
+@afrikaburn-theme-camp-app/maintainers` (`.github/CODEOWNERS:21-22`), and it does not amend an existing migration
 (`docs/build-spec.md:23` hard constraint 5: the schema is frozen and migrations are append-only,
 never hand-edited). `scripts/sdk-local.sh` cannot be written until that migration exists.
 

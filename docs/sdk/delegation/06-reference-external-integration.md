@@ -1,23 +1,28 @@
-## The Camp 404 integration guide
+## Reference external-integration guide
 
-The document the Camp 404 developer follows, start to finish, to move Camp 404 off its
-own duplicated copy of AfrikaBurn data and onto `@afrikaburn/sdk`. It is a contract:
-where it says "must", the platform will refuse you if you do otherwise, and the refusal
-is deliberate.
+> **Renamed 2026-09-11** from "The Camp 404 integration guide" — the content
+> was always generic (see the note below, kept from the original: it was
+> written without reading any specific camp app's actual code, sourced only
+> from this repo's own record of the pattern it was ported from). Framed
+> here around a generic reference integrator rather than one named camp.
 
-Camp 404 (`github.com/ryry79261/camp-404`) is named as the first consumer in
-`docs/roadmap.md:109-116`: _"Camp-specific apps (e.g. Camp 404) authenticate against it
-and reuse the shared spine — one Burner Bio per human across every camp app,
-memberships/entitlements queried rather than duplicated."_ It is also the conventional
-reference for this monorepo's own patterns (`docs/build-spec.md:5`), so the code below
-assumes a Next App Router app with Drizzle and Zod-at-boundaries, which is what Camp 404
-already is.
+The document a camp-specific app's developer would follow, start to finish,
+to move that app off its own duplicated copy of AfrikaBurn data and onto
+`@afrikaburn/sdk`. It is a contract: where it says "must", the platform will
+refuse you if you do otherwise, and the refusal is deliberate.
 
-**Camp 404's contents were not read while writing this.** The repo could not be attached
-in this environment. Every claim about Camp 404's _current_ shape is sourced from this
-repo's own record of it — `docs/build-spec.md:94` (`burner_bios` field set mirrored from
-Camp 404's burner profile), `docs/build-spec.md:105` (questionnaire tables ported 1:1),
-`docs/synthesis.md:86` (`burner_profiles` pattern), `docs/synthesis.md:96` (one-time
+A camp-specific app is named as an illustrative first consumer in
+`docs/roadmap.md`'s "Platform-as-backend" section: _"Camp-specific apps
+authenticate against it and reuse the shared spine — one Burner Bio per
+human across every camp app, memberships/entitlements queried rather than
+duplicated."_ The code below assumes a Next App Router app with Drizzle and
+Zod-at-boundaries, matching this monorepo's own conventions.
+
+**No specific external camp app's contents were read while writing this.**
+Every claim about a "reference camp app's" _current_ shape is sourced from
+this repo's own record of the pattern it was originally ported from —
+`docs/build-spec.md` (burner-profile field set, questionnaire tables ported
+1:1), `docs/synthesis.md:86` (`burner_profiles` pattern), `docs/synthesis.md:96` (one-time
 invite links) — and is marked where it is inference. §11 says so again at the point it
 matters.
 
@@ -45,7 +50,7 @@ effective = resolve(END USER, live from AfrikaBurn's DB)   ← only this can GRA
 
 The consequence you should internalise before writing a line: **a delegated answer is
 provably a subset of what that same human sees when they log into
-`app.quagga.ryanjnoble.dev` themselves.** If Nomsa cannot see it on AfrikaBurn, Camp 404
+`app.example-apex.org` themselves.** If Nomsa cannot see it on AfrikaBurn, Camp 404
 cannot see it for her. There is no integration-level override, there is no "trusted
 partner" flag, and asking for one is asking for the design to be undone.
 
@@ -139,7 +144,7 @@ a question you will be asked.
 ```bash
 # Camp 404 .env — server-only. NOT NEXT_PUBLIC_ANYTHING.
 AFRIKABURN_API_KEY=ab_ik_...
-AFRIKABURN_BASE_URL=https://app.quagga.ryanjnoble.dev
+AFRIKABURN_BASE_URL=https://app.example-apex.org
 ```
 
 `NEXT_PUBLIC_` is a bundler instruction, not a naming convention. A key behind that
@@ -173,7 +178,7 @@ sequenceDiagram
     autonumber
     participant B as Burner's browser
     participant C4 as Camp 404 server<br/>(camp404.example)
-    participant AB as AfrikaBurn<br/>(app.quagga.ryanjnoble.dev)
+    participant AB as AfrikaBurn<br/>(app.example-apex.org)
 
     B->>C4: click "Connect AfrikaBurn"
     Note over C4: mint state, persist {state, returnTo}<br/>against the Camp 404 session
@@ -813,7 +818,7 @@ security.
 
 #### 8.4 What withdrawal looks like from Camp 404
 
-The burner disconnects Camp 404 on `app.quagga.ryanjnoble.dev/account/connected-apps`.
+The burner disconnects Camp 404 on `app.example-apex.org/account/connected-apps`.
 Camp 404 receives **no notification** — there are no webhooks in v0.1, deliberately. The
 first thing Camp 404 knows is a 401 `reconnect_required` on the next call. That is the
 correct and only signal; build for it.
@@ -826,7 +831,7 @@ about to be told.
 
 ### 9. Local development
 
-**Never develop against `app.quagga.ryanjnoble.dev`.** It is the live deployment with
+**Never develop against `app.example-apex.org`.** It is the live deployment with
 real burners' phone numbers, emergency contacts, medical notes and identity documents in
 it. There is no staging — `SECURITY.md:34-35`: _"Everything you can reach at the deployed
 URLs is **production**. There is no staging environment. The accounts are real people, the
@@ -1006,7 +1011,7 @@ schema before acting on it.
 | One-time invite links (`docs/synthesis.md:96`)                                 | **Keep if they are for Camp 404's own features.** No API equivalent in v0.1.       | Camp-local features stay camp-local. The integration is not a mandate to move everything.                                                                                                                                                                                                |
 | Questionnaire tables ported 1:1 (`docs/build-spec.md:105`)                     | **Keep for now.** No questionnaire endpoints in v0.1.                              | Revisit when they land.                                                                                                                                                                                                                                                                  |
 | A direct connection to AfrikaBurn's database                                   | **Delete immediately, before anything else.**                                      | See §11.2.                                                                                                                                                                                                                                                                               |
-| A scraper against `app.quagga.ryanjnoble.dev` HTML                             | **Delete.**                                                                        | Fragile, unaudited, indistinguishable from an attack in the logs, and it bypasses every control in this document.                                                                                                                                                                        |
+| A scraper against `app.example-apex.org` HTML                                  | **Delete.**                                                                        | Fragile, unaudited, indistinguishable from an attack in the logs, and it bypasses every control in this document.                                                                                                                                                                        |
 | A CSV export a human emails around                                             | **Delete the workflow, not just the code.**                                        | An unaudited copy of burner PII in an inbox is the worst artifact in the inventory and the easiest to forget.                                                                                                                                                                            |
 
 #### 11.2 If Camp 404 has a direct database connection, that is the migration
@@ -1090,7 +1095,7 @@ is the impersonation primitive the design exists to make unwritable.
 
 ```ts
 "use client";
-await fetch("https://app.quagga.ryanjnoble.dev/v1/self/profile", {
+await fetch("https://app.example-apex.org/v1/self/profile", {
   headers: { "X-AfrikaBurn-User": ticket }, // ✗
 });
 ```
