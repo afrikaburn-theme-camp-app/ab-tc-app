@@ -1,0 +1,68 @@
+name: Neon preview branch for PR
+
+# Pair with neon-pr-cleanup.yml.
+#
+# Three Vercel apps share one Neon project. The Marketplace/Neon integration
+# cannot reliably inject preview DATABASE_* into all three, so we do it here:
+# one Neon branch `preview/<head-ref>`, same pooled + unpooled URLs on web,
+# org and suppliers as git-branch-scoped Preview env vars, then redeploy.
+#
+# Uses pull_request (not pull_request_target) so the workflow file and script
+# from the PR head run before they land on main — needed to verify the monorepo
+# wiring on the first PR that introduces them. Secrets are only available to
+# same-repo PRs (forks get empty secrets and fail closed below).
+# Cleanup stays on pull_request_target (see neon-pr-cleanup.yml).
+
+on:
+  pull_request:
+    types: [opened, reopened, synchronize]
+  workflow_dispatch:
+    inputs:
+      head_ref:
+        description: Git head branch name (e.g. chore-neon-preview-verify)
+        required: true
+        type: string
+
+permissions:
+  contents: read
+
+concurrency:
+  group: neon-preview-${{ github.event.pull_request.number || inputs.head_ref }}
+  cancel-in-progress: true
+
+jobs:
+  neon-preview-env:
+    if: >
+      github.event_name == 'workflow_dispatch' ||
+      github.event.pull_request.head.repo.full_name == github.repository
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+
+      - name: Provision Neon branch + Vercel Preview env
+        env:
+          NEON_API_KEY: ${{ secrets.NEON_API_KEY }}
+          NEON_PROJECT_ID: ${{ secrets.NEON_PROJECT_ID }}
+          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+          VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+          VERCEL_PROJECT_IDS: ${{ secrets.VERCEL_PROJECT_IDS }}
+          HEAD_REF: ${{ github.event.pull_request.head.ref || inputs.head_ref }}
+        run: |
+          set -euo pipefail
+          if [ -z "${NEON_API_KEY:-}" ] || [ -z "${NEON_PROJECT_ID:-}" ]; then
+            echo "::error::NEON_API_KEY or NEON_PROJECT_ID is empty"
+            exit 1
+          fi
+          if [ -z "${VERCEL_TOKEN:-}" ] || [ -z "${VERCEL_ORG_ID:-}" ] || [ -z "${VERCEL_PROJECT_IDS:-}" ]; then
+            echo "::error::VERCEL_TOKEN, VERCEL_ORG_ID or VERCEL_PROJECT_IDS is empty"
+            exit 1
+          fi
+          if [ -z "${HEAD_REF:-}" ]; then
+            echo "::error::HEAD_REF is empty"
+            exit 1
+          fi
+          chmod +x scripts/neon-preview-env.sh
+          scripts/neon-preview-env.sh

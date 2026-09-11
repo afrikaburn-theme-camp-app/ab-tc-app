@@ -2,34 +2,26 @@ name: Delete Neon branch for closed PR
 
 # WHY THIS EXISTS, and what it cost to find out.
 #
-# The Vercel–Neon integration provisions a database branch for every preview
-# deployment and NEVER removes it. Nothing else does either, so every pull
-# request leaves one behind permanently. Once the project hits its branch quota,
-# Neon stops handing out new ones — and Vercel then rejects the preview
-# deployment IN ABOUT ONE SECOND, before any build starts.
+# Preview DB branches used to come from the Vercel–Neon integration, which
+# provisioned a branch per preview and NEVER removed it. Once the project hit
+# its branch quota, Neon stopped issuing new ones and Vercel rejected the
+# preview deployment IN ABOUT ONE SECOND — three red checks, production fine,
+# code fine. The distinguishing signal is the CLOCK (real build = minutes).
 #
-# That failure mode is deeply unhelpful to diagnose from the outside. It looks
-# exactly like a broken build: three red "Vercel – …" checks on the pull request.
-# It is not. Production deployments keep working perfectly (they need no new
-# branch), the code is fine, and every local reproduction passes. The only
-# distinguishing signal is the CLOCK — a real build takes minutes, and these die
-# in a second, because they were refused rather than run.
-#
-# So: when a PR closes (merged or not), delete the Neon branch created for it.
-#
-# Ported from an earlier sibling project, where this was already solved. Kept close
-# to that version on purpose — it is proven, and the reasoning in its comments is
-# the reason it works.
+# We no longer use the integration for this monorepo (three Vercel apps, one
+# Neon project). neon-pr-preview.yml creates `preview/<head-ref>` and sets
+# git-branch-scoped Preview DATABASE_* on all three apps. This workflow still
+# deletes the Neon branch on PR close, and also removes those Vercel env rows
+# so they do not accumulate forever.
 #
 # ## Naming
 #
-# The integration names preview branches after the git head branch:
+# Preview branches are named:
 #
 #     preview/<head-branch-name>
 #
 # We look these up by PREFIX rather than reconstructing the full name from event
-# data — head-ref slugging can differ between Vercel, the Neon integration and
-# the action that reports branch names, so a prefix match is more robust while
+# data — head-ref slugging can differ, so a prefix match is more robust while
 # staying narrowly scoped to this PR. (It does mean a branch named `feat-a` would
 # also match `preview/feat-a-b`; keep branch names distinct, which they are.)
 
@@ -53,9 +45,9 @@ permissions:
 
 jobs:
   delete-neon-branch:
-    # Only same-repo PRs get a `preview/<head-branch>` Neon branch from the
-    # integration, so scope cleanup to those. Fork PRs have nothing to delete,
-    # and skipping them keeps the pull_request_target blast radius minimal.
+    # Only same-repo PRs get a `preview/<head-branch>` Neon branch, so scope
+    # cleanup to those. Fork PRs have nothing to delete, and skipping them keeps
+    # the pull_request_target blast radius minimal.
     if: github.event.pull_request.head.repo.full_name == github.repository
     runs-on: ubuntu-latest
     steps:
@@ -124,19 +116,67 @@ jobs:
 
           if [ -z "$targets" ]; then
             echo "No Neon branch found for PR #${PR_NUMBER} (prefix: $prefix). Nothing to delete."
+          else
+            # In practice there is exactly one match per PR; the loop is defensive
+            # in case an earlier failed run left duplicates behind.
+            while IFS=$'\t' read -r id name; do
+              [ -z "$id" ] && continue
+              echo "Deleting branch: $name (id=$id)"
+              del_status=$(curl -sS "${curl_opts[@]}" -o /dev/null -w "%{http_code}" -X DELETE -H "$auth" "$api/branches/$id")
+              if [ "$del_status" = "200" ] || [ "$del_status" = "202" ]; then
+                echo "  ok"
+              else
+                echo "::error::Failed to delete $name (HTTP $del_status)"
+                exit 1
+              fi
+            done <<< "$targets"
+          fi
+
+      - name: Delete git-branch-scoped Vercel Preview DATABASE_* env
+        env:
+          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+          VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+          VERCEL_PROJECT_IDS: ${{ secrets.VERCEL_PROJECT_IDS }}
+          HEAD_REF: ${{ github.head_ref }}
+        run: |
+          set -euo pipefail
+
+          if [ -z "${VERCEL_TOKEN:-}" ] || [ -z "${VERCEL_ORG_ID:-}" ] || [ -z "${VERCEL_PROJECT_IDS:-}" ]; then
+            echo "VERCEL_TOKEN / VERCEL_ORG_ID / VERCEL_PROJECT_IDS not set — skipping Vercel env cleanup"
             exit 0
           fi
 
-          # In practice there is exactly one match per PR; the loop is defensive
-          # in case an earlier failed run left duplicates behind.
-          while IFS=$'\t' read -r id name; do
-            [ -z "$id" ] && continue
-            echo "Deleting branch: $name (id=$id)"
-            del_status=$(curl -sS "${curl_opts[@]}" -o /dev/null -w "%{http_code}" -X DELETE -H "$auth" "$api/branches/$id")
-            if [ "$del_status" = "200" ] || [ "$del_status" = "202" ]; then
-              echo "  ok"
-            else
-              echo "::error::Failed to delete $name (HTTP $del_status)"
-              exit 1
+          curl_opts=(--connect-timeout 10 --max-time 30 --retry 3 --retry-delay 5)
+          auth=( -H "Authorization: Bearer ${VERCEL_TOKEN}" -H "Accept: application/json" )
+          api="https://api.vercel.com"
+
+          IFS=',' read -r -a project_ids <<< "$VERCEL_PROJECT_IDS"
+          for project_id in "${project_ids[@]}"; do
+            project_id="$(echo "$project_id" | tr -d '[:space:]')"
+            [ -z "$project_id" ] && continue
+            echo "Scanning env on ${project_id} for gitBranch=${HEAD_REF}"
+            list=$(curl -sS "${curl_opts[@]}" "${auth[@]}" \
+              "${api}/v9/projects/${project_id}/env?teamId=${VERCEL_ORG_ID}")
+            ids=$(printf '%s' "$list" | jq -r --arg branch "$HEAD_REF" '
+              .envs[]?
+              | select(.key == "DATABASE_URL" or .key == "DATABASE_URL_UNPOOLED")
+              | select((.target // []) | index("preview"))
+              | select((.gitBranch // "") == $branch)
+              | .id
+            ')
+            if [ -z "$ids" ]; then
+              echo "  none"
+              continue
             fi
-          done <<< "$targets"
+            while IFS= read -r eid; do
+              [ -z "$eid" ] && continue
+              echo "  deleting env id=${eid}"
+              code=$(curl -sS "${curl_opts[@]}" "${auth[@]}" -o /dev/null -w "%{http_code}" -X DELETE \
+                "${api}/v9/projects/${project_id}/env/${eid}?teamId=${VERCEL_ORG_ID}")
+              if [ "$code" = "200" ] || [ "$code" = "204" ]; then
+                echo "    ok"
+              else
+                echo "::warning::delete env ${eid} returned HTTP ${code}"
+              fi
+            done <<< "$ids"
+          done

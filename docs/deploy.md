@@ -154,46 +154,65 @@ Rate limits are per account and enforced in the database: 5 reports and 30
 transcriptions per hour. The reporter's own account id is **never** written to
 the issue; the pairing of issue number to reporter is in the server log only.
 
-**Preview deployments.** Neon preview branching is enabled, so each preview/PR gets
-its own Neon branch with its own `DATABASE_URL` / `DATABASE_URL_UNPOOLED`. The deploy
-migrator runs against that branch — which is correct and desired: every preview
-migrates its own isolated branch, never production.
+**Preview deployments (manual monorepo wiring — not the Vercel↔Neon integration).**
+This repo deploys **three** Vercel projects against **one** Neon database. The
+Marketplace / Neon-managed integration is effectively one Neon project → one
+Vercel project, so it only ever injected preview `DATABASE_*` into a single app;
+the other two built with both URLs unset and skipped migrations. Do **not**
+re-enable the integration for preview branching here.
 
-**Those branches are not cleaned up by anyone, and running out of them looks like a
-broken build.** The Vercel–Neon integration creates a branch per preview and never
-removes it. Once the project hits its branch quota Neon stops issuing new ones, and
-Vercel then **rejects the preview deployment in about one second**, before any build
-starts — surfacing as three red `Vercel – …` checks on the pull request.
+Instead:
 
-That is a genuinely misleading signal, so recognise it by the clock:
+1. **Production** — set `DATABASE_URL` (pooled) and `DATABASE_URL_UNPOOLED`
+   (direct) as ordinary secrets on **all three** Vercel projects, Production
+   only, pointing at the Neon primary branch.
+2. **Preview** — `.github/workflows/neon-pr-preview.yml` runs on each same-repo
+   PR. It creates (or reuses) Neon branch `preview/<head-ref>`, writes the same
+   pooled + unpooled URLs onto **web, org and suppliers** as git-branch-scoped
+   Preview env vars, and redeploys the previews so the migrator sees them.
+3. **Cleanup** — `.github/workflows/neon-pr-cleanup.yml` deletes that Neon branch
+   when the PR closes and removes the matching Vercel env rows.
+
+The deploy migrator runs against the preview branch — correct and desired: every
+preview migrates its own isolated copy, never production. Watch the build log for
+`[migrate] using DATABASE_URL_UNPOOLED` (not the "no database configured —
+skipping" line).
+
+**Running out of Neon branches still looks like a broken build.** If preview
+creation fails because the project is over quota, Vercel may reject the deployment
+in about one second — three red `Vercel – …` checks, production still fine. Recognise
+it by the clock:
 
 |                 | pending → outcome |
 | --------------- | ----------------- |
 | a real build    | minutes           |
 | quota rejection | **~1 second**     |
 
-Production keeps deploying perfectly throughout, because it needs no new branch. The
-code is fine. Every local reproduction passes. Diagnosed the hard way on PR #10 (3 Aug 2026) after eliminating the checkout, the build and the migrator one at a time.
+Repository secrets required:
 
-`.github/workflows/neon-pr-cleanup.yml` deletes the branch when a PR closes, which
-stops the leak going forward. It needs two repository secrets:
+- `NEON_API_KEY` — Neon API key (Account settings → API keys)
+- `NEON_PROJECT_ID` — Neon project id
+- `VERCEL_TOKEN` — Vercel token that can read/write env on the three projects
+- `VERCEL_ORG_ID` — Vercel team id (`team_…`)
+- `VERCEL_PROJECT_IDS` — comma-separated project ids for web, org, suppliers
 
-- `NEON_API_KEY` — a Neon API key (Account settings → API keys)
-- `NEON_PROJECT_ID` — the Neon project id
-
-**It does not clear a backlog.** Branches from PRs that closed before the workflow
-existed have to be removed once, by hand, from the Neon console or the API:
+Local one-shot (same script the workflow runs):
 
 ```bash
-# list the preview branches that are left
+export NEON_API_KEY=… NEON_PROJECT_ID=…
+export VERCEL_TOKEN=… VERCEL_ORG_ID=team_…
+export VERCEL_PROJECT_IDS=prj_web,prj_org,prj_suppliers
+export HEAD_REF=your-git-branch
+./scripts/neon-preview-env.sh
+```
+
+**Backlog cleanup** for orphan `preview/*` branches (never touch primary):
+
+```bash
 curl -sS -H "Authorization: Bearer $NEON_API_KEY" \
   "https://console.neon.tech/api/v2/projects/$NEON_PROJECT_ID/branches" \
   | jq -r '.branches[] | select(.primary != true) | select(.name | startswith("preview/")) | "\(.id)  \(.name)"'
 ```
-
-Check the list against open PRs before deleting anything, then
-`DELETE .../branches/<id>` the ones whose PR has closed. Never touch the primary
-branch — that is production, with real burners' registrations in it.
 
 - `GOD_EMAILS=<first-maintainer@example.org>,<second-maintainer@example.org>` — first sign-in with a listed (verified) email self-elevates to god (System manager). **List at least two working-group addresses in production** — a single god account is a lockout risk (the System panel itself warns about this).
 - **Optional, web only — `ACCOUNT_SWEEP_SECRET`**: bearer token for
@@ -254,5 +273,3 @@ the data it verifies, which is also exactly the kickoff demo script.
 
 Every smoke assertion is against **live-created** rows. Nothing is verified
 against a seeded row, because no user-generated seeded row exists.
-
-<!-- neon preview branch verification 2026-09-11T14:20:37Z -->
