@@ -1,12 +1,19 @@
 # AGENTS.md
 
-Operating guide for AI agents (and humans) in this repo, distilled from how the
-project actually runs. `README.md` has the product overview; the `docs/` specs are the
-feature contracts. **The App Specification (authoritative on Superhuman, local working copy at
-[`docs/sources/app-specification/`](docs/sources/app-specification/README.md) —
-see [`docs/README.md`](docs/README.md)) governs what the product should do; where
-anything in this repo conflicts, `docs/build-spec.md` wins for
-engineering and this file wins for process.**
+Operating guide for AI agents working in this repo. It is a **digest**: the
+commands, hard engineering rules and canvas mechanics an agent needs on hand,
+distilled from the standing sources of truth below. It never overrides them.
+
+`README.md` has the product overview; `GOVERNANCE.md` has how decisions get
+made and by whom; `CONTRIBUTING.md` is the human-facing process guide this
+file assumes. **The App Specification** (authoritative on Superhuman, local
+working copy at [`docs/sources/app-specification/`](docs/sources/app-specification/README.md)
+— see [`docs/README.md`](docs/README.md)) governs what the product should do.
+Where anything in this repo conflicts with it, the App Specification wins,
+Decision Records aside. Below that: `GOVERNANCE.md`/`CONTRIBUTING.md` govern
+process, `docs/technical-spec/` and `docs/build-spec.md` govern engineering
+HOW, and this file is the agent digest — it must not contradict any of the
+above.
 
 ## Read this first
 
@@ -26,17 +33,17 @@ There is no staging environment. Three things follow, and none of them are optio
    re-creates tables that already exist. If the generator's output looks absurd,
    the snapshot chain is broken — repair it, do not write around it. Rule 1 under
    Hard engineering rules has the detail and the repair recipe.
-3. **You are working in someone else's repository.** Branch, open a pull request, and
-   let the maintainer review — never commit to `main`. (Branch protection is not yet
-   switched on at the time of writing, so nothing _stops_ you. That makes the rule
-   more important, not less.)
+3. **This is a shared, community-owned repository.** Branch, open a pull request,
+   and get a code-owner review — never commit to `main`. (Branch protection is
+   deliberately not switched on yet — see `GOVERNANCE.md` for when it turns on —
+   so nothing _stops_ you. That makes the rule more important, not less.)
 
 If you find a security or privacy problem, report it privately — `SECURITY.md`.
 
 **Human contributors start at `CONTRIBUTING.md`**; it covers setup, the commit
-convention and the designer workflow. This file is the operating guide for agents and
-wins on process where the two overlap. (The full precedence chain, App Spec included,
-is in [`docs/README.md`](docs/README.md).)
+convention and the designer workflow. `GOVERNANCE.md` covers who decides what
+and how. This file is the agent digest and must not contradict either. (The
+full precedence chain, App Spec included, is in [`docs/README.md`](docs/README.md).)
 
 ## What this is
 
@@ -173,9 +180,11 @@ list`, then `git worktree remove` what has finished.
    never the security boundary).
 8. Vitest covers core logic; add regression tests with every bug fix.
 9. **An API key is a ceiling, never a principal.** Nothing under `/v1` exists yet — the
-   surface is specified in [`docs/sdk/delegation/`](docs/sdk/README.md) — but the law is
-   here before the code because it constrains what may be built. Every `/v1` request that
-   can name a burner resolves, live, on every request:
+   surface is specified as a Draft in [`docs/sdk/delegation/`](docs/sdk/README.md),
+   pending App Spec Decision 005 (proposed: backend-first API/SDK direction). If
+   it is ever built, this constraint applies before any code is written this
+   way — retrofitting it afterwards is not credible. Every `/v1` request that
+   can name a burner would have to resolve, live, on every request:
 
    ```
    effective = resolve(END USER, live from the DB)
@@ -197,12 +206,22 @@ list`, then `git worktree remove` what has finished.
    authority is the console's authority, and a burner clicking a consent screen is not the
    party whose rights are at stake for an org capability.
 
-## Product laws (violating these is a bug, not a style choice)
+## Product positions currently built (not permanent law — see the governing Decision Record)
 
-- **The platform never holds or processes money.** Registration is free — AfrikaBurn
-  never charges theme camps. No payment UI in any registration context. Payment
-  _reference tracking_ exists only for future logistics apps. Camp-internal member ref
-  codes (`MAH-M017`) are allowed — they're the camp's own EFT reconciliation.
+The App Specification and its Decision Records (`docs/sources/app-specification/decisions-record/`)
+are what make a product position binding, not this file. Where a position below
+still has its Decision Record at `status: proposed`, treat it as this repo's
+current build stance, not as settled: changing it needs that record accepted,
+not a standing exception in code or docs. See `docs/technical-spec/` for the
+per-feature drift register.
+
+- **The platform does not currently hold or process money.** Registration is free —
+  AfrikaBurn does not charge theme camps today. No payment UI exists in any
+  registration context. Payment _reference tracking_ exists only for future
+  logistics apps. Camp-internal member ref codes (`MAH-M017`) are allowed —
+  they're the camp's own EFT reconciliation. Governed by Decision 009
+  (proposed: payment direction tracking vs. gateway) — a gateway is not ruled
+  out by this file, only by that record staying unaccepted.
 - **Fewer forms, not more.** Every field must earn its place; derive over ask; carry
   forward by default; progressive disclosure over blanket collection.
 - **Privacy classes** (two, both enforced in `@quagga/core` `privacy.ts`, never in
@@ -241,7 +260,9 @@ list`, then `git worktree remove` what has finished.
     break-glass/reason-prompt design.)_
 
   - Free camps are undiscoverable to strangers (directory, profiles, type-aheads all
-    enforce this).
+    enforce this) — a repo-built visibility rule the App Specification does not
+    itself state; worth a Decision Record of its own before it is treated as
+    permanent.
 - **Structural roles (`lead`/`admin`) hold every project permission irrevocably** — the
   no-lockout backstop. Custom-role privileges are grants on top.
 - **On the org side the same job is done by `memberships.role = 'god'`** (org roles v1,
@@ -257,8 +278,11 @@ list`, then `git worktree remove` what has finished.
   account may do — the accounts table, the assignment dialog, the role editor — renders
   `summarizeOrgActor` from @quagga/core, so the console can never advertise an access it
   would refuse, or understate one it would allow.
-- **Out of scope, permanently unless Ryan says otherwise**: ticketing (Quicket's),
-  placement maps, camp treasuries/dues.
+- **Not currently in scope**: ticketing (Decision 010, proposed — Quicket
+  remains system of record until it is accepted or superseded), placement
+  maps (Decisions 011/012, proposed), camp treasuries/dues as a gateway
+  (Decision 009, proposed, see above). Changing any of these means moving the
+  governing Decision Record forward, not editing this file.
 - Blocking questionnaires are labeled explicitly everywhere and gate hard (fill page +
   sign-out only); org-internal questionnaires never leak into the participant app.
 - **Seeds contain ONLY org-owned reference/catalog data** (edition, org group, camp
@@ -317,17 +341,20 @@ So, in this repo:
 
 ## Process
 
-- **Design before build.** Every new feature gets pen.dev frames first; Ryan reviews;
-  code starts after. When you create any new page frame, create its mobile 360 pair in
-  the same session (pairing convention below).
-- **No skills, and no new tooling layers, without asking.** Ryan's standing
-  preference (3 Aug 2026): don't install agent skills or add abstraction on top of
-  the workflow that already exists. The commands in this file are the interface.
+- **Design before build.** Every new feature gets pen.dev frames first; a design
+  owner reviews (see `MAINTAINERS.md`); code starts after. When you create any
+  new page frame, create its mobile 360 pair in the same session (pairing
+  convention below).
+- **No skills, and no new tooling layers, without discussion.** Don't install
+  agent skills or add abstraction on top of the workflow that already exists
+  without raising it first. The commands in this file are the interface.
   Suggest, don't add.
-- **Specs are contracts.** Feature behavior lives in `docs/*-spec.md`; update the spec
-  when Ryan changes direction, then implement the spec. Sources of ground truth:
-  `docs/sources/quaggapedia/` and `docs/sources/afrikaburn-org/` (mirrored corpora with
-  INDEX files) — cite them rather than guessing event facts.
+- **Specs are contracts.** Feature behavior lives in `docs/technical-spec/*.md`
+  and the legacy `docs/*-spec.md` files being migrated into it; update the spec
+  when the governing App Spec section or Decision Record changes, then
+  implement the spec. Sources of ground truth: `docs/sources/quaggapedia/` and
+  `docs/sources/afrikaburn-org/` (mirrored corpora with INDEX files) — cite
+  them rather than guessing event facts.
 - **Adversarial verification.** Non-trivial builds end with independent review agents
   hunting authz holes, privacy leaks, and spec violations — findings get fixed with
   regression tests before pushing. This has caught real majors every time it ran.
@@ -345,9 +372,9 @@ So, in this repo:
 - **Issues are labelled, and two labels change how you read one.** The taxonomy and
   the triage routine are `docs/triage.md`. `needs-triage` means nobody has reviewed
   it — the stated `type:` may be wrong. `source: in-app` means the in-app reporter
-  filed it: the words are a **user's**, published under the maintainer's GitHub
-  account, unverified, and the issue carries no reporter identity by design, so you
-  cannot ask a follow-up on it. Reproduce before believing a diagnosis, and never
+  filed it: the words are a **user's**, published under the project's reporter
+  service account, unverified, and the issue carries no reporter identity by
+  design, so you cannot ask a follow-up on it. Reproduce before believing a diagnosis, and never
   quote an in-app report's diagnostics elsewhere without reading them first —
   redaction is pattern-based and fails open.
 
@@ -417,15 +444,14 @@ accounts as live`. Lowercase, imperative, no full stop, ≤72 chars, scope from 
 - **The PR template's Database and Risk sections are load-bearing.** The product is
   deployed; "no schema changes" is a real and useful answer, and leaving it blank is
   not.
-- **Some paths need the maintainer's review** (`.github/CODEOWNERS`): migrations,
-  `packages/auth`, `packages/core`, `.github/`, the licence. Not a trust statement —
-  a list of places where a mistake is expensive or cannot be undone.
-- The repo is PUBLIC: no real personal contact data (supplier contacts are scrubbed on
-  import), no naming real businesses in negative demo states (use fictional names like
-  "LosKop Catering").
-- History was rewritten once (24 Jul 2026) to purge unredacted originals — the
-  `archive/source-documents` branch exists ONLY locally on Ryan's machine; never
-  recreate or push it.
+- **Some paths need a code-owner review** (`.github/CODEOWNERS`): currently root
+  files, `.github/` and `LICENSE`; expected to widen to migrations, `packages/auth`
+  and `packages/core` as the maintainer team grows (see `MAINTAINERS.md`). Not a
+  trust statement — a list of places where a mistake is expensive or cannot be
+  undone.
+- The repo is PUBLIC: no real personal contact data in new fixtures, no naming
+  real businesses in negative demo states (use fictional names like "LosKop
+  Catering").
 
 ## Cast, for realistic copy
 
@@ -434,6 +460,6 @@ seeding law above). Camps: Mad Hatters (registered), Camp 404 (under review), Ka
 Kombuis (changes requested), Dust Bunnies, The Long Drop Inn, Vuurvlieg Collective,
 Stofpad Saloon. Humans: Alice Hatter, Ren Notfound, Jabu (all fictional, @example.com).
 Edition: AfrikaBurn 2027 · 26 April – 2 May 2027. Ref codes: `MAH-M017`. Suppliers:
-real ones from the AB sheet (scrubbed) + fictional LosKop Catering (suspended demo).
-At the live kickoff the "cast" is real: Ryan signs up as himself and registers Camp 404
-through the wizard.
+real ones from the AB sheet (public data) + fictional LosKop Catering (suspended demo).
+Using a real camp's name as cast is fine; a feature or decision built for one
+camp's sole benefit is not — that is the line, not the names themselves.

@@ -52,44 +52,50 @@ common misunderstanding to avoid:
   that — but that's documenting a known, deliberate gap, not a disagreement about
   which document governs.)
 
-Underneath that top tier, four existing precedence rules already govern this
-repo and are restated here as the one place they're spelled out in full. Five
-other locations echo it: `AGENTS.md` (×2), [`build-spec.md`](build-spec.md) and
-`README.md` restate the rule in full and link here — reasonable for a reader
-landing there cold — while [`architecture.md`](architecture.md) links here
-without restating it:
+Underneath that top tier:
 
 1. **The App Specification** (above) governs what the product should do.
-2. **[`build-spec.md`](build-spec.md)** wins for engineering — schema, routes,
-   stack, hard constraints — where any other doc in this repo disagrees with it.
-3. **`AGENTS.md`** wins for process where it and any doc (including
-   `build-spec.md`) disagree on process.
-4. **`AGENTS.md`** wins over `CONTRIBUTING.md` specifically, where the two
-   overlap on process — human contributors still start at `CONTRIBUTING.md`.
+   Where this repo's current build takes a position a governing Decision
+   Record has not yet accepted, that is a documented drift, not a second
+   source of truth — see `docs/technical-spec/`'s drift register and
+   `GOVERNANCE.md`.
+2. **[`GOVERNANCE.md`](../GOVERNANCE.md) and [`CONTRIBUTING.md`](../CONTRIBUTING.md)**
+   govern process — decision-making, review, and how a change gets made.
+   Human contributors start at `CONTRIBUTING.md`.
+3. **[`build-spec.md`](build-spec.md) and `docs/technical-spec/`** win for
+   engineering — schema, routes, stack, hard constraints — where any other
+   doc in this repo disagrees with them on HOW, not WHAT.
+4. **`AGENTS.md`** is the agent operating digest. It must not contradict any
+   of the above; where it appears to, the above wins and `AGENTS.md` is
+   stale.
+
+(This inverts the precedence this file stated before the project moved to
+open governance, where `AGENTS.md` won on process ahead of `CONTRIBUTING.md`
+and `GOVERNANCE.md` did not yet exist.)
 
 ## The index
 
-| Doc                                                      | Category         | Doc status     | Requirement-ID coverage                                                                       |
-| -------------------------------------------------------- | ---------------- | -------------- | --------------------------------------------------------------------------------------------- |
-| `README.md` _(this file)_                                | Operational      | Active         | N/A — index and conventions, not spec-derived                                                 |
-| [`technical-spec.md`](technical-spec.md)                 | Product          | Active         | **Exhaustive** — full 1:1 section mirror of the App Spec                                      |
-| [`architecture.md`](architecture.md)                     | Architecture     | Active         | Partial — `SEC-*`, `CORE-*`                                                                   |
-| [`build-spec.md`](build-spec.md)                         | Engineering Spec | Active         | Partial — `CORE-*`, `ONBOARD-*`, `CDB-*`, `SEC-*`, `REG-*`                                    |
-| [`component-spec.md`](component-spec.md)                 | Engineering Spec | Active         | N/A — implementation detail                                                                   |
-| [`accounts-security-spec.md`](accounts-security-spec.md) | Security         | Active         | Partial — `SEC-*`, `CDB-002`                                                                  |
-| [`auth-platform-spec.md`](auth-platform-spec.md)         | Security         | Active         | Partial — `SEC-*`                                                                             |
-| [`questionnaire-spec.md`](questionnaire-spec.md)         | Engineering Spec | Active         | Partial — `ONBOARD-*`, `REG-*`, `SEC-*`                                                       |
-| [`notifications-spec.md`](notifications-spec.md)         | Engineering Spec | Active         | N/A — no dedicated App Spec section                                                           |
-| [`supplier-spec.md`](supplier-spec.md)                   | Engineering Spec | Active         | Partial — `PNP-005`, `REG-011`                                                                |
-| [`flows.md`](flows.md)                                   | Architecture     | Active         | Partial — `ONBOARD-*`, `REG-*`, `SEC-*`                                                       |
-| [`triage.md`](triage.md)                                 | Operational      | Active         | N/A — operational, not spec-derived                                                           |
-| [`synthesis.md`](synthesis.md)                           | Planning         | **Historical** | N/A — superseded as an authoritative source by the App Specification itself                   |
-| [`deploy.md`](deploy.md)                                 | Operational      | Active         | N/A — operational, not spec-derived                                                           |
-| [`roadmap.md`](roadmap.md)                               | Planning         | Active         | Partial — `RELEASE-*`                                                                         |
-| [`sdk/`](sdk/README.md)                                  | Engineering Spec | Draft          | N/A — no App Spec section yet; specifies a `/v1` API and published SDK that are **not built** |
-| [`sources/app-specification/`](sources/app-specification/README.md) | Product (external corpus) | Active | **Authoritative App Spec** — Superhuman→git pull-dominant sync home |
-| [`sources/app-specification/decisions-record/`](sources/app-specification/decisions-record.md) | Planning | Active | **Product** decisions — WHAT/WHY (Superhuman corpus) |
-| [`decisions/`](decisions/README.md) | Planning | Active | **Engineering** decisions — HOW |
+| Doc                                                                                            | Category                  | Doc status     | Requirement-ID coverage                                                                       |
+| ---------------------------------------------------------------------------------------------- | ------------------------- | -------------- | --------------------------------------------------------------------------------------------- |
+| `README.md` _(this file)_                                                                      | Operational               | Active         | N/A — index and conventions, not spec-derived                                                 |
+| [`technical-spec.md`](technical-spec.md)                                                       | Product                   | Active         | **Exhaustive** — full 1:1 section mirror of the App Spec                                      |
+| [`architecture.md`](architecture.md)                                                           | Architecture              | Active         | Partial — `SEC-*`, `CORE-*`                                                                   |
+| [`build-spec.md`](build-spec.md)                                                               | Engineering Spec          | Active         | Partial — `CORE-*`, `ONBOARD-*`, `CDB-*`, `SEC-*`, `REG-*`                                    |
+| [`component-spec.md`](component-spec.md)                                                       | Engineering Spec          | Active         | N/A — implementation detail                                                                   |
+| [`accounts-security-spec.md`](accounts-security-spec.md)                                       | Security                  | Active         | Partial — `SEC-*`, `CDB-002`                                                                  |
+| [`auth-platform-spec.md`](auth-platform-spec.md)                                               | Security                  | Active         | Partial — `SEC-*`                                                                             |
+| [`questionnaire-spec.md`](questionnaire-spec.md)                                               | Engineering Spec          | Active         | Partial — `ONBOARD-*`, `REG-*`, `SEC-*`                                                       |
+| [`notifications-spec.md`](notifications-spec.md)                                               | Engineering Spec          | Active         | N/A — no dedicated App Spec section                                                           |
+| [`supplier-spec.md`](supplier-spec.md)                                                         | Engineering Spec          | Active         | Partial — `PNP-005`, `REG-011`                                                                |
+| [`flows.md`](flows.md)                                                                         | Architecture              | Active         | Partial — `ONBOARD-*`, `REG-*`, `SEC-*`                                                       |
+| [`triage.md`](triage.md)                                                                       | Operational               | Active         | N/A — operational, not spec-derived                                                           |
+| [`synthesis.md`](synthesis.md)                                                                 | Planning                  | **Historical** | N/A — superseded as an authoritative source by the App Specification itself                   |
+| [`deploy.md`](deploy.md)                                                                       | Operational               | Active         | N/A — operational, not spec-derived                                                           |
+| [`roadmap.md`](roadmap.md)                                                                     | Planning                  | Active         | Partial — `RELEASE-*`                                                                         |
+| [`sdk/`](sdk/README.md)                                                                        | Engineering Spec          | Draft          | N/A — no App Spec section yet; specifies a `/v1` API and published SDK that are **not built** |
+| [`sources/app-specification/`](sources/app-specification/README.md)                            | Product (external corpus) | Active         | **Authoritative App Spec** — Superhuman→git pull-dominant sync home                           |
+| [`sources/app-specification/decisions-record/`](sources/app-specification/decisions-record.md) | Planning                  | Active         | **Product** decisions — WHAT/WHY (Superhuman corpus)                                          |
+| [`decisions/`](decisions/README.md)                                                            | Planning                  | Active         | **Engineering** decisions — HOW                                                               |
 
 Categories: **Product** (what's built vs. the spec) · **Architecture** (how the
 system fits together, current state) · **Engineering Spec** (a subsystem's

@@ -13,13 +13,16 @@
 // exists, and a scope vocabulary nobody prunes stops meaning anything.
 
 /**
- * The scope vocabulary. Three kinds, and the difference matters:
- *   · workspace names with their npm scope dropped — @quagga/* AND @afrikaburn/*
- *   · `api`  — the /v1 HTTP surface, which lives inside apps/web rather than in a
- *              workspace of its own. It gets a scope anyway: without one, every
- *              server-side commit in that workstream is scoped `web` or `core` and
- *              the whole thing is invisible in `git log --oneline`.
- *   · `repo` — root-level turbo/tooling/CI/docs about the repo itself
+ * The scope vocabulary: workspace names with their npm scope dropped, plus
+ * `repo` for root-level changes. Kept in step with `ls packages/ apps/` and
+ * with `.github/pull_request_template.md`'s scope list, which must agree with
+ * this one.
+ *
+ * `scopes`, `sdk`, `react` and `api` (the speculative `@afrikaburn/*` SDK
+ * packages and the unbuilt `/v1` HTTP surface — see `docs/sdk/`) are
+ * deliberately NOT listed: none of those workspaces exist yet, and a scope
+ * vocabulary nobody prunes stops meaning anything. Add them back if and when
+ * App Spec Decision 005 is accepted and that work actually starts.
  */
 const SCOPES = [
   // apps/*
@@ -32,15 +35,6 @@ const SCOPES = [
   "ui",
   "auth",
   "types",
-  // packages/* — the published pair and its vocabulary source.
-  // NOTE: `sdk` and `react` are @afrikaburn/*, not @quagga/*. The directory is
-  // packages/sdk-react; the scope is `react`, matching the PACKAGE name, because
-  // that is what a reader recognises in a changelog.
-  "scopes",
-  "sdk",
-  "react",
-  // the public HTTP surface — apps/web/app/api/v1/**. Not a workspace.
-  "api",
   // the e2e workspace
   "e2e",
   // root-level: turbo, workspace tooling, CI, docs about the repo itself

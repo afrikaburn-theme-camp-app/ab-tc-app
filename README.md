@@ -167,7 +167,10 @@ Fuller diagrams — system, package graph, request path, data model — are in
 ## Contributing
 
 You do not need to be a backend engineer — most of the work is front-end, design
-and wording. **Start with [`CONTRIBUTING.md`](CONTRIBUTING.md).**
+and wording. **Start with [`CONTRIBUTING.md`](CONTRIBUTING.md).** This project
+follows a [`CODE_OF_CONDUCT.md`](CODE_OF_CONDUCT.md); see
+[`GOVERNANCE.md`](GOVERNANCE.md) for how decisions get made and
+[`MAINTAINERS.md`](MAINTAINERS.md) for who currently maintains it.
 
 | I want to…                                      | Go here                                                                      |
 | ----------------------------------------------- | ---------------------------------------------------------------------------- |
@@ -189,10 +192,12 @@ Two rules that catch people out:
   burner's own camp leads and safety staff, and every read is audited. See
   [`AGENTS.md`](AGENTS.md) §Privacy classes.
 
-> **Read [`AGENTS.md`](AGENTS.md) before changing anything.** This README is
-> orientation; AGENTS.md is law, [`docs/build-spec.md`](docs/build-spec.md) wins
-> for engineering, and the **App Specification** (below) sits above all of it —
-> see [`docs/README.md`](docs/README.md) for the full precedence chain.
+> **Start at [`CONTRIBUTING.md`](CONTRIBUTING.md) and [`GOVERNANCE.md`](GOVERNANCE.md).**
+> This README is orientation. The **App Specification** governs what the
+> product should do; `GOVERNANCE.md`/`CONTRIBUTING.md` govern process;
+> [`docs/build-spec.md`](docs/build-spec.md) and `docs/technical-spec/` govern
+> engineering HOW; [`AGENTS.md`](AGENTS.md) is the agent operating digest — see
+> [`docs/README.md`](docs/README.md) for the full precedence chain.
 
 ## Documentation
 
@@ -214,7 +219,10 @@ frame.
 
 ## Licence
 
-**[FSL-1.1-ALv2](LICENSE)** — Functional Source License, converting to Apache 2.0
-two years after each release. Use it, read it, build on it; don't ship a
-competing product from it in the meantime. Contributions come in under the same
-terms, and there is no CLA to sign.
+**[FSL-1.1-ALv2](LICENSE)** — Functional Source License. Use it, read it, build
+on it; don't ship a competing product from it in the meantime. Each version
+converts to Apache 2.0 on the second anniversary of the date it was made
+available (the `LICENSE` file's own "Grant of Future License"); the code first
+published under FSL on 27 July 2026 converts 27 July 2028, and any later
+version converts two years after its own publication. Contributions come in
+under the same terms, and there is no CLA to sign.

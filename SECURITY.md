@@ -12,8 +12,9 @@ _Report a vulnerability_. It opens a private thread visible only to the
 maintainers.
 
 Do not open a public issue for a security problem. Do not post it in a pull
-request, a discussion, or a channel. If private reporting is unavailable for any
-reason, contact the repository owner directly and say only that you have a
+request, a discussion, or a channel. If private reporting is unavailable for
+any reason, contact one of the maintainers listed in
+[`MAINTAINERS.md`](MAINTAINERS.md) directly and say only that you have a
 security issue to report; wait for a private channel before sending details.
 
 Please include, as far as you can:
@@ -125,8 +126,13 @@ _Settings_:
 
 ## Credentials we issue
 
+> **Not built. Design only.** Everything in this section describes a Draft
+> specification (`docs/sdk/delegation/`), pending App Specification Decision
+> 005 (backend-first API/SDK direction, currently `proposed`). No `/v1` API,
+> integration key, or relay ticket exists in this codebase today.
+
 **Nothing described here is issued yet** — the `/v1` API is specified in
-[`docs/sdk/delegation/`](docs/sdk/README.md) and not built. It is written down before it
+[`docs/sdk/delegation/`](docs/sdk/delegation/README.md) and not built. It is written down before it
 exists because an external developer holding a key needs it stated plainly, and because
 these are the properties any implementation has to preserve.
 

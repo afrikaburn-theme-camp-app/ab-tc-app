@@ -1,0 +1,57 @@
+name: Spec alignment / drift
+description: The repo disagrees with the App Specification, or a Decision Record needs to move
+labels: ["type: docs", "needs-triage"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        For a place where the built product, this repo's documentation, or
+        `docs/technical-spec/`'s drift register takes a position that
+        contradicts the App Specification (`docs/sources/app-specification/`)
+        or one of its Decision Records — or where a Decision Record needs to
+        move (e.g. from `proposed` toward `accepted`). This repository never
+        edits `docs/sources/`; use this issue to propose the change on
+        Superhuman instead. See `GOVERNANCE.md` for the product-vs-engineering
+        decision split.
+
+  - type: input
+    id: requirement-ids
+    attributes:
+      label: Requirement ID(s)
+      description: The PREFIX-NNN id(s) from the App Spec's Requirement Index, if any apply.
+      placeholder: "PAY-001, PAY-021"
+    validations:
+      required: false
+
+  - type: input
+    id: decision-record
+    attributes:
+      label: Decision Record
+      description: The App Spec Decision Record this touches, if any (docs/sources/app-specification/decisions-record/).
+      placeholder: "Decision 009 — payment direction tracking vs. gateway (proposed)"
+    validations:
+      required: false
+
+  - type: input
+    id: affected-doc
+    attributes:
+      label: Affected docs/technical-spec/ file
+      placeholder: "docs/technical-spec/20-payment-reference-tracking.md"
+    validations:
+      required: false
+
+  - type: textarea
+    id: disagreement
+    attributes:
+      label: What does the repo assert, and what does the App Spec say?
+      description: Quote both if you can — the repo position (with a file:line) and the App Spec section or Decision Record status.
+    validations:
+      required: true
+
+  - type: textarea
+    id: proposed
+    attributes:
+      label: Proposed resolution
+      description: Should the App Spec / Decision Record change, or should the repo's docs/code change to match it? What would the working group need to decide?
+    validations:
+      required: false
