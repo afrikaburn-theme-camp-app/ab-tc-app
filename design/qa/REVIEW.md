@@ -8,7 +8,11 @@ defects that coordinate math then found in one run (145 of them). So reviews her
 ## The tooling (this directory)
 
 - `penctl.py` — raw JSONRPC client to the Pen bridge (works even when the MCP session
-  tools are flaky; requires the Pen app running with the doc open).
+  tools are flaky; requires the Pen app running with the doc open). The bridge
+  executable path is read from `PENCIL_MCP_BRIDGE` if set, else a platform default
+  (macOS, Linux, or WSL-interop to a Windows install — see `penctl.py` for the
+  three defaults). Set `PENCIL_MCP_BRIDGE` explicitly if your Pencil install
+  lives somewhere else.
 - `audit.py` — the checker. Modes:
   - `python3 audit.py --sections <frameId>` → the frame's **component manifest**
     (every node: type, name, which library component it instances, disabled state, size)

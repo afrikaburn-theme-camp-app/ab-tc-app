@@ -1,17 +1,17 @@
 # First deployment runbook
 
-| Field | Value |
-|---|---|
-| **Category** | Operational |
-| **Doc status** | Active |
-| **Normative language** | Descriptive only |
-| **Requirement IDs** | N/A — operational, not spec-derived |
-| **Owner / Updated** | Repo maintainers, 2026-08-05 |
+| Field                  | Value                               |
+| ---------------------- | ----------------------------------- |
+| **Category**           | Operational                         |
+| **Doc status**         | Active                              |
+| **Normative language** | Descriptive only                    |
+| **Requirement IDs**    | N/A — operational, not spec-derived |
+| **Owner / Updated**    | Repo maintainers, 2026-08-05        |
 
 The codebase is deliberately deploy-ready-but-unconfigured: all three apps build and
 boot with zero env vars. **Migrations apply automatically on deploy** — every app's
 `build` runs `db:migrate:deploy` before `next build`, so as soon as the DB env is set
-the committed migrations (`packages/db/migrations/0000_*` … `0017_*`) are applied by
+the committed migrations (`packages/db/migrations/0000_*` … `0029_*`) are applied by
 the build. With no DB env (a fork, a preview without env, CI) the migrator prints a
 skip line and exits 0, so the build still succeeds. This is the order of operations
 for the first real deployment.
@@ -29,7 +29,7 @@ alone. Camp categories and supplier records are editable in the org console, and
 re-asserting canonical rows on every deploy would quietly revert an organiser's edits
 or resurrect something they deleted.
 
-On the **first** deploy the migrator applies 0000–0017 and seeds, all in a single
+On the **first** deploy the migrator applies 0000–0029 and seeds, all in a single
 advisory-locked run — **watch the Vercel build log** for the `[migrate]` lines to
 confirm which connection it used, that every migration applied, and whether it printed
 `no edition found — seeding reference data` or `reference data present — not re-seeding`.
@@ -132,7 +132,7 @@ warning, but the GitHub account on it is yours.
 | Variable            | Effect when unset                                                                                                                                                                                                                                                                            |
 | ------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `GITHUB_TOKEN`      | The reporter is not offered at all: no corner button, and the Account page says reporting is switched off rather than taking a report it cannot file. Fine-grained PAT, **Issues: read and write**, scoped to the repository named by `GITHUB_REPO` (or the default below) and nothing else. |
-| `GITHUB_REPO`       | Defaults to `RyRy79261/afrikaburn-contributors-app`. `owner/repo`.                                                                                                                                                                                                                           |
+| `GITHUB_REPO`       | Defaults to `afrikaburn-theme-camp-app/ab-tc-app`. `owner/repo`.                                                                                                                                                                                                                             |
 | `ANTHROPIC_API_KEY` | Reports are filed from a plain template instead of being restructured into title / steps / expected / actual. Nothing is lost.                                                                                                                                                               |
 | `GROQ_API_KEY`      | The microphone is hidden and the reporter is typing-only. Used for Whisper transcription only.                                                                                                                                                                                               |
 

@@ -26,3 +26,7 @@ coverage/
 
 # Agent worktrees — transient, never committed.
 .claude/worktrees/
+
+# Python build artefacts (design/qa/*.py tooling)
+__pycache__/
+*.pyc

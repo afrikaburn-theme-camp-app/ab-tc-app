@@ -56,7 +56,7 @@ jobs:
           cache: pnpm
 
       - name: Install dependencies
-        run: pnpm install --no-frozen-lockfile
+        run: pnpm install --frozen-lockfile
 
       # The PR title. It is what the reviewer list shows and what a reader scans;
       # it is also the subject GitHub offers if this is ever squashed.
@@ -92,11 +92,8 @@ jobs:
           node-version: 22
           cache: pnpm
 
-      # No committed lockfile on the first CI run — allow pnpm to resolve and
-      # write one. Switch this to `--frozen-lockfile` once pnpm-lock.yaml is
-      # committed (which pins the resolution the gate below verifies).
       - name: Install dependencies
-        run: pnpm install --no-frozen-lockfile
+        run: pnpm install --frozen-lockfile
 
       - name: CI gate
         run: pnpm turbo run lint typecheck test build
@@ -176,7 +173,7 @@ jobs:
           cache: pnpm
 
       - name: Install dependencies
-        run: pnpm install --no-frozen-lockfile
+        run: pnpm install --frozen-lockfile
 
       - name: Install Playwright browsers
         run: pnpm --filter @quagga/e2e exec playwright install --with-deps chromium
@@ -323,8 +320,6 @@ jobs:
   # moment it is added, because `needs: [e2e]` is the whole matrix rather than a
   # list of its legs.
   #
-  # Same pattern as camp-404 and ops-board.
-  #
   # `if: always()` is what makes it work at all. Without it this job would be
   # SKIPPED when an upstream job fails, and a skipped required check does not
   # block a merge — the gate would pass by not running, which is precisely
@@ -333,7 +328,7 @@ jobs:
   #
   # The floors live in each workspace's `vitest.config.ts`, not here, so they
   # are enforced identically by `pnpm test:coverage` on a laptop and by this
-  # job. Ported from RyRy79261/intake-tracker, which runs the same shape.
+  # job. Ported from an earlier sibling project, which runs the same shape.
   #
   # One shard per workspace, so a breach names the workspace in the checks list
   # rather than making somebody open a log to find out which one moved.
@@ -454,7 +449,7 @@ jobs:
 
       - name: Install dependencies
         if: steps.scope.outputs.in-scope == 'true'
-        run: pnpm install --no-frozen-lockfile
+        run: pnpm install --frozen-lockfile
 
       # Fails the shard when any floor in that workspace is breached.
       - name: Run coverage against the floors

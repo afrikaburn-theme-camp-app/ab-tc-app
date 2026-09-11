@@ -9,7 +9,7 @@
 
 const GITHUB_API = "https://api.github.com";
 /** The repository this product's issues live in, unless overridden. */
-const DEFAULT_REPO = "RyRy79261/afrikaburn-contributors-app";
+const DEFAULT_REPO = "afrikaburn-theme-camp-app/ab-tc-app";
 
 export interface CreatedIssue {
   url: string;

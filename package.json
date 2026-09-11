@@ -2,8 +2,16 @@
   "name": "quagga-portal-workspace",
   "private": true,
   "license": "FSL-1.1-ALv2",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/afrikaburn-theme-camp-app/ab-tc-app.git"
+  },
+  "homepage": "https://github.com/afrikaburn-theme-camp-app/ab-tc-app#readme",
+  "bugs": {
+    "url": "https://github.com/afrikaburn-theme-camp-app/ab-tc-app/issues"
+  },
   "version": "0.0.0",
-  "description": "AfrikaBurn Contributors App \u2014 participant + org apps for theme-camp registration and entitlements (Quagga Portal MVP)",
+  "description": "AfrikaBurn Theme Camp App (Quagga Portal) \u2014 participant + org apps for theme-camp registration and entitlements",
   "scripts": {
     "build": "turbo run build",
     "dev": "turbo run dev",

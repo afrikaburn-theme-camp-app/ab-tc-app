@@ -12,7 +12,7 @@ import {
   syncGithubLabels,
 } from "../packages/core/src/report-server/labels-sync";
 
-const DEFAULT_REPO = "RyRy79261/afrikaburn-contributors-app";
+const DEFAULT_REPO = "afrikaburn-theme-camp-app/ab-tc-app";
 
 async function main(): Promise<void> {
   const token = process.env.GITHUB_TOKEN;

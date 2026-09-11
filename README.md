@@ -1,17 +1,17 @@
 <div align="center">
 
-# AfrikaBurn Contributors App
+# AfrikaBurn Theme Camp App (Quagga Portal)
 
 **_Quagga Portal_** — one place where a burner has an account, a camp has a
 profile, a camp registers for an edition, and AfrikaBurn staff review what comes
 in. It replaces a patchwork of Google Forms, WhatsApp threads and spreadsheets.
 
-[![CI](https://github.com/RyRy79261/afrikaburn-contributors-app/actions/workflows/ci.yml/badge.svg)](https://github.com/RyRy79261/afrikaburn-contributors-app/actions/workflows/ci.yml)
+[![CI](https://github.com/afrikaburn-theme-camp-app/ab-tc-app/actions/workflows/ci.yml/badge.svg)](https://github.com/afrikaburn-theme-camp-app/ab-tc-app/actions/workflows/ci.yml)
 [![Licence: FSL-1.1-ALv2](https://img.shields.io/badge/licence-FSL--1.1--ALv2-2D7696)](LICENSE)
 [![Next.js 16](https://img.shields.io/badge/Next.js-16-000000?logo=next.js)](https://nextjs.org)
 [![React 19](https://img.shields.io/badge/React-19-61DAFB?logo=react&logoColor=black)](https://react.dev)
 [![Postgres](https://img.shields.io/badge/Neon-Postgres-00E599?logo=postgresql&logoColor=white)](https://neon.tech)
-[![last commit](https://img.shields.io/github/last-commit/RyRy79261/afrikaburn-contributors-app?color=F4B672)](https://github.com/RyRy79261/afrikaburn-contributors-app/commits)
+[![last commit](https://img.shields.io/github/last-commit/afrikaburn-theme-camp-app/ab-tc-app?color=F4B672)](https://github.com/afrikaburn-theme-camp-app/ab-tc-app/commits)
 
 </div>
 
@@ -27,7 +27,7 @@ Sign in once; the same identity works across all three.
 
 ### 🏕️ Participant
 
-**[app.quagga.ryanjnoble.dev](https://app.quagga.ryanjnoble.dev)**
+**Deployment URL:** set per environment (see `docs/deploy.md`).
 
 For burners. Your profile, your camp, invites, and the six-section registration
 that gets a camp placed.
@@ -39,7 +39,7 @@ that gets a camp placed.
 
 ### 🎛️ Organiser console
 
-**[org.quagga.ryanjnoble.dev](https://org.quagga.ryanjnoble.dev)**
+**Deployment URL:** set per environment (see `docs/deploy.md`).
 
 For AfrikaBurn staff. The review queue, questionnaires, bulletins, suppliers,
 the audit trail and the system panel.
@@ -51,7 +51,7 @@ the audit trail and the system panel.
 
 ### 📦 Supplier portal
 
-**[suppliers.quagga.ryanjnoble.dev](https://suppliers.quagga.ryanjnoble.dev)**
+**Deployment URL:** set per environment (see `docs/deploy.md`).
 
 For the companies camps hire. Sign-up, onboarding steps, documents, and
 standing.
@@ -140,8 +140,8 @@ action cannot disagree.
 
 |                                          |                                   |                                       |                             |
 | ---------------------------------------- | --------------------------------- | ------------------------------------- | --------------------------- |
-| **107k** lines of TS/TSX · **46k** tests | **44** tables · **29** migrations | **72** routes across 3 apps           | **51** shared UI components |
-| **2,733** unit tests                     | **165** e2e tests · 8 personas    | **8** workspaces with coverage floors | **116** design frames       |
+| **107k** lines of TS/TSX · **46k** tests | **44** tables · **30** migrations | **72** routes across 3 apps           | **51** shared UI components |
+| **2,784** unit tests                     | **176** e2e tests · 8 personas    | **8** workspaces with coverage floors | **116** design frames       |
 
 Started 22 July 2026. Public repo, so: no real personal contact data, and no
 naming real businesses in negative demo states.

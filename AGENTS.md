@@ -65,7 +65,7 @@ pnpm --filter @quagga/db db:generate       # schema.ts → migration + snapshot.
 ```
 
 **The unit gate does not run a single browser.** `turbo run … test` lints and
-typechecks `@quagga/e2e` but never executes Playwright, so the persona suite — 172
+typechecks `@quagga/e2e` but never executes Playwright, so the persona suite — 176
 tests across 70 spec files and 8 personas — proves nothing until `pnpm e2e:local`
 runs them. It brings up Postgres + the two
 Neon proxies (`docker-compose.local.yml`), migrates, seeds, boots all three apps
@@ -148,6 +148,7 @@ list`, then `git worktree remove` what has finished.
    over-hardened the real constraint: don't migrate in the very first build, before
    any DB exists. Now that one does, deploy-time migration is the law.
    Amended same day: fallback-to-pooled is a hard failure, not a warning.)_
+
 2. **Migrations are append-only.** Never edit or regenerate an existing migration;
    `packages/db/src/schema.ts` is the single source of truth.
 3. **Pins that must not move**: `better-auth` = **1.6.25 exactly** (a DIRECT dependency of

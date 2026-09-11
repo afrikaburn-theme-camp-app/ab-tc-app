@@ -1,5 +1,6 @@
 {
   "name": "@quagga/typescript-config",
+  "license": "FSL-1.1-ALv2",
   "version": "0.0.0",
   "private": true,
   "files": [

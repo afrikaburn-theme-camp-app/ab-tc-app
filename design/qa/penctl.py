@@ -1,8 +1,25 @@
 #!/usr/bin/env python3
 """Raw JSONRPC stdio client for the pen.dev MCP bridge (Windows exe via WSL interop)."""
-import json, subprocess, sys, threading, queue, time
+import json, os, subprocess, sys, threading, queue, time
 
-BRIDGE = "/mnt/c/Users/Ryan/AppData/Local/Programs/Pencil/resources/app.asar.unpacked/out/mcp-server-windows-x64.exe"
+_DEFAULT_BRIDGES = {
+    # WSL interop path to the Windows-installed Pencil app; adjust the
+    # username segment or set PENCIL_MCP_BRIDGE directly if yours differs.
+    "wsl": "/mnt/c/Users/{}/AppData/Local/Programs/Pencil/resources/app.asar.unpacked/out/mcp-server-windows-x64.exe",
+    "darwin": "/Applications/Pencil.app/Contents/Resources/app.asar.unpacked/out/mcp-server-macos-x64",
+    "linux": "/opt/Pencil/resources/app.asar.unpacked/out/mcp-server-linux-x64",
+}
+
+
+def _default_bridge():
+    if sys.platform == "darwin":
+        return _DEFAULT_BRIDGES["darwin"]
+    if "microsoft" in os.uname().release.lower() if hasattr(os, "uname") else False:
+        return _DEFAULT_BRIDGES["wsl"].format(os.environ.get("USER", "USERNAME"))
+    return _DEFAULT_BRIDGES["linux"]
+
+
+BRIDGE = os.environ.get("PENCIL_MCP_BRIDGE") or _default_bridge()
 
 class Pen:
     def __init__(self):

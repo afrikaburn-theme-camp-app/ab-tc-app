@@ -1,6 +1,6 @@
 # @quagga/e2e — Playwright end-to-end harness
 
-The shared harness for the three Quagga Portal apps: **153 tests across 56 spec files
+The shared harness for the three Quagga Portal apps: **176 tests across 70 spec files
 and 8 personas** (`anon`, `new-burner`, `camp-member`, `camp-lead`, `officer`,
 `org-staff`, `god`, `supplier`). **Every persona agent depends on this API.** Import
 from here; do not re-implement sign-up/onboarding/etc. Tests drive the **real UI**
@@ -64,7 +64,7 @@ The suite **refuses to run against a production apex host** unless
 - `desktop-chromium` — 1280×800
 - `mobile-360` — 360×780 (the design's mobile baseline)
 
-Retries: 2 in CI only. Trace/video/screenshot: retained on failure only.
+Retries: 1 in CI, 0 in the nightly mobile workflow. Trace/video/screenshot: retained on failure only.
 
 ## Writing a spec
 

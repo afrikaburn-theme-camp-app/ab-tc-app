@@ -1,12 +1,12 @@
 # Architecture
 
-| Field | Value |
-|---|---|
-| **Category** | Architecture |
-| **Doc status** | Active |
-| **Normative language** | Descriptive only |
-| **Requirement IDs** | Partial — `SEC-*`, `CORE-*` (cross-cutting system reference; most content has no direct App Spec counterpart) |
-| **Owner / Updated** | Repo maintainers, 2026-08-05 |
+| Field                  | Value                                                                                                         |
+| ---------------------- | ------------------------------------------------------------------------------------------------------------- |
+| **Category**           | Architecture                                                                                                  |
+| **Doc status**         | Active                                                                                                        |
+| **Normative language** | Descriptive only                                                                                              |
+| **Requirement IDs**    | Partial — `SEC-*`, `CORE-*` (cross-cutting system reference; most content has no direct App Spec counterpart) |
+| **Owner / Updated**    | Repo maintainers, 2026-08-05                                                                                  |
 
 Three Next apps, one Postgres, one account pool. This describes what is deployed
 today. Where it conflicts with [`build-spec.md`](build-spec.md), the build spec
@@ -30,7 +30,7 @@ flowchart TB
         ui["@quagga/ui<br/>components"]
     end
 
-    neon[("Neon Postgres<br/>45 tables · 29 migrations")]
+    neon[("Neon Postgres<br/>44 tables · 30 migrations")]
 
     subgraph ext["External services — all optional"]
         resend["Resend<br/>email"]
@@ -128,7 +128,7 @@ Pages re-guard before reading. Hiding a control is never the security boundary.
 
 ## Data
 
-45 tables in one database, owned by `packages/db`. Migrations are append-only
+44 tables in one database, owned by `packages/db`. Migrations are append-only
 and run on deploy (`db:migrate:deploy && next build`) — **against production,
 with no staging step.**
 

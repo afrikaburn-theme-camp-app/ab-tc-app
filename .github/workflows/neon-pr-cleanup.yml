@@ -17,7 +17,7 @@ name: Delete Neon branch for closed PR
 #
 # So: when a PR closes (merged or not), delete the Neon branch created for it.
 #
-# Ported from RyRy79261/intake-tracker, where this was already solved. Kept close
+# Ported from an earlier sibling project, where this was already solved. Kept close
 # to that version on purpose — it is proven, and the reasoning in its comments is
 # the reason it works.
 #

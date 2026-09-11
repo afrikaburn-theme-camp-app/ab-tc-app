@@ -1,10 +1,11 @@
-# Minimal ownership for this fork. Expand only when a path truly needs a
-# required reviewer — do not copy upstream’s production blast-radius map
-# until this org actually owns that risk.
+# Minimal ownership for this repository. Expand only when a path truly needs
+# a required reviewer — see GOVERNANCE.md for how ownership grows as the
+# maintainer team grows.
 #
 # Patterns are last-match-wins. `/*` is root files only; subtrees need their
 # own rules. CODEOWNERS only bites once branch protection requires code-owner
-# review (intentionally not enforced while setup is in progress).
+# review — deliberately not enabled yet; see GOVERNANCE.md for when it turns
+# on (once the open-source migration PRs have landed).
 
 # Base path — root-level files
 /* @BeyersNel

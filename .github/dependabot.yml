@@ -1,0 +1,24 @@
+version: 2
+updates:
+  - package-ecosystem: npm
+    directory: "/"
+    schedule:
+      interval: weekly
+    groups:
+      minor-and-patch:
+        update-types:
+          - minor
+          - patch
+    # `better-auth` is pinned to an exact version deliberately (SECURITY.md,
+    # AGENTS.md pins list) — it has a track record of high-severity auth
+    # advisories and every bump needs a manual security read-through before
+    # merge, not an automated one. `@radix-ui/react-slot` is pinned because a
+    # newer version breaks typecheck/build. Review both manually.
+    ignore:
+      - dependency-name: "better-auth"
+      - dependency-name: "@radix-ui/react-slot"
+
+  - package-ecosystem: github-actions
+    directory: "/"
+    schedule:
+      interval: weekly
