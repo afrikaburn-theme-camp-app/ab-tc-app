@@ -18,26 +18,26 @@
 # runs against production on the next deploy; there is no staging step that would
 # catch it first, and an already-applied migration cannot be edited — only
 # corrected by another one.
-/packages/db/migrations/  @RyRy79261
-/packages/db/src/schema.ts @RyRy79261
+/packages/db/migrations/  @BeyersNel
+/packages/db/src/schema.ts @BeyersNel
 
 # AUTH — sessions, passwords, two-factor, passkeys, the cookie handling.
 # Self-hosted Better Auth pinned to an exact version on purpose: it has a track
 # record of high-severity advisories and we own the patch watch.
-/packages/auth/           @RyRy79261
+/packages/auth/           @BeyersNel
 
 # CORE — the domain rules every app reads. Permissions, privacy classes, the
 # registration state machine, the submit gate. A change here changes behaviour in
 # three apps at once, usually without touching any of them.
-/packages/core/           @RyRy79261
+/packages/core/           @BeyersNel
 
 # CI, licence, and the rules themselves.
-/.github/                 @RyRy79261
-/LICENSE                  @RyRy79261
-/AGENTS.md                @RyRy79261
-/CONTRIBUTING.md          @RyRy79261
-/SECURITY.md              @RyRy79261
-/turbo.json               @RyRy79261
+/.github/                 @BeyersNel
+/LICENSE                  @BeyersNel
+/AGENTS.md                @BeyersNel
+/CONTRIBUTING.md          @BeyersNel
+/SECURITY.md              @BeyersNel
+/turbo.json               @BeyersNel
 
 # ---------------------------------------------------------------------------
 # THE PUBLISHED SDK AND THE EXTERNAL API — irrevocable in a way nothing else is.
@@ -50,10 +50,10 @@
 # None of these paths exist yet (docs/sdk/), and the entries are inert until
 # branch protection requires code-owner review. Both are the point: the rule
 # should be in place before the first file lands, not written afterwards.
-/packages/scopes/              @RyRy79261
-/packages/sdk/                 @RyRy79261
-/packages/sdk-react/           @RyRy79261
-/apps/web/app/api/v1/          @RyRy79261
-/apps/web/middleware.ts        @RyRy79261
-/.changeset/                   @RyRy79261
-/docs/sdk/                     @RyRy79261
+/packages/scopes/              @BeyersNel
+/packages/sdk/                 @BeyersNel
+/packages/sdk-react/           @BeyersNel
+/apps/web/app/api/v1/          @BeyersNel
+/apps/web/middleware.ts        @BeyersNel
+/.changeset/                   @BeyersNel
+/docs/sdk/                     @BeyersNel
