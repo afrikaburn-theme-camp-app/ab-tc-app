@@ -94,6 +94,12 @@ itself. The licence text and copyright notice are not changed by this
 migration; changing the copyright holder is a product/legal decision for the
 working group (App Specification Decision 014), not an engineering one.
 
+**Footnote for legal review, not legal advice:** commits made between
+23 and 27 July 2026 (`git log -- LICENSE`) were briefly published under MIT
+before the switch to FSL-1.1-ALv2 — that grant is irrevocable for those
+specific historical snapshots, independent of the licence any later commit
+carries.
+
 ## Changing this document
 
 `GOVERNANCE.md` changes by the same pull-request process as code, reviewed by
