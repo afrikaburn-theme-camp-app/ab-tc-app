@@ -1,0 +1,170 @@
+{
+  "version": 1,
+  "updatedAt": "2026-09-10T13:33:45Z",
+  "docId": "Q_I7n93cZT",
+  "notes": "2026-09-11: relocated from standalone ab-app-docs into ab-tc-app/docs/sources/app-specification (canonical home). Sync performed via direct REST API calls. All decision docs (001-013), app spec, change record, task assignment, links, member list, meeting minutes, and quagga gap analysis pushed to Superhuman. 2026-08-05: pulled remote changes; only Member List had changed remotely (new row added), all other pages unchanged since last sync per page updatedAt timestamps. 2026-08-05: pushed requirement-ID spec update, requirement index (new page), task-assignment source-column rework, decision 011/012 updates, and new decision 014 (new page) to Superhuman. 2026-08-10: pulled remote changes; App Specification had a genuine new section (\"4a. Camper Communications\", later formalized into COMM-001-020, see app-spec-change-record.md 2026-08-10 entries); Task Assignment's remoteUpdatedAt moved but content was unchanged (Coda smart-quote export artifact only) \u2014 no local edit made. 2026-08-10: removed localHash/remoteHash from this manifest, the audit script, and the sync skills. remoteHash was never reproducible across sessions (Coda's export transforms markdown in undocumented ways \u2014 smart quotes, autolinked URLs, an injected table-header row, heading shifts), so it produced false positives/negatives instead of the reliability a hash should buy. remoteUpdatedAt (a real Coda API timestamp) is now the sole drift signal; local-side drift is git's job (`git status`/`git diff`), not this manifest's. Known pre-existing gap, not from this sync: a \"Meeting Minutes\" parent/folder page (canvas-Fp4_lYBb3r) exists remotely with no manifest entry.",
+  "exclusions": [
+    "AGENTS.md",
+    "skills/**",
+    "scripts/**",
+    "README.md"
+  ],
+  "entries": {
+    "app-specification.md": {
+      "pageId": "canvas-aGNoWH_Wp3",
+      "pageName": "App Specification",
+      "remoteUpdatedAt": "2026-09-10T13:30:49.750Z",
+      "lastCheckedAt": "2026-09-10T13:30:59Z"
+    },
+    "app-specification/app-spec-change-record.md": {
+      "pageId": "canvas-ldvr1vOTK5",
+      "pageName": "App Spec Change Record",
+      "remoteUpdatedAt": "2026-09-10T13:31:07.132Z",
+      "lastCheckedAt": "2026-09-10T13:31:26Z"
+    },
+    "decisions-record.md": {
+      "pageId": "canvas-gAser6I8bD",
+      "pageName": "Decisions Record",
+      "remoteUpdatedAt": "2026-08-11T11:39:36.840Z",
+      "lastCheckedAt": "2026-08-11T11:40:12Z"
+    },
+    "decisions-record/decision-001-accepted-decision-record-format.md": {
+      "pageId": "canvas-aBm9Vrg1Ro",
+      "pageName": "Decision 001 - Accepted: Decision record format",
+      "remoteUpdatedAt": "2026-07-29T18:20:39.725Z",
+      "lastCheckedAt": "2026-08-05T08:25:02Z"
+    },
+    "decisions-record/decision-002-proposed-architecture-integration-strategy-open-pending-org-feedback.md": {
+      "pageId": "canvas-p9rn9X0k0_",
+      "pageName": "Decision 002 - Proposed: Architecture integration strategy remains open pending org feedback",
+      "remoteUpdatedAt": "2026-08-11T11:40:18.099Z",
+      "lastCheckedAt": "2026-08-11T11:40:23Z"
+    },
+    "decisions-record/decision-003-accepted-offline-functionality-limited-to-container-gas-water-projects.md": {
+      "pageId": "canvas-yYCrny-OZB",
+      "pageName": "Decision 003 - Accepted: Offline functionality is limited to container gas and water projects",
+      "remoteUpdatedAt": "2026-07-29T18:19:49.595Z",
+      "lastCheckedAt": "2026-08-05T08:25:01Z"
+    },
+    "decisions-record/decision-004-accepted-first-demonstrable-slice-placement-and-container-management.md": {
+      "pageId": "canvas-2IzA2ojrfq",
+      "pageName": "Decision 004 - Accepted: The first demonstrable slice should focus on placement and container management",
+      "remoteUpdatedAt": "2026-08-11T11:40:27.462Z",
+      "lastCheckedAt": "2026-08-11T11:41:03Z"
+    },
+    "links.md": {
+      "pageId": "canvas-bwK7D84FnF",
+      "pageName": "Links",
+      "remoteUpdatedAt": "2026-08-11T09:21:35.675Z",
+      "lastCheckedAt": "2026-08-11T09:24:07Z"
+    },
+    "member-list.md": {
+      "pageId": "canvas-_CPHFBWaS1",
+      "pageName": "Member List",
+      "remoteUpdatedAt": "2026-07-30T09:28:47.693Z",
+      "lastCheckedAt": "2026-08-05T08:25:15Z"
+    },
+    "task-assignment.md": {
+      "pageId": "canvas-xlgySd9KnZ",
+      "pageName": "Task Assignment",
+      "remoteUpdatedAt": "2026-08-11T11:42:25.397Z",
+      "lastCheckedAt": "2026-08-11T11:42:35Z"
+    },
+    "meeting-minutes/2026-07-28-theme-camp-app-kick-off.md": {
+      "pageId": "canvas-h0ExXP6YAs",
+      "pageName": "2026-07-28 Theme Camp App Kick-off",
+      "remoteUpdatedAt": "2026-07-29T15:47:10.842Z",
+      "lastCheckedAt": "2026-08-05T08:25:11Z"
+    },
+    "2026-07-29 quagga-gap-analysis.md": {
+      "pageId": "canvas-YmHy7WDVCO",
+      "pageName": "2026-07-29 Quagga Gap Analysis",
+      "remoteUpdatedAt": "2026-07-29T18:13:18.257Z",
+      "lastCheckedAt": "2026-08-05T08:24:59Z"
+    },
+    "decisions-record/decision-005-proposed-backend-first-platform-api-mcp-sdk-no-community-plugins.md": {
+      "pageId": "canvas-bgQLzdnnjz",
+      "pageName": "Decision 005 - Proposed: Build a backend-first platform with user-scoped API and MCP access, with SDK/template extensibility and no community plugins",
+      "remoteUpdatedAt": "2026-08-11T11:41:07.493Z",
+      "lastCheckedAt": "2026-08-11T11:41:17Z"
+    },
+    "decisions-record/decision-006-accepted-shadcn-tailwind-versioned-pen-design-workflow.md": {
+      "pageId": "canvas-gHMpRb7UIU",
+      "pageName": "Decision 006 - Accepted: Use shadcn plus Tailwind with versioned pen.dev design files as the primary UI design and build workflow",
+      "remoteUpdatedAt": "2026-07-29T18:19:59.377Z",
+      "lastCheckedAt": "2026-08-05T08:25:05Z"
+    },
+    "decisions-record/decision-007-proposed-application-boundary-strategy-org-vs-camp-flows.md": {
+      "pageId": "canvas-T2i3DH0_e6",
+      "pageName": "Decision 007 - Proposed: Confirm application boundary strategy for compulsory org flows versus broader camp-management flows",
+      "remoteUpdatedAt": "2026-08-11T11:41:21.539Z",
+      "lastCheckedAt": "2026-08-11T11:41:40Z"
+    },
+    "decisions-record/decision-008-proposed-canonical-camper-data-model.md": {
+      "pageId": "canvas-KNdatNp7jc",
+      "pageName": "Decision 008 - Proposed: Decide canonical camper data model (admin-managed roster records versus self-owned profile model)",
+      "remoteUpdatedAt": "2026-07-29T18:20:06.246Z",
+      "lastCheckedAt": "2026-08-05T08:25:05Z"
+    },
+    "decisions-record/decision-009-proposed-payment-direction-tracking-vs-gateway.md": {
+      "pageId": "canvas-w1EzGqjEuO",
+      "pageName": "Decision 009 - Proposed: Decide payment direction (tracking only versus integrated payment processing)",
+      "remoteUpdatedAt": "2026-09-10T13:31:39.868Z",
+      "lastCheckedAt": "2026-09-10T13:31:53Z"
+    },
+    "decisions-record/decision-010-proposed-ticketing-scope-quicket-vs-camp-module.md": {
+      "pageId": "canvas-gnzbNf6Dmp",
+      "pageName": "Decision 010 - Proposed: Decide ticketing scope (Quicket system-of-record versus camp-side ticket allocation module)",
+      "remoteUpdatedAt": "2026-09-10T13:31:56.834Z",
+      "lastCheckedAt": "2026-09-10T13:32:18Z"
+    },
+    "decisions-record/decision-011-proposed-theme-camp-layout-tool-strategy.md": {
+      "pageId": "canvas-68-YDVAUdl",
+      "pageName": "Decision 011 - Proposed: Decide theme-camp layout tool strategy (defer, lightweight planner, or full CAD implementation)",
+      "remoteUpdatedAt": "2026-08-05T07:26:27.029Z",
+      "lastCheckedAt": "2026-08-05T08:25:10Z"
+    },
+    "decisions-record/decision-012-proposed-map-erf-integration-strategy-readiness-gate.md": {
+      "pageId": "canvas-1mcICKV0Qa",
+      "pageName": "Decision 012 - Proposed: Decide AfrikaBurn map and erf integration strategy and readiness gate",
+      "remoteUpdatedAt": "2026-08-05T07:26:30.126Z",
+      "lastCheckedAt": "2026-08-05T08:25:08Z"
+    },
+    "decisions-record/decision-013-proposed-rebaseline-first-release-phase-scope.md": {
+      "pageId": "canvas-5YUTQqr_oh",
+      "pageName": "Decision 013 - Proposed: Rebaseline first-release phase scope to match implemented MVP trajectory",
+      "remoteUpdatedAt": "2026-08-11T11:41:44.222Z",
+      "lastCheckedAt": "2026-08-11T11:42:19Z"
+    },
+    "app-specification/requirement-index.md": {
+      "pageId": "canvas-TgEOJ0p4C6",
+      "pageName": "Requirement Index",
+      "remoteUpdatedAt": "2026-08-10T12:49:53.011Z",
+      "lastCheckedAt": "2026-08-10T12:52:35Z"
+    },
+    "decisions-record/decision-014-proposed-governance-licensing-and-data-liability-thresholds-for-scaling-beyond-poc.md": {
+      "pageId": "canvas-cVFA_Pxul0",
+      "pageName": "Decision 014 - Proposed: Define governance, licensing, and data-liability thresholds for scaling beyond a personal-repo Proof of Concept",
+      "remoteUpdatedAt": "2026-08-11T12:20:19.211Z",
+      "lastCheckedAt": "2026-08-11T12:20:54Z"
+    },
+    "decisions-record/decision-015-accepted-whatsapp-for-operations-slack-for-engineering.md": {
+      "pageId": "canvas-3irfFpAgHX",
+      "pageName": "Decision 015 - Accepted: Use WhatsApp for operational messaging and Slack for engineering/discussion coordination",
+      "remoteUpdatedAt": "2026-08-11T11:49:12.490Z",
+      "lastCheckedAt": "2026-08-11T11:49:45Z"
+    },
+    "meeting-minutes/2026_08_06 Tech team onboarding.md": {
+      "pageId": "canvas-lGA1FLjVlK",
+      "pageName": "2026-08-06 Tech Team Onboarding",
+      "remoteUpdatedAt": "2026-08-11T12:03:40.289Z",
+      "lastCheckedAt": "2026-08-11T12:04:15Z"
+    },
+    "meeting-minutes/2026-09-10-graeme-payment-and-portal-vision-messages.md": {
+      "pageId": "canvas-9juDdKVm_n",
+      "pageName": "2026-09-10 Graeme - Payment and Portal Vision Messages",
+      "remoteUpdatedAt": "2026-09-10T13:33:10.705Z",
+      "lastCheckedAt": "2026-09-10T13:34:00Z"
+    }
+  }
+}

@@ -17,11 +17,7 @@ Parent page: [App Specification](../app-specification.md)
 | 10/08/2026 | Formalized "4a. Camper Communications" into grouped requirements with new `COMM` prefix (COMM-001–020); added to Requirement Index |
 | 11/08/2026 | Corrected Requirement ID Conventions prefix rule to cover lettered subsections (e.g. 4a), per PR #25 review |
 | 11/08/2026 | Flagged unresolved visibility/permission ambiguity between COMM-001, COMM-002, COMM-017–COMM-019, and COMM-020 with inline cross-references; no decision recorded, detail to follow later |
-| 12/08/2026 | **Decision 009 resolved** — the platform never handles funds. §8 moves from ⚠️ At risk to ❌ Not implemented with a stated resolution; `PAY-001`–`PAY-005` will not be built. Replaced by unique payment-identifying codes plus a paid checkbox, both shipped |
-| 12/08/2026 | **Decision 014 recorded and resolved** — registration intake uses this platform's own questionnaire engine, not Google Forms. Noted inline against §14; no `REG-*` requirement changed |
-| 12/08/2026 | Recorded R1 delivery against §14: previous-year duplication + change comparison, staff-assigned camp code/erf, placement export, deadline reminders |
-| 12/08/2026 | **Edition-rollover rule stated** — carry-forward is a pre-fill, never a shortcut. A returning camp still makes a new proposal and no section is marked complete; every Form 2 answer (size, sound, placement, layout) starts empty each year, as do the erf and camp code. The Burner Bio rolls over the same way — everything carries except `firstTime` |
-| 12/08/2026 | Created placeholders for the four Document Structure links absent from the 06/08/2026 export (Decisions Record, Task Assignment, Member List, Links) and for decision records 007–013, each pointing at the Coda source. Repo-side reconstructions live in `docs/decisions/`; no `docs/sources/` content was invented |
+| 10/09/2026 | Archived Graeme's 2026-09-10 WhatsApp messages as a dated meeting-minutes source; moved the Section 8 MVP-observation note into Decision 009 as historical context and trimmed the inline spec note to a pointer; added Decision 009/010 updates from that source; flagged a new open ambiguity on cross-module erf propagation in Section 13 (ERF-019) |
 
 ## 2026-07-29 - Kick-off Alignment Updates
 Owner: Beyers Nel
@@ -222,3 +218,17 @@ Related: [app-specification.md](../app-specification.md#4a-camper-communications
 - Affected features: none — no new capability or behavior specified, only a conventions-doc correction and inline pointers marking where detail is still needed.
 - Not addressed: the review's requests for a full profile-data lifecycle contract (COMM-004–007) and a bounded external-integration contract (COMM-009–010) were assessed as out of scope for this spec's current level of detail (no other section defines either) and are intentionally left as-is.
 - Follow-up: the flagged ambiguity needs its actual resolution (does opt-out override directory/Village listing, and how) filled in later; this change only marks where that answer belongs.
+
+## 2026-09-10 - Graeme's Payment/Portal Vision Messages Reconciled Against Spec
+Owner: Beyers Nel
+Type: spec-change
+Status: active
+Related: [decision-009](../decisions-record/decision-009-proposed-payment-direction-tracking-vs-gateway.md), [decision-010](../decisions-record/decision-010-proposed-ticketing-scope-quicket-vs-camp-module.md), [2026-09-10 Graeme messages](../meeting-minutes/2026-09-10-graeme-payment-and-portal-vision-messages.md)
+
+### What changed
+- Moved Section 8's MVP-observation note into Decision 009 (see that file); spec now only links to it.
+- Logged Graeme's 2026-09-10 messages as updates on Decision 009 and Decision 010 (see those files for detail).
+- Flagged a new open ambiguity in Section 13 on cross-module erf propagation (ERF-019).
+
+### Why it changed
+- Observation/context detail belongs in decision records, not duplicated inline in the spec.

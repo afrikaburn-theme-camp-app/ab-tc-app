@@ -1,13 +1,38 @@
-# Decision 008 — Canonical camper data model
+---
+id: decision-008
+title: Decide canonical camper data model (admin-managed roster records versus self-owned profile model)
+date: 2026-07-29
+author: Beyers Nel
+status: proposed
+type: decision
+related:
+  - ../app-specification.md
+  - decision-005-proposed-backend-first-platform-api-mcp-sdk-no-community-plugins.md
+tags:
+  - data-model
+  - privacy
+  - architecture
+---
 
-> **Not exported.** The App Spec's change record says this record was drafted on
-> 29/07/2026, but it was not part of the 06/08/2026 export. This stub keeps the
-> link alive.
+# Decision 008: Decide canonical camper data model (admin-managed roster records versus self-owned profile model)
+Date: 2026-07-29
+Owner: Beyers Nel
+Status: proposed
 
-**Status:** Open
+## Context
+Camper Database and Camp List is marked at risk. The spec requires admin-managed records (import/export/edit model), while MVP uses self-owned Burner Bios linked to memberships.
 
-**Canonical source:** https://coda.io/d/_dQ_I7n93cZT/_suiEB2Mp
+## Decision to make
+Choose and standardize the canonical model:
+- Option A: keep self-owned profile model as canonical; add only minimal camp-admin overlays.
+- Option B: introduce admin-managed camper records as canonical for camp operations.
+- Option C: dual-layer model (self-owned core identity + admin operational layer) with strict field ownership rules.
 
-**Repo-side record:** [`docs/decisions/decision-008-camper-data-model.md`](../../../decisions/decision-008-camper-data-model.md) —
-reconstructed from the context the App Spec states inline plus what the codebase
-actually does. It is not the original.
+## Consequences to evaluate
+- POPIA/privacy exposure and consent complexity.
+- Administrative burden versus participation UX.
+- Migration complexity and duplicate-source-of-truth risk.
+
+## Follow-up
+- Define authoritative fields and write ownership matrix.
+- Align import/export, audit, and retention requirements after decision.

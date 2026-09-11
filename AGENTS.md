@@ -2,8 +2,9 @@
 
 Operating guide for AI agents (and humans) in this repo, distilled from how the
 project actually runs. `README.md` has the product overview; the `docs/` specs are the
-feature contracts. **The App Specification (external, authoritative — see
-[`docs/README.md`](docs/README.md)) governs what the product should do; where
+feature contracts. **The App Specification (authoritative on Superhuman, local working copy at
+[`docs/sources/app-specification/`](docs/sources/app-specification/README.md) —
+see [`docs/README.md`](docs/README.md)) governs what the product should do; where
 anything in this repo conflicts, `docs/build-spec.md` wins for
 engineering and this file wins for process.**
 
@@ -50,7 +51,7 @@ apps/org        organiser console :3001  (apricot — .org-accent)
 apps/suppliers  supplier portal   :3002  (sage — .supplier-accent)
 packages/       @quagga/{auth,ui,db,core,types,eslint-config,typescript-config}
 design/         ab-initial-app.pen (pen.dev canvas) + brand/ + pen-lessons.md
-docs/           specs (law) + sources/ (mirrored corpora: quaggapedia, afrikaburn-org)
+docs/           specs (law) + sources/ (corpora + app-specification Superhuman sync home)
 ```
 
 ## Commands

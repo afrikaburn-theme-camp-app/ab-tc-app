@@ -11,20 +11,30 @@
 This file is the index and the rulebook for everything under `docs/`. If you are
 about to read, write, or update a doc in this folder, start here.
 
-`docs/sources/` is out of scope for everything below — it holds verbatim primary
-sources (briefs, scope documents, mirrored public pages) and is never edited.
-It has its own [`README.md`](sources/README.md).
+`docs/sources/` is mostly out of scope for everything below — it holds primary
+sources (briefs, scope documents, mirrored public pages). The **exception** is
+[`sources/app-specification/`](sources/app-specification/README.md), the
+Superhuman-synced working copy of the App Specification corpus (**pull is the
+default direction**; push is only for light edits / notes — see that folder's
+README). Other sources are never edited to match the product; see
+[`sources/README.md`](sources/README.md).
 
 ## Direction of information travel
 
 The **App Specification** is the sole source of truth for what the product
-should do. It lives outside this repository, on Superhuman, mirrored to a Coda
-change record:
+should do. The collaborative surface is Superhuman; the engineering record is
+the local tree under `docs/sources/app-specification/`. **Normally Superhuman
+wins and we pull down.** Local → Superhuman push is reserved for light editing,
+formatting, cleanup, and notetaking (including new meeting notes or discussions
+that add information or affect a decision):
 
-> **App Specification (authoritative):**
+> **App Specification (Superhuman):**
 > https://docs.superhuman.com/d/AB-Theme-Camp-Development_dQ_I7n93cZT/App-Specification_suoUXVqN
+>
+> **Local working copy:** [`sources/app-specification/app-specification.md`](sources/app-specification/app-specification.md)
+> (sync tooling and conventions in that folder's `README.md` / `AGENTS.md`)
 
-Everything in this repository — every file below, the code, the tests — is
+Everything else in this repository — every file below, the code, the tests — is
 **downstream** of that document. That has one immediate consequence and one
 common misunderstanding to avoid:
 
@@ -76,8 +86,10 @@ without restating it:
 | [`synthesis.md`](synthesis.md)                           | Planning         | **Historical** | N/A — superseded as an authoritative source by the App Specification itself                   |
 | [`deploy.md`](deploy.md)                                 | Operational      | Active         | N/A — operational, not spec-derived                                                           |
 | [`roadmap.md`](roadmap.md)                               | Planning         | Active         | Partial — `RELEASE-*`                                                                         |
-| [`decisions/`](decisions/README.md)                      | Planning         | Active         | References App Spec IDs; defines none                                                         |
 | [`sdk/`](sdk/README.md)                                  | Engineering Spec | Draft          | N/A — no App Spec section yet; specifies a `/v1` API and published SDK that are **not built** |
+| [`sources/app-specification/`](sources/app-specification/README.md) | Product (external corpus) | Active | **Authoritative App Spec** — Superhuman→git pull-dominant sync home |
+| [`sources/app-specification/decisions-record/`](sources/app-specification/decisions-record.md) | Planning | Active | **Product** decisions — WHAT/WHY (Superhuman corpus) |
+| [`decisions/`](decisions/README.md) | Planning | Active | **Engineering** decisions — HOW |
 
 Categories: **Product** (what's built vs. the spec) · **Architecture** (how the
 system fits together, current state) · **Engineering Spec** (a subsystem's
