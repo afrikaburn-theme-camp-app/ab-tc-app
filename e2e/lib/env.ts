@@ -165,16 +165,34 @@ export const TIMEOUTS = {
 /** True in CI (GitHub Actions sets CI=true). Enables retries + single-worker safety. */
 export const IS_CI = process.env.CI === "true" || process.env.CI === "1";
 
+/**
+ * The known production hosts to refuse to run against, derived from env so no
+ * personal or otherwise hardcoded domain lives in the suite. Prefers an
+ * explicit comma-separated E2E_PRODUCTION_HOSTS; falls back to deriving the
+ * three subdomains from AUTH_APEX_DOMAIN (the same var production auth uses);
+ * returns an empty list — meaning this guard cannot fire — when neither is
+ * set.
+ */
+function productionHosts(): string[] {
+  const explicit = (process.env.E2E_PRODUCTION_HOSTS ?? "").trim();
+  if (explicit) {
+    return explicit
+      .split(",")
+      .map((h) => h.trim())
+      .filter(Boolean);
+  }
+  const apex = (process.env.AUTH_APEX_DOMAIN ?? "").trim();
+  if (!apex) return [];
+  return ["app", "org", "suppliers"].map((sub) => `${sub}.${apex}`);
+}
+
 /** Guard: refuse to run the destructive suite against a production apex by accident. */
 export function assertNotProductionUnlessAllowed(): void {
   const allow =
     (process.env.E2E_ALLOW_PRODUCTION ?? "").trim().toLowerCase() === "true";
   if (allow) return;
-  const prodHosts = [
-    "app.quagga.ryanjnoble.dev",
-    "org.quagga.ryanjnoble.dev",
-    "suppliers.quagga.ryanjnoble.dev",
-  ];
+  const prodHosts = productionHosts();
+  if (prodHosts.length === 0) return;
   for (const app of ["web", "org", "suppliers"] as const) {
     const host = (() => {
       try {
