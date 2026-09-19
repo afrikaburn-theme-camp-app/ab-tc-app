@@ -30,6 +30,7 @@ If a change cannot be traced, linked, and justified, it is incomplete.
 ## Repository Structure
 
 ### Top-level thematic files
+- `welcome.md`: Entry page — two-sentence product intro and links to the other root pages.
 - `app-specification.md`: Current product and feature specification baseline.
 - `decisions-record.md`: Index of **operational** (WHAT/WHY) decisions.
 - `task-assignment.md`: Tombstone — tasks are not tracked here.
@@ -37,7 +38,7 @@ If a change cannot be traced, linked, and justified, it is incomplete.
 - `links.md`: Canonical references to internal and external resources.
 
 ### Chronological and detailed records
-- `app-specification/app-spec-change-record.md`: Append-only timeline of specification changes.
+- `app-specification/app-spec-change-record.md`: Append-only timeline of **`app-specification.md` changes only**.
 - `decisions-record/decision-###-<status>-<short-title>.md` (e.g. `decision-001-accepted-decision-record-format.md`): Detailed decision entries.
 
 ### Skills and operational helpers
@@ -45,7 +46,8 @@ If a change cannot be traced, linked, and justified, it is incomplete.
 - `skills/_templates/skill-template/`: Template for creating future skills.
 
 ## Navigation Rules
-- Start with top-level files to understand the current state.
+- Start with `welcome.md` for the product at a glance and links to the other root pages.
+- Use the other top-level files to understand the current state of each topic.
 - Use subfolders for history and detailed records.
 - Keep one concern per file; avoid mixed-topic dumping.
 - Prefer adding linked records over rewriting historical context.
@@ -67,12 +69,12 @@ Edit the thematic primary file first:
 - References -> `links.md`
 - Technical research / HOW -> `docs/technical-spec/` or `docs/engineering-decisions/` (not this corpus)
 
-### 3) Append a chronological record (mandatory)
-For every non-trivial change, add an entry to the relevant change log:
-- Spec-related changes must be appended to `app-specification/app-spec-change-record.md`.
-- Decision-related changes must create or update a `decisions-record/decision-XXX.md` file and be referenced from `decisions-record.md`.
+### 3) Append a chronological record (when the topic has one)
+- **`app-specification.md` changed** → append to `app-specification/app-spec-change-record.md`. That file is **only** the log of why the official spec changed. Do not put meeting minutes, decision-record updates, member-list or links edits, task-assignment, Welcome, or other corpus housekeeping in it.
+- **Decision-related changes** → create or update a `decisions-record/decision-XXX.md` file and reference it from `decisions-record.md`.
+- Member-list, links, meeting minutes, and Welcome updates live in those files. They do **not** get a Change Record entry.
 
-Do not delete prior log entries. Corrections should be new entries that reference the older entry.
+Do not delete prior *spec* log entries. Corrections should be new entries that reference the older entry. Entries that never belonged (non-spec events) should be removed rather than left to imply the spec changed when it did not.
 
 ### 4) Link related artifacts
 Every substantial change should link to related records:
@@ -198,9 +200,10 @@ Decision records stay **operational**. Do not put GIS formats, stack choices, or
 ## Minimum Definition of Done for Documentation Changes
 A contribution is complete only when all are true:
 - The appropriate source-of-truth file is updated.
-- A chronological log entry exists.
+- If **`app-specification.md`** changed, a Change Record entry exists that names what changed in the spec and why.
+- If a decision changed, the decision file (and index) are updated.
 - Related files are cross-linked.
-- Metadata includes author, date, type, and status.
+- Metadata includes author, date, type, and status where the template requires it.
 - The entry is understandable without private context.
 
 ## Contributor Responsibility

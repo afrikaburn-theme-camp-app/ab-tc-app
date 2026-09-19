@@ -10,6 +10,7 @@ Exported: 2026-07-29
 
 ## Document Structure
 
+- [Welcome](welcome.md)
 - [App Spec Change Record](app-specification/app-spec-change-record.md)
 - [Requirement Index](app-specification/requirement-index.md)
 - [Decisions Record](decisions-record.md)

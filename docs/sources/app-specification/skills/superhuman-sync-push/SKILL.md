@@ -278,6 +278,7 @@ The audit and push script only compare `updatedAt` timestamps — they cannot te
 ## Document Structure and Nesting
 The Superhuman document follows a hierarchical structure where related pages are nested under parent pages:
 
+- **Welcome** (top-level)
 - **App Specification** (parent)
   - App Spec Change Record (child)
   - Gap analysis documents (children)
@@ -316,6 +317,7 @@ Use this mapping when creating new pages:
 | `decisions-record/decision-*.md` | Decisions Record | `canvas-gAser6I8bD` |
 | `app-specification/*.md` | App Specification | `canvas-aGNoWH_Wp3` |
 | `meeting-minutes/*.md` | Meeting Minutes | `canvas-Fp4_lYBb3r` |
+| `welcome.md` | (top-level) | - |
 | `app-specification.md` | (top-level) | - |
 | `decisions-record.md` | (top-level) | - |
 | `task-assignment.md` | (top-level) | - |
