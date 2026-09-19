@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-09-19T09:40:36Z",
+  "updatedAt": "2026-09-19T14:26:51Z",
   "docId": "Q_I7n93cZT",
   "notes": "2026-09-11: relocated from standalone ab-app-docs into ab-tc-app/docs/sources/app-specification (canonical home). Sync performed via direct REST API calls. All decision docs (001-013), app spec, change record, task assignment, links, member list, meeting minutes, and quagga gap analysis pushed to Superhuman. 2026-08-05: pulled remote changes; only Member List had changed remotely (new row added), all other pages unchanged since last sync per page updatedAt timestamps. 2026-08-05: pushed requirement-ID spec update, requirement index (new page), task-assignment source-column rework, decision 011/012 updates, and new decision 014 (new page) to Superhuman. 2026-08-10: pulled remote changes; App Specification had a genuine new section (\"4a. Camper Communications\", later formalized into COMM-001-020, see app-spec-change-record.md 2026-08-10 entries); Task Assignment's remoteUpdatedAt moved but content was unchanged (Coda smart-quote export artifact only) — no local edit made. 2026-08-10: removed localHash/remoteHash from this manifest, the audit script, and the sync skills. remoteHash was never reproducible across sessions (Coda's export transforms markdown in undocumented ways — smart quotes, autolinked URLs, an injected table-header row, heading shifts), so it produced false positives/negatives instead of the reliability a hash should buy. remoteUpdatedAt (a real Coda API timestamp) is now the sole drift signal; local-side drift is git's job (`git status`/`git diff`), not this manifest's. Known pre-existing gap, not from this sync: a \"Meeting Minutes\" parent/folder page (canvas-Fp4_lYBb3r) exists remotely with no manifest entry.",
   "exclusions": [
@@ -169,8 +169,8 @@
     "welcome.md": {
       "pageId": "canvas-Wp-WJ3ywq-",
       "pageName": "Welcome",
-      "remoteUpdatedAt": "2026-09-19T09:30:32.069Z",
-      "lastCheckedAt": "2026-09-19T09:34:34Z"
+      "remoteUpdatedAt": "2026-09-19T14:26:14.709Z",
+      "lastCheckedAt": "2026-09-19T14:26:51Z"
     },
     "decisions-record/decision-016-proposed-2027-container-app-integration.md": {
       "pageId": "canvas-MfxZ6wweJe",

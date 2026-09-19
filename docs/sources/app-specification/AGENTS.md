@@ -176,7 +176,7 @@ Decision records stay **operational**. Do not put GIS formats, stack choices, or
 - If intent changes, record the reason and timestamp in the log.
 - Keep summaries concise and **implementation-neutral**. Technical detail belongs in `docs/technical-spec/`.
 - Use explicit dates in ISO format: `YYYY-MM-DD`.
-- **Synced pages must not link outside this corpus.** This tree is mirrored to Superhuman, so up-tree relative paths (`../..`, `../../..`) break there. Reference anything outside the corpus (`docs/technical-spec/`, `docs/engineering-decisions/`, repo files) with an **absolute URL** (e.g. a GitHub `blob/main` link). Inside-corpus relative links stay relative.
+- **Synced pages must not link outside this corpus.** This tree is mirrored to Superhuman, so up-tree relative paths (`../..`, `../../..`) break there. Reference anything outside the corpus (`docs/technical-spec/`, `docs/engineering-decisions/`, repo files) with an **absolute URL** (e.g. a GitHub `blob/main` link). Ordinary in-corpus body links may stay relative. **`welcome.md` is Superhuman-first:** its root-page list MUST use each page's Superhuman `browserLink` (`https://docs.superhuman.com/d/_dQ_I7n93cZT/_su…`), not repo-relative `.md` paths — Coda does not resolve those.
 
 ## Superhuman Sync Direction and Exclusions
 

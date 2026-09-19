@@ -4,17 +4,11 @@ The Theme Camp App (Quagga Portal) is a management platform for theme camps, vil
 
 ## Root pages
 
-- [App Specification](app-specification.md) — current product and feature baseline
-  - [App Spec Change Record](app-specification/app-spec-change-record.md)
-  - [Requirement Index](app-specification/requirement-index.md)
-- [Decisions Record](decisions-record.md) — operational decisions: what we build, for whom, and why
-- [Member List](member-list.md) — team roles and contributors
-- [Links](links.md) — design canvas, GitHub, and the live apps
-- [Task Assignment](task-assignment.md) — tombstone; engineering work is tracked on GitHub
-- Meeting minutes
-  - [2026-07-28 Theme Camp App kick-off](meeting-minutes/2026-07-28-theme-camp-app-kick-off.md)
-  - [2026-08-06 Tech team onboarding](meeting-minutes/2026-08-06-tech-team-onboarding.md)
-  - [2026-08-11 First GIS meet](meeting-minutes/2026-08-11-first-gis-meet.md)
-  - [2026-09-09 Second GIS meet](meeting-minutes/2026-09-09-second-gis-meet.md)
-  - [2026-09-10 Graeme payment and portal vision messages](meeting-minutes/2026-09-10-graeme-payment-and-portal-vision-messages.md)
-  - [2026-09-17 Dev alignment](meeting-minutes/2026-09-17-dev-alignment.md)
+- [App Specification](https://docs.superhuman.com/d/_dQ_I7n93cZT/_suoUXVqN) — current product and feature baseline
+  - [App Spec Change Record](https://docs.superhuman.com/d/_dQ_I7n93cZT/_suW4LWgO)
+  - [Requirement Index](https://docs.superhuman.com/d/_dQ_I7n93cZT/_suE5NvQJ)
+- [Decisions Record](https://docs.superhuman.com/d/_dQ_I7n93cZT/_sur6I8bD) — operational decisions: what we build, for whom, and why
+- [Member List](https://docs.superhuman.com/d/_dQ_I7n93cZT/_suBhZRG7) — team roles and contributors
+- [Links](https://docs.superhuman.com/d/_dQ_I7n93cZT/_suD84FnF) — design canvas, GitHub, and the live apps
+- [Task Assignment](https://docs.superhuman.com/d/_dQ_I7n93cZT/_suSd9KnZ) — tombstone; engineering work is tracked on GitHub
+- [Meeting Minutes](https://docs.superhuman.com/d/_dQ_I7n93cZT/_sulYBb3r) — working-group notes
