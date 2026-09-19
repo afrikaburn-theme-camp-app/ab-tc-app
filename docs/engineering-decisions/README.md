@@ -3,14 +3,14 @@
 This folder records **engineering** decisions: how we implement the product —
 stack choices, subsystem design, delivery tactics.
 
-It is **not** the product decision log.
+It is **not** the operational / product decision log.
 
-| Concern                                             | Where it lives                                                                                                                             |
-| --------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------ |
-| **WHAT we build and WHY** (product / working-group) | [`docs/sources/app-specification/decisions-record/`](../sources/app-specification/decisions-record.md) — Superhuman-synced App Spec corpus |
-| **HOW we get there** (engineering)                  | **Here** (`docs/decisions/`)                                                                                                               |
+| Concern | Where it lives |
+| --- | --- |
+| **WHAT we build and WHY** (operational / working-group) | [`docs/sources/app-specification/decisions-record/`](../sources/app-specification/decisions-record.md) — Superhuman-synced App Spec corpus |
+| **HOW we get there** (engineering) | **Here** (`docs/engineering-decisions/`) |
 
-Do not duplicate product decisions into this folder. Link up to the App Spec
+Do not duplicate operational decisions into this folder. Link up to the App Spec
 decision when an engineering choice implements or is constrained by one.
 
 **Numbering note:** engineering decisions here are prefixed `ENG-` in their

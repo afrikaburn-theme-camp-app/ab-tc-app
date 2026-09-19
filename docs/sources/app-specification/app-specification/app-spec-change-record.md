@@ -18,6 +18,7 @@ Parent page: [App Specification](../app-specification.md)
 | 11/08/2026 | Corrected Requirement ID Conventions prefix rule to cover lettered subsections (e.g. 4a), per PR #25 review |
 | 11/08/2026 | Flagged unresolved visibility/permission ambiguity between COMM-001, COMM-002, COMM-017–COMM-019, and COMM-020 with inline cross-references; no decision recorded, detail to follow later |
 | 10/09/2026 | Archived Graeme's 2026-09-10 WhatsApp messages as a dated meeting-minutes source; moved the Section 8 MVP-observation note into Decision 009 as historical context and trimmed the inline spec note to a pointer; added Decision 009/010 updates from that source; flagged a new open ambiguity on cross-module erf propagation in Section 13 (ERF-019) |
+| 19/09/2026 | GIS meetings archived (summaries only); operational Decision Record updates 002/004/005/007/010–016; `task-assignment.md` tombstoned; member list and links housekeeping; no requirement IDs added or changed |
 
 ## 2026-07-29 - Kick-off Alignment Updates
 Owner: Beyers Nel
@@ -232,3 +233,30 @@ Related: [decision-009](../decisions-record/decision-009-proposed-payment-direct
 
 ### Why it changed
 - Observation/context detail belongs in decision records, not duplicated inline in the spec.
+
+## 2026-09-19 - GIS meetings processed; operational decisions updated; task assignment tombstoned
+Owner: Beyers Nel
+Type: spec-change
+Status: active
+Related: [Decision 012](../decisions-record/decision-012-proposed-map-erf-integration-strategy-readiness-gate.md), [Decision 016](../decisions-record/decision-016-proposed-2027-container-app-integration.md), [2026-08-11 first GIS meeting](../meeting-minutes/2026-08-11-first-gis-meet.md), [2026-09-09 second GIS meeting](../meeting-minutes/2026-09-09-second-gis-meet.md), [GIS research](https://github.com/afrikaburn-theme-camp-app/ab-tc-app/blob/main/docs/technical-spec/21-gis-spatial-data-research.md)
+
+### What changed
+- Archived the 2026-08-11 and 2026-09-09 GIS meeting summaries (transcripts removed). The Theme Camp App was called "Ryan's app" in those meetings; new writing uses Theme Camp App.
+- Appended operational updates to Decisions 002, 004, 005, 007, 010, 011, 012, 013, 014. Opened [Decision 016](../decisions-record/decision-016-proposed-2027-container-app-integration.md) (proposed) for 2027 **integration** with the standalone Container App — the existing app that manages a camp's shipping containers end-to-end (buying, ordering, moving, placing, storing), not limited to placement.
+- Decision 012 stays **proposed** until GIS access is formally granted. Technical GIS detail lives in [GIS / spatial-data research](https://github.com/afrikaburn-theme-camp-app/ab-tc-app/blob/main/docs/technical-spec/21-gis-spatial-data-research.md), not in Decision Records.
+- Tombstoned `task-assignment.md`. This corpus no longer tracks tasks.
+- Reformatted [Member List](../member-list.md); marked Ryan James Noble departed; added AfrikaBurn people named in the meetings (several **verify**).
+- Replaced Ryan-hosted URLs in [Links](../links.md) with `afrikaburn-theme-camp-app/ab-tc-app` and `afrikaburn-contributors-*.vercel.app`.
+- §11 / §13 context notes updated to reflect meetings held. §16 context notes Graeme's unratified large-camp enforcement idea. **No `PREFIX-NNN` IDs added, changed, or removed.**
+
+### Why it changed
+- The GIS meetings are new information Superhuman did not have. Decision Records needed the operational outcomes; technical facts needed a research home; task tracking is leaving this corpus.
+
+### Impact
+- Affected features: §11 Theme-Camp Layout Tool, §13 AfrikaBurn Map and Erf Placement, §16 Plug-and-Play (context notes only)
+- Affected decisions: 002, 004, 005, 007, 010–016
+
+### Validation / Gap Analysis
+- Expected outcome: a future contributor can find the GIS outcomes by topic (D012/D016 + research doc) and by date (this entry).
+- Drift risk addressed: Decision Records stay operational; GIS HOW does not leak into them; D012 is not marked done without a formal access grant.
+- Follow-up checks: Superhuman sync of these notes is a manual later step. D012 moves off proposed only when access is granted.

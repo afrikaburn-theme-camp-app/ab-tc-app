@@ -8,7 +8,7 @@ type: decision
 related:
   - ../app-specification.md
   - ../meeting-minutes/2026-07-28-theme-camp-app-kick-off.md
-  - ../task-assignment.md
+  - ../meeting-minutes/2026-09-09-second-gis-meet.md
 tags:
   - architecture
   - platform
@@ -19,7 +19,7 @@ tags:
 Date: 2026-07-29
 Owner: Beyers Nel
 Status: proposed
-Related: [App Specification](../app-specification.md), [Kick-off meeting minutes](../meeting-minutes/2026-07-28-theme-camp-app-kick-off.md), [Task Assignment](../task-assignment.md)
+Related: [App Specification](../app-specification.md), [Kick-off meeting minutes](../meeting-minutes/2026-07-28-theme-camp-app-kick-off.md)
 
 ## Context
 
@@ -61,3 +61,9 @@ This remains proposed pending AfrikaBurn feedback and the open architecture-inte
 ## Update 2026-08-05 — Group chat
 - 11:13–11:14: Ryan James Noble elaborated the model in response to a question from Graeme Allan: mono-repo apps share one backend/database; a non-mono app (his Camp 404 build) integrates via SDK + "Login with AfricaBurn," giving it API access to shared tooling while keeping its own database. Ice and gas are being pulled into the mono-repo as first-class apps since they are AB departments; supplier-facing tooling stays external.
 - This confirms and elaborates the existing direction rather than changing it. Status remains proposed pending AfrikaBurn feedback (Decision 002).
+
+## Update 2026-09-19 — GIS meetings
+Source: [2026-09-09 second GIS meeting](../meeting-minutes/2026-09-09-second-gis-meet.md)
+
+- MCP / "Login with AfrikaBurn" was pitched to AfrikaBurn spatial planning and received without objection.
+- Kshetra's "maybe not an API for now" referred to **GIS-server access**, not this platform API. The two threads must not be collapsed — GIS access is Decision 012. Status stays **proposed**.

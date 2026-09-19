@@ -41,3 +41,8 @@ Choose the boundary model for delivery and governance:
 ## Update 2026-08-05 — Group chat
 - 11:13–11:14: Ryan James Noble explained the working model to Graeme Allan: mono-repo apps (org-affiliated modules — users, camps, containers, gas, ice) share one backend/database; a non-mono app (his Camp 404 build) integrates via SDK + "Login with AfricaBurn" API access while keeping its own database. This leans toward Option C (hybrid): a single core app/backend now, with formal separation only for apps built outside the mono-repo.
 - 11:12: Graeme Allan's clarifying question shows this model has not yet been confirmed as the agreed boundary — status remains proposed.
+
+## Update 2026-09-19 — GIS meetings
+Source: [2026-09-09 second GIS meeting](../meeting-minutes/2026-09-09-second-gis-meet.md)
+
+- The three-surface shape (org console / camp app / supplier portal) was presented to AfrikaBurn spatial planning without objection. Further evidence for the Option-C hybrid already noted 2026-08-05. Status stays **proposed**.

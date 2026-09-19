@@ -6,7 +6,6 @@ author: Beyers Nel
 status: accepted
 type: decision
 related:
-  - ../task-assignment.md
   - decision-014-proposed-governance-licensing-and-data-liability-thresholds-for-scaling-beyond-poc.md
 tags:
   - process
@@ -18,7 +17,7 @@ tags:
 Date: 2026-08-07
 Owner: Beyers Nel
 Status: accepted
-Related: [Task Assignment](../task-assignment.md), [Decision 014](decision-014-proposed-governance-licensing-and-data-liability-thresholds-for-scaling-beyond-poc.md)
+Related: [Decision 014](decision-014-proposed-governance-licensing-and-data-liability-thresholds-for-scaling-beyond-poc.md)
 
 ## Context
 

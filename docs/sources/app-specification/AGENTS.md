@@ -19,10 +19,11 @@ Its purpose is to:
 If a change cannot be traced, linked, and justified, it is incomplete.
 
 ## Documentation Principles
-- **Product vs engineering decisions:** this corpus records **WHAT we build and WHY**. Engineering **HOW** decisions live in monorepo `docs/decisions/`, not here.
+- **Operational vs engineering decisions:** this corpus records **operational** decisions — WHAT we build, for whom, and WHY, at a product/working-group level. Technical detail that could influence implementation belongs in `docs/technical-spec/` (research, until it is a built feature). Engineering **HOW** decisions live in `docs/engineering-decisions/`, not here.
+- **No task tracking in this corpus.** Engineering work is tracked via GitHub issues on [afrikaburn-theme-camp-app/ab-tc-app](https://github.com/afrikaburn-theme-camp-app/ab-tc-app). `task-assignment.md` is a tombstone so historical links resolve.
 - Single source of truth by topic: each topic has one primary file.
 - Chronological traceability: changes are logged in append-only records.
-- Linkability: all major entries point to related specs, decisions, and tasks.
+- Linkability: all major entries point to related specs, decisions, and references.
 - Ownership clarity: every non-trivial entry includes author and date metadata.
 - Retrieval-first writing: use clear headings and predictable formats.
 
@@ -30,8 +31,8 @@ If a change cannot be traced, linked, and justified, it is incomplete.
 
 ### Top-level thematic files
 - `app-specification.md`: Current product and feature specification baseline.
-- `decisions-record.md`: Index or roll-up of architecture/product decisions.
-- `task-assignment.md`: Work ownership and delivery responsibilities.
+- `decisions-record.md`: Index of **operational** (WHAT/WHY) decisions.
+- `task-assignment.md`: Tombstone — tasks are not tracked here.
 - `member-list.md`: Team roles and contributor reference.
 - `links.md`: Canonical references to internal and external resources.
 
@@ -54,8 +55,7 @@ If a change cannot be traced, linked, and justified, it is incomplete.
 ### 1) Classify the change
 Before editing, determine the change type:
 - Specification change
-- New architecture or product decision
-- Task ownership or planning update
+- New operational (product) decision
 - Team/member update
 - Reference/link update
 
@@ -63,9 +63,9 @@ Before editing, determine the change type:
 Edit the thematic primary file first:
 - Spec content -> `app-specification.md`
 - Decision summary/index -> `decisions-record.md`
-- Tasks -> `task-assignment.md`
 - Members -> `member-list.md`
 - References -> `links.md`
+- Technical research / HOW -> `docs/technical-spec/` or `docs/engineering-decisions/` (not this corpus)
 
 ### 3) Append a chronological record (mandatory)
 For every non-trivial change, add an entry to the relevant change log:
@@ -76,9 +76,9 @@ Do not delete prior log entries. Corrections should be new entries that referenc
 
 ### 4) Link related artifacts
 Every substantial change should link to related records:
-- Spec entry links to decision(s), task(s), and references.
-- Decision entry links to affected spec sections and tasks.
-- Task updates link to the spec and/or decision driving the work.
+- Spec entry links to decision(s) and references.
+- Decision entry links to affected spec sections.
+- Do not add task lists to this corpus.
 
 ### 5) Validate discoverability
 Before finalizing, verify:
@@ -126,7 +126,6 @@ Related: <link/id list>
 ### Impact
 - Affected features:
 - Affected decisions:
-- Affected tasks:
 
 ### Validation / Gap Analysis
 - Expected outcome:
@@ -159,9 +158,10 @@ Related: <link/id list>
 - Risks:
 
 ## Follow-up
-- Actions:
 - Review date:
 ```
+
+Decision records stay **operational**. Do not put GIS formats, stack choices, or implementation contracts in them — those go to `docs/technical-spec/` (research) or `docs/engineering-decisions/` (HOW). Do not list people-to-do items; this corpus does not track tasks.
 
 ## Naming and Organization Conventions
 - Keep filenames lowercase and kebab-case where possible.
@@ -172,8 +172,9 @@ Related: <link/id list>
 ## Editing Rules
 - Preserve historical meaning; avoid silent rewrites of rationale.
 - If intent changes, record the reason and timestamp in the log.
-- Keep summaries concise and implementation-neutral where possible.
+- Keep summaries concise and **implementation-neutral**. Technical detail belongs in `docs/technical-spec/`.
 - Use explicit dates in ISO format: `YYYY-MM-DD`.
+- **Synced pages must not link outside this corpus.** This tree is mirrored to Superhuman, so up-tree relative paths (`../..`, `../../..`) break there. Reference anything outside the corpus (`docs/technical-spec/`, `docs/engineering-decisions/`, repo files) with an **absolute URL** (e.g. a GitHub `blob/main` link). Inside-corpus relative links stay relative.
 
 ## Superhuman Sync Direction and Exclusions
 

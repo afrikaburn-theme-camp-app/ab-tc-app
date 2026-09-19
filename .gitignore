@@ -27,6 +27,9 @@ coverage/
 # Agent worktrees — transient, never committed.
 .claude/worktrees/
 
+# Kilo agent state (plans, sessions) — transient, never committed.
+.kilo/
+
 # Python build artefacts (design/qa/*.py tooling)
 __pycache__/
 *.pyc

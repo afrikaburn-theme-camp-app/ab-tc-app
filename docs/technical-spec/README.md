@@ -44,6 +44,7 @@ Requirement-ID citation format).
 | [`18-in-app-reporter.md`](18-in-app-reporter.md)                                   | Bug reporter                                   | repo-extends-spec | Reporter identity — see `GOVERNANCE.md` |
 | [`19-creative-projects.md`](19-creative-projects.md)                               | Artworks, mutant vehicles                      | §18               | —                                       |
 | [`20-payment-reference-tracking.md`](20-payment-reference-tracking.md)             | Payment reference tracking                     | §8                | **Yes — Decision 009 (proposed)**       |
+| [`21-gis-spatial-data-research.md`](21-gis-spatial-data-research.md)               | GIS / spatial-data research (not built)        | — (research)      | Decisions 011, 012, 016 (proposed)      |
 
 ## Drift register (summary)
 
@@ -54,7 +55,7 @@ points at the ones that carry one:
 | ----------- | ------------------------------------------------------ | --------------------------------------------------------------------------------- |
 | §03         | Self-owned Burner Bio vs. admin-managed camper records | Decision 008 (proposed)                                                           |
 | §06/§14/§16 | REG-013/015/020 previously overstated                  | (correction only, no decision needed)                                             |
-| §08         | Placement/layout tooling deferred                      | Decisions 011, 012 (proposed)                                                     |
+| §08         | Placement/layout tooling deferred                      | Decisions 011, 012, 016 (proposed)                                                |
 | §20         | No payment gateway                                     | Decision 009 (proposed)                                                           |
 | —           | Ticketing stays with Quicket                           | Decision 010 (proposed)                                                           |
 | —           | First demonstrable slice (App Spec §1/§20)             | Decision 004 (accepted, not yet honoured) vs. Decision 013 (rebaseline, proposed) |

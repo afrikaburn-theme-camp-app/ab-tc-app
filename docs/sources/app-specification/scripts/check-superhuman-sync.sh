@@ -282,7 +282,7 @@ get_remote_for_path() {
     return
   fi
 
-  # 3) Fallback: derive page title from filename, e.g. task-assignment.md -> Task Assignment.
+  # 3) Fallback: derive page title from filename, e.g. links.md -> Links.
   local base stem title by_title
   base="$(basename "$p")"
   stem="${base%.md}"

@@ -66,7 +66,7 @@ most complete part of the platform, and the journey it exists for.
   feedback). Every decision writes an `audit_events` row.
 - **Own questionnaire engine, not Google Forms**: this design choice is
   recorded as an engineering decision —
-  [`../decisions/decision-014-questionnaire-engine-over-google-forms.md`](../decisions/decision-014-questionnaire-engine-over-google-forms.md).
+  [`../engineering-decisions/decision-014-questionnaire-engine-over-google-forms.md`](../engineering-decisions/decision-014-questionnaire-engine-over-google-forms.md).
 
 ## Flow: the core loop
 

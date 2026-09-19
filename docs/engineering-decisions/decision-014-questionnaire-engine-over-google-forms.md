@@ -24,7 +24,7 @@ tags:
 _Note (2026-09-11): renumbered `ENG-014` in this file's own id to avoid
 colliding with the App Specification's separate "Decision 014" (governance,
 licensing and data-liability thresholds) — the two number spaces are
-independent; see `docs/decisions/README.md`._
+independent; see `docs/engineering-decisions/README.md`._
 
 ## The question
 

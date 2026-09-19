@@ -7,7 +7,10 @@ status: proposed
 type: decision
 related:
   - ../app-specification.md
-  - ../task-assignment.md
+  - ../meeting-minutes/2026-08-11-first-gis-meet.md
+  - ../meeting-minutes/2026-09-09-second-gis-meet.md
+  - https://github.com/afrikaburn-theme-camp-app/ab-tc-app/blob/main/docs/technical-spec/21-gis-spatial-data-research.md
+  - decision-016-proposed-2027-container-app-integration.md
 tags:
   - placement
   - integration
@@ -32,11 +35,19 @@ AfrikaBurn Map and Erf Placement is at risk. Implementation is blocked on map/sy
 - Operational dependency on external stakeholders.
 
 ## Progress and new information (group chat, 2026-08-03)
-- AfrikaBurn is moving to a **CIS map system** that has mapped the whole site "with great precision" (Graeme Allan, relaying AfrikaBurn IT). Blocks are irregular and vary in size — examples given: 120m×60m, 95m×60m, and some as small as 50m — so camp layouts need to be placed at true scale within an assigned block, alongside other camps placed by the AfrikaBurn placement team.
-- **Readiness-gate next step identified:** AfrikaBurn IT (Kshetra, cc Roger) will not schedule a workshop until the team sends a short written summary of what we want to achieve and our planned tech stack. Graeme will forward it once received. This is now tracked as an explicit task — see [Task Assignment](../task-assignment.md) ("Draft and send a summary email... to AfrikaBurn IT").
-- Scope clarified: this contact is specifically about **map/erf integration**, not the contributor app as a whole (confirmed by Ryan James Noble, 2026-08-03 09:33–09:33, Graeme Allan replying "Just the maps").
-- Confirms Decision 011's direction: whatever layout tool ships should be able to place a camp's preferred layout, at scale, into a CIS-provided block/erf shape — supporting Section 13 (`ERF-*`) as specified.
+- AfrikaBurn is moving to a **GIS map system** that has mapped the whole site "with great precision" (Graeme Allan, relaying AfrikaBurn IT). *(Correction 2026-09-19: the 2026-08-03 note said "CIS"; that was a mishearing of GIS / QGIS — see the GIS meetings.)* Blocks are irregular and vary in size — examples given: 120m×60m, 95m×60m, and some as small as 50m — so camp layouts need to be placed at true scale within an assigned block, alongside other camps placed by the AfrikaBurn placement team.
+- **Readiness-gate next step identified:** AfrikaBurn IT (Kshetra, cc Roger) will not schedule a workshop until the team sends a short written summary of what we want to achieve and our planned tech stack. Graeme will forward it once received.
+- Scope clarified: this contact is specifically about **map/erf integration**, not the contributor app as a whole (confirmed 2026-08-03 09:33–09:33, Graeme Allan replying "Just the maps").
+- Confirms Decision 011's direction: whatever layout tool ships should be able to place a camp's preferred layout, at scale, into a GIS-provided block/erf shape — supporting Section 13 (`ERF-*`) as specified.
 
 ## Follow-up
-- Capture outcomes from Roger/Kshetra meeting and finalize required integration contract checklist.
-- Immediate blocker: get the goals + tech-stack summary email sent to Kshetra/Roger (task assigned to Ryan James Noble, 2026-08-03) — this unblocks scheduling the actual workshop.
+- Status stays **proposed until GIS access is formally granted**.
+- Technical contract detail (formats, layers, DEM provenance) lives in [GIS / spatial-data research](https://github.com/afrikaburn-theme-camp-app/ab-tc-app/blob/main/docs/technical-spec/21-gis-spatial-data-research.md), not here.
+
+## Update 2026-09-19 — GIS meetings
+Source: [2026-08-11 first GIS meeting](../meeting-minutes/2026-08-11-first-gis-meet.md), [2026-09-09 second GIS meeting](../meeting-minutes/2026-09-09-second-gis-meet.md)
+
+- The readiness-gate **workshop has been held** (both meetings). The written-summary blocker is cleared.
+- Agreed access model: **read-only access to specific vector layers** (theme-camp boundaries first); updates returned to AfrikaBurn for manual re-integration; org stays system of record. "No API for now."
+- Roger committed to granting that access within 1–2 weeks of 2026-09-09. **The grant itself has not been recorded.** Status therefore stays **proposed**.
+- 2027 product scope that depends on this access is [Decision 016](decision-016-proposed-2027-container-app-integration.md).

@@ -58,7 +58,7 @@ This means the script never touches the export/S3-download path, so it isn't sub
 The sync checker matches cloud pages using these strategies:
 1. Manifest `pageId` when available
 2. Cloud page names that follow `Local Sync :: <relative/path>`
-3. Filename-to-title fallback, such as `task-assignment.md` -> `Task Assignment`
+3. Filename-to-title fallback, such as `links.md` -> `Links`
 
 ## Recommended Workflow
 
@@ -95,7 +95,7 @@ you never looked at:
 
 ```bash
 ./scripts/check-superhuman-sync.sh --doc-id Q_I7n93cZT --root . \
-  --only task-assignment.md --write-manifest
+  --only links.md --write-manifest
 ```
 
 This is what the `superhuman-sync-push` skill's push helper script uses

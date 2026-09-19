@@ -13,7 +13,6 @@ Exported: 2026-07-29
 - [App Spec Change Record](app-specification/app-spec-change-record.md)
 - [Requirement Index](app-specification/requirement-index.md)
 - [Decisions Record](decisions-record.md)
-- [Task Assignment](task-assignment.md)
 - [Member List](member-list.md)
 - [Links](links.md)
 
@@ -71,12 +70,12 @@ Cross-references:
 
 - Change history: [App Spec Change Record](app-specification/app-spec-change-record.md)
 - Requirement-level index: [Requirement Index](app-specification/requirement-index.md)
-- Architecture/technical mandates: [Decisions Record](decisions-record.md)
-- Work ownership: [Task Assignment](task-assignment.md)
+- Operational decisions: [Decisions Record](decisions-record.md)
+- Engineering HOW decisions: [`docs/engineering-decisions/`](https://github.com/afrikaburn-theme-camp-app/ab-tc-app/blob/main/docs/engineering-decisions/README.md)
 
 ## Requirement ID Conventions
 
-Every individual requirement bullet in this document carries a stable ID in the form `PREFIX-NNN` (e.g. `WAP-003`), bolded inline immediately before the requirement text. IDs make it possible to cite an exact requirement from `task-assignment.md`, a decision record, a Jira ticket, or a code comment, and to see at a glance when something in the spec is added, changed, or removed.
+Every individual requirement bullet in this document carries a stable ID in the form `PREFIX-NNN` (e.g. `WAP-003`), bolded inline immediately before the requirement text. IDs make it possible to cite an exact requirement from a decision record, a GitHub issue, or a code comment, and to see at a glance when something in the spec is added, changed, or removed.
 
 Rules:
 
@@ -623,9 +622,9 @@ The system should not issue official tickets itself unless formally integrated w
 # 11. Theme-Camp Layout Tool ⚠️
 
 ⚠️ **Status:** At risk
-📋 **Context:** Deferred due to mapping data/process dependencies; current MVP support is limited to layout uploads and placement preferences. Open decision: [Decision 011](decisions-record/decision-011-proposed-theme-camp-layout-tool-strategy.md).
+📋 **Context:** Deferred due to mapping data/process dependencies; current MVP support is limited to layout uploads and placement preferences. Open decision: [Decision 011](decisions-record/decision-011-proposed-theme-camp-layout-tool-strategy.md). 2027 spatial work with AfrikaBurn is **integration** with the standalone Container App ([Decision 016](decisions-record/decision-016-proposed-2027-container-app-integration.md)), not this layout tool.
 
-> 📝 **Note (2026-07-29):** Deferred in the MVP — no structured map/erf data exists to build against. Registration currently accepts layout file uploads and placement-zone preferences instead. Graeme is arranging a meeting with town planner Roger van Wyk and Kshetra to unblock mapping (group chat, 2026-07-29 10:50); Sections 11–13 should be revisited after that meeting.
+> 📝 **Note (2026-09-19):** The mapping meetings with Roger van Wyk and Kshetra Govindasamy have been held ([2026-08-11](meeting-minutes/2026-08-11-first-gis-meet.md), [2026-09-09](meeting-minutes/2026-09-09-second-gis-meet.md)). GIS access is agreed in principle but not yet formally granted — [Decision 012](decisions-record/decision-012-proposed-map-erf-integration-strategy-readiness-gate.md) stays proposed. Technical notes: [GIS / spatial-data research](https://github.com/afrikaburn-theme-camp-app/ab-tc-app/blob/main/docs/technical-spec/21-gis-spatial-data-research.md).
 
 Every camp must have access to a scaled camp-layout tool.
 
@@ -740,7 +739,7 @@ The automatic layout tool should prioritise:
 # 13. AfrikaBurn Map and Erf Placement ⚠️
 
 ⚠️ **Status:** At risk
-📋 **Context:** Not implemented and currently blocked on mapping-system alignment with AfrikaBurn stakeholders. Open decision: [Decision 012](decisions-record/decision-012-proposed-map-erf-integration-strategy-readiness-gate.md).
+📋 **Context:** Not implemented. GIS workshops with AfrikaBurn have been held; read-only vector-layer access is agreed in principle but **not yet formally granted**, so [Decision 012](decisions-record/decision-012-proposed-map-erf-integration-strategy-readiness-gate.md) stays proposed. Remaining 2027 gates (Lexi proposal, DPW specs, IT alignment) are [Decision 016](decisions-record/decision-016-proposed-2027-container-app-integration.md).
 ⚠️ **Open ambiguity:** Once a camp/project's erf is allocated and accepted (see ERF-019 below), should that erf number automatically propagate to other apps/modules that need it for logistics planning (e.g. Gas, water delivery, wood delivery)? Raised by Graeme — see [2026-09-10 Graeme messages](meeting-minutes/2026-09-10-graeme-payment-and-portal-vision-messages.md). Not yet reflected in ERF-017–ERF-023 or elsewhere in this spec, and not yet resolved via a decision record.
 
 Where AfrikaBurn mapping data is available, the platform should allow the preferred camp layout to be placed on an actual allocated erf.
@@ -878,7 +877,7 @@ This could include:
 # 16. Plug-and-Play and Turnkey Camp Prevention 🚧
 
 🚧 **Status:** In progress
-📋 **Context:** Baseline declarations are partly implemented; automated threshold triggers and risk-indicator dashboard are not yet implemented.
+📋 **Context:** Baseline declarations are partly implemented; automated threshold triggers and risk-indicator dashboard are not yet implemented. Graeme (2026-08-11 GIS meeting) proposed using the app to enforce accountability for large camps (>20 people or >R100k budget) via mandatory budget/roster submission plus random verification. That is already the direction of PNP-001/002/009/010/044; treating it as a hard gate is a surfaced, unratified candidate — no new `PNP-*` IDs added.
 
 The platform should support AfrikaBurn’s efforts to discourage plug-and-play and turnkey camps.
 

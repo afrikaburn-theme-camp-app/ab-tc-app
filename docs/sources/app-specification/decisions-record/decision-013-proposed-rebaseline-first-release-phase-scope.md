@@ -42,3 +42,8 @@ Suggested First Development Release is marked at risk. The listed Phase 1 sequen
 - 10:45–10:48: Ryan James Noble reviewed; flagged gas as possibly supplier-run and a candidate to drop into Phase 2+; water/ice still need user journeys defined. Fin K agreed a supplier-style gas system would move to Phase 2+.
 - 10:49–11:16: Graeme Allan clarified gas is community-run (the Quaggafontein Gas Project), collectivised like the container project rather than a pure third-party supplier — bearing on whether gas stays in Phase 1.
 - Net effect: informal convergence on Option B, with gas's Phase 1/2 placement still open pending confirmation it is AB/community-run rather than supplier-run. Status remains proposed — no explicit sign-off recorded.
+
+## Update 2026-09-19 — GIS meetings
+Source: [2026-09-09 second GIS meeting](../meeting-minutes/2026-09-09-second-gis-meet.md)
+
+- AfrikaBurn spatial planning co-scoped 2027 to integration with the standalone Container App ([Decision 016](decision-016-proposed-2027-container-app-integration.md)). Further evidence for an Option-B rebaseline, still informal. Status stays **proposed**.

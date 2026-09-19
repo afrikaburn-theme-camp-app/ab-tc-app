@@ -102,7 +102,7 @@ in one call:
 
 ```bash
 skills/superhuman-rest-fetch/scripts/pull-superhuman-page.sh \
-  --path task-assignment.md --doc-id Q_I7n93cZT
+  --path links.md --doc-id Q_I7n93cZT
 ```
 
 It's read-only against the local filesystem — it prints a diff and writes

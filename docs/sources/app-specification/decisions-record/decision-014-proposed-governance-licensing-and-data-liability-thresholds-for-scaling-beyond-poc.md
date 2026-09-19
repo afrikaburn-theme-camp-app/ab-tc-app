@@ -7,8 +7,8 @@ status: proposed
 type: decision
 related:
   - ../app-specification.md
-  - ../task-assignment.md
-  - ../meeting-minutes/2026_08_06 Tech team onboarding.md
+  - ../meeting-minutes/2026-08-06-tech-team-onboarding.md
+  - ../meeting-minutes/2026-09-09-second-gis-meet.md
   - decision-005-proposed-backend-first-platform-api-mcp-sdk-no-community-plugins.md
 tags:
   - governance
@@ -21,7 +21,7 @@ tags:
 Date: 2026-08-05
 Owner: Beyers Nel
 Status: proposed
-Related: [App Specification](../app-specification.md), [Task Assignment](../task-assignment.md), [Tech team onboarding meeting minutes](../meeting-minutes/2026_08_06%20Tech%20team%20onboarding.md), [Decision 005](decision-005-proposed-backend-first-platform-api-mcp-sdk-no-community-plugins.md)
+Related: [App Specification](../app-specification.md), [Tech team onboarding meeting minutes](../meeting-minutes/2026-08-06-tech-team-onboarding.md), [Decision 005](decision-005-proposed-backend-first-platform-api-mcp-sdk-no-community-plugins.md)
 
 ## Context
 
@@ -65,7 +65,7 @@ For each risk area, the team needs to agree on both **a trigger** (the event/thr
 - **Under-formalising too late:** if real PII or a live camp registration arrives before governance catches up, there is currently no defined owner for breach response, no license terms for external contributors, and no institutional entity behind the repository.
 - **This is not a substitute for legal advice.** POPIA obligations and data-breach liability ultimately require input from AfrikaBurn's own legal/compliance function or independent counsel. This decision record can define *when* to seek that input — it cannot resolve the liability question itself, and no option above should be treated as legally sufficient on its own.
 - **Interaction with Decision 005:** an unclear license could chill the exact external-contribution model (SDK/template + pull requests, no community plugins) that Decision 005 anticipates.
-- Pride's related suggestions from the same discussion — shared tooling accounts, an architecture diagram, e2e test coverage — are process-maturity improvements, not governance/liability triggers in themselves; they're tracked in [Task Assignment](../task-assignment.md) rather than folded into this decision.
+- Pride's related suggestions from the same discussion — shared tooling accounts, an architecture diagram, e2e test coverage — are process-maturity improvements, not governance/liability triggers in themselves.
 
 ## Follow-up
 
@@ -73,3 +73,9 @@ For each risk area, the team needs to agree on both **a trigger** (the event/thr
 - Before any real camper PII is stored (Option A1/C1), get actual legal/compliance input on data-breach liability and POPIA obligations — this should not be resolved by engineering judgement alone.
 - **New:** confirm with Ryan James Noble whether the shared database currently holds any real passport numbers/PII (per the 2026-08-06 onboarding session) or only test/dummy data consistent with PoC status — this directly determines whether Option C1's trigger has already been crossed and should be treated as urgent given the ambiguity.
 - Review date: revisit at the next milestone that plausibly trips any trigger above — e.g. before the next live registration cycle opens, or if AfrikaBurn signals formal adoption.
+
+## Update 2026-09-19 — GIS meetings and repo move
+Source: [2026-09-09 second GIS meeting](../meeting-minutes/2026-09-09-second-gis-meet.md)
+
+- Roger asked that Yvonne, Tim, and Lexi be part of any adoption discussion specifically "around the privacy issues". An org-level privacy review is now an expected part of the IT / Lexi track — relevant to the A2 trigger (org endorsement).
+- The repo now sits under the shared GitHub org [`afrikaburn-theme-camp-app/ab-tc-app`](https://github.com/afrikaburn-theme-camp-app/ab-tc-app). Ryan James Noble has left the team. Area A's personal-repo ownership risk has therefore changed shape (institutional hosting exists; the original owner is gone). Status stays **proposed**.

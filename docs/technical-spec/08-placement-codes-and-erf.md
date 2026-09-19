@@ -28,10 +28,12 @@ itself. Shipped, but previously undocumented outside a roadmap bullet.
 > "permanently" or "if ever" deferred. The governing records — **Decision
 > 011 (theme-camp layout tool strategy)** and **Decision 012 (map/erf
 > integration strategy and readiness gate)** — are both `proposed`, not
-> settled, and Decision 012's own record notes AfrikaBurn IT holds a usable
-> CIS site map, which undercuts the premise that "no structured geo data
+> settled, and Decision 012's own record notes AfrikaBurn holds a usable
+> GIS of the site, which undercuts the premise that "no structured geo data
 > exists at all." Treat placement/layout as deferred pending those two
-> decisions, not as permanently out of scope.
+> decisions, not as permanently out of scope. 2027 spatial work with the
+> org is container-placement **integration** (Decision 016, proposed) — see
+> [`21-gis-spatial-data-research.md`](21-gis-spatial-data-research.md).
 
 > ⚠️ **App Spec Decision 004 (accepted) named placement + container
 > management as the first demonstrable slice.** The repo shipped

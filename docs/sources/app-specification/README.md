@@ -39,7 +39,8 @@ maps to). Engineering specs under `docs/*.md` are **downstream** — see
 | ---- | ---- |
 | `app-specification.md` | Current product/feature baseline |
 | `decisions-record.md` + `decisions-record/` | Product decisions (WHAT/WHY) — not engineering HOW |
-| `task-assignment.md`, `member-list.md`, `links.md` | Ownership and references |
+| `task-assignment.md` | Tombstone — tasks are not tracked in this corpus |
+| `member-list.md`, `links.md` | People and references |
 | `app-specification/` | Change record + requirement index |
 | `meeting-minutes/` | Meeting notes mirrored from Superhuman |
 | `.superhuman-sync-manifest.json` | Accepted remote baseline (page IDs + `updatedAt`) |

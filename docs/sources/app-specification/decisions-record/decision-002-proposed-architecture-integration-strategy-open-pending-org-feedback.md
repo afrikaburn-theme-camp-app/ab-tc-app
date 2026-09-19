@@ -48,3 +48,10 @@ We will keep the architecture integration strategy open and treat it as pending 
 - 11:12: Graeme Allan asked for the model to be explained in plain terms — one app, one app with switchable modules, or separate apps sharing a database — showing the org/camp boundary question is still not understood outside the technical group.
 - 11:13–11:14: Ryan James Noble described the working technical answer: mono-repo apps share one backend/database; external apps (e.g. his Camp 404 build) integrate via an SDK + "Login with AfricaBurn" and can hold their own database; ice and gas are being pulled in as first-class mono-repo apps because they are AB departments.
 - Status unchanged: this is a working technical answer from the dev group, not org-confirmed feedback. Still proposed.
+
+## Update 2026-09-19 — GIS meetings
+Source: [2026-08-11 first GIS meeting](../meeting-minutes/2026-08-11-first-gis-meet.md), [2026-09-09 second GIS meeting](../meeting-minutes/2026-09-09-second-gis-meet.md)
+
+- The Theme Camp App (three surfaces: org console, camp app, supplier portal; shared login) was presented to AfrikaBurn spatial planning. Reception was positive. Shared "Login with AfrikaBurn" identity was well received.
+- AfrikaBurn IT is building its own internal systems in parallel. The agreed next step is an **IT-team auth / architecture alignment meeting** — Roger flagged this as the more complicated question; spatial-data sharing itself is straightforward.
+- Director-level movement was reported (Christy, **verify**) but is not ratification. Status stays **proposed**. The original review date ("after the org pitch and feedback cycle") is now partly due.

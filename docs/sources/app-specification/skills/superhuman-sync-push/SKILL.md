@@ -74,10 +74,10 @@ pass `--force`:
 
 ```bash
 # Preview only — no writes:
-skills/superhuman-sync-push/scripts/push-superhuman-page.sh task-assignment.md --doc-id Q_I7n93cZT
+skills/superhuman-sync-push/scripts/push-superhuman-page.sh links.md --doc-id Q_I7n93cZT
 
 # Actually push, after reviewing the preview:
-skills/superhuman-sync-push/scripts/push-superhuman-page.sh task-assignment.md --doc-id Q_I7n93cZT --yes
+skills/superhuman-sync-push/scripts/push-superhuman-page.sh links.md --doc-id Q_I7n93cZT --yes
 ```
 
 It handles PUT → poll `mutationStatus` → verify `updatedAt` advanced →
@@ -227,7 +227,7 @@ push.) Scope it to just the file(s) you pushed instead:
 
 ```bash
 ./scripts/check-superhuman-sync.sh --doc-id Q_I7n93cZT --root . \
-  --only task-assignment.md --write-manifest
+  --only links.md --write-manifest
 # repeat --only for each additional file pushed in the same batch
 ```
 
