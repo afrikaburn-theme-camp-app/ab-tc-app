@@ -12,6 +12,7 @@ related:
   - decision-012-proposed-map-erf-integration-strategy-readiness-gate.md
   - ../meeting-minutes/2026-08-11-first-gis-meet.md
   - ../meeting-minutes/2026-09-09-second-gis-meet.md
+  - ../meeting-minutes/2026-09-17-dev-alignment.md
   - https://github.com/afrikaburn-theme-camp-app/ab-tc-app/blob/main/docs/technical-spec/21-gis-spatial-data-research.md
 tags:
   - placement
@@ -23,7 +24,7 @@ tags:
 Date: 2026-09-19
 Owner: Beyers Nel
 Status: proposed
-Related: [App Specification](../app-specification.md), [Decision 004](decision-004-accepted-first-demonstrable-slice-placement-and-container-management.md), [Decision 011](decision-011-proposed-theme-camp-layout-tool-strategy.md), [Decision 012](decision-012-proposed-map-erf-integration-strategy-readiness-gate.md), [2026-08-11 first GIS meeting](../meeting-minutes/2026-08-11-first-gis-meet.md), [2026-09-09 second GIS meeting](../meeting-minutes/2026-09-09-second-gis-meet.md), [GIS research](https://github.com/afrikaburn-theme-camp-app/ab-tc-app/blob/main/docs/technical-spec/21-gis-spatial-data-research.md)
+Related: [App Specification](../app-specification.md), [Decision 004](decision-004-accepted-first-demonstrable-slice-placement-and-container-management.md), [Decision 011](decision-011-proposed-theme-camp-layout-tool-strategy.md), [Decision 012](decision-012-proposed-map-erf-integration-strategy-readiness-gate.md), [2026-08-11 first GIS meeting](../meeting-minutes/2026-08-11-first-gis-meet.md), [2026-09-09 second GIS meeting](../meeting-minutes/2026-09-09-second-gis-meet.md), [2026-09-17 dev alignment](../meeting-minutes/2026-09-17-dev-alignment.md), [GIS research](https://github.com/afrikaburn-theme-camp-app/ab-tc-app/blob/main/docs/technical-spec/21-gis-spatial-data-research.md)
 
 ## Context
 
@@ -93,3 +94,9 @@ integration as in-cycle product scope.
   GitHub issues on [afrikaburn-theme-camp-app/ab-tc-app](https://github.com/afrikaburn-theme-camp-app/ab-tc-app).
 - Review date: after Lexi's response to the proposal, or when Decision 012
   moves off `proposed`.
+
+## Update 2026-09-19 — Dev alignment catch-up
+Source: [2026-09-17 dev alignment](../meeting-minutes/2026-09-17-dev-alignment.md)
+
+- Finlay agreed to drive the Container Project from an existing user-stories-focused specification (needs a developer or code reviewer). Mad Hatters village (~eight–nine joining camps) was named as an operational driver for getting containers working.
+- The four gates above are unchanged. A verbal GIS-access indication from the acting EDO (via Graeme) does **not** clear gate 3 — see [Decision 012](decision-012-proposed-map-erf-integration-strategy-readiness-gate.md). Status stays **proposed**.

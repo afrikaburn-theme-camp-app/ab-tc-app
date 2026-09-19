@@ -7,6 +7,8 @@ status: proposed
 type: decision
 related:
   - ../app-specification.md
+  - ../meeting-minutes/2026-09-10-graeme-payment-and-portal-vision-messages.md
+  - ../meeting-minutes/2026-09-17-dev-alignment.md
 tags:
   - payments
   - compliance
@@ -48,3 +50,9 @@ Source: [2026-09-10 Graeme — Payment and Portal Vision Clarification](../meeti
 - Once a gateway is connected to a module, that module should track the whole onboarding-and-payment lifecycle together: who has registered, who has completed what, who has paid, who owes what, what payment maps to which service, and where each person is in the process. Frames this combined onboarding+payment visibility (not the gateway itself) as the real value.
 - Ties into his broader one-portal vision (Container Project, Gas Project, and other services as modules of one platform): a camp/project connects its own gateway, and the relevant module manages the workflow around it (onboarding, payment requests, status, member allocation) without AB Org necessarily receiving or controlling the money.
 - This input is the basis for Option D, above.
+
+## Update 2026-09-19 — Dev alignment catch-up
+Source: [2026-09-17 dev alignment](../meeting-minutes/2026-09-17-dev-alignment.md)
+
+- Graeme restated camp financial tracking as a near-term priority (working budgets visible to the org for large camps; POPIA sign-offs per member), framed as plug-and-play mitigation rather than as a payment-gateway choice.
+- That accountability threshold is recorded under §16 / `PNP-*` as a surfaced-unratified candidate (see also the 2026-09-19 §16 context note). It does **not** resolve Options A–D here. Status stays **proposed**.

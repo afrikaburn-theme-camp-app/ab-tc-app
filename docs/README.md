@@ -93,6 +93,7 @@ and `GOVERNANCE.md` did not yet exist.)
 | [`sources/app-specification/decisions-record/`](sources/app-specification/decisions-record.md) | Planning                  | Active                    | **Operational** decisions — WHAT/WHY (Superhuman corpus)                                                                       |
 | [`engineering-decisions/`](engineering-decisions/README.md)                                    | Planning                  | Active                    | **Engineering** decisions — HOW                                                                                                |
 | [`technical-spec/21-gis-spatial-data-research.md`](technical-spec/21-gis-spatial-data-research.md) | Planning              | Draft                     | N/A — external-GIS research, not spec-derived                                                                                  |
+| [`technical-spec/22-afrikaburn-tmi-identity-research.md`](technical-spec/22-afrikaburn-tmi-identity-research.md) | Planning    | Draft                     | N/A — external-identity research, not spec-derived                                                                             |
 
 Categories: **Product** (what's built vs. the spec) · **Architecture** (how the
 system fits together, current state) · **Engineering Spec** (a subsystem's

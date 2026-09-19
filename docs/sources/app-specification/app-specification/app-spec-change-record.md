@@ -19,6 +19,7 @@ Parent page: [App Specification](../app-specification.md)
 | 11/08/2026 | Flagged unresolved visibility/permission ambiguity between COMM-001, COMM-002, COMM-017–COMM-019, and COMM-020 with inline cross-references; no decision recorded, detail to follow later |
 | 10/09/2026 | Archived Graeme's 2026-09-10 WhatsApp messages as a dated meeting-minutes source; moved the Section 8 MVP-observation note into Decision 009 as historical context and trimmed the inline spec note to a pointer; added Decision 009/010 updates from that source; flagged a new open ambiguity on cross-module erf propagation in Section 13 (ERF-019) |
 | 19/09/2026 | GIS meetings archived (summaries only); operational Decision Record updates 002/004/005/007/010–016; `task-assignment.md` tombstoned; member list and links housekeeping; no requirement IDs added or changed |
+| 19/09/2026 | Dev-alignment minutes (2026-09-17) curated; operational updates to Decisions 002/007/009/012/013/014/016; member-list refresh (Scheepers, Ruchir, Pride re-engagement, Tim Doyle, Christie role); §16 context notes >30 unratified candidate — `PNP-009` unchanged |
 
 ## 2026-07-29 - Kick-off Alignment Updates
 Owner: Beyers Nel
@@ -260,3 +261,29 @@ Related: [Decision 012](../decisions-record/decision-012-proposed-map-erf-integr
 - Expected outcome: a future contributor can find the GIS outcomes by topic (D012/D016 + research doc) and by date (this entry).
 - Drift risk addressed: Decision Records stay operational; GIS HOW does not leak into them; D012 is not marked done without a formal access grant.
 - Follow-up checks: Superhuman sync of these notes is a manual later step. D012 moves off proposed only when access is granted.
+
+## 2026-09-19 - Dev-alignment catch-up processed; decisions and members updated
+Owner: Beyers Nel
+Type: spec-change
+Status: active
+Related: [2026-09-17 dev alignment](../meeting-minutes/2026-09-17-dev-alignment.md), [Decision 002](../decisions-record/decision-002-proposed-architecture-integration-strategy-open-pending-org-feedback.md), [Decision 007](../decisions-record/decision-007-proposed-application-boundary-strategy-org-vs-camp-flows.md), [Decision 009](../decisions-record/decision-009-proposed-payment-direction-tracking-vs-gateway.md), [Decision 012](../decisions-record/decision-012-proposed-map-erf-integration-strategy-readiness-gate.md), [Decision 013](../decisions-record/decision-013-proposed-rebaseline-first-release-phase-scope.md), [Decision 014](../decisions-record/decision-014-proposed-governance-licensing-and-data-liability-thresholds-for-scaling-beyond-poc.md), [Decision 016](../decisions-record/decision-016-proposed-2027-container-app-integration.md), [Member List](../member-list.md)
+
+### What changed
+- Curated [2026-09-17 dev alignment](../meeting-minutes/2026-09-17-dev-alignment.md) (Gemini notes kept; transcript removed). Terminology notes for Theme Camp App and Container App.
+- Appended operational updates to Decisions 002, 007, 009, 012, 013, 014, 016. **Decision 012 stays `proposed`** — acting-EDO GIS-access report is second-hand and not a formal grant.
+- [Member List](../member-list.md): Tim Doyle role clarified; Christy/Christie as acting EDO; Scheepers ("Skippy") added (prospective); Ruchir Thakore added; Pride Musvaire re-engagement noted; Ryan fork/partition; Finlay / Rohan / Graeme / Beyers involvement refreshed.
+- §16 Plug-and-Play context notes the ~30-person unratified variant alongside existing >20. **`PNP-009` unchanged.** No other `PREFIX-NNN` IDs added, changed, or removed.
+- Next steps left inside the minutes as historical context only — this corpus does not track tasks.
+
+### Why it changed
+- The catch-up is new working-group information Superhuman may not yet have. Decision Records and the member list needed the operational facts; requirement IDs must not silently drift.
+
+### Impact
+- Affected features: §16 Plug-and-Play (context note only)
+- Affected decisions: 002, 007, 009, 012, 013, 014, 016
+- Affected process: member roster accuracy for org contacts and contributors
+
+### Validation / Gap Analysis
+- Expected outcome: a future contributor can find Ryan-fork / IT-meeting / PNP-threshold / Scheepers facts by decision and by date.
+- Drift risk addressed: D012 not accepted without formal access; `PNP-009` not rewritten from 20→30; no task board revived.
+- Follow-up checks: Superhuman sync is a manual later step. Confirm Scheepers given name and Christie/Christy spelling when independently verified. D012 moves off proposed only when access is formally granted.

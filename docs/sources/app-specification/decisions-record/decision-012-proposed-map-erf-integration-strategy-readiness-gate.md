@@ -9,6 +9,7 @@ related:
   - ../app-specification.md
   - ../meeting-minutes/2026-08-11-first-gis-meet.md
   - ../meeting-minutes/2026-09-09-second-gis-meet.md
+  - ../meeting-minutes/2026-09-17-dev-alignment.md
   - https://github.com/afrikaburn-theme-camp-app/ab-tc-app/blob/main/docs/technical-spec/21-gis-spatial-data-research.md
   - decision-016-proposed-2027-container-app-integration.md
 tags:
@@ -51,3 +52,10 @@ Source: [2026-08-11 first GIS meeting](../meeting-minutes/2026-08-11-first-gis-m
 - Agreed access model: **read-only access to specific vector layers** (theme-camp boundaries first); updates returned to AfrikaBurn for manual re-integration; org stays system of record. "No API for now."
 - Roger committed to granting that access within 1–2 weeks of 2026-09-09. **The grant itself has not been recorded.** Status therefore stays **proposed**.
 - 2027 product scope that depends on this access is [Decision 016](decision-016-proposed-2027-container-app-integration.md).
+
+## Update 2026-09-19 — Dev alignment catch-up
+Source: [2026-09-17 dev alignment](../meeting-minutes/2026-09-17-dev-alignment.md)
+
+- Graeme reported a meeting with AfrikaBurn's acting EDO (production manager Christie / Christy — **verify** spelling) who supported incremental ("baby steps") progress and indicated access to a GIS layer useful for containers and camp placement.
+- That report is **second-hand** and mixes "given" / "will be given" language. It is **not** the formal grant this decision requires (nor a substitute for Roger's read-only Postgres vector-layer commitment from 2026-09-09).
+- Status stays **proposed** until access is formally granted and recorded.

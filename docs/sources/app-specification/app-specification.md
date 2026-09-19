@@ -877,7 +877,7 @@ This could include:
 # 16. Plug-and-Play and Turnkey Camp Prevention 🚧
 
 🚧 **Status:** In progress
-📋 **Context:** Baseline declarations are partly implemented; automated threshold triggers and risk-indicator dashboard are not yet implemented. Graeme (2026-08-11 GIS meeting) proposed using the app to enforce accountability for large camps (>20 people or >R100k budget) via mandatory budget/roster submission plus random verification. That is already the direction of PNP-001/002/009/010/044; treating it as a hard gate is a surfaced, unratified candidate — no new `PNP-*` IDs added.
+📋 **Context:** Baseline declarations are partly implemented; automated threshold triggers and risk-indicator dashboard are not yet implemented. Graeme (2026-08-11 GIS meeting) proposed using the app to enforce accountability for large camps (>20 people or >R100k budget) via mandatory budget/roster submission plus random verification. At the 2026-09-17 dev alignment he restated the idea with a ~30-person figure (also saying "or maybe 20") plus POPIA sign-offs per member. That is already the direction of PNP-001/002/009/010/044; treating it as a hard gate — and whether the participant threshold is 20 or 30 — is a surfaced, unratified candidate. **`PNP-009` stays >20 until a decision changes it**; no new `PNP-*` IDs added.
 
 The platform should support AfrikaBurn’s efforts to discourage plug-and-play and turnkey camps.
 

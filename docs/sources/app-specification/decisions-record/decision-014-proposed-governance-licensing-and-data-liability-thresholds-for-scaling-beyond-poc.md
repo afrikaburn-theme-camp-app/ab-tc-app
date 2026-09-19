@@ -9,6 +9,7 @@ related:
   - ../app-specification.md
   - ../meeting-minutes/2026-08-06-tech-team-onboarding.md
   - ../meeting-minutes/2026-09-09-second-gis-meet.md
+  - ../meeting-minutes/2026-09-17-dev-alignment.md
   - decision-005-proposed-backend-first-platform-api-mcp-sdk-no-community-plugins.md
 tags:
   - governance
@@ -79,3 +80,9 @@ Source: [2026-09-09 second GIS meeting](../meeting-minutes/2026-09-09-second-gis
 
 - Roger asked that Yvonne, Tim, and Lexi be part of any adoption discussion specifically "around the privacy issues". An org-level privacy review is now an expected part of the IT / Lexi track — relevant to the A2 trigger (org endorsement).
 - The repo now sits under the shared GitHub org [`afrikaburn-theme-camp-app/ab-tc-app`](https://github.com/afrikaburn-theme-camp-app/ab-tc-app). Ryan James Noble has left the team. Area A's personal-repo ownership risk has therefore changed shape (institutional hosting exists; the original owner is gone). Status stays **proposed**.
+
+## Update 2026-09-19 — Dev alignment catch-up
+Source: [2026-09-17 dev alignment](../meeting-minutes/2026-09-17-dev-alignment.md)
+
+- Ryan has fully separated: forked independently and continues building his preferred product alone. This working group partitioned his prior work into the shared org repo and does not depend on his fork.
+- Optional cherry-pick from his parallel work was discussed as a courtesy path, not a governance arrangement. Area A's ownership picture is now: shared-org hosting + departed founder + independent fork. Triggers A1–A4 and liability questions (C) remain unsettled. Status stays **proposed**.

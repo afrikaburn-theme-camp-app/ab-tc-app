@@ -10,6 +10,7 @@ related:
   - ../meeting-minutes/2026-07-28-theme-camp-app-kick-off.md
   - decision-002-proposed-architecture-integration-strategy-open-pending-org-feedback.md
   - decision-005-proposed-backend-first-platform-api-mcp-sdk-no-community-plugins.md
+  - ../meeting-minutes/2026-09-17-dev-alignment.md
 tags:
   - architecture
   - product-direction
@@ -46,3 +47,9 @@ Choose the boundary model for delivery and governance:
 Source: [2026-09-09 second GIS meeting](../meeting-minutes/2026-09-09-second-gis-meet.md)
 
 - The three-surface shape (org console / camp app / supplier portal) was presented to AfrikaBurn spatial planning without objection. Further evidence for the Option-C hybrid already noted 2026-08-05. Status stays **proposed**.
+
+## Update 2026-09-19 — Dev alignment catch-up
+Source: [2026-09-17 dev alignment](../meeting-minutes/2026-09-17-dev-alignment.md)
+
+- Finlay restated a compulsory-first sequencing: prioritize org-linked processes (theme-camp registration, GIS, plug-and-play financial planning) and defer non-compulsory internal camp tools (tent planning, shift allocations) as later bolt-ons.
+- Graeme continued to emphasise camp-ops value (financials, WAP, shifts) in parallel; the group did not formally pick Option A/B/C. Status stays **proposed**.

@@ -8,6 +8,7 @@ type: decision
 related:
   - ../app-specification.md
   - ../meeting-minutes/2026-07-28-theme-camp-app-kick-off.md
+  - ../meeting-minutes/2026-09-17-dev-alignment.md
 tags:
   - architecture
   - product-direction
@@ -55,3 +56,18 @@ Source: [2026-08-11 first GIS meeting](../meeting-minutes/2026-08-11-first-gis-m
 - The Theme Camp App (three surfaces: org console, camp app, supplier portal; shared login) was presented to AfrikaBurn spatial planning. Reception was positive. Shared "Login with AfrikaBurn" identity was well received.
 - AfrikaBurn IT is building its own internal systems in parallel. The agreed next step is an **IT-team auth / architecture alignment meeting** — Roger flagged this as the more complicated question; spatial-data sharing itself is straightforward.
 - Director-level movement was reported (Christy, **verify**) but is not ratification. Status stays **proposed**. The original review date ("after the org pitch and feedback cycle") is now partly due.
+
+## Update 2026-09-19 — Dev alignment catch-up
+Source: [2026-09-17 dev alignment](../meeting-minutes/2026-09-17-dev-alignment.md)
+
+- Tim Doyle (participant relations manager; formerly ITC) shared AfrikaBurn framework material and described alignment timing as favourable. Graeme will arrange a meeting with org IT (**Havon** — spelling **verify**) via Tim to understand the registration / architecture overhaul and explore integration.
+- Uniform authentication / a unique AfrikaBurn profile was restated as the integration hinge (Rohan); Graeme noted the org already documents a unique-profile approach in shared GitHub material.
+- This advances the named IT-alignment next step from the GIS pass; it is still not org-confirmed architecture feedback. Status stays **proposed**.
+
+## Update 2026-09-19 — WhatsApp Group Chat (TMI Identity)
+Source: WhatsApp Group Chat (2026-09-17). Technical detail:
+[AfrikaBurn TMI Identity research](https://github.com/afrikaburn-theme-camp-app/ab-tc-app/blob/main/docs/technical-spec/22-afrikaburn-tmi-identity-research.md).
+
+- Graeme shared AfrikaBurn's production identity platform description: **TMI Identity** — applications integrate as **OIDC / OAuth 2.0 clients** (sign-in at `login.afrikaburn.net`); they must not integrate directly with LDAP, PostgreSQL, or the Keycloak database. Named integration conversation: **Havon** (spelling **verify**), Graeme, and the app's developer.
+- Conceptual public repo named: [AfrikaBurn/TMI](https://github.com/AfrikaBurn/TMI). Identity module described as private / NDA.
+- This is org-side identity posture, not Theme Camp App adoption. Status stays **proposed**.

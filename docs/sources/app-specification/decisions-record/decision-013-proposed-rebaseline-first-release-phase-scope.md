@@ -8,6 +8,7 @@ type: decision
 related:
   - ../app-specification.md
   - decision-004-accepted-first-demonstrable-slice-placement-and-container-management.md
+  - ../meeting-minutes/2026-09-17-dev-alignment.md
 tags:
   - release-planning
   - delivery
@@ -47,3 +48,10 @@ Suggested First Development Release is marked at risk. The listed Phase 1 sequen
 Source: [2026-09-09 second GIS meeting](../meeting-minutes/2026-09-09-second-gis-meet.md)
 
 - AfrikaBurn spatial planning co-scoped 2027 to integration with the standalone Container App ([Decision 016](decision-016-proposed-2027-container-app-integration.md)). Further evidence for an Option-B rebaseline, still informal. Status stays **proposed**.
+
+## Update 2026-09-19 — Dev alignment catch-up
+Source: [2026-09-17 dev alignment](../meeting-minutes/2026-09-17-dev-alignment.md)
+
+- Finlay restated the same Phase-1 vs Phase-2+ split in operational terms: compulsory / org-linked first; internal camp tools later.
+- Near-term packaging named in the meeting (historical context only — this corpus does not track tasks): Finlay drives Container Project user-stories work; Rohan packages village materials; Ruchir reviews Graeme's financial plan when capacity allows; group reconvenes in ~three weeks.
+- Further informal Option-B evidence. Status stays **proposed**.

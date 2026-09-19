@@ -7,3 +7,4 @@ Parent document: [App Specification](app-specification.md)
 - Participant app: https://afrikaburn-contributors-web.vercel.app
 - Organiser console: https://afrikaburn-contributors-org.vercel.app
 - Supplier portal: https://afrikaburn-contributors-suppliers.vercel.app
+- AfrikaBurn TMI (conceptual, public): https://github.com/AfrikaBurn/TMI
