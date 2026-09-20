@@ -1,0 +1,8 @@
+# Aikido project config. Safe Chain only reads the `safe-chain:` section.
+# See https://github.com/AikidoSec/safe-chain#project-config-file
+# Threat model: docs/technical-spec/23-security-threat-model.md row C6.
+safe-chain:
+  # Suppress / block packages newer than this many hours (default upstream: 48).
+  # Closes the typosquat / brand-new malicious publish window for npm installs
+  # that go through Safe Chain (local pnpm and CI).
+  minimumPackageAgeHours: 48

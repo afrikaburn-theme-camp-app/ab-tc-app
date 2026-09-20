@@ -85,6 +85,11 @@ elsewhere:
   has a track record of high-severity advisories, and we own the patch watch
   deliberately rather than letting a bot decide. Upgrading it is a considered
   change with the auth e2e suite run, not a dependency PR.
+- **Install through Aikido Safe Chain.** Run `./scripts/install-safe-chain.sh`
+  once per machine (CI does the `--ci` variant). It wraps `pnpm` so malware and
+  packages newer than 48 hours are blocked before they land in
+  `node_modules` — see threat model C6 in
+  [`docs/technical-spec/23-security-threat-model.md`](docs/technical-spec/23-security-threat-model.md).
 - **Do not weaken a guard to make a test pass.** If a check is in your way, it is
   probably load-bearing; ask. Several of the guards in this repo exist because a
   specific hole was found in review, and the comment above them says which.
@@ -92,6 +97,17 @@ elsewhere:
   never the boundary. If you are adding a surface that shows personal
   information, the server-side check is the thing that matters — see
   `packages/core/src/privacy.ts` and `medical-access.ts`.
+
+## Threat model
+
+The engineering threat matrix — which vectors are covered, partial, open, or
+consciously accepted — is
+[`docs/technical-spec/23-security-threat-model.md`](docs/technical-spec/23-security-threat-model.md).
+If a dependency is malware or otherwise compromised, follow
+[`docs/supply-chain-incident-response.md`](docs/supply-chain-incident-response.md).
+Auth architecture and account controls stay in the sibling `01` / `02` technical
+specs; POPIA and account/key incident runbooks in
+[`docs/compliance-and-incident-response.md`](docs/compliance-and-incident-response.md).
 
 ## Repository settings
 

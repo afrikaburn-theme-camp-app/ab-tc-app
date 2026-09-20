@@ -20,15 +20,32 @@ one rule with no exceptions.
 
 ## Getting set up
 
-You need **Node 22+**, **pnpm**, and **Docker** (only for the end-to-end tests —
-skip it if you are doing front-end work).
+You need **Node 22+**, **pnpm** (matching `packageManager` in the root
+`package.json`), **Docker** (only for the end-to-end tests — skip it if you are
+doing front-end work), and **Aikido Safe Chain** wrapping `pnpm` so installs are
+checked for malware and packages newer than 48 hours (threat model C6).
 
 ```bash
+# 1. Node 22+ and pnpm on PATH (corepack or https://pnpm.io/installation)
+# 2. Wrap pnpm with Safe Chain (once per machine; pin + checksum verified)
+./scripts/install-safe-chain.sh
+# restart your terminal so the pnpm alias loads
+pnpm safe-chain-verify            # must print: OK: Safe-chain works!
+
 pnpm install
 pnpm --filter @quagga/web dev          # participant app  → localhost:3000
 pnpm --filter @quagga/org dev          # organiser console → localhost:3001
 pnpm --filter @quagga/suppliers dev    # supplier portal   → localhost:3002
 ```
+
+CI runs the same installer with `--ci` before every `pnpm install`, and a
+dedicated **safe-chain · malware canary** job runs
+`./scripts/verify-safe-chain.sh` (tries to install Aikido's `safe-chain-test`
+package in a throwaway directory and asserts Safe Chain refuses it). Project
+policy for the age gate lives in [`.aikido`](.aikido) at the repo root. A
+Dependabot bump of a package published less than 48 hours ago will fail CI
+until that window passes — that is intentional.
+
 
 **Everything boots without a database.** There is no `.env` to beg for and no
 secret to be handed. Screens that need data render an honest "not configured"

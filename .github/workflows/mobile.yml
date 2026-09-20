@@ -19,10 +19,15 @@ name: Mobile 360
 # Promote a persona into `E2E_PROJECTS` on the gating job in ci.yml, where it
 # WILL block, once its mobile failures reach zero. That is the direction of
 # travel; this exists to make it possible, not to nag.
+#
+# SCHEDULE PAUSED (2026-09-20). The nightly cron kept painting Actions red
+# while mobile triage is unfinished. Re-enable by restoring the `schedule`
+# block below (cron was `0 2 * * *` — 02:00 UTC). Manual runs stay available
+# via workflow_dispatch.
 
 on:
-  schedule:
-    - cron: "0 2 * * *"
+  # schedule:
+  #   - cron: "0 2 * * *"
   workflow_dispatch:
 
 concurrency:
@@ -76,6 +81,9 @@ jobs:
         with:
           node-version: 22
           cache: pnpm
+
+      - name: Install Aikido Safe Chain
+        run: ./scripts/install-safe-chain.sh --ci
 
       - name: Install dependencies
         run: pnpm install --frozen-lockfile

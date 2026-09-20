@@ -46,6 +46,7 @@ Requirement-ID citation format).
 | [`20-payment-reference-tracking.md`](20-payment-reference-tracking.md)             | Payment reference tracking                     | §8                | **Yes — Decision 009 (proposed)**       |
 | [`21-gis-spatial-data-research.md`](21-gis-spatial-data-research.md)               | GIS / spatial-data research (not built)        | — (research)      | Decisions 011, 012, 016 (proposed)      |
 | [`22-afrikaburn-tmi-identity-research.md`](22-afrikaburn-tmi-identity-research.md) | AfrikaBurn TMI Identity research (not built)   | — (research)      | Decision 002 (proposed)                 |
+| [`23-security-threat-model.md`](23-security-threat-model.md)                       | Cross-cutting threat matrix (covered vs open)  | §19 partial       | Draft — supply-chain & branch-protection gaps named |
 
 ## Drift register (summary)
 

@@ -23,6 +23,32 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
+  # Threat model C6 canary. Proves Aikido Safe Chain is wrapping pnpm and still
+  # refuses a known-malicious package (`safe-chain-test`). If this goes green
+  # while installs are unprotected, the script is wrong — see the vacuity note
+  # in scripts/verify-safe-chain.sh. Never add that package to the lockfile.
+  safe-chain:
+    name: safe-chain · malware canary
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 10.30.0
+
+      - name: Install Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Install Aikido Safe Chain
+        run: ./scripts/install-safe-chain.sh --ci
+
+      - name: Refuse Aikido's safe-chain-test package
+        run: ./scripts/verify-safe-chain.sh
+
   # Conventional Commits with a workspace scope (CONTRIBUTING.md,
   # commitlint.config.mjs). BOTH halves are checked, because this repo MERGES
   # pull requests rather than squashing them: every individual commit lands on
@@ -54,6 +80,11 @@ jobs:
         with:
           node-version: 22
           cache: pnpm
+
+      # Aikido Safe Chain — malware + 48h minimum package age on the pnpm shim
+      # (threat model C6). Pinned installer + checksum in scripts/install-safe-chain.sh.
+      - name: Install Aikido Safe Chain
+        run: ./scripts/install-safe-chain.sh --ci
 
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
@@ -91,6 +122,9 @@ jobs:
         with:
           node-version: 22
           cache: pnpm
+
+      - name: Install Aikido Safe Chain
+        run: ./scripts/install-safe-chain.sh --ci
 
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
@@ -171,6 +205,9 @@ jobs:
         with:
           node-version: 22
           cache: pnpm
+
+      - name: Install Aikido Safe Chain
+        run: ./scripts/install-safe-chain.sh --ci
 
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
@@ -447,6 +484,10 @@ jobs:
             echo "${{ matrix.directory }} is untouched on this branch — skipping."
           fi
 
+      - name: Install Aikido Safe Chain
+        if: steps.scope.outputs.in-scope == 'true'
+        run: ./scripts/install-safe-chain.sh --ci
+
       - name: Install dependencies
         if: steps.scope.outputs.in-scope == 'true'
         run: pnpm install --frozen-lockfile
@@ -513,12 +554,13 @@ jobs:
   ci-pass:
     name: CI pass
     if: always()
-    needs: [commitlint, ci, e2e, coverage]
+    needs: [commitlint, safe-chain, ci, e2e, coverage]
     runs-on: ubuntu-latest
     steps:
       - name: Check every job passed
         run: |
           echo "commit conventions : ${{ needs.commitlint.result }}"
+          echo "safe-chain canary  : ${{ needs.safe-chain.result }}"
           echo "lint/typecheck/... : ${{ needs.ci.result }}"
           echo "e2e (all shards)   : ${{ needs.e2e.result }}"
           echo "coverage floors    : ${{ needs.coverage.result }}"
@@ -531,7 +573,12 @@ jobs:
           # failed. That is the property that makes this maintenance-free.
           # `coverage` works the same way, and a shard that skipped itself as
           # out of scope still reports `success`.
-          for job in "ci:${{ needs.ci.result }}" "e2e:${{ needs.e2e.result }}" "coverage:${{ needs.coverage.result }}"; do
+          for job in \
+            "safe-chain:${{ needs.safe-chain.result }}" \
+            "ci:${{ needs.ci.result }}" \
+            "e2e:${{ needs.e2e.result }}" \
+            "coverage:${{ needs.coverage.result }}"
+          do
             name="${job%%:*}"; result="${job#*:}"
             if [ "$result" != "success" ]; then
               echo "::error::$name did not pass (result: $result)"
