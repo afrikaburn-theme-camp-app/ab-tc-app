@@ -408,6 +408,8 @@ jobs:
     permissions:
       contents: read
       pull-requests: write
+      # PRs download coverage-baseline-* artifacts from prior successful main runs.
+      actions: read
     strategy:
       # Every workspace reports even when one breaches — a partial picture is
       # less useful than the whole one.
@@ -417,30 +419,38 @@ jobs:
           - workspace: "@quagga/core"
             label: "@quagga/core"
             directory: packages/core
+            slug: core
           - workspace: "@quagga/ui"
             label: "@quagga/ui"
             directory: packages/ui
+            slug: ui
           - workspace: "@quagga/auth"
             label: "@quagga/auth"
             directory: packages/auth
+            slug: auth
           - workspace: "@quagga/db"
             label: "@quagga/db"
             directory: packages/db
+            slug: db
           - workspace: "@quagga/types"
             label: "@quagga/types"
             directory: packages/types
+            slug: types
           # The three apps measure `lib/` only — the label carries that, because
           # the comment is read out of context and "@quagga/web 87%" would
           # otherwise be read as the whole app.
           - workspace: "@quagga/web"
             label: "@quagga/web (lib/ — server logic)"
             directory: apps/web
+            slug: web
           - workspace: "@quagga/org"
             label: "@quagga/org (lib/ — server logic)"
             directory: apps/org
+            slug: org
           - workspace: "@quagga/suppliers"
             label: "@quagga/suppliers (lib/ — server logic)"
             directory: apps/suppliers
+            slug: suppliers
     steps:
       # `fetch-depth: 0` — the scope check below diffs against the base branch,
       # which a shallow clone does not have.
@@ -459,14 +469,12 @@ jobs:
           node-version: 22
           cache: pnpm
 
-      # ONLY REPORT WHAT THE BRANCH ACTUALLY TOUCHED.
+      # ONLY RUN WHAT THE BRANCH ACTUALLY TOUCHED.
       #
-      # Five unchanged coverage tables on every pull request is noise, and noise
-      # is how a real drop gets scrolled past. A workspace is in scope when its
-      # own directory changed, or when the thing that decides the floors did.
-      #
-      # Plain `git diff`, not a third-party action: one less thing with write
-      # access to pull requests, and the rule stays readable.
+      # Unchanged workspaces on a pull request are skipped. Floors live in each
+      # workspace's vitest.config.ts, so a CI-workflow-only change does not fan
+      # out eight shards. Push to main always runs every workspace so the
+      # coverage-baseline-* artifacts stay current.
       - name: Is this workspace in scope?
         id: scope
         run: |
@@ -475,8 +483,7 @@ jobs:
           if [ "${{ github.event_name }}" != "pull_request" ]; then
             echo "in-scope=true" >> "$GITHUB_OUTPUT"
             echo "Not a pull request — running."
-          elif ! git diff --quiet "$base"...HEAD -- \
-                 "${{ matrix.directory }}" .github/workflows/ci.yml; then
+          elif ! git diff --quiet "$base"...HEAD -- "${{ matrix.directory }}"; then
             echo "in-scope=true" >> "$GITHUB_OUTPUT"
             echo "${{ matrix.directory }} changed on this branch — running."
           else
@@ -497,59 +504,89 @@ jobs:
         if: steps.scope.outputs.in-scope == 'true'
         run: pnpm --filter ${{ matrix.workspace }} test:coverage
 
-      # PINNED TO A COMMIT, NOT A TAG. `@v2` is mutable — whoever owns the
-      # action can repoint it at any commit, and this step holds
-      # `pull-requests: write` on a public repository. The comment records the
-      # human-readable version so dependency automation can still bump it.
+      # Baseline for the next PR: latest successful main summary wins when a
+      # later PR downloads coverage-baseline-<slug>.
+      - name: Upload coverage baseline artifact
+        if: >-
+          success()
+          && github.event_name == 'push'
+          && github.ref == 'refs/heads/main'
+          && steps.scope.outputs.in-scope == 'true'
+        uses: actions/upload-artifact@v4
+        with:
+          name: coverage-baseline-${{ matrix.slug }}
+          path: ${{ matrix.directory }}/coverage/coverage-summary.json
+          retention-days: 30
+          if-no-files-found: error
+
+      # COMPARE TO MAIN, THEN COMMENT ONLY ON REGRESSION.
       #
-      # `always()` so the numbers are visible on the run that breached a floor,
-      # which is when they matter most.
+      # A quiet PR timeline is normal when totals hold or improve. Proof that
+      # compare ran lives on the check: ::notice::/::warning:: annotations and
+      # the job summary (comment-on: none). Script failure fails this step so
+      # broken plumbing cannot look like a healthy silent PR. The third-party
+      # comment post stays continue-on-error — floors gate the merge, not the
+      # reporter.
       #
-      # UPDATED IN PLACE, ON PURPOSE. The action finds its previous comment by
-      # name and edits it, so each report keeps ONE anchored position in the
-      # conversation rather than jumping to the bottom on every push and
-      # interleaving with review threads. Five reports that move every run are
-      # five things to find again.
+      # Clear an existing warning only when compare writes outcome=ok. A
+      # regression, a missing baseline (no-baseline), and a compare that
+      # exited before writing an outcome all leave the previous comment in
+      # place — those runs never verified that coverage held or improved.
       #
-      # Whether a table is current is answered by the table, not by where it
-      # sits: the action stamps the run and the commit in its footer — "#154
-      # for commit c69b1fb" — so it is a glance rather than an inference from a
-      # timestamp.
+      # PINNED TO A COMMIT, NOT A TAG. `@v2` is mutable and this step holds
+      # pull-requests: write on a public repository.
       #
-      # This replaced a delete-then-post step, which did put the newest report
-      # at the bottom, but scattered it among the reviews and left a window
-      # where a run cancelled between the delete and the post removed a comment
-      # without replacing it. This repository cancels superseded runs
-      # constantly.
-      #
-      # FORKS GET THE FLOORS, NOT THE COMMENT.
-      #
-      # A `pull_request` from a fork runs with a READ-ONLY token, whatever this
-      # job asks for — so both comment steps would fail and show a red
-      # `coverage` shard on the pull request of somebody contributing for the
-      # first time. This repository asks for outside help in CONTRIBUTING.md;
-      # greeting that with a failing check nobody can fix is the wrong first
-      # impression.
-      #
-      # The floors above still run and still fail on a real breach, because
-      # they need no token. Only the reporting is skipped, and the numbers stay
-      # readable in the job summary.
+      # FORKS GET THE FLOORS, NOT THE COMMENT (read-only token).
+
+      - name: Download coverage baseline from main
+        id: baseline
+        if: >-
+          always() && github.event_name == 'pull_request'
+          && steps.scope.outputs.in-scope == 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: >
+          pnpm exec tsx scripts/coverage-baseline.ts download
+          --slug "${{ matrix.slug }}"
+          --out "${{ matrix.directory }}/coverage-main"
+
+      - name: Compare coverage to main baseline
+        id: compare
+        if: >-
+          always() && github.event_name == 'pull_request'
+          && steps.scope.outputs.in-scope == 'true'
+        run: >
+          pnpm exec tsx scripts/coverage-baseline.ts compare
+          --current "${{ matrix.directory }}/coverage/coverage-summary.json"
+          --baseline "${{ matrix.directory }}/coverage-main/coverage-summary.json"
+
+      - name: Clear stale coverage warning comment
+        if: >-
+          always() && github.event_name == 'pull_request'
+          && github.event.pull_request.head.repo.full_name == github.repository
+          && steps.scope.outputs.in-scope == 'true'
+          && steps.compare.outputs.outcome == 'ok'
+        continue-on-error: true
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: >
+          pnpm exec tsx scripts/coverage-baseline.ts clear-comment
+          --name "${{ matrix.label }}"
+          --pr "${{ github.event.pull_request.number }}"
 
       - name: Report coverage on the pull request
         if: >-
           always() && github.event_name == 'pull_request'
           && github.event.pull_request.head.repo.full_name == github.repository
           && steps.scope.outputs.in-scope == 'true'
-        # REPORTING NEVER FAILS THE SHARD. `coverage` is in `CI pass`'s needs
-        # list, so this job blocks the merge — and a third-party action having
-        # a bad afternoon must not be what stops a branch with green floors.
-        # The floors step above is the one allowed to fail here.
         continue-on-error: true
         uses: davelosert/vitest-coverage-report-action@8b157684c6a6b259b97d45e72b44242865c0f6a5 # v2.12.2
         with:
           name: ${{ matrix.label }}
           working-directory: ${{ matrix.directory }}
           file-coverage-mode: changes
+          comment-on: ${{ steps.compare.outputs.outcome == 'regression' && 'pr' || 'none' }}
+          json-summary-compare-path: ${{ steps.baseline.outputs.found == 'true' && 'coverage-main/coverage-summary.json' || '' }}
 
   ci-pass:
     name: CI pass
