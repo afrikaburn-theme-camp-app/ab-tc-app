@@ -362,15 +362,29 @@ So, in this repo:
   regression tests before pushing. This has caught real majors every time it ran.
 - **Orchestration reports**: structured-output reports are pure JSON fields — never
   embed XML-ish tags inside strings (a known repeated failure mode).
-- **Write the pull request short, and put the long version in the fold.** The
-  template's sections want a few lines each; it ends with a collapsed
-  **Supplementary context** block that has no length limit. Reasoning, rejected
-  approaches, the long quote from the spec go THERE — not cut, moved. This is a
-  standing failure mode of agent-written PRs specifically: a thorough description
-  of the work buries **Database** and **Risk**, which are the two things the
-  reviewer of a deployed product actually needs, and the volume reads as
-  confidence rather than as the padding it is. `None.` under Database and
-  Expected follow-ups is a real answer and says you checked.
+- **Pick a typed PR template, then fill only the agent block.** The default
+  `.github/pull_request_template.md` is a router; typed bodies live under
+  `.github/PULL_REQUEST_TEMPLATE/` (`feature`, `fix`, `database`, `security`,
+  `docs`, `chore`). Use `gh pr create --body-file .github/PULL_REQUEST_TEMPLATE/<type>.md`.
+  **Summary** is for the human (reasoning). You fill one continuous blockquote
+  inside `<!-- ===== AGENT START ===== -->` … `<!-- ===== AGENT END ===== -->`.
+  Put **one** `🤖` on the first heading only:
+
+  ```
+  >  ### 🤖 What Changed
+  >  Short line.
+  >
+  >  ### Blast Radius
+  >  …
+  ```
+
+  Do not repeat `🤖` on later headings or body lines. **What Changed** is ≤3
+  sentences and ≤500 characters — never a dump. Put decisions, tradeoffs,
+  deliberate omissions, follow-ups and known debt in **Notes for the Reviewer**
+  (always visible, not a fold). Length caps apply to agent text only. A standing
+  failure mode of agent-written PRs is burying **Database** and the **Risk
+  Matrix** under essay prose; keep those scannable. `None.` under Database and
+  Notes for the Reviewer is a real answer and says you checked.
 - **Issues are labelled, and two labels change how you read one.** The taxonomy and
   the triage routine are `docs/triage.md`. `needs-triage` means nobody has reviewed
   it — the stated `type:` may be wrong. `source: in-app` means the in-app reporter
@@ -443,9 +457,11 @@ gh pr create                                   # the template's sections are loa
   and every commit in the range. `fix(web,org): deletion guards counted deleted
 accounts as live`. Lowercase, imperative, no full stop, ≤72 chars, scope from the
   workspace list. Prose subjects are rejected. Full rules: `CONTRIBUTING.md`.
-- **The PR template's Database and Risk sections are load-bearing.** The product is
-  deployed; "no schema changes" is a real and useful answer, and leaving it blank is
-  not.
+- **The typed PR template's Database and Risk Matrix sections are load-bearing.**
+  The product is deployed; "no schema changes" is a real and useful answer, and
+  leaving it blank is not. Use the `database` template when a migration is in the
+  diff. For Risk Matrix, omit any dimension that does not apply (delete the line)
+  — do not write "n/a" or explain the omission.
 - **Some paths need a code-owner review** (`.github/CODEOWNERS`): currently root
   files, `.github/` and `LICENSE`; expected to widen to migrations, `packages/auth`
   and `packages/core` as the maintainer team grows (see `MAINTAINERS.md`). Not a

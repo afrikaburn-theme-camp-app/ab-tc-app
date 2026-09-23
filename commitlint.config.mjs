@@ -15,8 +15,8 @@
 /**
  * The scope vocabulary: workspace names with their npm scope dropped, plus
  * `repo` for root-level changes. Kept in step with `ls packages/ apps/` and
- * with `.github/pull_request_template.md`'s scope list, which must agree with
- * this one.
+ * with the scope list in `.github/pull_request_template.md` and
+ * `.github/PULL_REQUEST_TEMPLATE/*.md`, which must agree with this one.
  *
  * `scopes`, `sdk`, `react` and `api` (the speculative `@afrikaburn/*` SDK
  * packages and the unbuilt `/v1` HTTP surface — see `docs/sdk/`) are

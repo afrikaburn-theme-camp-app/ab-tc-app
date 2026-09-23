@@ -260,13 +260,53 @@ and are not written by a person.
 
 ## Pull request descriptions
 
-`.github/pull_request_template.md` is applied automatically. Two sections in it
-are load-bearing rather than ceremonial, because of what this product is:
+`.github/pull_request_template.md` is a **router**. GitHub has no PR template
+chooser, so that default body only links to a typed template under
+`.github/PULL_REQUEST_TEMPLATE/` (`feature`, `fix`, `database`, `security`,
+`docs`, `chore`). Click the matching type on the compare page, or from the CLI:
+
+```
+gh pr create --body-file .github/PULL_REQUEST_TEMPLATE/<type>.md
+```
+
+### Who fills what
+
+- **Summary** (human only) — why we are doing this. Plain Markdown, no length
+  cap. This is the only section a human must write.
+- **Everything after Summary** (agent) — one continuous blockquote covering What
+  Changed, Blast Radius, Risk Matrix, Database, Testing, Notes for the Reviewer,
+  plus any type-specific fields. HTML comments in the template mark
+  `HUMAN START/END` and `AGENT START/END` and how to fill the block; they do not
+  render in the published PR.
+
+Agent-authored text is a single blockquote. Put **one** `🤖` on the first
+heading only; later headings and body lines stay plain inside the quote:
+
+```
+>  ### 🤖 What Changed
+>  Short line about what changed.
+>
+>  ### Blast Radius
+>  **Apps:** web
+>  …
+```
+
+**What Changed** is capped at ≤3 sentences and ≤500 characters so it cannot
+become a dumping ground. Longer reasoning belongs in **Summary** (human) or
+**Notes for the Reviewer** (inside the agent quote) — the latter is always
+visible, not a collapsed fold: decisions, tradeoffs, deliberately not done,
+follow-ups, known tech debt. "None." is a real answer there.
+
+### Load-bearing sections
+
+Two agent sections are load-bearing rather than ceremonial, because of what this
+product is:
 
 - **Database** — the product is **deployed**. Every migration runs against
   production data on the next deploy. State the migration number, whether it is
   additive, and exactly what any backfill touches. "None" is a fine answer and
-  should be said out loud.
+  should be said out loud. Prefer the **database** typed template whenever
+  `schema.ts` or a generated migration is in the diff.
 
   **Never hand-write a migration.** Edit `packages/db/src/schema.ts`, run
   `pnpm --filter @quagga/db db:generate`, and commit both the SQL and the
@@ -277,28 +317,15 @@ are load-bearing rather than ceremonial, because of what this product is:
   chain is broken: repair it rather than writing around it (`AGENTS.md` rule 1
   has the recipe).
 
-- **Risk** — what breaks if this is wrong and how anyone would notice.
+- **Risk Matrix** — scannable levels (Privacy, Authz, Data durability, Behaviour
+  change, Rollback), not a prose essay about risk. Use labeled lines inside the
+  agent blockquote — pipe tables and GitHub task lists do not render inside
+  `>` quotes. When a dimension does not apply to this PR, **omit that line
+  entirely** when filling the description — do not leave "none", "n/a", or an
+  explanation of why it was skipped.
 
-Keep the body's _Overview_ in plain prose. The convention is about the title and
-the structure; it is not an instruction to write like a machine.
-
-### Short body, long appendix
-
-Every section above the fold wants a few lines. Not because brevity is a virtue
-in itself, but because the sections that matter most here are the easiest to
-skim past: a reviewer scrolling through four paragraphs of design reasoning to
-find out whether there is a migration is a reviewer who eventually stops
-looking.
-
-So the template ends with a collapsed **Supplementary context** block, and it
-has no length limit at all. The reasoning, the approaches you rejected, the long
-quote from the spec, the transcript — put them there rather than cutting them.
-It is the same information, one click away, and the six lines a reviewer must
-read stay six lines.
-
-Two sections people leave blank that should not be: **Database** and **Expected
-follow-ups**. "None." is a real answer to both, and it means something different
-from silence — it says you checked.
+"None." under Database and Notes for the Reviewer means you checked; silence
+does not.
 
 ## Before you push
 
