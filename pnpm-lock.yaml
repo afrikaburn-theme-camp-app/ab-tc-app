@@ -17,6 +17,9 @@ importers:
       '@commitlint/config-conventional':
         specifier: ^21.2.0
         version: 21.2.0
+      '@types/node':
+        specifier: ^25.9.1
+        version: 25.9.5
       husky:
         specifier: ^9.1.7
         version: 9.1.7
