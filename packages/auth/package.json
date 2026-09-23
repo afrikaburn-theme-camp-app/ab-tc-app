@@ -31,7 +31,7 @@
     "@quagga/eslint-config": "workspace:*",
     "@quagga/typescript-config": "workspace:*",
     "@simplewebauthn/server": "^13.3.2",
-    "@types/node": "^25.9.1",
+    "@types/node": "^26.6.2",
     "@vitest/coverage-v8": "^4.1.10",
     "eslint": "^10.11.0",
     "tsx": "^4.23.15",
