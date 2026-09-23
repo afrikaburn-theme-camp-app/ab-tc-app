@@ -330,7 +330,7 @@ jobs:
 
       - name: Upload the report
         if: always()
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           # Per persona, or eight uploads collide on one name.
           name: playwright-report-${{ matrix.persona }}
@@ -512,7 +512,7 @@ jobs:
           && github.event_name == 'push'
           && github.ref == 'refs/heads/main'
           && steps.scope.outputs.in-scope == 'true'
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: coverage-baseline-${{ matrix.slug }}
           path: ${{ matrix.directory }}/coverage/coverage-summary.json
