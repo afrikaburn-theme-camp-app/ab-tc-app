@@ -3,9 +3,9 @@ TITLE: Conventional Commits with a workspace scope — see CONTRIBUTING.md.
     type(scope): imperative subject, lowercase, no full stop, <=72 chars
 Scopes: web · org · suppliers · core · db · ui · auth · types · e2e · repo
 Template: database — any schema.ts change / generated migration.
-Agent: one continuous blockquote after Summary. One 🤖 only, on the first heading:
->  ### 🤖 Title Text
->  Other text
+Prove: production-safe migration (live product — next deploy applies it).
+App Spec: Implements OR Exempt only — delete the unused line. No Modifies (use docs).
+Agent: one continuous blockquote after Summary. One 🤖 only, on the first heading.
 -->
 
 <!-- ===== HUMAN START: Summary ===== -->
@@ -21,22 +21,19 @@ Agent: one continuous blockquote after Summary. One 🤖 only, on the first head
 >  <!-- What Changed: schema/migration in user terms. ≤3 sentences AND ≤500 characters. -->
 >  ### 🤖 What Changed
 >
->  <!-- Blast Radius: pick apps/packages; one audience; one deploy timing. Keep scannable. -->
->  ### Blast Radius
->  **Apps:** web · org · suppliers
->  **Packages:** db ·
->  **Audience:** none | camp leads | burners | org staff
->  **Deploy:** next deploy | user-reachable before review
+>  <!-- App Spec: Implements = PREFIX-NNN this schema enables;
+>       Exempt = hygiene index / generator repair / maintenance.
+>       Fill EXACTLY ONE — delete the other line. -->
+>  ### App Spec
+>  **Implements:**
+>  **Exempt:**
 >
->  <!-- Risk Matrix levels — Privacy: none|camp|org|public-path; Authz: none|UI-only|server-predicate; Data durability: none|additive-migration|destructive; Behaviour change: none|internal|user-visible; Rollback: easy|migrate-forward|hard. When filling: omit any dimension that does not apply (delete the line). Do not write "n/a" or explain why omitted. -->
->  ### Risk Matrix
->  **Privacy:**
->  **Authz:**
->  **Data durability:**
->  **Behaviour change:**
->  **Rollback:**
+>  <!-- Generator path LOAD-BEARING. Never hand-write a migration.
+>       Edit schema.ts → db:generate → commit SQL + meta/NNNN_snapshot.json. -->
+>  ### Generator path
+>  **schema.ts → db:generate → SQL + snapshot:** [ ] affirmed
 >
->  <!-- Database LOAD-BEARING. THIS PRODUCT IS DEPLOYED. Required: migration number/filename; additive?; backfill/UPDATE touches or "None."; irreversible?; snapshot committed yes/no. Never hand-write a migration. Edit schema.ts → db:generate → commit SQL + snapshot. -->
+>  <!-- Database LOAD-BEARING. THIS PRODUCT IS DEPLOYED. -->
 >  ### Database
 >  **Migration:**
 >  **Additive:**
@@ -44,13 +41,27 @@ Agent: one continuous blockquote after Summary. One 🤖 only, on the first head
 >  **Irreversible:**
 >  **Snapshot committed:** yes / no
 >
->  <!-- Testing: prove the queries the app actually runs (incl. ON CONFLICT upserts), not only that the constraint exists. Use [x]/[ ] status lines. -->
+>  <!-- Blast Radius: apps that read the tables. Deploy is next deploy (no docs-only). -->
+>  ### Blast Radius
+>  **Apps:** web · org · suppliers
+>  **Packages:** db ·
+>  **Deploy:** next deploy | user-reachable before review
+>
+>  <!-- Risk Matrix — slim for migrations: Privacy (new columns?), Data durability, Rollback.
+>       Omit unused lines. Behaviour ships in the same PR → say so under Notes (or prefer feature template). -->
+>  ### Risk Matrix
+>  **Privacy:**
+>  **Data durability:**
+>  **Rollback:**
+>
+>  <!-- Testing: prove the queries the app actually runs (incl. ON CONFLICT upserts), not only that the constraint exists. -->
 >  ### Testing
 >  **Gate:** [ ] `pnpm -w exec turbo run lint typecheck test build`
->  **E2E:** [ ] shard(s):
 >  **Migration locally:** [ ] how:
+>  **App queries (incl. ON CONFLICT):** [ ] covered by:
+>  **E2E:** [ ] shard(s): none / … (only if behaviour also changes)
 >
->  <!-- Notes: decisions, tradeoffs, deliberately not done, follow-ups, known tech debt. Default "None." -->
+>  <!-- Notes: decisions, tradeoffs, follow-ups, known tech debt. Default "None." -->
 >  ### Notes for the Reviewer
 >  None.
 

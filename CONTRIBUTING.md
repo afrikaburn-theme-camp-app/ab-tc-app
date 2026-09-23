@@ -269,60 +269,39 @@ chooser, so that default body only links to a typed template under
 gh pr create --body-file .github/PULL_REQUEST_TEMPLATE/<type>.md
 ```
 
+**The typed template is the fill-in source of truth** — required sections, App
+Spec modes, and Risk Matrix dimensions live there. Do not invent a universal
+skeleton; fill only what that type ships.
+
 ### Who fills what
 
 - **Summary** (human only) — why we are doing this. Plain Markdown, no length
   cap. This is the only section a human must write.
-- **Everything after Summary** (agent) — one continuous blockquote covering What
-  Changed, Blast Radius, Risk Matrix, Database, Testing, Notes for the Reviewer,
-  plus any type-specific fields. HTML comments in the template mark
-  `HUMAN START/END` and `AGENT START/END` and how to fill the block; they do not
-  render in the published PR.
+- **Everything after Summary** (agent) — one continuous blockquote from the
+  typed template. HTML comments mark `HUMAN START/END` and `AGENT START/END`;
+  they do not render in the published PR.
 
-Agent-authored text is a single blockquote. Put **one** `🤖` on the first
-heading only; later headings and body lines stay plain inside the quote:
+Put **one** `🤖` on the first heading only (`### 🤖 What Changed`); later
+headings stay plain inside the quote. **What Changed** is ≤3 sentences and
+≤500 characters. Longer reasoning belongs in **Summary** or **Notes for the
+Reviewer**.
 
-```
->  ### 🤖 What Changed
->  Short line about what changed.
->
->  ### Blast Radius
->  **Apps:** web
->  …
-```
+### Cross-cutting rules (templates enforce the detail)
 
-**What Changed** is capped at ≤3 sentences and ≤500 characters so it cannot
-become a dumping ground. Longer reasoning belongs in **Summary** (human) or
-**Notes for the Reviewer** (inside the agent quote) — the latter is always
-visible, not a collapsed fold: decisions, tradeoffs, deliberately not done,
-follow-ups, known tech debt. "None." is a real answer there.
-
-### Load-bearing sections
-
-Two agent sections are load-bearing rather than ceremonial, because of what this
-product is:
-
-- **Database** — the product is **deployed**. Every migration runs against
-  production data on the next deploy. State the migration number, whether it is
-  additive, and exactly what any backfill touches. "None" is a fine answer and
-  should be said out loud. Prefer the **database** typed template whenever
-  `schema.ts` or a generated migration is in the diff.
+- **App Spec** — cite `PREFIX-NNN` IDs from
+  `docs/sources/app-specification/app-specification.md`. Modes are constrained
+  per typed template. **Implements** and **Modifies** are mutually exclusive;
+  never both. Hygiene uses **Exempt**.
+- **Database** — the product is **deployed**. Prefer the **database** template
+  whenever `schema.ts` or a generated migration is in the diff. "None." on other
+  types means you checked.
 
   **Never hand-write a migration.** Edit `packages/db/src/schema.ts`, run
   `pnpm --filter @quagga/db db:generate`, and commit both the SQL and the
-  `meta/NNNN_snapshot.json` it writes. The snapshot is not optional — it is what
-  the next `db:generate` diffs against, and a hand-written migration skips it,
-  leaving the generator diffing against a stale database and proposing to
-  re-create tables that already exist. If its output looks absurd, the snapshot
-  chain is broken: repair it rather than writing around it (`AGENTS.md` rule 1
-  has the recipe).
-
-- **Risk Matrix** — scannable levels (Privacy, Authz, Data durability, Behaviour
-  change, Rollback), not a prose essay about risk. Use labeled lines inside the
-  agent blockquote — pipe tables and GitHub task lists do not render inside
-  `>` quotes. When a dimension does not apply to this PR, **omit that line
-  entirely** when filling the description — do not leave "none", "n/a", or an
-  explanation of why it was skipped.
+  `meta/NNNN_snapshot.json` it writes. If generator output looks absurd, the
+  snapshot chain is broken — repair it (`AGENTS.md` rule 1), do not write around it.
+- **Risk Matrix / omit rule** — when filling, delete unused labeled lines; do not
+  write "n/a". Pipe tables and GitHub task lists do not render inside `>` quotes.
 
 "None." under Database and Notes for the Reviewer means you checked; silence
 does not.

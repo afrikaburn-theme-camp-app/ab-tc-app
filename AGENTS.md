@@ -363,28 +363,19 @@ So, in this repo:
 - **Orchestration reports**: structured-output reports are pure JSON fields — never
   embed XML-ish tags inside strings (a known repeated failure mode).
 - **Pick a typed PR template, then fill only the agent block.** The default
-  `.github/pull_request_template.md` is a router; typed bodies live under
-  `.github/PULL_REQUEST_TEMPLATE/` (`feature`, `fix`, `database`, `security`,
-  `docs`, `chore`). Use `gh pr create --body-file .github/PULL_REQUEST_TEMPLATE/<type>.md`.
-  **Summary** is for the human (reasoning). You fill one continuous blockquote
-  inside `<!-- ===== AGENT START ===== -->` … `<!-- ===== AGENT END ===== -->`.
-  Put **one** `🤖` on the first heading only:
+  `.github/pull_request_template.md` is a router; typed bodies under
+  `.github/PULL_REQUEST_TEMPLATE/` are the **fill-in source of truth**
+  (`feature`, `fix`, `database`, `security`, `docs`, `chore`). Use
+  `gh pr create --body-file .github/PULL_REQUEST_TEMPLATE/<type>.md`.
+  **Summary** is for the human. You fill the single agent blockquote in that
+  typed file — do **not** invent a universal skeleton. Process detail for humans:
+  `CONTRIBUTING.md` §"Pull request descriptions".
 
-  ```
-  >  ### 🤖 What Changed
-  >  Short line.
-  >
-  >  ### Blast Radius
-  >  …
-  ```
-
-  Do not repeat `🤖` on later headings or body lines. **What Changed** is ≤3
-  sentences and ≤500 characters — never a dump. Put decisions, tradeoffs,
-  deliberate omissions, follow-ups and known debt in **Notes for the Reviewer**
-  (always visible, not a fold). Length caps apply to agent text only. A standing
-  failure mode of agent-written PRs is burying **Database** and the **Risk
-  Matrix** under essay prose; keep those scannable. `None.` under Database and
-  Notes for the Reviewer is a real answer and says you checked.
+  Put **one** `🤖` on the first heading only. **What Changed** ≤3 sentences /
+  ≤500 characters. Keep type-specific load-bearing fields scannable (do not bury
+  them under essay prose). `None.` under Database / Notes means you checked.
+  App Spec modes, Risk Matrix dimensions, and required sections: **read the
+  typed template you picked**.
 - **Issues are labelled, and two labels change how you read one.** The taxonomy and
   the triage routine are `docs/triage.md`. `needs-triage` means nobody has reviewed
   it — the stated `type:` may be wrong. `source: in-app` means the in-app reporter
