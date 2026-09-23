@@ -528,6 +528,11 @@ jobs:
       # comment post stays continue-on-error — floors gate the merge, not the
       # reporter.
       #
+      # Clear an existing warning only when compare writes outcome=ok. A
+      # regression, a missing baseline (no-baseline), and a compare that
+      # exited before writing an outcome all leave the previous comment in
+      # place — those runs never verified that coverage held or improved.
+      #
       # PINNED TO A COMMIT, NOT A TAG. `@v2` is mutable and this step holds
       # pull-requests: write on a public repository.
       #
@@ -560,7 +565,7 @@ jobs:
           always() && github.event_name == 'pull_request'
           && github.event.pull_request.head.repo.full_name == github.repository
           && steps.scope.outputs.in-scope == 'true'
-          && steps.compare.outputs.outcome != 'regression'
+          && steps.compare.outputs.outcome == 'ok'
         continue-on-error: true
         env:
           GH_TOKEN: ${{ github.token }}
