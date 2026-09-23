@@ -77,6 +77,9 @@ jobs:
           node-version: 22
           cache: pnpm
 
+      - name: Install Aikido Safe Chain
+        run: ./scripts/install-safe-chain.sh --ci
+
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 

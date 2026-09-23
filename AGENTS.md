@@ -69,6 +69,8 @@ pnpm e2e:local                             # the OTHER gate — real DB, real br
 pnpm e2e:local specs/new-burner            # ...or one persona
 pnpm --filter @quagga/web dev              # or org / suppliers
 pnpm --filter @quagga/db db:generate       # schema.ts → migration + snapshot. NEVER hand-write one.
+./scripts/install-safe-chain.sh           # once per machine — wraps pnpm (malware + 48h age gate). CI uses --ci.
+./scripts/verify-safe-chain.sh            # canary: must refuse Aikido's safe-chain-test (CI job safe-chain).
 ```
 
 **The unit gate does not run a single browser.** `turbo run … test` lints and

@@ -167,10 +167,12 @@ plan — pick it up from `docs/roadmap.md` when it becomes real work.
 
 ## Threat model summary
 
-Full actor table and control mapping live in the codebase's test suite and
-in code comments (`packages/core/src/org-permissions.ts`,
-`packages/core/src/privacy.ts`) rather than being reproduced in full here.
-The headline points:
+The cross-cutting covered-vs-open matrix for the whole product (auth, privacy,
+supply chain, secrets, repo process, observability) lives in
+[`23-security-threat-model.md`](23-security-threat-model.md). Full actor and
+control detail for authz/privacy also lives in the test suite and in code
+comments (`packages/core/src/org-permissions.ts`,
+`packages/core/src/privacy.ts`). Auth-stack headlines:
 
 - **Opportunistic credential stuffing** is the highest-likelihood threat.
   Primary defence: the HIBP breach blocklist plus a 15-character minimum

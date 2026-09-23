@@ -11,8 +11,10 @@
 _Grounded in cited South African legal commentary, not legal advice — have
 someone with a POPIA mandate review this before relying on it for a real
 incident._ This is the operational half of the auth/identity contract; the
-architecture, methods and threat model live in
-[`technical-spec/01-auth-and-identity.md`](technical-spec/01-auth-and-identity.md).
+architecture and methods live in
+[`technical-spec/01-auth-and-identity.md`](technical-spec/01-auth-and-identity.md);
+the cross-cutting covered-vs-open threat matrix is
+[`technical-spec/23-security-threat-model.md`](technical-spec/23-security-threat-model.md).
 
 ## Lawful basis
 
@@ -123,6 +125,13 @@ grants.
 scope (which fields, which subjects — any hard-locked field escalates
 severity), preserve evidence before rotating anything, run the s22
 assessment, request removal if publicly cached.
+
+**Compromised npm package (malware / malicious publish)**: follow the dedicated
+runbook
+[`supply-chain-incident-response.md`](supply-chain-incident-response.md) —
+contain, fix the lockfile, age-gate bypass rules for a young clean fix,
+secret rotation and s22 assessment if production or CI ran the bad tree.
+Do not disable Safe Chain malware scanning to “unblock” the install.
 
 ## Kill switch — not yet built
 

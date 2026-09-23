@@ -4,6 +4,14 @@ updates:
     directory: "/"
     schedule:
       interval: weekly
+    # Align version-update PRs with Aikido Safe Chain's 48h minimum package
+    # age (`.aikido` + threat model C6). Dependabot only accepts whole days
+    # (1–90), so 2 ≈ 48h. Security-update PRs ignore cooldown and still open
+    # immediately. Cooldown applies to the direct dependency being bumped;
+    # young transitives pulled into the lockfile are still caught by Safe
+    # Chain on CI install.
+    cooldown:
+      default-days: 2
     groups:
       minor-and-patch:
         update-types:
@@ -22,3 +30,5 @@ updates:
     directory: "/"
     schedule:
       interval: weekly
+    cooldown:
+      default-days: 2
