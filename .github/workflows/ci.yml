@@ -31,7 +31,7 @@ jobs:
     name: safe-chain · malware canary
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
 
       - name: Install pnpm
         uses: pnpm/action-setup@v4
@@ -66,7 +66,7 @@ jobs:
     steps:
       # `fetch-depth: 0` — the range check below needs the merge base, and the
       # default shallow clone does not have it.
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
         with:
           fetch-depth: 0
 
@@ -110,7 +110,7 @@ jobs:
     name: lint · typecheck · test · build
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
 
       - name: Install pnpm
         uses: pnpm/action-setup@v4
@@ -193,7 +193,7 @@ jobs:
             label: "supplier · onboarding, documents, standing"
             side: suppliers
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
 
       - name: Install pnpm
         uses: pnpm/action-setup@v4
@@ -454,7 +454,7 @@ jobs:
     steps:
       # `fetch-depth: 0` — the scope check below diffs against the base branch,
       # which a shallow clone does not have.
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
         with:
           fetch-depth: 0
 
