@@ -12,6 +12,11 @@ updates:
     # Chain on CI install.
     cooldown:
       default-days: 2
+    # commitlint's scope enum is workspace names + `repo` — not Dependabot's
+    # default `deps` / `deps-dev`. Prefix with `chore(repo)` and leave
+    # `include: scope` off so titles pass CI without diluting SCOPES.
+    commit-message:
+      prefix: "chore(repo)"
     groups:
       minor-and-patch:
         update-types:
@@ -32,3 +37,5 @@ updates:
       interval: weekly
     cooldown:
       default-days: 2
+    commit-message:
+      prefix: "chore(repo)"
