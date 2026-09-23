@@ -325,9 +325,11 @@ tested instead of your build.
 **If you are doing front-end or design work**, the first command is the one that
 matters. The e2e suite needs Docker and takes about ten minutes; run it if you
 touched sign-in, sessions, permissions, or anything a person's privacy depends
-on. Otherwise CI will run it for you on the pull request, on every shard, for
-free — and unlike most projects, **it runs on forks too**, because none of it
-needs a secret.
+on. Otherwise CI will run it on the pull request — every persona shard — when
+the change touches product paths (`apps/`, `packages/`, `e2e/`, workflows, …).
+Meta-only PRs (docs, CONTRIBUTING, PR templates, commitlint, and similar) skip
+the e2e fleet; pushes to `main` always run it. Unlike most projects, **e2e runs
+on forks too**, because none of it needs a secret.
 
 ### Two traps that have cost real time
 
