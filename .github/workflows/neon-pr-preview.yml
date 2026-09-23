@@ -12,6 +12,12 @@ name: Neon preview branch for PR
 # wiring on the first PR that introduces them. Secrets are only available to
 # same-repo PRs (forks get empty secrets and fail closed below).
 # Cleanup stays on pull_request_target (see neon-pr-cleanup.yml).
+#
+# Dependabot is skipped on purpose. Under `pull_request`, Dependabot gets an
+# empty secret store, so NEON_API_KEY resolves to nothing and the job fails
+# closed. E2E does not use this job (scripts/e2e-local.sh + local Postgres);
+# the preview DB is only for Vercel click-testing. We deliberately do not grant
+# Dependabot Neon or Vercel secrets — skip instead of widening that surface.
 
 on:
   pull_request:
@@ -34,7 +40,10 @@ jobs:
   neon-preview-env:
     if: >
       github.event_name == 'workflow_dispatch' ||
-      github.event.pull_request.head.repo.full_name == github.repository
+      (
+        github.event.pull_request.head.repo.full_name == github.repository &&
+        github.actor != 'dependabot[bot]'
+      )
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
