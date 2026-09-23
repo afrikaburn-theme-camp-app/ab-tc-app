@@ -128,10 +128,18 @@ jobs:
   # The local `commit-msg` hook covers the same ground, but a hook only binds a
   # machine that has run `pnpm install`, and `--no-verify` skips it. This does
   # not.
+  #
+  # Dependabot is exempt: its titles are machine-generated from package names
+  # (`chore(repo): bump davelosert/vitest-coverage-report-action from …`) and
+  # routinely blow past `header-max-length` 72. Scope is already constrained by
+  # `.github/dependabot.yml`'s `chore(repo)` prefix; length is not worth failing
+  # every bump over. `ci-pass` already accepts `skipped` for this job.
   commitlint:
     name: commit conventions
     runs-on: ubuntu-latest
-    if: github.event_name == 'pull_request'
+    if: >
+      github.event_name == 'pull_request' &&
+      github.actor != 'dependabot[bot]'
     steps:
       # `fetch-depth: 0` — the range check below needs the merge base, and the
       # default shallow clone does not have it.
@@ -717,9 +725,9 @@ jobs:
             fi
           fi
 
-          # GATED — `commitlint` only runs on pull requests, so `skipped` is a
-          # legitimate outcome on a push to main and must not fail the gate.
-          # Anything else (failure, cancelled) must.
+          # GATED — `commitlint` is pull-request-only and skips Dependabot, so
+          # `skipped` is legitimate on a push to main and on Dependabot PRs.
+          # Anything else (failure, cancelled) must fail the gate.
           case "${{ needs.commitlint.result }}" in
             success|skipped) ;;
             *)

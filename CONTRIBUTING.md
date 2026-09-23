@@ -256,7 +256,8 @@ header limit is 72 rather than 100, and long body/footer lines warn instead of
 failing, because hard-wrapping a URL to satisfy a linter makes a message worse.
 
 Merge commits and git-generated reverts are ignored; they cannot be conventional
-and are not written by a person.
+and are not written by a person. Dependabot PRs skip the CI job for the same
+reason.
 
 ## Pull request descriptions
 
