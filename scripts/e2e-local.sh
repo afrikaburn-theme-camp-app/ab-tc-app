@@ -150,10 +150,24 @@ if [ "$E2E_SERVE" = "build" ]; then
   # or OOM a 4-core CI runner, and they took down a 32GB dev machine outright
   # while this script was being written. Serialising costs a couple of minutes
   # and removes a whole class of "CI died for no visible reason".
-  pnpm exec turbo run build --concurrency=1 \
-    --filter=@quagga/web --filter=@quagga/org --filter=@quagga/suppliers \
-    > "$LOG_DIR/build.log" 2>&1 || {
-      echo "!! build failed:"; tail -30 "$LOG_DIR/build.log"; exit 1; }
+  #
+  # One automatic retry for known-transient build failures (font CDN / similar
+  # network blips). A second failure still dumps the log and exits.
+  build_apps() {
+    pnpm exec turbo run build --concurrency=1 \
+      --filter=@quagga/web --filter=@quagga/org --filter=@quagga/suppliers \
+      > "$LOG_DIR/build.log" 2>&1
+  }
+  if ! build_apps; then
+    if grep -Eq "next/font/google|fonts\.gstatic|fonts\.googleapis|Can't resolve '@vercel/turbopack-next/internal/font" "$LOG_DIR/build.log"; then
+      echo "==> build failed on a transient font/network error — retrying once"
+      if ! build_apps; then
+        echo "!! build failed after retry:"; tail -30 "$LOG_DIR/build.log"; exit 1
+      fi
+    else
+      echo "!! build failed:"; tail -30 "$LOG_DIR/build.log"; exit 1
+    fi
+  fi
   # `start` is not a turbo task — run each app's own script directly. One log,
   # so a failure in any of the three is visible in the same place as before.
   ( pnpm --filter @quagga/web start & \
