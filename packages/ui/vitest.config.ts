@@ -31,16 +31,23 @@ export default defineConfig({
       reportOnFailure: true,
       // Count every source file, not only the ones a test imports.
       include: ["src/**/*.{ts,tsx}"],
-      exclude: ["**/__tests__/**", "**/*.d.ts"],
+      exclude: [
+        "**/__tests__/**",
+        "**/*.d.ts",
+        // next/font/local is a Next compiler transform. Importing brand.ts
+        // under vitest/jsdom cannot exercise the face; a mock would only
+        // shrink the denominator. Keep it out of the measured set.
+        "src/fonts/**",
+      ],
       // A ratchet, not a target. Raise it as coverage improves; never lower it
       // to make a build pass — the drop is the signal.
       //
-      // NOTHING IS EXCLUDED beyond tests and type declarations, deliberately.
-      // Narrowing `include` to the files a test happens to reach would shrink
-      // the denominator rather than measure anything, and this package contains
-      // no file in the legitimate "executing it proves nothing" category — no
-      // barrel (package.json exports point at source files directly), no
-      // generated code, no bare schema literal. The one config-literal file,
+      // NOTHING IS EXCLUDED beyond tests, type declarations, and the
+      // next/font brand face (see exclude). Narrowing `include` to the files a
+      // test happens to reach would shrink the denominator rather than measure
+      // anything. This package otherwise contains no barrel (package.json
+      // exports point at source files directly), no generated code, and no
+      // bare schema literal. The one config-literal file,
       // components/markdown-editor/extensions.ts, is already at 100% because
       // markdown.ts imports it, so removing it would only cost denominator.
       //
