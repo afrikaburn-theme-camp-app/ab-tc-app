@@ -151,19 +151,31 @@ if [ "$E2E_SERVE" = "build" ]; then
   # while this script was being written. Serialising costs a couple of minutes
   # and removes a whole class of "CI died for no visible reason".
   #
-  # One automatic retry for known-transient build failures (font CDN / similar
-  # network blips). A second failure still dumps the log and exits.
+  # One automatic retry ONLY when the log looks like a transport blip
+  # (ECONNRESET, DNS, TLS, …). Compile/type errors fail immediately — a blind
+  # retry would hide real breakage and burn minutes.
   build_apps() {
     pnpm exec turbo run build --concurrency=1 \
       --filter=@quagga/web --filter=@quagga/org --filter=@quagga/suppliers \
       > "$LOG_DIR/build.log" 2>&1
   }
+  # Keep this list transport-shaped. Do NOT add "Module not found" / "Error:".
+  BUILD_NETWORK_RE='ECONNRESET|ECONNREFUSED|ETIMEDOUT|ENOTFOUND|EAI_AGAIN|socket hang up|network (timeout|error)|fetch failed|getaddrinfo|UNABLE_TO_VERIFY_LEAF_SIGNATURE|CERT_|SSL_|TLS|UND_ERR_|Client network socket disconnected'
   if ! build_apps; then
-    if grep -Eq "next/font/google|fonts\.gstatic|fonts\.googleapis|Can't resolve '@vercel/turbopack-next/internal/font" "$LOG_DIR/build.log"; then
-      echo "==> build failed on a transient font/network error — retrying once"
+    if grep -Eqi "$BUILD_NETWORK_RE" "$LOG_DIR/build.log"; then
+      echo
+      echo "!! NETWORK FAILURE during app build (transient transport error in log)."
+      echo "   Matched one of: ECONNRESET / DNS / TLS / fetch failed / …"
+      echo "   Retrying the build once."
+      echo
       if ! build_apps; then
-        echo "!! build failed after retry:"; tail -30 "$LOG_DIR/build.log"; exit 1
+        echo
+        echo "!! NETWORK FAILURE again — build still failing after one retry."
+        echo "!! Last 30 lines of build.log:"
+        tail -30 "$LOG_DIR/build.log"
+        exit 1
       fi
+      echo "==> build recovered after network retry"
     else
       echo "!! build failed:"; tail -30 "$LOG_DIR/build.log"; exit 1
     fi
