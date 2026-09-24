@@ -542,23 +542,19 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Install pnpm
-        uses: pnpm/action-setup@v4
-        with:
-          version: 10.30.0
-
-      - name: Install Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: 22
-          cache: pnpm
-
       # ONLY RUN WHAT THE BRANCH ACTUALLY TOUCHED.
       #
       # Unchanged workspaces on a pull request are skipped. Floors live in each
       # workspace's vitest.config.ts, so a CI-workflow-only change does not fan
       # out eight shards. Push to main always runs every workspace so the
       # coverage-baseline-* artifacts stay current.
+      #
+      # Scope MUST run before setup-node/pnpm. setup-node with `cache: pnpm`
+      # registers a post-job that saves the store path; when install is skipped
+      # and the restore was a miss, that path never exists and the post-step
+      # fails the shard with "Path Validation Error" — which ci-pass then
+      # treats as a coverage failure even though the workspace was out of
+      # scope by design.
       - name: Is this workspace in scope?
         id: scope
         run: |
@@ -574,6 +570,19 @@ jobs:
             echo "in-scope=false" >> "$GITHUB_OUTPUT"
             echo "${{ matrix.directory }} is untouched on this branch — skipping."
           fi
+
+      - name: Install pnpm
+        if: steps.scope.outputs.in-scope == 'true'
+        uses: pnpm/action-setup@v4
+        with:
+          version: 10.30.0
+
+      - name: Install Node.js
+        if: steps.scope.outputs.in-scope == 'true'
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
 
       - name: Install Aikido Safe Chain
         if: steps.scope.outputs.in-scope == 'true'
