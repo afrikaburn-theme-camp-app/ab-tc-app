@@ -5,16 +5,16 @@
 | **Category**           | Product                                           |
 | **Doc status**         | Active                                            |
 | **Normative language** | Descriptive only                                  |
-| **Requirement IDs**    | Partial — `ONBOARD-*` (App Spec §3), `CDB-*` (§4) |
+| **Requirement IDs**    | Partial — `ONBOARD-*` (Requirements §3), `CDB-*` (§4) |
 | **Owner / Updated**    | Repo maintainers, 2026-09-11                      |
 
 Every burner completes a **Burner Bio** once, per edition, when they join the
 platform. It doubles as the platform's onboarding gate and as the burner's
 self-owned profile.
 
-## Implements (App Specification)
+## Implements (Requirements)
 
-| App Spec §                       | IDs                                                                                                                        | Status         | Notes                                                                                                                                                                                             |
+| Requirements §                       | IDs                                                                                                                        | Status         | Notes                                                                                                                                                                                             |
 | -------------------------------- | -------------------------------------------------------------------------------------------------------------------------- | -------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | §3 Camper onboarding             | ONBOARD-019, ONBOARD-020                                                                                                   | ✅             | Camp-lead-authored blocking questionnaires and per-respondent completion tracking both work — see [`10-questionnaire-engine.md`](10-questionnaire-engine.md)                                      |
 | §3                               | ONBOARD-018                                                                                                                | 🚧             | A camp-authored required question exists; there is no distinct "acknowledgement" artifact separate from a required boolean question                                                               |
@@ -33,21 +33,21 @@ self-owned profile.
 
 ## Drift
 
-> ⚠️ **DRIFT — opposes-with-proposed-decision, App Spec §4 (CDB-001–029 and
-> related).** The App Spec describes camp administrators creating and
+> ⚠️ **DRIFT — opposes-with-proposed-decision, Requirements §4 (CDB-001–029 and
+> related).** The Requirements describes camp administrators creating and
 > editing camper records, including full name, ID/passport number and
 > contact details. What is built is the inverse: **each burner owns their
 > own profile**; camps invite, people fill in their own details. This is
 > enforced in code (`packages/core/src/privacy.ts` hard-locks ID, passport,
 > phone and both emergency contacts with no admin-edit path at all), not
-> merely a UI choice. The governing App Specification Decision Record —
+> merely a UI choice. The governing Requirements Decision Record —
 > **Decision 008, "Canonical camper data model"** — is still `proposed`.
 > Until it is accepted, this is this repo's current build stance, not
 > settled product law. `docs/roadmap.md` should be read as "not built
 > pending Decision 008," not "should never be built."
 
 > ⚠️ **CDB-039 / SEC-017 (masked ID numbers) — not a partial build.** The
-> App Spec asks for masked identity numbers. The code deliberately replaces
+> Requirements asks for masked identity numbers. The code deliberately replaces
 > masking with **non-exposure**: the field is either fully absent from a
 > given viewer's query (`apps/org/components/accounts-table.tsx`) or a
 > plain, visible input on the burner's own edit screen
@@ -71,7 +71,7 @@ withhold.
 
 ## Burner Bio field set (v3)
 
-Beyond the App Spec's own field list, the build carries several
+Beyond the Requirements own field list, the build carries several
 self-promotional additions, all optional and privacy-flaggable:
 
 - **`about`** — free-text bio ("for the burns"), default public.

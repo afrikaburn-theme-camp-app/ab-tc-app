@@ -4,7 +4,7 @@ TITLE: Conventional Commits with a workspace scope — see CONTRIBUTING.md.
 Scopes: web · org · suppliers · core · db · ui · auth · types · e2e · repo
 Template: fix — correcting broken behaviour.
 Prove: the bug is real and cannot return silently (Regression proof).
-App Spec: Implements OR Exempt only — delete the unused line. No Modifies (use docs).
+Requirements: Implements OR Exempt only — delete the unused line. No Modifies (use docs).
 Agent: one continuous blockquote after Summary. One 🤖 only, on the first heading.
 -->
 
@@ -21,10 +21,10 @@ Agent: one continuous blockquote after Summary. One 🤖 only, on the first head
 >  <!-- What Changed: what was broken and what the fix does. ≤3 sentences AND ≤500 characters. -->
 >  ### 🤖 What Changed
 >
->  <!-- App Spec: Implements = PREFIX-NNN the broken behaviour belongs to;
+>  <!-- Requirements: Implements = PREFIX-NNN the broken behaviour belongs to;
 >       Exempt = routine/emergency fix / maintenance (say which + why).
 >       Fill EXACTLY ONE — delete the other line. -->
->  ### App Spec
+>  ### Requirements
 >  **Implements:**
 >  **Exempt:**
 >

@@ -12,9 +12,9 @@ Art projects and mutant vehicles are first-class citizens of the same
 `groups` spine as theme camps — a different `kind`, the same identity,
 membership, roles and review machinery.
 
-## Implements (App Specification)
+## Implements (Requirements)
 
-| App Spec §                | IDs                                                                                                                  | Status | Notes                                                                                                                                                        |
+| Requirements §                | IDs                                                                                                                  | Status | Notes                                                                                                                                                        |
 | ------------------------- | -------------------------------------------------------------------------------------------------------------------- | ------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | §18 Creative Project Mode | CREATIVE-001 (art projects), CREATIVE-002 (mutant vehicles), CREATIVE-009 (roles), CREATIVE-018 (annual submissions) | ✅     |                                                                                                                                                              |
 | §18                       | CREATIVE-005 (creative installations)                                                                                | 🚧     | `group_kind` has no distinct `installation` value; would ride under `artwork`                                                                                |

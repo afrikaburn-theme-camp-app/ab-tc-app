@@ -5,7 +5,7 @@
 | **Category**           | Product                                                    |
 | **Doc status**         | Active                                                     |
 | **Normative language** | Descriptive only                                           |
-| **Requirement IDs**    | N/A — no App Spec section covers user-facing bug reporting |
+| **Requirement IDs**    | N/A — no Requirements section covers user-facing bug reporting |
 | **Owner / Updated**    | Repo maintainers, 2026-09-11                               |
 
 A corner button in all three apps lets a signed-in user report a bug or
@@ -13,9 +13,9 @@ propose a feature, which files a public GitHub issue. Shipped; previously
 undocumented as a feature (only its environment variables and its label
 taxonomy were recorded elsewhere).
 
-## Implements (App Specification)
+## Implements (Requirements)
 
-Not derived from any App Spec section — this is repo-built operational
+Not derived from any Requirements section — this is repo-built operational
 tooling.
 
 ## How it is built

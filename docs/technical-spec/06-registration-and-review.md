@@ -5,15 +5,15 @@
 | **Category**           | Product                                                                    |
 | **Doc status**         | Active                                                                     |
 | **Normative language** | Descriptive only                                                           |
-| **Requirement IDs**    | Partial — `REG-*` (App Spec §14), `PNP-002/003/005/006/007`, `PNP-016–049` |
+| **Requirement IDs**    | Partial — `REG-*` (Requirements §14), `PNP-002/003/005/006/007`, `PNP-016–049` |
 | **Owner / Updated**    | Repo maintainers, 2026-09-11                                               |
 
 The six-section annual registration wizard and the org review loop — the
 most complete part of the platform, and the journey it exists for.
 
-## Implements (App Specification)
+## Implements (Requirements)
 
-| App Spec §                   | IDs                                                                                                                   | Status | Notes                                                                                                                                                                                                            |
+| Requirements §                   | IDs                                                                                                                   | Status | Notes                                                                                                                                                                                                            |
 | ---------------------------- | --------------------------------------------------------------------------------------------------------------------- | ------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | §14 Annual registration      | REG-001, REG-002, REG-004, REG-005, REG-007, REG-011, REG-012, REG-014, REG-018, REG-021, REG-022–028                 | ✅     | The state machine (draft → submitted → under_review → changes_requested → resubmitted → approved/declined), plus withdrawal and reopening                                                                        |
 | §14                          | REG-006 (interactivity)                                                                                               | 🚧     | Folded into the free-text participation-plan field; no distinct field                                                                                                                                            |

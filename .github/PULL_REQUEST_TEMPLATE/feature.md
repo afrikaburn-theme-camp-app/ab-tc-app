@@ -4,7 +4,7 @@ TITLE: Conventional Commits with a workspace scope — see CONTRIBUTING.md.
 Scopes: web · org · suppliers · core · db · ui · auth · types · e2e · repo
 Template: feature — new user-visible behaviour.
 Prove: product alignment (Implements) and who is affected.
-App Spec: Implements only. Wrong template if Exempt or Modifies (use chore/fix or docs).
+Requirements: Implements only. Wrong template if Exempt or Modifies (use chore/fix or docs).
 Agent: one continuous blockquote after Summary. One 🤖 only, on the first heading.
 -->
 
@@ -21,10 +21,15 @@ Agent: one continuous blockquote after Summary. One 🤖 only, on the first head
 >  <!-- What Changed: capability the user gains — not files touched. ≤3 sentences AND ≤500 characters. -->
 >  ### 🤖 What Changed
 >
->  <!-- App Spec: cite PREFIX-NNN IDs this change delivers against
->       (docs/sources/app-specification/app-specification.md). Implements only. -->
->  ### App Spec
+>  <!-- Requirements: cite PREFIX-NNN IDs this change delivers against
+>       (docs/requirements/requirements.md). Implements only. -->
+>  ### Requirements
 >  **Implements:**
+>
+>  <!-- Specification: path to an approved feature spec under docs/specifications/.
+>       Required for new behaviour / product features (Decision 017). -->
+>  ### Specification
+>  **Approved:** docs/specifications/<file> (approved)
 >
 >  <!-- Surfaces: which apps/consoles and primary audience. -->
 >  ### Surfaces

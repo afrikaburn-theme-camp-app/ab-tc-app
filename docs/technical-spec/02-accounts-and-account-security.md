@@ -5,16 +5,16 @@
 | **Category**           | Security                                                                                |
 | **Doc status**         | Active                                                                                  |
 | **Normative language** | RFC 2119 / RFC 8174 applies                                                             |
-| **Requirement IDs**    | Partial — `SEC-*` (as-built account/security feature; POPIA specifics for App Spec §19) |
+| **Requirement IDs**    | Partial — `SEC-*` (as-built account/security feature; POPIA specifics for Requirements §19) |
 | **Owner / Updated**    | Repo maintainers, 2026-09-11                                                            |
 
 The account-management suite across all three apps: self-service password,
 email, 2FA, passkey and session management, plus deletion. Grounded in NIST
 SP 800-63B-4 and OWASP authentication guidance.
 
-## Implements (App Specification)
+## Implements (Requirements)
 
-| App Spec §                   | IDs                                                                     | Status  | Notes                                                                                                                              |
+| Requirements §                   | IDs                                                                     | Status  | Notes                                                                                                                              |
 | ---------------------------- | ----------------------------------------------------------------------- | ------- | ---------------------------------------------------------------------------------------------------------------------------------- |
 | §19 Permissions and security | SEC-013 (POPIA-compliant processing), SEC-020 (data-retention controls) | ✅ / 🚧 | Lawful purpose documented on the schema; account deletion is scheduled, ID-document purge is written but has no caller (see Drift) |
 | §4 Camper database           | CDB-002 (contact details self-managed)                                  | ✅      | Extends the self-owned Burner Bio model — see [`03-burner-bio-and-profiles.md`](03-burner-bio-and-profiles.md)                     |

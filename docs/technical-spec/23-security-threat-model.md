@@ -5,7 +5,7 @@
 | **Category**           | Security                                                                                                                                                       |
 | **Doc status**         | Draft                                                                                                                                                          |
 | **Normative language** | Descriptive only — this document reports covered vs open vectors; it does not itself impose new product requirements                                           |
-| **Requirement IDs**    | Partial — `SEC-*` (cross-cutting register; per-feature detail lives in sibling Security docs and is not re-audited here for App Spec completeness)             |
+| **Requirement IDs**    | Partial — `SEC-*` (cross-cutting register; per-feature detail lives in sibling Security docs and is not re-audited here for Requirements completeness)             |
 | **Owner / Updated**    | Repo maintainers, 2026-09-20 (C6: Aikido Safe Chain)                                                                                                                       |
 
 Cross-cutting threat register for the **live** product: what can go wrong,
@@ -217,11 +217,11 @@ the surface that creates the threat.
 2. When a new surface ships (especially anything under `/v1`), add rows or
    move Deferred → Open/Partial/Covered in the same PR as the feature.
 3. Do not use this file to invent product policy. Product positions stay in
-   the App Spec / Decision Records; this file only tracks engineering risk
+   the Requirements / Decision Records; this file only tracks engineering risk
    against what is built.
 
-## Implements (App Specification)
+## Implements (Requirements)
 
-| App Spec §                   | IDs                          | Status | Notes                                                                 |
+| Requirements §                   | IDs                          | Status | Notes                                                                 |
 | ---------------------------- | ---------------------------- | ------ | --------------------------------------------------------------------- |
 | §19 Permissions and security | SEC-013–SEC-021 (as relevant)| 🚧     | Cross-cutting register; per-ID status remains in sibling feature docs |

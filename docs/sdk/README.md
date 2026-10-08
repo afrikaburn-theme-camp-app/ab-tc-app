@@ -8,7 +8,7 @@ methods work**.
 consumer envisioned is a camp-specific app outside this monorepo, alongside
 other such apps.
 
-> **Draft.** This whole tree depends on App Specification Decision 005
+> **Draft.** This whole tree depends on Requirements Decision 005
 > (backend-first API/SDK direction), which is still `proposed`, not
 > accepted. Nothing here should be read as settled scope until that record
 > is resolved — see `docs/technical-spec/README.md`'s drift register and

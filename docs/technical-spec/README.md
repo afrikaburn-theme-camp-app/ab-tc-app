@@ -3,16 +3,21 @@
 | Field                  | Value                        |
 | ---------------------- | ---------------------------- |
 | **Category**           | Product                      |
-| **Doc status**         | Active                       |
+| **Doc status**         | Legacy (as-built record, pre-Decision 017) |
 | **Normative language** | Descriptive only             |
 | **Requirement IDs**    | N/A — index only             |
-| **Owner / Updated**    | Repo maintainers, 2026-09-11 |
+| **Owner / Updated**    | Repo maintainers, 2026-10-08 |
 
-Downstream of the **App Specification** (`../sources/app-specification/`).
+**Legacy as-built record.** Downstream of **Requirements**
+(`../requirements/`). Content here migrates into
+[`../specifications/`](../specifications/README.md) once the Product
+Owner/Designer defines the feature-spec format — do not treat this folder as
+the home for new pre-build Specifications.
+
 Everything here describes what is **built**, organized by feature rather
-than by App Spec section — [`app-spec-coverage.md`](app-spec-coverage.md)
+than by Requirements section — [`requirements-coverage.md`](requirements-coverage.md)
 is the section-by-section mirror; this index is the feature-by-feature
-map. Not everything in the App Spec is built, and not everything built has
+map. Not everything in Requirements is built, and not everything built has
 its own document here yet — a doc exists for every feature that is
 actually shipped. See [`../README.md`](../README.md) for the documentation
 conventions every file here follows (metadata header, status glyphs,
@@ -20,9 +25,9 @@ Requirement-ID citation format).
 
 ## Feature index
 
-| Doc                                                                                | Feature                                        | App Spec §/IDs    | Drift?                                  |
+| Doc                                                                                | Feature                                        | Requirements §/IDs    | Drift?                                  |
 | ---------------------------------------------------------------------------------- | ---------------------------------------------- | ----------------- | --------------------------------------- |
-| [`app-spec-coverage.md`](app-spec-coverage.md)                                     | Full App Spec mirror                           | all               | —                                       |
+| [`requirements-coverage.md`](requirements-coverage.md)                                     | Full Requirements mirror                           | all               | —                                       |
 | [`00-architecture.md`](00-architecture.md)                                         | System architecture, packages, UI components   | `SEC-*`, `CORE-*` | —                                       |
 | [`01-auth-and-identity.md`](01-auth-and-identity.md)                               | Auth platform (Better Auth), threat model      | §19 partial       | SEC-018 corrected                       |
 | [`02-accounts-and-account-security.md`](02-accounts-and-account-security.md)       | Account self-service, security events          | §19, §4 partial   | SEC-020 partial (ID purge unscheduled)  |
@@ -53,14 +58,14 @@ Requirement-ID citation format).
 A feature doc's Drift section is the source of truth; this table just
 points at the ones that carry one:
 
-| Where       | App Spec area                                          | Governing Decision Record                                                         |
+| Where       | Requirements area                                          | Governing Decision Record                                                         |
 | ----------- | ------------------------------------------------------ | --------------------------------------------------------------------------------- |
 | §03         | Self-owned Burner Bio vs. admin-managed camper records | Decision 008 (proposed)                                                           |
 | §06/§14/§16 | REG-013/015/020 previously overstated                  | (correction only, no decision needed)                                             |
 | §08         | Placement/layout tooling deferred                      | Decisions 011, 012, 016 (proposed)                                                |
 | §20         | No payment gateway                                     | Decision 009 (proposed)                                                           |
 | —           | Ticketing stays with Quicket                           | Decision 010 (proposed)                                                           |
-| —           | First demonstrable slice (App Spec §1/§20)             | Decision 004 (accepted, not yet honoured) vs. Decision 013 (rebaseline, proposed) |
+| —           | First demonstrable slice (Requirements §1/§20)             | Decision 004 (accepted, not yet honoured) vs. Decision 013 (rebaseline, proposed) |
 
 Product positions elsewhere in this repo (`AGENTS.md`, `docs/roadmap.md`)
 should cite these same records rather than asserting a scope decision on
@@ -76,9 +81,9 @@ template:
 
 <metadata header — see ../README.md>
 
-## Implements (App Specification)
+## Implements (Requirements)
 
-| App Spec § | IDs | Status | Notes |
+| Requirements § | IDs | Status | Notes |
 
 ## Drift
 
@@ -92,6 +97,6 @@ template:
 ## Invariants and tests
 ```
 
-Not every App Spec requirement needs a doc — only what is actually built.
-An unbuilt requirement is tracked in [`app-spec-coverage.md`](app-spec-coverage.md)
+Not every Requirements requirement needs a doc — only what is actually built.
+An unbuilt requirement is tracked in [`requirements-coverage.md`](requirements-coverage.md)
 alone.

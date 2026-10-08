@@ -11,9 +11,9 @@
 Any signed-in burner can create a camp instantly; a camp is joinable by
 invite link; a directory of registered camps is public.
 
-## Implements (App Specification)
+## Implements (Requirements)
 
-| App Spec §                | IDs                                                                | Status | Notes                                                                                                          |
+| Requirements §                | IDs                                                                | Status | Notes                                                                                                          |
 | ------------------------- | ------------------------------------------------------------------ | ------ | -------------------------------------------------------------------------------------------------------------- |
 | §2 Core modules           | CORE-002                                                           | ✅     |                                                                                                                |
 | §4a Camper communications | COMM-001, COMM-002 (photo-tile dashboard, name/location/camp tile) | ❌     | No photo column exists on `burner_bios` at all; blocked on that, not on the directory                          |
@@ -57,7 +57,7 @@ flowchart LR
 
 ## Cross-cutting note
 
-Whether a camp roster carries a full camper list (App Spec §4/§14/§16,
+Whether a camp roster carries a full camper list (Requirements §4/§14/§16,
 REG-003/PNP-001/PNP-040/CDB-030) or only aggregate counts is an open
 question tracked against a proposed extension to Decision 008 — see the
 drift note in [`03-burner-bio-and-profiles.md`](03-burner-bio-and-profiles.md).

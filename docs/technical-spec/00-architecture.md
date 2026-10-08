@@ -5,7 +5,7 @@
 | **Category**           | Architecture                                                                                                  |
 | **Doc status**         | Active                                                                                                        |
 | **Normative language** | Descriptive only                                                                                              |
-| **Requirement IDs**    | Partial — `SEC-*`, `CORE-*` (cross-cutting system reference; most content has no direct App Spec counterpart) |
+| **Requirement IDs**    | Partial — `SEC-*`, `CORE-*` (cross-cutting system reference; most content has no direct Requirements counterpart) |
 | **Owner / Updated**    | Repo maintainers, 2026-09-11                                                                                  |
 
 Three Next apps, one Postgres, one account pool. This describes what is
@@ -171,7 +171,7 @@ declarations). `auditEvents` spans all four.
   data access is server actions and server components behind cookie
   sessions. An external, key-authenticated `/v1` surface is specified as a
   **Draft** in [`../sdk/`](../sdk/README.md) and **is not built**, pending
-  App Specification Decision 005 (proposed); when it lands it is the first
+  Requirements Decision 005 (proposed); when it lands it is the first
   inbound authenticated arrow on the diagram above.
 - **Personal data has classes**, enforced in `@quagga/core`: some Bio fields
   can never be public, medical notes require recorded consent, and reads of

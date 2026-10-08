@@ -12,9 +12,9 @@ The placement CSV export, the registration-deadline reminder job, and the
 account-deletion sweep. Shipped, but previously documented only as roadmap
 bullets and an env-var table row.
 
-## Implements (App Specification)
+## Implements (Requirements)
 
-| App Spec §                   | IDs                               | Status         | Notes                                                                                                                                              |
+| Requirements §                   | IDs                               | Status         | Notes                                                                                                                                              |
 | ---------------------------- | --------------------------------- | -------------- | -------------------------------------------------------------------------------------------------------------------------------------------------- |
 | §14 Annual registration      | REG-012, REG-029                  | ✅ / 🚧        | Export supports placement (layout upload path, staff-assigned camp code)                                                                           |
 | §4 Camper database           | CDB-030 (export camper lists)     | ❌ (correctly) | The export is per-**camp** (registrations/placement), not per-camper — it is tested to never emit a personal field. Do not cite it against CDB-030 |

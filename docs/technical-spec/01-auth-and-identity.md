@@ -5,7 +5,7 @@
 | **Category**           | Security                                                                                                                                                                                                          |
 | **Doc status**         | Active                                                                                                                                                                                                            |
 | **Normative language** | RFC 2119 / RFC 8174 applies                                                                                                                                                                                       |
-| **Requirement IDs**    | Partial — `SEC-014`, `SEC-015`, `SEC-018`, `SEC-019` (most content — Better Auth architecture, the methods ladder, hardening checklist, threat model — is engineering detail with no direct App Spec counterpart) |
+| **Requirement IDs**    | Partial — `SEC-014`, `SEC-015`, `SEC-018`, `SEC-019` (most content — Better Auth architecture, the methods ladder, hardening checklist, threat model — is engineering detail with no direct Requirements counterpart) |
 | **Owner / Updated**    | Repo maintainers, 2026-09-11                                                                                                                                                                                      |
 
 Self-hosted Better Auth **1.6.25**, in `packages/auth`, mounted per app at
@@ -16,9 +16,9 @@ architecture, methods offered, hardening that must hold, and the threat
 model. POPIA obligations and incident runbooks live in
 [`../compliance-and-incident-response.md`](../compliance-and-incident-response.md).
 
-## Implements (App Specification)
+## Implements (Requirements)
 
-| App Spec §                   | IDs                                   | Status | Notes                                                                                                                                                                                                                        |
+| Requirements §                   | IDs                                   | Status | Notes                                                                                                                                                                                                                        |
 | ---------------------------- | ------------------------------------- | ------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | §19 Permissions and security | SEC-014 (encryption)                  | ✅     | AES-256-GCM via `packages/db/src/crypto.ts`                                                                                                                                                                                  |
 | §19                          | SEC-015 (multi-factor authentication) | ✅     | TOTP + encrypted backup codes + passkeys — exceeds the requirement, which only asks for MFA to exist                                                                                                                         |

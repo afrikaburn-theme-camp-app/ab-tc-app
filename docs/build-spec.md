@@ -5,12 +5,12 @@
 | **Category**           | Engineering Spec                                                                                                                                      |
 | **Doc status**         | Active                                                                                                                                                |
 | **Normative language** | RFC 2119 / RFC 8174 applies                                                                                                                           |
-| **Requirement IDs**    | Partial — `CORE-*`, `CDB-*` (the engineering contract implements requirements scattered across many App Spec sections; not individually audited here) |
+| **Requirement IDs**    | Partial — `CORE-*`, `CDB-*` (the engineering contract implements requirements scattered across many Requirements sections; not individually audited here) |
 | **Owner / Updated**    | Repo maintainers, 2026-09-11                                                                                                                          |
 
 The engineering contract: hard constraints, monorepo layout, environment
 variables, the frozen schema, seeding rules, and what is explicitly not
-built. The **App Specification** (external, authoritative — see
+built. The **Requirements** (external, authoritative — see
 [`README.md`](README.md)) governs what the product should do; where any
 other document in this repo conflicts with this file on engineering HOW,
 this file wins; `GOVERNANCE.md` and `CONTRIBUTING.md` govern process.

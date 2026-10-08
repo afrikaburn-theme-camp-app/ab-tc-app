@@ -1,5 +1,5 @@
 name: Spec alignment / drift
-description: The repo disagrees with the App Specification, or a Decision Record needs to move
+description: The repo disagrees with Requirements, or a Decision Record needs to move
 labels: ["type: docs", "needs-triage"]
 body:
   - type: markdown
@@ -7,18 +7,18 @@ body:
       value: |
         For a place where the built product, this repo's documentation, or
         `docs/technical-spec/`'s drift register takes a position that
-        contradicts the App Specification (`docs/sources/app-specification/`)
+        contradicts Requirements (`docs/requirements/`)
         or one of its Decision Records — or where a Decision Record needs to
-        move (e.g. from `proposed` toward `accepted`). This repository never
-        edits `docs/sources/`; use this issue to propose the change on
-        Superhuman instead. See `GOVERNANCE.md` for the product-vs-engineering
-        decision split.
+        move (e.g. from `proposed` toward `accepted`). Propose the Requirements
+        / Decision Record change via PR in this repository. See `GOVERNANCE.md`
+        for the product-vs-engineering decision split and Decision 017 for
+        Specifications.
 
   - type: input
     id: requirement-ids
     attributes:
       label: Requirement ID(s)
-      description: The PREFIX-NNN id(s) from the App Spec's Requirement Index, if any apply.
+      description: The PREFIX-NNN id(s) from the Requirements Requirement Index, if any apply.
       placeholder: "PAY-001, PAY-021"
     validations:
       required: false
@@ -27,7 +27,7 @@ body:
     id: decision-record
     attributes:
       label: Decision Record
-      description: The App Spec Decision Record this touches, if any (docs/sources/app-specification/decisions-record/).
+      description: The Requirements Decision Record this touches, if any (docs/requirements/decisions-record/).
       placeholder: "Decision 009 — payment direction tracking vs. gateway (proposed)"
     validations:
       required: false
@@ -35,7 +35,7 @@ body:
   - type: input
     id: affected-doc
     attributes:
-      label: Affected docs/technical-spec/ file
+      label: Affected docs/technical-spec/ or docs/specifications/ file
       placeholder: "docs/technical-spec/20-payment-reference-tracking.md"
     validations:
       required: false
@@ -43,8 +43,8 @@ body:
   - type: textarea
     id: disagreement
     attributes:
-      label: What does the repo assert, and what does the App Spec say?
-      description: Quote both if you can — the repo position (with a file:line) and the App Spec section or Decision Record status.
+      label: What does the repo assert, and what do Requirements say?
+      description: Quote both if you can — the repo position (with a file:line) and the Requirements section or Decision Record status.
     validations:
       required: true
 
@@ -52,6 +52,6 @@ body:
     id: proposed
     attributes:
       label: Proposed resolution
-      description: Should the App Spec / Decision Record change, or should the repo's docs/code change to match it? What would the working group need to decide?
+      description: Should Requirements / a Decision Record change, or should the repo's docs/code change to match? What would the working group need to decide?
     validations:
       required: false

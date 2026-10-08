@@ -7,17 +7,19 @@ It is **not** the operational / product decision log.
 
 | Concern | Where it lives |
 | --- | --- |
-| **WHAT we build and WHY** (operational / working-group) | [`docs/sources/app-specification/decisions-record/`](../sources/app-specification/decisions-record.md) — Superhuman-synced App Spec corpus |
+| **WHAT we build and WHY** (operational / working-group) | [`docs/requirements/decisions-record/`](../requirements/decisions-record.md) |
+| **Feature Specifications** (how a change will work before build) | [`docs/specifications/`](../specifications/README.md) |
 | **HOW we get there** (engineering) | **Here** (`docs/engineering-decisions/`) |
 
-Do not duplicate operational decisions into this folder. Link up to the App Spec
-decision when an engineering choice implements or is constrained by one.
+Do not duplicate operational decisions into this folder. Link up to the
+Requirements decision when an engineering choice implements or is constrained
+by one.
 
 **Numbering note:** engineering decisions here are prefixed `ENG-` in their
 own id/front-matter (starting at `ENG-014`, since the first one recorded was
 numbered before this convention existed) specifically to avoid colliding
-with the App Specification's own, independent "Decision NNN" numbering —
-e.g. this folder's `ENG-014` is unrelated to the App Spec's "Decision 014"
+with Requirements' own, independent "Decision NNN" numbering —
+e.g. this folder's `ENG-014` is unrelated to Requirements "Decision 014"
 (governance, licensing and data-liability thresholds). The two number
 spaces are never the same decision.
 

@@ -7,7 +7,7 @@ import { deriveCampPrefix } from "./member-ref-code";
 // THIS IS DELIBERATELY NOT A PLACEMENT TOOL. The layout/erf work is parked
 // because no structured map data exists to build against and the official map is
 // a late-arriving PDF that changes every year (roadmap §"Placement & layout
-// tooling", App Spec §13). What container booking and on-site logistics actually
+// tooling", Requirements §13). What container booking and on-site logistics actually
 // need from placement is far smaller: a short stable handle for the camp, and
 // somewhere to write down the erf once a human has decided it. Both are strings
 // a staff member types.

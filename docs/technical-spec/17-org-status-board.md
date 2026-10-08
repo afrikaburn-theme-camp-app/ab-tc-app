@@ -5,16 +5,16 @@
 | **Category**           | Product                                                                                                                     |
 | **Doc status**         | Active                                                                                                                      |
 | **Normative language** | Descriptive only                                                                                                            |
-| **Requirement IDs**    | N/A — extends the spec; App Spec §5 (camper statistics) is a distinct, unbuilt camp-facing feature, not this org-side board |
+| **Requirement IDs**    | N/A — extends the spec; Requirements §5 (camper statistics) is a distinct, unbuilt camp-facing feature, not this org-side board |
 | **Owner / Updated**    | Repo maintainers, 2026-09-11                                                                                                |
 
 The organiser console's landing page: a glanceable status board for running
 the burn, not a public statistics feature.
 
-## Implements (App Specification)
+## Implements (Requirements)
 
-App Spec §5 (STATS-001–031) describes **camp**-facing statistics and is
-separately not built — see the App Spec coverage doc. This board is an
+Requirements §5 (STATS-001–031) describes **camp**-facing statistics and is
+separately not built — see the Requirements coverage doc. This board is an
 **org**-facing operational dashboard and extends the spec; it should not be
 cited as partial progress toward §5.
 

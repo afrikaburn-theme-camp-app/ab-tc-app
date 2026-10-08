@@ -5,25 +5,25 @@
 | **Category**           | Product                            |
 | **Doc status**         | Active                             |
 | **Normative language** | Descriptive only                   |
-| **Requirement IDs**    | ❌ `PAY-001–PAY-021` (App Spec §8) |
+| **Requirement IDs**    | ❌ `PAY-001–PAY-021` (Requirements §8) |
 | **Owner / Updated**    | Repo maintainers, 2026-09-11       |
 
 The platform does not currently run a payment gateway or take custody of
 money. What exists is reference tracking: recording that a payment
 happened, for whom, without processing it.
 
-## Implements (App Specification)
+## Implements (Requirements)
 
-| App Spec §                       | IDs         | Status | Notes                                                                                                         |
+| Requirements §                       | IDs         | Status | Notes                                                                                                         |
 | -------------------------------- | ----------- | ------ | ------------------------------------------------------------------------------------------------------------- |
 | §8 Camp fees and payment gateway | PAY-001–021 | ❌     | No gateway, no card handling, no payouts. See Drift for why this is a current build stance, not settled scope |
 
 ## Drift
 
-> ⚠️ **DRIFT — opposes-with-proposed-decision, App Spec §8.** The App Spec
+> ⚠️ **DRIFT — opposes-with-proposed-decision, Requirements §8.** The Requirements
 > describes a payment gateway. The build's current position — no gateway,
 > ever, only reference tracking — is stated in several places (`AGENTS.md`,
-> `docs/roadmap.md`) as though settled. The governing App Specification
+> `docs/roadmap.md`) as though settled. The governing Requirements
 > Decision Record, **Decision 009 (payment direction tracking vs.
 > gateway)**, is `proposed`, not accepted, and a 2026-09-10 update to that
 > record proposes a contrary option (per-module bring-your-own-gateway).

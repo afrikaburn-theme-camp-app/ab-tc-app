@@ -1,6 +1,6 @@
 import type { PaymentStatus } from "@quagga/types";
 
-// Payment TRACKING (App Spec §8, Decision 009 — resolved 12 Aug 2026).
+// Payment TRACKING (Requirements §8, Decision 009 — resolved 12 Aug 2026).
 //
 // THE PLATFORM NEVER TOUCHES MONEY, AND THIS FILE IS WHERE THAT IS ENFORCED
 // RATHER THAN ASSERTED. There is no gateway, no merchant account, no card

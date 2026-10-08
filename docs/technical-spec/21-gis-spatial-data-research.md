@@ -9,9 +9,9 @@
 | **Owner / Updated**    | Beyers Nel, 2026-09-19                                             |
 
 Research notes from the two GIS meetings with AfrikaBurn spatial planning
-([2026-08-11](../sources/app-specification/meeting-minutes/2026-08-11-first-gis-meet.md),
-[2026-09-09](../sources/app-specification/meeting-minutes/2026-09-09-second-gis-meet.md)).
-This is **not** a built-feature spec. Operational decisions live in App Spec
+([2026-08-11](../requirements/meeting-minutes/2026-08-11-first-gis-meet.md),
+[2026-09-09](../requirements/meeting-minutes/2026-09-09-second-gis-meet.md)).
+This is **not** a built-feature spec. Operational decisions live in Requirements
 Decision Records 011, 012, and 016. Engineering HOW, when it exists, will
 live in [`../engineering-decisions/`](../engineering-decisions/README.md).
 
@@ -101,7 +101,7 @@ Teach One". Not yet stood up.
 - DPW is to supply final shapes and sizes for containers and other
   infrastructure. Kshetra also has access to Pretoria GIS engineers with
   preset vector libraries. Those may become the **authoritative
-  object-geometry source** for the objects in App Spec §11 (`LAYOUT-001–043`)
+  object-geometry source** for the objects in Requirements §11 (`LAYOUT-001–043`)
   rather than the Theme Camp App inventing them.
 - Theme-camp boundary vectors are the input the layout / container tools
   need; the rest of the org GIS (imagery, DEM, drainage) is context, not a
@@ -110,7 +110,7 @@ Teach One". Not yet stood up.
   95 m × 60 m, some as small as 50 m). Layouts have to sit at true scale
   inside an assigned block, often sharing it with other camps.
 - Cross-module erf propagation (once allocated, push the erf number to gas /
-  water / wood / container logistics) remains an open ambiguity on App Spec
+  water / wood / container logistics) remains an open ambiguity on Requirements
   §13 — see Decision 012 related notes, not this research.
 
 ## Open items (not tracked as tasks here)

@@ -9,26 +9,29 @@ process itself and who is accountable for it.
 
 The AfrikaBurn Theme Camp App ("Quagga Portal") is a volunteer-built,
 open-source project. It is not official AfrikaBurn tooling unless and until
-AfrikaBurn's organisation says so — see App Specification Decision 014
+AfrikaBurn's organisation says so — see Requirements Decision 014
 (governance, licensing and data-liability thresholds), which is still
 `proposed` in the authoritative corpus at
-`docs/sources/app-specification/decisions-record/`.
+`docs/requirements/decisions-record/`.
 
 ## Two kinds of decision
 
 | Decision               | What it covers                            | Where it is recorded                                                                                                                                                                  | Who decides                  |
 | ---------------------- | ----------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------- |
-| **Product (WHAT/WHY)** | What the app should do, for whom, and why | The App Specification and its Decision Records, synced from Superhuman to `docs/sources/app-specification/decisions-record/` (read-only in this repo — edit on Superhuman, then pull) | The AfrikaBurn working group |
-| **Engineering (HOW)**  | How the product decision gets built       | `docs/decisions/` in this repo                                                                                                                                                        | The maintainers              |
+| **Product (WHAT/WHY)** | What the app should do, for whom, and why | Requirements and Decision Records in `docs/requirements/` (edited in-repo via PR) | The AfrikaBurn working group |
+| **Feature Specifications** | How a change will work before build | `docs/specifications/` — written from Requirements by the Product Owner/Designer; reviewed by engineers ([Decision 017](docs/requirements/decisions-record/decision-017-accepted-spec-driven-feature-delivery.md)) | Product Owner/Designer drafts; engineers review |
+| **Engineering (HOW)**  | How the product decision gets built       | `docs/engineering-decisions/` in this repo                                                                                                                                                        | The maintainers              |
 
 **Nothing in this repository may assert a product position that opposes an
-accepted App Specification section or Decision Record.** Where the repo's
-current build gets ahead of an unaccepted (`proposed`) Decision Record — which
-happens; shipping software sometimes has to pick a stance before the working
-group has ratified one — that stance is described as the _current build
-stance_, not as settled law, and it is expected to change if the Decision
-Record resolves differently. `docs/technical-spec/` tracks these cases as
-drift, with a pointer to the governing record.
+accepted Requirements section or Decision Record.** **No new behaviour or
+product feature may ship without an approved Specification** sourced from
+Requirements. Where the repo's current build gets ahead of an unaccepted
+(`proposed`) Decision Record — which happens; shipping software sometimes has
+to pick a stance before the working group has ratified one — that stance is
+described as the _current build stance_, not as settled law, and it is
+expected to change if the Decision Record resolves differently.
+`docs/technical-spec/` (legacy as-built) tracks these cases as drift, with a
+pointer to the governing record.
 
 ## The neutrality rule
 
@@ -53,8 +56,11 @@ project happens to run that camp is not, and should be flagged in review.
 - **Design owners** — approve changes to `design/ab-initial-app.pen` (see
   `AGENTS.md` §The design canvas). Named in `MAINTAINERS.md` once more than
   one exists; today the same as the maintainers.
-- **The AfrikaBurn working group** — owns product decisions on Superhuman,
-  independent of who maintains this repository.
+- **The AfrikaBurn working group** — owns product decisions (Requirements and
+  Decision Records in this repo), independent of who maintains the engineering
+  surface.
+- **Product Owner / Designer** — writes feature Specifications from
+  Requirements ([Decision 017](docs/requirements/decisions-record/decision-017-accepted-spec-driven-feature-delivery.md)).
 
 ## Branch protection
 
@@ -81,7 +87,6 @@ account is not a pull request):
   columns — losing it makes that ciphertext permanently unreadable)
 - The in-app reporter's GitHub credential (moving to an org-owned machine
   user or GitHub App — see `MAINTAINERS.md`)
-- The Superhuman/Coda workspace sync token for the App Specification corpus
 
 **Rule going forward: at least two maintainers must be able to recover each
 of the above**, and custody changes on maintainer departure. Record who holds
@@ -92,7 +97,7 @@ what in `MAINTAINERS.md`, not in code comments or chat history.
 See the [Licence section of `README.md`](README.md#licence) and `LICENSE`
 itself. The licence text and copyright notice are not changed by this
 migration; changing the copyright holder is a product/legal decision for the
-working group (App Specification Decision 014), not an engineering one.
+working group (Requirements Decision 014), not an engineering one.
 
 **Footnote for legal review, not legal advice:** commits made between
 23 and 27 July 2026 (`git log -- LICENSE`) were briefly published under MIT

@@ -22,7 +22,7 @@
  * packages and the unbuilt `/v1` HTTP surface — see `docs/sdk/`) are
  * deliberately NOT listed: none of those workspaces exist yet, and a scope
  * vocabulary nobody prunes stops meaning anything. Add them back if and when
- * App Spec Decision 005 is accepted and that work actually starts.
+ * Requirements Decision 005 is accepted and that work actually starts.
  */
 const SCOPES = [
   // apps/*
