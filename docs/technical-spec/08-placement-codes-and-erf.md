@@ -5,7 +5,7 @@
 | **Category**           | Product                                                        |
 | **Doc status**         | Active                                                         |
 | **Normative language** | Descriptive only                                               |
-| **Requirement IDs**    | Partial — `ERF-001–023` (App Spec §13), `LAYOUT-001–043` (§11) |
+| **Requirement IDs**    | Partial — `ERF-001–023` (Requirements §13), `LAYOUT-001–043` (§11) |
 | **Owner / Updated**    | Repo maintainers, 2026-09-11                                   |
 
 AfrikaBurn staff assign each registered camp a code and an erf (a free-text
@@ -13,9 +13,9 @@ field on the registration), unblocking downstream logistics (container
 booking, gate lists) without building the interactive layout/placement tool
 itself. Shipped, but previously undocumented outside a roadmap bullet.
 
-## Implements (App Specification)
+## Implements (Requirements)
 
-| App Spec §                           | IDs                                                           | Status | Notes                                                                                                                                                                                                                                               |
+| Requirements §                           | IDs                                                           | Status | Notes                                                                                                                                                                                                                                               |
 | ------------------------------------ | ------------------------------------------------------------- | ------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | §13 AfrikaBurn map and erf placement | ERF-019–023 (approve/reject/comment/revise loop)              | 🚧     | The mechanism already exists as the registration section-review loop (see [`06-registration-and-review.md`](06-registration-and-review.md)) but nothing in the layout/erf domain uses it — there is no layout artifact to approve or comment on yet |
 | §13                                  | ERF-001–018 (structured map/erf data, interactive assignment) | ⚠️     | Blocked — see Drift                                                                                                                                                                                                                                 |
@@ -23,7 +23,7 @@ itself. Shipped, but previously undocumented outside a roadmap bullet.
 
 ## Drift
 
-> ⚠️ **DRIFT — opposes-with-proposed-decision, App Spec §11/§13.** AGENTS.md
+> ⚠️ **DRIFT — opposes-with-proposed-decision, Requirements §11/§13.** AGENTS.md
 > and `docs/roadmap.md` previously described placement/layout tooling as
 > "permanently" or "if ever" deferred. The governing records — **Decision
 > 011 (theme-camp layout tool strategy)** and **Decision 012 (map/erf
@@ -35,7 +35,7 @@ itself. Shipped, but previously undocumented outside a roadmap bullet.
 > org is container-placement **integration** (Decision 016, proposed) — see
 > [`21-gis-spatial-data-research.md`](21-gis-spatial-data-research.md).
 
-> ⚠️ **App Spec Decision 004 (accepted) named placement + container
+> ⚠️ **Requirements Decision 004 (accepted) named placement + container
 > management as the first demonstrable slice.** The repo shipped
 > registration/review/suppliers instead. This is the one confirmed
 > decision-not-honoured case in the drift register (as opposed to a

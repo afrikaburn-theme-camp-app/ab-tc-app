@@ -4,8 +4,8 @@
 | ---------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | **Category**           | Product                                                                                                                                                                            |
 | **Doc status**         | Active                                                                                                                                                                             |
-| **Normative language** | Descriptive only — engineering-invented mechanism; the App Spec has no dedicated "questionnaire" section                                                                           |
-| **Requirement IDs**    | Partial — `ONBOARD-*`, `REG-*`, `SEC-*`, `COMM-012` (this is repo-extends-spec: the mechanism itself is not named by any App Spec section, though it implements pieces of several) |
+| **Normative language** | Descriptive only — engineering-invented mechanism; the Requirements has no dedicated "questionnaire" section                                                                           |
+| **Requirement IDs**    | Partial — `ONBOARD-*`, `REG-*`, `SEC-*`, `COMM-012` (this is repo-extends-spec: the mechanism itself is not named by any Requirements section, though it implements pieces of several) |
 | **Owner / Updated**    | Repo maintainers, 2026-09-11                                                                                                                                                       |
 
 A general-purpose questionnaire builder, audience targeting and
@@ -13,9 +13,9 @@ notification-gate engine. It is the substrate the Burner Bio, camp
 onboarding, the January registration form, and org bulletins-adjacent
 required-actions all run on.
 
-## Implements (App Specification)
+## Implements (Requirements)
 
-| App Spec §                | IDs                                                                                                                                                                                                 | Status | Notes                                                                                                                                                                                                           |
+| Requirements §                | IDs                                                                                                                                                                                                 | Status | Notes                                                                                                                                                                                                           |
 | ------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | §3, §14                   | See [`03-burner-bio-and-profiles.md`](03-burner-bio-and-profiles.md) and [`06-registration-and-review.md`](06-registration-and-review.md) for how this engine implements ONBOARD-* and REG-* pieces | —      | This doc covers the mechanism itself                                                                                                                                                                            |
 | §4a Camper communications | COMM-012 (group communications)                                                                                                                                                                     | 🚧     | Org → audience only via this engine's activation mechanism; no camp-level broadcast exists here (see [`11-bulletins-and-notifications.md`](11-bulletins-and-notifications.md) for the separate bulletin system) |

@@ -11,62 +11,65 @@
 This file is the index and the rulebook for everything under `docs/`. If you are
 about to read, write, or update a doc in this folder, start here.
 
-`docs/sources/` is mostly out of scope for everything below — it holds primary
-sources (briefs, scope documents, mirrored public pages). The **exception** is
-[`sources/app-specification/`](sources/app-specification/README.md), the
-Superhuman-synced working copy of the App Specification corpus (**pull is the
-default direction**; push is only for light edits / notes — see that folder's
-README). Other sources are never edited to match the product; see
-[`sources/README.md`](sources/README.md).
+`docs/sources/` holds verbatim primary sources (briefs, scope documents,
+mirrored public pages) — never edited to match the product; see
+[`sources/README.md`](sources/README.md). Product **Requirements** live at
+[`requirements/`](requirements/README.md). Feature **Specifications** live at
+[`specifications/`](specifications/README.md).
 
 ## Direction of information travel
 
-The **App Specification** is the sole source of truth for what the product
-should do. The collaborative surface is Superhuman; the engineering record is
-the local tree under `docs/sources/app-specification/`. **Normally Superhuman
-wins and we pull down.** Local → Superhuman push is reserved for light editing,
-formatting, cleanup, and notetaking (including new meeting notes or discussions
-that add information or affect a decision):
+**Requirements** (`docs/requirements/`) are the sole source of truth for what
+the product should do. They change when meetings, discussions, and/or
+decisions are recorded. **Specifications** (`docs/specifications/`) are
+written from Requirements by the Product Owner/Designer, reviewed by
+engineers, then implemented. **No new behaviour or product feature** ships
+without an approved Specification.
 
-> **App Specification (Superhuman):**
-> https://docs.superhuman.com/d/AB-Theme-Camp-Development_dQ_I7n93cZT/App-Specification_suoUXVqN
+> **Requirements:** [`requirements/requirements.md`](requirements/requirements.md)
 >
-> **Local working copy:** [`sources/app-specification/app-specification.md`](sources/app-specification/app-specification.md)
-> (sync tooling and conventions in that folder's `README.md` / `AGENTS.md`)
+> **Specifications:** [`specifications/`](specifications/README.md)
+>
+> Conventions for the Requirements corpus:
+> [`requirements/README.md`](requirements/README.md) /
+> [`requirements/AGENTS.md`](requirements/AGENTS.md)
 
 Everything else in this repository — every file below, the code, the tests — is
-**downstream** of that document. That has one immediate consequence and one
-common misunderstanding to avoid:
+**downstream** of Requirements (and, for new features, of an approved
+Specification). That has one immediate consequence and one common
+misunderstanding to avoid:
 
-- **Downstream docs may describe required technical features the App Spec never
-  mentions.** Migration discipline, auth architecture, deployment runbooks — none
-  of that is in the App Spec, and it doesn't need to be. The App Spec is
+- **Downstream docs may describe required technical features Requirements never
+  mention.** Migration discipline, auth architecture, deployment runbooks — none
+  of that is in Requirements, and it doesn't need to be. Requirements are
   authoritative on _what the product should do_; this repo is authoritative on
   _how, and whether, that gets built_. A doc with no Requirement-ID relationship
-  to the App Spec is not a gap — see the **Requirement-ID protocol** below for
+  to Requirements is not a gap — see the **Requirement-ID protocol** below for
   how each doc states its own relationship (or lack of one) honestly.
-- **Nothing in this repo may contradict the App Spec and win.** If a doc here and
-  the App Spec disagree about what the product _should_ do, the App Spec is
+- **Nothing in this repo may contradict Requirements and win.** If a doc here and
+  Requirements disagree about what the product _should_ do, Requirements are
   right and the doc is stale, unless an accepted Decision Record says
-  otherwise. (Docs are free to describe _why the build diverges_ from the
-  spec — [`technical-spec/app-spec-coverage.md`](technical-spec/app-spec-coverage.md)
+  otherwise. (Docs are free to describe _why the build diverges_ —
+  [`technical-spec/requirements-coverage.md`](technical-spec/requirements-coverage.md)
   §4 and §8, and each feature doc's own Drift section, do exactly that — but
   that's documenting a known gap against an unaccepted or not-yet-honoured
   Decision Record, not a disagreement about which document governs.)
 
 Underneath that top tier:
 
-1. **The App Specification** (above) governs what the product should do.
-   Where this repo's current build takes a position a governing Decision
-   Record has not yet accepted, that is a documented drift, not a second
-   source of truth — see `docs/technical-spec/`'s drift register and
+1. **Requirements** (above) govern what the product should do.
+   **Specifications** govern what may be built next. Where this repo's current
+   build takes a position a governing Decision Record has not yet accepted,
+   that is a documented drift, not a second source of truth — see
+   `docs/technical-spec/`'s drift register (legacy as-built) and
    `GOVERNANCE.md`.
 2. **[`GOVERNANCE.md`](../GOVERNANCE.md) and [`CONTRIBUTING.md`](../CONTRIBUTING.md)**
    govern process — decision-making, review, and how a change gets made.
    Human contributors start at `CONTRIBUTING.md`.
-3. **[`build-spec.md`](build-spec.md) and `docs/technical-spec/`** win for
-   engineering — schema, routes, stack, hard constraints — where any other
-   doc in this repo disagrees with them on HOW, not WHAT.
+3. **[`build-spec.md`](build-spec.md) and `docs/technical-spec/`** (legacy
+   as-built, pending migration into Specifications) win for engineering —
+   schema, routes, stack, hard constraints — where any other doc in this repo
+   disagrees with them on HOW, not WHAT.
 4. **`AGENTS.md`** is the agent operating digest. It must not contradict any
    of the above; where it appears to, the above wins and `AGENTS.md` is
    stale.
@@ -80,18 +83,20 @@ and `GOVERNANCE.md` did not yet exist.)
 | Doc                                                                                            | Category                  | Doc status                | Requirement-ID coverage                                                                                                        |
 | ---------------------------------------------------------------------------------------------- | ------------------------- | ------------------------- | ------------------------------------------------------------------------------------------------------------------------------ |
 | `README.md` _(this file)_                                                                      | Operational               | Active                    | N/A — index and conventions, not spec-derived                                                                                  |
-| [`technical-spec/`](technical-spec/README.md)                                                  | Product                   | Active                    | **Exhaustive** (`app-spec-coverage.md`) plus per-feature partial coverage — see that folder's own index                        |
+| [`specifications/`](specifications/README.md)                                                  | Product                   | Active                    | Feature specs (draft → approved → implemented); format provisional pending Product Owner/Designer                                  |
+| [`technical-spec/`](technical-spec/README.md)                                                  | Product                   | **Legacy** (as-built)     | **Exhaustive** (`requirements-coverage.md`) plus per-feature partial coverage — migrates into `specifications/`                    |
 | [`build-spec.md`](build-spec.md)                                                               | Engineering Spec          | Active                    | Partial — hard constraints, schema, seeds; feature-specific content has moved to `technical-spec/`                             |
 | [`compliance-and-incident-response.md`](compliance-and-incident-response.md)                   | Operational               | Active                    | N/A — operational/legal, not spec-derived                                                                                      |
 | [`supply-chain-incident-response.md`](supply-chain-incident-response.md)                       | Operational               | Active                    | N/A — compromised-package runbook (Safe Chain / Dependabot age gates)                                                          |
 | [`triage.md`](triage.md)                                                                       | Operational               | Active                    | N/A — operational, not spec-derived                                                                                            |
-| [`synthesis.md`](synthesis.md)                                                                 | Planning                  | **Historical**            | N/A — superseded as an authoritative source by the App Specification itself                                                    |
+| [`synthesis.md`](synthesis.md)                                                                 | Planning                  | **Historical**            | N/A — superseded as an authoritative source by Requirements                                                                |
 | [`simplification-audit.md`](archive/simplification-audit-2026-08.md)                           | Operational               | **Historical** (archived) | N/A — point-in-time audit transcript                                                                                           |
 | [`deploy.md`](deploy.md)                                                                       | Operational               | Active                    | N/A — operational, not spec-derived                                                                                            |
 | [`roadmap.md`](roadmap.md)                                                                     | Planning                  | Active                    | Partial — `RELEASE-*`                                                                                                          |
-| [`sdk/`](sdk/README.md)                                                                        | Engineering Spec          | Draft                     | N/A — no App Spec section yet; specifies a `/v1` API and published SDK that are **not built**, pending Decision 005 (proposed) |
-| [`sources/app-specification/`](sources/app-specification/README.md)                            | Product (external corpus) | Active                    | **Authoritative App Spec** — Superhuman→git pull-dominant sync home                                                            |
-| [`sources/app-specification/decisions-record/`](sources/app-specification/decisions-record.md) | Planning                  | Active                    | **Operational** decisions — WHAT/WHY (Superhuman corpus)                                                                       |
+| [`sdk/`](sdk/README.md)                                                                        | Engineering Spec          | Draft                     | N/A — no Requirements section yet; specifies a `/v1` API and published SDK that are **not built**, pending Decision 005 (proposed) |
+| [`requirements/`](requirements/README.md)                            | Product                   | Active                    | **Authoritative Requirements** — in-repo primary source                                                                            |
+| [`requirements/decisions-record/`](requirements/decisions-record.md) | Planning                  | Active                    | **Operational** decisions — WHAT/WHY                                                                                               |
+| [`archive/superhuman-sync/`](archive/superhuman-sync/README.md)      | Operational               | **Historical** (archived) | Retired Superhuman/Coda sync kit — portable, not wired into workflow                                                               |
 | [`engineering-decisions/`](engineering-decisions/README.md)                                    | Planning                  | Active                    | **Engineering** decisions — HOW                                                                                                |
 | [`technical-spec/21-gis-spatial-data-research.md`](technical-spec/21-gis-spatial-data-research.md) | Planning              | Draft                     | N/A — external-GIS research, not spec-derived                                                                                  |
 | [`technical-spec/22-afrikaburn-tmi-identity-research.md`](technical-spec/22-afrikaburn-tmi-identity-research.md) | Planning    | Draft                     | N/A — external-identity research, not spec-derived                                                                             |
@@ -141,7 +146,7 @@ above for which docs are currently marked which way.
 ### The status-symbol legend
 
 This is the canonical, repo-wide meaning for these four symbols from now on,
-copied from where it was first defined in [`technical-spec/app-spec-coverage.md`](technical-spec/app-spec-coverage.md):
+copied from where it was first defined in [`technical-spec/requirements-coverage.md`](technical-spec/requirements-coverage.md):
 
 | Symbol | Meaning                                                        |
 | ------ | -------------------------------------------------------------- |
@@ -151,7 +156,7 @@ copied from where it was first defined in [`technical-spec/app-spec-coverage.md`
 | ⚠️     | **Blocked** — cannot be built yet, and the blocker is not code |
 
 **A section heading's glyph is a summary, not the last word.** In
-`technical-spec/app-spec-coverage.md`, a `##` heading glyph states the section's overall call;
+`technical-spec/requirements-coverage.md`, a `##` heading glyph states the section's overall call;
 the `**Requirement IDs:**` line beneath it is the authoritative, per-id
 breakdown, and the two may legitimately differ in altitude rather than agree —
 §8 and §10 head ⚠️ _blocked_ while every id they cite is ❌ _not built_, because
@@ -195,15 +200,15 @@ Field definitions:
   obvious), or `Draft` (not yet reviewed).
 - **Normative language** — whether RFC 2119/8174 keywords carry weight in this
   doc. See above.
-- **Requirement IDs** — `Exhaustive` (every relevant App Spec requirement is
+- **Requirement IDs** — `Exhaustive` (every relevant Requirements requirement is
   cited, doc-wide or section-wide), `Partial` (some are cited, best-effort, not
   audited for completeness — say which prefixes), or `N/A` (this doc has no
-  meaningful relationship to the App Spec — say why in one clause, e.g.
+  meaningful relationship to the Requirements — say why in one clause, e.g.
   "operational, not spec-derived").
 - **Owner / Updated** — who to ask, and when the header (not necessarily the
   body) was last touched.
 
-Worked example, from [`technical-spec/app-spec-coverage.md`](technical-spec/app-spec-coverage.md):
+Worked example, from [`technical-spec/requirements-coverage.md`](technical-spec/requirements-coverage.md):
 
 ```markdown
 | Field                  | Value                                                                                                                      |
@@ -211,53 +216,53 @@ Worked example, from [`technical-spec/app-spec-coverage.md`](technical-spec/app-
 | **Category**           | Product                                                                                                                    |
 | **Doc status**         | Active                                                                                                                     |
 | **Normative language** | Descriptive only — this document reports build status; it does not itself impose requirements                              |
-| **Requirement IDs**    | Exhaustive — full 1:1 section mirror of the App Specification. Every section below cites the `PREFIX-NNN` IDs it addresses |
+| **Requirement IDs**    | Exhaustive — full 1:1 section mirror of the Requirements. Every section below cites the `PREFIX-NNN` IDs it addresses |
 | **Owner / Updated**    | Repo maintainers, 2026-08-05                                                                                               |
 ```
 
 ## Requirement-ID protocol
 
-### What the App Spec's IDs look like
+### What Requirements IDs look like
 
-Every substantive requirement bullet in the App Specification carries a stable
+Every substantive requirement bullet in Requirements carries a stable
 `PREFIX-NNN` id (e.g. `CDB-014`), one fixed prefix per numbered section,
 append-only and never renumbered or reused — a requirement that no longer
-applies is struck through in place and annotated, never deleted. The App Spec
-itself documents this scheme in full under its own "Requirement ID Conventions"
-heading; this repo only ever _cites_ those IDs, never mints its own.
+applies is struck through in place and annotated, never deleted. Requirements
+document this scheme under "Requirement ID Conventions"; this repo only ever
+_cites_ those IDs, never mints its own.
 
 ### Header-level coverage, by doc type
 
-- **A doc that mirrors an App Spec structure 1:1** (today, only
-  `technical-spec/app-spec-coverage.md`, which mirrors all 21 sections):
+- **A doc that mirrors Requirements structure 1:1** (today, only
+  `technical-spec/requirements-coverage.md`, which mirrors all 21 sections):
   `Requirement IDs: Exhaustive`, and every section carries its own inline
   citation — see below.
-- **A per-feature doc under `technical-spec/`** serving requirements
-  scattered across one or more App Spec sections, usually with no dedicated
-  section of its own (e.g. `technical-spec/10-questionnaire-engine.md`,
-  which implements pieces of `ONBOARD-*`, `REG-*` and `SEC-*` without the
-  App Spec ever naming "questionnaires" as a section): `Requirement IDs:
+- **A per-feature doc under `technical-spec/`** (legacy as-built) serving
+  requirements scattered across one or more Requirements sections, usually with
+  no dedicated section of its own (e.g. `technical-spec/10-questionnaire-engine.md`,
+  which implements pieces of `ONBOARD-*`, `REG-*` and `SEC-*` without
+  Requirements ever naming "questionnaires" as a section): `Requirement IDs:
 Partial — <prefixes>`, explicitly best-effort and not audited for
-  completeness. Each such doc carries an "Implements (App Specification)"
+  completeness. Each such doc carries an "Implements (Requirements)"
   table naming exactly which IDs it covers and at what status.
-- **A purely operational doc** with no relationship to the App Spec at all
+- **A purely operational doc** with no relationship to Requirements at all
   (`deploy.md`, `triage.md`): `Requirement IDs: N/A — operational, not
 spec-derived`.
 
 ### Inline citation format
 
-Where a doc cites specific IDs in its body (`technical-spec/app-spec-coverage.md`,
+Where a doc cites specific IDs in its body (`technical-spec/requirements-coverage.md`,
 and the "Implements" table in every doc under `technical-spec/`), the format
 is a leading bold-bracketed line (or table row) grouped by this repo's
-status glyph, matching the App Spec's own convention of bolding the ID
+status glyph, matching the Requirements convention of bolding the ID
 before the text it tags:
 
 ```markdown
-**Requirement IDs:** ✅ CDB-037, CDB-040, CDB-041, CDB-043 · 🚧 CDB-042 · ❌ CDB-029, CDB-030 · ⚠️ CDB-001–CDB-024 _(App Spec §4)_
+**Requirement IDs:** ✅ CDB-037, CDB-040, CDB-041, CDB-043 · 🚧 CDB-042 · ❌ CDB-029, CDB-030 · ⚠️ CDB-001–CDB-024 _(Requirements §4)_
 ```
 
 A trailing note in parentheses is fine for a divergence that doesn't reduce to a
-single glyph (see `technical-spec/app-spec-coverage.md` §4, §8, §14 for real examples).
+single glyph (see `technical-spec/requirements-coverage.md` §4, §8, §14 for real examples).
 
 **A range MUST NOT straddle an id with a different status.** `CDB-040–CDB-043`
 inside the ✅ bucket is only correct if `041`, `042` and `043` all genuinely
@@ -267,55 +272,55 @@ gap is obvious from the neighbouring bucket.
 
 ### The regeneration protocol
 
-What happens when the App Spec changes — the strict, repeatable procedure this
+What happens when Requirements change — the strict, repeatable procedure this
 whole convention exists to support:
 
-1. **The App Spec is edited** (a requirement added, changed, or removed) on
-   Superhuman.
-2. **The change is logged** in the App Spec's own Change Record, citing the
-   specific `PREFIX-NNN` IDs touched — that's the App Spec's own discipline, not
-   this repo's, and it's what makes step 4 possible.
-3. **Someone brings the change here** — there is no automation watching the
-   external doc; a person (or an agent, told to) reads the Change Record entry
-   and identifies which `PREFIX-NNN` IDs are affected.
+1. **Requirements are edited** in a PR (a requirement added, changed, or
+   removed) when a meeting, discussion, and/or decision warrants it.
+2. **The change is logged** in
+   [`requirements/requirements-change-record.md`](requirements/requirements-change-record.md),
+   citing the specific `PREFIX-NNN` IDs touched.
+3. **Identify affected IDs** from that Change Record entry (or the PR diff).
 4. **Find every citing location**: `grep -rn "<ID>" docs/` — the header-level
    `Requirement IDs` field and any inline citations both use the literal ID
    string, so this is exhaustive by construction. Also search for the relevant
    wildcard prefix (e.g., `ONBOARD-*` if the ID is `ONBOARD-042`) to catch
    docs that cite the prefix range rather than individual IDs.
 5. **A removed ID** is never deleted from a citing doc — struck through in
-   place with `(Removed — see Change Record <date>)`, mirroring the App Spec's
-   own convention for the same reason: so an old reference resolves to an
+   place with `(Removed — see Change Record <date>)`, mirroring the Requirements
+   convention for the same reason: so an old reference resolves to an
    explanation instead of a silent gap.
-6. **A changed ID** (the App Spec's own IDs are append-only, so this means the
+6. **A changed ID** (Requirements IDs are append-only, so this means the
    _wording_ under an existing ID changed): re-read the citing doc's claim. If
    this repo's implementation is unaffected, leave the citation. If the
    technical implication changed, update the doc's prose and note it — this is
-   a human judgement call, not a mechanical sync.
+   a human judgement call, not a mechanical sync. Update or create the relevant
+   Specification under `docs/specifications/` when behaviour to build changes.
 7. **A new ID**: check whether this repo's existing prose already covers the
-   behaviour (common — the App Spec sometimes catches up to shipped work before
+   behaviour (common — Requirements sometimes catch up to shipped work before
    the reverse). If it does, add the citation to the relevant
-   `technical-spec/` feature doc (and to `app-spec-coverage.md`). If it
-   doesn't, that's a real gap — feed it into `app-spec-coverage.md`'s own
-   ✅🚧❌⚠️ gap-analysis mechanism rather than starting a second tracking
-   system.
+   `technical-spec/` feature doc (and to `requirements-coverage.md`). If it
+   doesn't, that's a real gap — feed it into `requirements-coverage.md`'s own
+   ✅🚧❌⚠️ gap-analysis mechanism and/or a new Specification rather than
+   starting a second tracking system.
 8. **Update the header** if a whole prefix range is affected, not just one ID.
 9. **Cite the Change Record** (date or link) in the commit message for any
-   commit that exists specifically to re-sync against an App Spec change — this
-   is scoped narrowly to spec-sync commits and doesn't change `CONTRIBUTING.md`'s
-   ownership of the general commit-message format.
+   commit that exists specifically to re-sync citing docs against a Requirements
+   change — this is scoped narrowly to those commits and doesn't change
+   `CONTRIBUTING.md`'s ownership of the general commit-message format.
 
 ### Scope, honestly stated
 
-`technical-spec/app-spec-coverage.md` is fully retrofitted with per-section
+`technical-spec/requirements-coverage.md` is fully retrofitted with per-section
 inline citations — it was the mechanical case, since its 21 sections already
-mirror the App Spec's 21 sections exactly. Every doc under `technical-spec/`
+mirror the Requirements 21 sections exactly. Every doc under `technical-spec/`
 carries an "Implements" table naming the IDs it covers, verified against the
 requirement-index as of 2026-09-11 — but "verified once" is not "audited
 forever": treat a `Partial` label as literally true and re-verify it when the
-feature or the App Spec section changes. Docs outside `technical-spec/`
+feature or the Requirements section changes. Docs outside `technical-spec/`
 (`build-spec.md`, `roadmap.md`, `sdk/`) carry only a header-level, best-effort
-coverage field.
+coverage field. New feature work should land Specifications under
+`docs/specifications/` rather than extending the legacy as-built tree.
 
 ## Contributing to these docs
 
@@ -331,7 +336,7 @@ When you add a new doc under `docs/`, or substantively edit an existing one:
   Spec at all, it probably belongs at `N/A`, not a guessed `Partial`.
 - **If you cite Requirement IDs in body text, follow the inline format above**
   and add the doc to the index table if it's new.
-- **If you're resolving a Requirement-ID change** (App Spec added/changed/
+- **If you're resolving a Requirement-ID change** (Requirements added/changed/
   removed something), follow the regeneration protocol above and say so in the
   PR description — which `PREFIX-NNN` IDs, and which docs you touched because of
   them.

@@ -13,9 +13,9 @@ own **custom roles** (organisational labels) and is assigned **officer
 roles** by AfrikaBurn when its registration data triggers one (e.g. a
 declared sound level requiring a Sound Officer).
 
-## Implements (App Specification)
+## Implements (Requirements)
 
-| App Spec §                   | IDs                                                                          | Status | Notes                                                                                                                   |
+| Requirements §                   | IDs                                                                          | Status | Notes                                                                                                                   |
 | ---------------------------- | ---------------------------------------------------------------------------- | ------ | ----------------------------------------------------------------------------------------------------------------------- |
 | §19 Permissions and security | SEC-001 (camp lead), SEC-002 (camp administrator), SEC-010 (camper)          | ✅     |                                                                                                                         |
 | §19                          | SEC-005 (build captain), SEC-006 (strike captain), SEC-007 (functional lead) | 🚧     | A camp can create the custom-role label; there is no build/strike-specific semantics attached to it beyond the label    |

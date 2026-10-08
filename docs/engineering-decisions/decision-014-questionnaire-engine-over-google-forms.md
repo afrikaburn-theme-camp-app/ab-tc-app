@@ -8,7 +8,7 @@ author: Repo maintainers (working group)
 status: accepted
 type: decision
 related:
-  - ../sources/app-specification/app-specification.md#14-annual-registration-and-placement-submission
+  - ../requirements/requirements.md#14-annual-registration-and-placement-submission
 tags:
   - REG
   - questionnaire-engine
@@ -19,10 +19,10 @@ tags:
 | **Status**       | **Accepted**                                                                                                    |
 | **Decided**      | 2026-08-12                                                                                                      |
 | **Decided by**   | Repo maintainers (working group)                                                                                |
-| **Spec section** | [§14 Annual Registration and Placement Submission](../sources/app-specification/app-specification.md) (`REG-*`) |
+| **Spec section** | [§14 Annual Registration and Placement Submission](../requirements/requirements.md) (`REG-*`) |
 
 _Note (2026-09-11): renumbered `ENG-014` in this file's own id to avoid
-colliding with the App Specification's separate "Decision 014" (governance,
+colliding with Requirements' separate "Decision 014" (governance,
 licensing and data-liability thresholds) — the two number spaces are
 independent; see `docs/engineering-decisions/README.md`._
 
@@ -66,7 +66,7 @@ access to their Google account to build ours.
 - **Roadmap R1** — "Registration hardening: validation from the real Google Form"
   becomes validation owned by our own questionnaire definitions. The blocker table
   drops the "Google Form access + validation rules" row.
-- **App Spec §14** — the `REG-*` requirements are unaffected in substance; the
+- **Requirements §14** — the `REG-*` requirements are unaffected in substance; the
   implementation route is now stated.
 - **No code change.** The registration wizard was never built on Google Forms —
   this decision retires a planned dependency, not an existing one.

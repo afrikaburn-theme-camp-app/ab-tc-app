@@ -4,7 +4,7 @@
 | ---------------------- | -------------------------------------------------------------------------------------------------------------------------- |
 | **Category**           | Product                                                                                                                    |
 | **Doc status**         | Active                                                                                                                     |
-| **Normative language** | Descriptive only — the deep onboarding/standing workflow has no App Spec counterpart to derive normative requirements from |
+| **Normative language** | Descriptive only — the deep onboarding/standing workflow has no Requirements counterpart to derive normative requirements from |
 | **Requirement IDs**    | Partial — `PNP-005`, `REG-011`                                                                                             |
 | **Owner / Updated**    | Repo maintainers, 2026-09-11                                                                                               |
 
@@ -13,13 +13,13 @@ checklist; the org sees three things about any supplier: did they onboard
 properly, what standing are they in, and the notes trail (infractions or
 blessings).
 
-## Implements (App Specification)
+## Implements (Requirements)
 
-| App Spec §                   | IDs                                         | Status | Notes                                                                 |
+| Requirements §                   | IDs                                         | Status | Notes                                                                 |
 | ---------------------------- | ------------------------------------------- | ------ | --------------------------------------------------------------------- |
 | §16 Plug-and-play prevention | PNP-005 (external services declared)        | ✅     | Registration's supplier-declaration picker draws from this repository |
 | §14 Annual registration      | REG-011 (external-service declaration)      | ✅     |                                                                       |
-| —                            | The deep onboarding/standing workflow below | —      | Extends the App Spec; no dedicated section to cite against            |
+| —                            | The deep onboarding/standing workflow below | —      | Extends the Requirements; no dedicated section to cite against            |
 
 ## The supplier model
 

@@ -128,7 +128,7 @@ is why the coordination below matters more than it looks.
 
 So, in practice:
 
-1. Say in the project Slack (App Spec Decision 015: Slack for engineering
+1. Say in the project Slack (Requirements Decision 015: Slack for engineering
    coordination) that you're taking the canvas.
 2. `git pull` **first**, always.
 3. Make your changes in Pencil.
@@ -289,10 +289,14 @@ Reviewer**.
 
 ### Cross-cutting rules (templates enforce the detail)
 
-- **App Spec** — cite `PREFIX-NNN` IDs from
-  `docs/sources/app-specification/app-specification.md`. Modes are constrained
+- **Requirements** — cite `PREFIX-NNN` IDs from
+  `docs/requirements/requirements.md`. Modes are constrained
   per typed template. **Implements** and **Modifies** are mutually exclusive;
   never both. Hygiene uses **Exempt**.
+- **Specifications** — new behaviour / product features use the **feature**
+  template and must link an **approved** file under `docs/specifications/`
+  (Decision 017). No new product feature without an approved Specification
+  sourced from Requirements.
 - **Database** — the product is **deployed**. Prefer the **database** template
   whenever `schema.ts` or a generated migration is in the diff. "None." on other
   types means you checked.

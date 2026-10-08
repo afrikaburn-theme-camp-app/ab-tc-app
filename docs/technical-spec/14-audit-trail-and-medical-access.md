@@ -13,9 +13,9 @@ public, visible only to a defined audience, and every disclosing read is
 recorded. This document is the consent, access, and audit model for that
 class, plus the general audit trail it sits inside.
 
-## Implements (App Specification)
+## Implements (Requirements)
 
-| App Spec §                   | IDs                                                                                                         | Status | Notes |
+| Requirements §                   | IDs                                                                                                         | Status | Notes |
 | ---------------------------- | ----------------------------------------------------------------------------------------------------------- | ------ | ----- |
 | §19 Permissions and security | SEC-013 (POPIA-compliant processing), SEC-014 (encryption), SEC-016 (audit logs), SEC-021 (consent records) | ✅     |       |
 

@@ -8,7 +8,7 @@ Add ! before the colon for a breaking change: feat(db)!: …
 
 This file is a ROUTER only. Pick a typed template below (or via gh):
   gh pr create --body-file .github/PULL_REQUEST_TEMPLATE/<type>.md
-The typed template is the fill-in source of truth (App Spec modes, sections).
+The typed template is the fill-in source of truth (Requirements modes, sections).
 -->
 
 ## Pick a PR template

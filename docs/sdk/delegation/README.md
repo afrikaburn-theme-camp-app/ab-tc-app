@@ -1,6 +1,6 @@
 # Delegated identity — acting for a burner from outside the monorepo
 
-> **Draft — depends on App Specification Decision 005 (proposed).** Nothing
+> **Draft — depends on Requirements Decision 005 (proposed).** Nothing
 > in this tree is built; treat every "the consumer is X" statement below as
 > illustrative until Decision 005 is accepted. See
 > `docs/technical-spec/README.md`'s drift register.

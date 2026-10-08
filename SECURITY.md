@@ -143,7 +143,7 @@ _Settings_:
 ## Credentials we issue
 
 > **Not built. Design only.** Everything in this section describes a Draft
-> specification (`docs/sdk/delegation/`), pending App Specification Decision
+> specification (`docs/sdk/delegation/`), pending Requirements Decision
 > 005 (backend-first API/SDK direction, currently `proposed`). No `/v1` API,
 > integration key, or relay ticket exists in this codebase today.
 

@@ -6,14 +6,17 @@ distilled from the standing sources of truth below. It never overrides them.
 
 `README.md` has the product overview; `GOVERNANCE.md` has how decisions get
 made and by whom; `CONTRIBUTING.md` is the human-facing process guide this
-file assumes. **The App Specification** (authoritative on Superhuman, local
-working copy at [`docs/sources/app-specification/`](docs/sources/app-specification/README.md)
-— see [`docs/README.md`](docs/README.md)) governs what the product should do.
-Where anything in this repo conflicts with it, the App Specification wins,
-Decision Records aside. Below that: `GOVERNANCE.md`/`CONTRIBUTING.md` govern
-process, `docs/technical-spec/` and `docs/build-spec.md` govern engineering
-HOW, and this file is the agent digest — it must not contradict any of the
-above.
+file assumes. **Requirements** at
+[`docs/requirements/`](docs/requirements/README.md) govern what the product
+should do. **Specifications** at
+[`docs/specifications/`](docs/specifications/README.md) describe features to
+build (sourced from Requirements; engineer-reviewed before implementation).
+Where anything in this repo conflicts with Requirements, Requirements win,
+Decision Records aside. No new behaviour or product feature without an
+approved Specification. Below that: `GOVERNANCE.md`/`CONTRIBUTING.md` govern
+process, `docs/technical-spec/` (legacy as-built) and `docs/build-spec.md`
+govern engineering HOW, and this file is the agent digest — it must not
+contradict any of the above. See [`docs/README.md`](docs/README.md).
 
 ## Read this first
 
@@ -43,7 +46,7 @@ If you find a security or privacy problem, report it privately — `SECURITY.md`
 **Human contributors start at `CONTRIBUTING.md`**; it covers setup, the commit
 convention and the designer workflow. `GOVERNANCE.md` covers who decides what
 and how. This file is the agent digest and must not contradict either. (The
-full precedence chain, App Spec included, is in [`docs/README.md`](docs/README.md).)
+full precedence chain, Requirements included, is in [`docs/README.md`](docs/README.md).)
 
 ## What this is
 
@@ -58,7 +61,7 @@ apps/org        organiser console :3001  (apricot — .org-accent)
 apps/suppliers  supplier portal   :3002  (sage — .supplier-accent)
 packages/       @quagga/{auth,ui,db,core,types,eslint-config,typescript-config}
 design/         ab-initial-app.pen (pen.dev canvas) + brand/ + pen-lessons.md
-docs/           specs (law) + sources/ (corpora + app-specification Superhuman sync home)
+docs/           requirements/ + specifications/ + technical-spec/ (legacy) + sources/ (mirrors)
 ```
 
 ## Commands
@@ -183,7 +186,7 @@ list`, then `git worktree remove` what has finished.
 8. Vitest covers core logic; add regression tests with every bug fix.
 9. **An API key is a ceiling, never a principal.** Nothing under `/v1` exists yet — the
    surface is specified as a Draft in [`docs/sdk/delegation/`](docs/sdk/README.md),
-   pending App Spec Decision 005 (proposed: backend-first API/SDK direction). If
+   pending Requirements Decision 005 (proposed: backend-first API/SDK direction). If
    it is ever built, this constraint applies before any code is written this
    way — retrofitting it afterwards is not credible. Every `/v1` request that
    can name a burner would have to resolve, live, on every request:
@@ -210,7 +213,7 @@ list`, then `git worktree remove` what has finished.
 
 ## Product positions currently built (not permanent law — see the governing Decision Record)
 
-The App Specification and its Decision Records (`docs/sources/app-specification/decisions-record/`)
+Requirements and their Decision Records (`docs/requirements/decisions-record/`)
 are what make a product position binding, not this file. Where a position below
 still has its Decision Record at `status: proposed`, treat it as this repo's
 current build stance, not as settled: changing it needs that record accepted,
@@ -262,7 +265,7 @@ per-feature drift register.
     break-glass/reason-prompt design.)_
 
   - Free camps are undiscoverable to strangers (directory, profiles, type-aheads all
-    enforce this) — a repo-built visibility rule the App Specification does not
+    enforce this) — a repo-built visibility rule the Requirements does not
     itself state; worth a Decision Record of its own before it is treated as
     permanent.
 - **Structural roles (`lead`/`admin`) hold every project permission irrevocably** — the
@@ -353,7 +356,7 @@ So, in this repo:
   Suggest, don't add.
 - **Specs are contracts.** Feature behavior lives in `docs/technical-spec/*.md`
   and the legacy `docs/*-spec.md` files being migrated into it; update the spec
-  when the governing App Spec section or Decision Record changes, then
+  when the governing Requirements section or Decision Record changes, then
   implement the spec. Sources of ground truth: `docs/sources/quaggapedia/` and
   `docs/sources/afrikaburn-org/` (mirrored corpora with INDEX files) — cite
   them rather than guessing event facts.
@@ -374,7 +377,7 @@ So, in this repo:
   Put **one** `🤖` on the first heading only. **What Changed** ≤3 sentences /
   ≤500 characters. Keep type-specific load-bearing fields scannable (do not bury
   them under essay prose). `None.` under Database / Notes means you checked.
-  App Spec modes, Risk Matrix dimensions, and required sections: **read the
+  Requirements modes, Risk Matrix dimensions, and required sections: **read the
   typed template you picked**.
 - **Issues are labelled, and two labels change how you read one.** The taxonomy and
   the triage routine are `docs/triage.md`. `needs-triage` means nobody has reviewed

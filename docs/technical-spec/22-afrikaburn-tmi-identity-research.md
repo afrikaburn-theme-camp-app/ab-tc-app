@@ -13,8 +13,8 @@ as shared into the Theme Camp App WhatsApp Group Chat (2026-09-17) by Graeme
 Allan (relaying org material). This is **not** a built-feature spec and is
 **not** an engineering HOW decision yet.
 
-Operational product implications live in App Spec
-[Decision 002](https://github.com/afrikaburn-theme-camp-app/ab-tc-app/blob/main/docs/sources/app-specification/decisions-record/decision-002-proposed-architecture-integration-strategy-open-pending-org-feedback.md)
+Operational product implications live in Requirements
+[Decision 002](https://github.com/afrikaburn-theme-camp-app/ab-tc-app/blob/main/docs/requirements/decisions-record/decision-002-proposed-architecture-integration-strategy-open-pending-org-feedback.md)
 (architecture / org-integration posture — still `proposed`). The Theme Camp
 App's current auth stack is documented in
 [`01-auth-and-identity.md`](01-auth-and-identity.md) (Better Auth) and is
@@ -79,7 +79,7 @@ internals here.
 
 - WhatsApp Group Chat (2026-09-17) — Graeme Allan, posting AfrikaBurn TMI /
   TMI Identity descriptions and integration guidance.
-- Related operational discussion: [2026-09-17 dev alignment](../sources/app-specification/meeting-minutes/2026-09-17-dev-alignment.md)
+- Related operational discussion: [2026-09-17 dev alignment](../requirements/meeting-minutes/2026-09-17-dev-alignment.md)
   (Havon meeting to be scheduled via Tim Doyle).
 
 ## Open questions

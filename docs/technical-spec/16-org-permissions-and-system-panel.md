@@ -5,7 +5,7 @@
 | **Category**           | Security                                                                                                    |
 | **Doc status**         | Active                                                                                                      |
 | **Normative language** | RFC 2119 / RFC 8174 applies                                                                                 |
-| **Requirement IDs**    | Partial — `SEC-011, SEC-019` (App Spec §19; the department/domain permission model itself extends the spec) |
+| **Requirement IDs**    | Partial — `SEC-011, SEC-019` (Requirements §19; the department/domain permission model itself extends the spec) |
 | **Owner / Updated**    | Repo maintainers, 2026-09-11                                                                                |
 
 Console access is a **door**, not the rights: any org rank clears the gate,
@@ -14,13 +14,13 @@ but what an account may actually do is the resolved union of the org
 ranks. The model deliberately mirrors camp Roles v2 (one mental model, two
 surfaces).
 
-## Implements (App Specification)
+## Implements (Requirements)
 
-| App Spec §                   | IDs                                          | Status | Notes                                                                              |
+| Requirements §                   | IDs                                          | Status | Notes                                                                              |
 | ---------------------------- | -------------------------------------------- | ------ | ---------------------------------------------------------------------------------- |
 | §19 Permissions and security | SEC-011 (organisation reviewer)              | ✅     |                                                                                    |
 | §19                          | SEC-019 (access expiration)                  | 🚧     | Sessions and invites expire; org-role assignments and department membership do not |
-| —                            | The department/domain permission model below | —      | Extends the App Spec; no section names this design                                 |
+| —                            | The department/domain permission model below | —      | Extends the Requirements; no section names this design                                 |
 
 ## The three ranks
 

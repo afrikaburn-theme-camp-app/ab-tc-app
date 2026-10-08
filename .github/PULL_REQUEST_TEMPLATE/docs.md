@@ -4,7 +4,7 @@ TITLE: Conventional Commits with a workspace scope — see CONTRIBUTING.md.
 Scopes: web · org · suppliers · core · db · ui · auth · types · e2e · repo
 Template: docs — specs / process, no runtime behaviour.
 Prove: either change the product north star (Modifies) or document against it.
-App Spec: Modifies (default for App Spec / decisions / meeting notes) OR Implements OR Exempt —
+Requirements: Modifies (default for Requirements / decisions / meeting notes) OR Implements OR Exempt —
   fill EXACTLY ONE, delete the other two. Never mix Implements and Modifies.
 No Database section — migration in the diff → use the database template.
 Agent: one continuous blockquote after Summary. One 🤖 only, on the first heading.
@@ -23,23 +23,23 @@ Agent: one continuous blockquote after Summary. One 🤖 only, on the first head
 >  <!-- What Changed: which docs changed and the reader-facing effect. ≤3 sentences AND ≤500 characters. -->
 >  ### 🤖 What Changed
 >
->  <!-- App Spec (docs/sources/app-specification/app-specification.md):
->       Modifies — App Spec / meeting notes / decisions: list PREFIX-NNN (added|changed|removed). Preferred for App Spec PRs.
+>  <!-- Requirements (docs/requirements/requirements.md):
+>       Modifies — Requirements / meeting notes / decisions: list PREFIX-NNN (added|changed|removed). Preferred for Requirements PRs.
 >       Implements — technical-spec / process docs citing existing PREFIX-NNN IDs.
 >       Exempt — process / repo-hygiene docs with no product requirement impact.
 >       Fill EXACTLY ONE — delete the other two lines. Never mix Implements and Modifies. -->
->  ### App Spec
+>  ### Requirements
 >  **Modifies:**
 >  **Implements:**
 >  **Exempt:**
 >
 >  <!-- Corpus: pick the primary home of the change. -->
 >  ### Corpus
->  app-specification | technical-spec | engineering-decisions | process (CONTRIBUTING/AGENTS) | other
+>  requirements | specifications | technical-spec | engineering-decisions | process (CONTRIBUTING/AGENTS) | other
 >
 >  <!-- Change Record: required when Mode = Modifies. -->
 >  ### Change Record
->  **Entry:** (app-spec-change-record.md name / N/A — decision-only / N/A — not Modifies)
+>  **Entry:** (requirements-change-record.md name / N/A — decision-only / N/A — not Modifies)
 >
 >  <!-- Paths under docs/ (or process files). Deploy is docs-only. -->
 >  ### Blast Radius

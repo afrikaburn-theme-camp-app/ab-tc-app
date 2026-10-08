@@ -194,21 +194,24 @@ Two rules that catch people out:
   [`AGENTS.md`](AGENTS.md) §Privacy classes.
 
 > **Start at [`CONTRIBUTING.md`](CONTRIBUTING.md) and [`GOVERNANCE.md`](GOVERNANCE.md).**
-> This README is orientation. The **App Specification** governs what the
-> product should do; `GOVERNANCE.md`/`CONTRIBUTING.md` govern process;
-> [`docs/build-spec.md`](docs/build-spec.md) and `docs/technical-spec/` govern
-> engineering HOW; [`AGENTS.md`](AGENTS.md) is the agent operating digest — see
-> [`docs/README.md`](docs/README.md) for the full precedence chain.
+> This README is orientation. **Requirements** govern what the product should
+> do; **Specifications** describe features before build;
+> `GOVERNANCE.md`/`CONTRIBUTING.md` govern process;
+> [`docs/build-spec.md`](docs/build-spec.md) and `docs/technical-spec/` (legacy
+> as-built) govern engineering HOW; [`AGENTS.md`](AGENTS.md) is the agent
+> operating digest — see [`docs/README.md`](docs/README.md) for the full
+> precedence chain.
 
 ## Documentation
 
-The product's source of truth is the **App Specification** — an external,
-Requirement-ID-tagged document (Superhuman, mirrored to a Coda change record).
-**[`docs/README.md`](docs/README.md#direction-of-information-travel) carries
-the link** and is also the full index and rulebook for everything under
-`docs/`: every doc's category and Requirement-ID coverage, the language/status
-conventions every doc follows, and the protocol for updating this repo's docs
-when the App Spec changes. Start there.
+The product's source of truth is **Requirements** —
+[`docs/requirements/requirements.md`](docs/requirements/requirements.md), a
+Requirement-ID-tagged corpus edited in this repo. Feature **Specifications**
+live under [`docs/specifications/`](docs/specifications/README.md).
+**[`docs/README.md`](docs/README.md#direction-of-information-travel)** is the
+full index and rulebook for everything under `docs/`: every doc's category and
+Requirement-ID coverage, the language/status conventions, and the protocol for
+updating citing docs when Requirements change. Start there.
 
 [`docs/sources/`](docs/sources/) holds **verbatim primary sources — never
 edit**: AfrikaBurn's own published pages and the original scope documents.

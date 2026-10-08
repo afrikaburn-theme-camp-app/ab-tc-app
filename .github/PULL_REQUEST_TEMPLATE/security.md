@@ -4,7 +4,7 @@ TITLE: Conventional Commits with a workspace scope — see CONTRIBUTING.md.
 Scopes: web · org · suppliers · core · db · ui · auth · types · e2e · repo
 Template: security — auth, sessions, privacy projection, authz predicates.
 Prove: the server boundary (UI hiding is never the security boundary).
-App Spec: Implements OR Exempt only — delete the unused line. No Modifies (use docs).
+Requirements: Implements OR Exempt only — delete the unused line. No Modifies (use docs).
 Agent: one continuous blockquote after Summary. One 🤖 only, on the first heading.
 -->
 
@@ -21,10 +21,10 @@ Agent: one continuous blockquote after Summary. One 🤖 only, on the first head
 >  <!-- What Changed: auth/privacy/authz behaviour. ≤3 sentences AND ≤500 characters. -->
 >  ### 🤖 What Changed
 >
->  <!-- App Spec: Implements = usually SEC-* plus any feature prefixes touched;
+>  <!-- Requirements: Implements = usually SEC-* plus any feature prefixes touched;
 >       Exempt = e.g. emergency pin / routine hygiene (say which + why).
 >       Fill EXACTLY ONE — delete the other line. -->
->  ### App Spec
+>  ### Requirements
 >  **Implements:**
 >  **Exempt:**
 >

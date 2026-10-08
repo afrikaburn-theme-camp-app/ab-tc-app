@@ -2,7 +2,7 @@
 // for placement").
 //
 // WHAT THIS IS FOR. Placement happens off-platform — a room, a printed map, and
-// the people who decide which camp goes where (App Spec §13 is blocked on
+// the people who decide which camp goes where (Requirements §13 is blocked on
 // AfrikaBurn's own mapping process). Those people need one table of every
 // registered camp with the numbers that drive the decision. That is this file.
 //

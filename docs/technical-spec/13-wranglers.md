@@ -5,16 +5,16 @@
 | **Category**           | Product                                                                        |
 | **Doc status**         | Active                                                                         |
 | **Normative language** | Descriptive only                                                               |
-| **Requirement IDs**    | Partial — `SEC-012` (App Spec §19; the wrangler board itself extends the spec) |
+| **Requirement IDs**    | Partial — `SEC-012` (Requirements §19; the wrangler board itself extends the spec) |
 | **Owner / Updated**    | Repo maintainers, 2026-09-11                                                   |
 
 Each registered camp is assigned an AfrikaBurn **wrangler** — an org staff
 member who shepherds it through registration and beyond. Shipped; previously
 undocumented outside scattered mentions in other specs.
 
-## Implements (App Specification)
+## Implements (Requirements)
 
-| App Spec §                   | IDs                           | Status | Notes                                                                                         |
+| Requirements §                   | IDs                           | Status | Notes                                                                                         |
 | ---------------------------- | ----------------------------- | ------ | --------------------------------------------------------------------------------------------- |
 | §19 Permissions and security | SEC-012 (theme-camp wrangler) | ✅     | The role itself is spec'd; the assignment board and workflow around it extend beyond the spec |
 

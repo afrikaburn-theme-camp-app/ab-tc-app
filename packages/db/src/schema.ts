@@ -1193,7 +1193,7 @@ export const registrations = pgTable(
     // container booking without any placement tool."
     //
     // NEITHER OF THESE IS A PLACEMENT TOOL, and the erf is free text on purpose:
-    // AfrikaBurn has not supplied an erf grammar (App Spec §13 is blocked on
+    // AfrikaBurn has not supplied an erf grammar (Requirements §13 is blocked on
     // their mapping process), so a structured column here would be a format we
     // invented and they would then have to match. Normalization lives in
     // @quagga/core `placement-codes`; the moment AB hands over a real format,

@@ -13,7 +13,7 @@ import { assignPlacement } from "@/lib/actions/placement";
  * NOT A PLACEMENT TOOL, and the copy says so rather than implying a map exists.
  * The erf is whatever AfrikaBurn's placement process decides it is — a free-text
  * label typed by the person who made the decision — because no structured erf
- * data exists to validate against (App Spec §13 is blocked on AB's mapping
+ * data exists to validate against (Requirements §13 is blocked on AB's mapping
  * process).
  *
  * DISABLED AND EXPLAINED rather than hidden when the viewer lacks the

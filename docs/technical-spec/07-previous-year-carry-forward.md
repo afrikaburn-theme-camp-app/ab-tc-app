@@ -5,16 +5,16 @@
 | **Category**           | Product                                          |
 | **Doc status**         | Active                                           |
 | **Normative language** | Descriptive only                                 |
-| **Requirement IDs**    | Partial — `PREVYR-001–PREVYR-025` (App Spec §15) |
+| **Requirement IDs**    | Partial — `PREVYR-001–PREVYR-025` (Requirements §15) |
 | **Owner / Updated**    | Repo maintainers, 2026-09-11                     |
 
 A returning camp's registration and a returning burner's bio are pre-filled
 from the previous edition. Shipped, but documented until now only as a
 roadmap bullet — this doc is the first dedicated technical record of it.
 
-## Implements (App Specification)
+## Implements (Requirements)
 
-| App Spec §                    | IDs                                                                               | Status         | Notes                                                                                                                                                                   |
+| Requirements §                    | IDs                                                                               | Status         | Notes                                                                                                                                                                   |
 | ----------------------------- | --------------------------------------------------------------------------------- | -------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | §15 Previous-year submissions | PREVYR-011 (archive every submitted version)                                      | ✅             | Per-edition rows, unique on `group_id × edition_id`                                                                                                                     |
 | §15                           | PREVYR-002, PREVYR-013 (duplicate last year's submission)                         | ✅             | `packages/core/src/registration-carry-forward.ts`; fills only empty fields, in one transaction, never marks a section complete on the camp's behalf                     |

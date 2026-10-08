@@ -5,15 +5,15 @@
 | **Category**           | Product                                                                |
 | **Doc status**         | Active                                                                 |
 | **Normative language** | Descriptive only                                                       |
-| **Requirement IDs**    | N/A — extends the spec; no App Spec section names a directory taxonomy |
+| **Requirement IDs**    | N/A — extends the spec; no Requirements section names a directory taxonomy |
 | **Owner / Updated**    | Repo maintainers, 2026-09-11                                           |
 
 An org-defined, per-edition taxonomy ("theme topics") that camps pick from
 so the public directory can filter by category.
 
-## Implements (App Specification)
+## Implements (Requirements)
 
-No App Spec section requires this. It extends the spec's §4a directory
+No Requirements section requires this. It extends the spec's §4a directory
 concept with a filtering mechanism.
 
 ## How it is built

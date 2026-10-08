@@ -5,16 +5,16 @@
 | **Category**           | Product                                                          |
 | **Doc status**         | Active                                                           |
 | **Normative language** | Descriptive only                                                 |
-| **Requirement IDs**    | Partial — `COMM-012` (App Spec §4a); otherwise repo-extends-spec |
+| **Requirement IDs**    | Partial — `COMM-012` (Requirements §4a); otherwise repo-extends-spec |
 | **Owner / Updated**    | Repo maintainers, 2026-09-11                                     |
 
 Every account gets an in-app notification stream; the org gets a bulletin
 system to broadcast to an audience — personal events and broadcasts, one
 inbox.
 
-## Implements (App Specification)
+## Implements (Requirements)
 
-| App Spec §                | IDs                                               | Status | Notes                                                                                                                            |
+| Requirements §                | IDs                                               | Status | Notes                                                                                                                            |
 | ------------------------- | ------------------------------------------------- | ------ | -------------------------------------------------------------------------------------------------------------------------------- |
 | §4a Camper communications | COMM-012 (group communications and announcements) | 🚧     | Org → audience broadcast exists; no camp-level announcement surface — a camp's only broadcast channel is a project questionnaire |
 

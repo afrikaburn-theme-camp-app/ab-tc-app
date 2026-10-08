@@ -4,7 +4,7 @@ TITLE: Conventional Commits with a workspace scope — see CONTRIBUTING.md.
 Scopes: web · org · suppliers · core · db · ui · auth · types · e2e · repo
 Template: chore — deps, CI, tooling, non-behaviour refactors.
 Prove: this is not a sneaky behaviour change.
-App Spec: Exempt only. Need Implements → feature/fix. Need Modifies → docs.
+Requirements: Exempt only. Need Implements → feature/fix. Need Modifies → docs.
 Agent: one continuous blockquote after Summary. One 🤖 only, on the first heading.
 -->
 
@@ -21,8 +21,8 @@ Agent: one continuous blockquote after Summary. One 🤖 only, on the first head
 >  <!-- What Changed: tooling/deps/CI/refactor. ≤3 sentences AND ≤500 characters. If behaviour changed, use feature or fix instead. -->
 >  ### 🤖 What Changed
 >
->  <!-- App Spec: Exempt only — name which + why (maintenance / update / repo hygiene). -->
->  ### App Spec
+>  <!-- Requirements: Exempt only — name which + why (maintenance / update / repo hygiene). -->
+>  ### Requirements
 >  **Exempt:**
 >
 >  <!-- Kind: pick one. -->
