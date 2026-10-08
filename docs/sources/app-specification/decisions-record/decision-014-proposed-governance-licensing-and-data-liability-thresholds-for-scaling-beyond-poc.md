@@ -86,3 +86,11 @@ Source: [2026-09-17 dev alignment](../meeting-minutes/2026-09-17-dev-alignment.m
 
 - Ryan has fully separated: forked independently and continues building his preferred product alone. This working group partitioned his prior work into the shared org repo and does not depend on his fork.
 - Optional cherry-pick from his parallel work was discussed as a courtesy path, not a governance arrangement. Area A's ownership picture is now: shared-org hosting + departed founder + independent fork. Triggers A1–A4 and liability questions (C) remain unsettled. Status stays **proposed**.
+
+## Update 2026-09-26 — Community Software Collaboration (NDA / IP)
+Source: direct messages between Beyers Nel and Graeme Allan, 2026-09-24–2026-09-26 (WhatsApp).
+
+- Tim Doyle offered Beyers access to AfrikaBurn’s GitHub / Keycloak-related material under an NDA. The first draft used boilerplate language assigning to AfrikaBurn any IP created during engagement that related to AfrikaBurn’s business or anticipated R&D.
+- That assignment language is a poor fit for this community project: the working group is asking for standalone products with access to AfrikaBurn backends, not for AfrikaBurn to own Theme Camp App work product. Graeme’s stated intent: offer the app/tools to burners more widely (possibly excluding AfrikaBurn-backend interface code); treat it as freeware where no single party owns it; AfrikaBurn can have user rights free and in perpetuity.
+- Beyers pushed back; Tim agreed the standard boilerplate NDA was incorrect. A replacement **Community Software Collaboration** document was accepted as fit for purpose (2026-09-26).
+- This clarifies AfrikaBurn’s rights conversation under Section B (licensing / AB rights) but does **not** settle Options B1–B3 or the FSL-1.1-ALv2 choice already on the repo. Status stays **proposed**.

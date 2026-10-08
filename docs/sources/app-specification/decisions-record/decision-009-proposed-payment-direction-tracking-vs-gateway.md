@@ -9,6 +9,7 @@ related:
   - ../app-specification.md
   - ../meeting-minutes/2026-09-10-graeme-payment-and-portal-vision-messages.md
   - ../meeting-minutes/2026-09-17-dev-alignment.md
+  - ../meeting-minutes/2026-09-22-ruchir-camp-finance-proposal.md
 tags:
   - payments
   - compliance
@@ -56,3 +57,12 @@ Source: [2026-09-17 dev alignment](../meeting-minutes/2026-09-17-dev-alignment.m
 
 - Graeme restated camp financial tracking as a near-term priority (working budgets visible to the org for large camps; POPIA sign-offs per member), framed as plug-and-play mitigation rather than as a payment-gateway choice.
 - That accountability threshold is recorded under §16 / `PNP-*` as a surfaced-unratified candidate (see also the 2026-09-19 §16 context note). It does **not** resolve Options A–D here. Status stays **proposed**.
+
+## Update 2026-09-22 — Ruchir camp-finance first slice
+Source: [2026-09-22 Ruchir — Camp finance proposal](../meeting-minutes/2026-09-22-ruchir-camp-finance-proposal.md)
+
+- Ruchir proposed building day-to-day camp money tools **inside** the Theme Camp App (`ab-tc-app`): living budget (plan vs approved vs actual); camp dues with unique payment references, bank CSV / manual EFT matching, and instalments; expense submit / approve / reimbursements; open books for members.
+- Explicit boundary: the app tracks who owes / paid / spent — it does **not** hold or move money. Proper entity books (NGO / tax) stay out of scope for the first slice (export or later Xero-class connection). Card / payment-provider checkout remains an open team call and is **not** part of this slice.
+- Delivery assumptions he asked the group to validate: finance logic in `@quagga/core` / `@quagga/types` with participant-app screens; budget / dues / expense tables in `@quagga/db` after a short design note; first version camp screens only with hooks for village / org later; tracking + bank matching only; org / plug-and-play surfaces get **summary totals** (budgeted, spent, dues billed/collected, fee, headcount, open reimbursements, whether dues collected cross roughly R100k) — not private ledger lines.
+- Beyers (2026-09-23): agreed the tracking slice need not wait on the payment-gateway debate; asked for more context on village ownership and org day-one totals (Ruchir expanded the same day — see minutes).
+- This is a concrete narrowing toward Option A (and compatible with Option D later). It does **not** accept Options A–D. Status stays **proposed**.

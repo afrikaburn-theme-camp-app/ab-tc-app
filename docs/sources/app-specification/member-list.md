@@ -51,7 +51,7 @@ context only.
 ### Pride Musvaire
 - **Expertise:** Unknown.
 - **Responsibility:** Unknown.
-- **Involvement Status:** 🔵 Recently joined — rejoined WhatsApp working group 2026-09-18.
+- **Involvement Status:** 🟡 Meetings only — on WhatsApp / repo as maintainer; not currently delivering work.
 
 ### Finlay Kettlewell
 - **Expertise:** Product scoping.
@@ -64,14 +64,14 @@ context only.
 - **Involvement Status:** 🔴 Departed — independent fork; not this team.
 
 ### Rohan Shackleford
-- **Expertise:** Village vs camp shift structuring; uniform authentication concerns.
-- **Responsibility:** Village / multi-camp operational concepts; packaging village materials into a shareable specification.
-- **Involvement Status:** 🟠 Low capacity, 🟡 Meetings only — village spec packaging when available.
+- **Expertise:** Village vs camp shift structuring; uniform authentication concerns; requirements-to-spec packaging.
+- **Responsibility:** Village / multi-camp operational concepts; writing feature specifications from product requirements ([Decision 017](decisions-record/decision-017-proposed-spec-driven-feature-delivery.md), proposed).
+- **Involvement Status:** 🟢 Active — product / docs — spec authorship with engineers reviewing/implementing.
 
 ### Ruchir Thakore
 - **Expertise:** Financial / product operations (camp context).
-- **Responsibility:** Camp financials / budgeting interest.
-- **Involvement Status:** 🟠 Low capacity — until after ~2026-10-05 product rollout.
+- **Responsibility:** Camp financials / budgeting — proposed first tracking slice (budget, dues refs + bank matching, expenses); see [Decision 009](decisions-record/decision-009-proposed-payment-direction-tracking-vs-gateway.md).
+- **Involvement Status:** 🟢 Active — product / docs — camp-finance direction; local spike reported, no recent shared-repo delivery.
 
 ### Remi Bun Ooaasies
 - **Expertise:** Unknown.
@@ -80,18 +80,18 @@ context only.
 
 ### Michael Hazell
 - **Expertise:** Unknown.
-- **Responsibility:** Unknown.
-- **Involvement Status:** ⚪ Absent — not in recent alignment.
+- **Responsibility:** Named contact for the standalone Container Project (Base44); see [Decision 016](decisions-record/decision-016-proposed-2027-container-app-integration.md).
+- **Involvement Status:** ⚪ Absent — not in recent Theme Camp App alignment.
 
 ### Tim Doyle
 - **Expertise:** Org process / former ITC.
 - **Responsibility:** Theme Camp App team member; AfrikaBurn participant relations manager (formerly ran ITC). Org-side bridge for IT / architecture alignment (route to Havon).
-- **Involvement Status:** 🔵 Recently joined — org bridge into the team.
+- **Involvement Status:** 🟢 Active — product / docs — org bridge (light volume; brought Havon onto WhatsApp).
 
 ### Scheepers de Bruin ("Skippy")
-- **Expertise:** Prior AfrikaBurn ITC / platform architecture; programming. Lives in Amsterdam.
-- **Responsibility:** Theme Camp App team member; former AfrikaBurn ITC architect (~six years prior).
-- **Involvement Status:** 🔵 Recently joined — orientation pending.
+- **Expertise:** Prior AfrikaBurn ITC / platform architecture; project-type normalisation; programming. Lives in Amsterdam.
+- **Responsibility:** Theme Camp App team member; former AfrikaBurn ITC architect (~six years prior); product / IA advice (Requirements vs Spec; shared project submodules).
+- **Involvement Status:** 🟢 Active — product / docs — orientation underway; see [2026-09-19 notes](meeting-minutes/2026-09-19-scheepers-project-abstraction-notes.md).
 
 ---
 
@@ -108,13 +108,18 @@ context only.
 
 ### Kshetra Govindasamy
 - **Expertise:** AfrikaBurn GIS (QGIS, Postgres layers, ground-truthing).
-- **Responsibility:** Mapping / GIS workstream; disseminates map-related conversations to the right portfolios.
-- **Involvement Status:** 🟢 Org contact — engaged.
+- **Responsibility:** Mapping / GIS workstream; disseminates map-related conversations to the right portfolios; Theme Camp App WhatsApp contact for GIS / camp placement (added 2026-10-08).
+- **Involvement Status:** 🟢 Org contact — engaged — on WhatsApp working group; email `kshetra@afrikaburn.com`.
 
 ### Roger Van Wyk
-- **Expertise:** Site spatial planning, ground-truthing, drainage / terrain.
-- **Responsibility:** Spatial planning / town planner.
-- **Involvement Status:** 🟢 Org contact — engaged.
+- **Expertise:** Site spatial planning, ground-truthing, drainage / terrain; DPW ground control.
+- **Responsibility:** Spatial Planning and DPW Ground Control.
+- **Involvement Status:** 🟢 Org contact — engaged — on Theme Camp App WhatsApp working group (added 2026-10-08).
+
+### Kristy Derbyshire
+- **Expertise:** AfrikaBurn operations.
+- **Responsibility:** Operations Manager.
+- **Involvement Status:** 🟢 Org contact — engaged — on Theme Camp App WhatsApp working group (added 2026-10-08). Earlier transcripts spelled the name Christy/Christie and described the role as acting EDO / production manager; confirmed identity and title supersede those.
 
 ### Lexi
 - **Expertise:** Theme-camp allocation / placement. **verify** — surname not in the transcripts.
@@ -124,17 +129,12 @@ context only.
 ### Krishna Lodha
 - **Expertise:** QGIS. **verify** — role relative to AfrikaBurn vs. Kshetra's consulting company is unclear.
 - **Responsibility:** Unknown (GIS / QGIS consultant presence).
-- **Involvement Status:** 🟢 Org contact — engaged — GIS meeting presence.
-
-### Christy / Christie
-- **Expertise:** Unknown. **verify** — spelling (Christy vs Christie) and surname not independently confirmed.
-- **Responsibility:** Acting EDO / production manager (director-level).
-- **Involvement Status:** 🟢 Org contact — engaged — via Graeme (second-hand); does not clear Decision 012's formal-grant gate.
+- **Involvement Status:** ⚪ Org contact — named — GIS meeting presence only; no ongoing workstream contact.
 
 ### Havon / Yvonne
-- **Expertise:** Unknown. **verify** — spelling is inconsistent across transcripts (Hevon, Havon, Haran, Yvonne, Avon).
-- **Responsibility:** AfrikaBurn IT / ITC (registration systems, architecture, and TMI Identity integration contact).
-- **Involvement Status:** 🟡 Org contact — pending intro — meeting to be scheduled via Tim Doyle.
+- **Expertise:** Unknown. **verify** — spelling is inconsistent across transcripts (Hevon, Havon, Haran, Yvonne, Avon). Appeared in WhatsApp as “Havon August” (2026-09-29).
+- **Responsibility:** AfrikaBurn IT / ITC (registration systems, architecture, and TMI Identity integration contact); Graeme described him as running the relevant org department under pressure on the new backend / submission forms.
+- **Involvement Status:** 🟢 Org contact — engaged — added to Theme Camp App WhatsApp 2026-09-29 by Tim Doyle; deeper IT alignment meeting still useful.
 
 ### Nikki
 - **Expertise:** Unknown. **verify**.

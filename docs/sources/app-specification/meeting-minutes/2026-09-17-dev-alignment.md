@@ -17,7 +17,7 @@ Align the working group after Ryan's departure, report org engagement progress (
 
 ## Key Takeaways
 
-- Graeme met AfrikaBurn's acting EDO (production manager Christie / Christy — **verify** spelling) who supported incremental progress and indicated access to a GIS layer for containers and camp placement. That report does **not** by itself clear Decision 012's formal-grant gate.
+- Graeme met AfrikaBurn's acting EDO (production manager Christie / Christy — later confirmed as Kristy Derbyshire, Operations Manager) who supported incremental progress and indicated access to a GIS layer for containers and camp placement. That report does **not** by itself clear Decision 012's formal-grant gate.
 - Tim Doyle (participant relations manager, formerly ITC) shared org framework material and described timing as good for alignment. He suggested inviting Scheepers ("Skippy") — former ITC architect, now in Amsterdam — to join the group.
 - Ryan has fully separated: forked the repo and builds independently. Beyers partitioned his prior work into this team's codebase. Parallel contribution remains optional, not a dependency.
 - Finlay argued prioritizing compulsory / org-linked processes (registrations, GIS, plug-and-play financial planning) over non-compulsory internal camp tools (tent planning, shift allocations).
@@ -33,7 +33,7 @@ Align the working group after Ryan's departure, report org engagement progress (
 
 ### AfrikaBurn engagement and GIS
 
-- Graeme reported meetings with the acting EDO (production manager Christie/Christy) and with Tim Doyle.
+- Graeme reported meetings with the acting EDO (production manager Christie/Christy — Kristy Derbyshire, Operations Manager) and with Tim Doyle.
 - Acting EDO: support in baby steps; access to a layer of GIS assistance for moving containers and placing camps was indicated (second-hand report; formal grant still outstanding — Decision 012).
 - Tim Doyle: new title participant relations; formerly ran ITC; shared framework material for what AfrikaBurn is developing; suggested reaching out to Scheepers ("Skippy").
 

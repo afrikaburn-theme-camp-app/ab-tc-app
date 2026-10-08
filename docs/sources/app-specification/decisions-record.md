@@ -20,6 +20,7 @@ Parent document: [App Specification](app-specification.md)
 - [Decision 014](decisions-record/decision-014-proposed-governance-licensing-and-data-liability-thresholds-for-scaling-beyond-poc.md)
 - [Decision 015](decisions-record/decision-015-accepted-whatsapp-for-operations-slack-for-engineering.md)
 - [Decision 016](decisions-record/decision-016-proposed-2027-container-app-integration.md)
+- [Decision 017](decisions-record/decision-017-proposed-spec-driven-feature-delivery.md)
 
 > Decision records in this corpus record **operational** decisions: what we
 > build, for whom, and why. They are not engineering HOW records — those live

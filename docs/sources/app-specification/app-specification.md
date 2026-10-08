@@ -428,6 +428,8 @@ The budget should be customisable but based on standard theme-camp categories an
 
 > 📝 **Note (2026-07-29):** Not yet built in the MVP. Ruchir volunteered to look into budgeting (group chat, 2026-07-28 20:34). Graeme shared the Mad Hatters Village budget spreadsheet as the reference structure and raised additional requirements — invoice scanning, real-time spend tracking, reimbursements, and NPC/PBO-grade bookkeeping (group chat, 2026-07-29 11:31–11:36).
 
+> 📝 **Note (2026-09-22):** Ruchir proposed a first camp-finance slice (living budget, dues with payment refs + bank matching, expenses/reimbursements, open books) that tracks money without holding it. See [Decision 009](decisions-record/decision-009-proposed-payment-direction-tracking-vs-gateway.md) and [2026-09-22 minutes](meeting-minutes/2026-09-22-ruchir-camp-finance-proposal.md). Does not resolve payment Options A–D.
+
 The budgeting system must include:
 
 - **BUDGET-001** Proposed budget
@@ -1002,6 +1004,8 @@ A camp should be able to collaborate:
 
 🚧 **Status:** In progress
 📋 **Context:** Foundational group types and some flows exist; full mode depends on other modules still not implemented.
+
+> 📝 **Note (2026-09-19):** Scheepers de Bruin suggested most AfrikaBurn project types (theme camps, artworks, support camps, mutants, performances, workshops, events) share structural submodules (participant, placement, layout) with differences mainly in templates/content — and called out project management and resource/inventory as gaps. Insight only; no requirement IDs added. See [2026-09-19 notes](meeting-minutes/2026-09-19-scheepers-project-abstraction-notes.md).
 
 The same platform should also support:
 

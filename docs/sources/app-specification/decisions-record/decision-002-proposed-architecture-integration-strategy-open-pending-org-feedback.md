@@ -55,7 +55,7 @@ Source: [2026-08-11 first GIS meeting](../meeting-minutes/2026-08-11-first-gis-m
 
 - The Theme Camp App (three surfaces: org console, camp app, supplier portal; shared login) was presented to AfrikaBurn spatial planning. Reception was positive. Shared "Login with AfrikaBurn" identity was well received.
 - AfrikaBurn IT is building its own internal systems in parallel. The agreed next step is an **IT-team auth / architecture alignment meeting** — Roger flagged this as the more complicated question; spatial-data sharing itself is straightforward.
-- Director-level movement was reported (Christy, **verify**) but is not ratification. Status stays **proposed**. The original review date ("after the org pitch and feedback cycle") is now partly due.
+- Director-level movement was reported (Christy — later confirmed as Kristy Derbyshire, Operations Manager; see member list) but is not ratification. Status stays **proposed**. The original review date ("after the org pitch and feedback cycle") is now partly due.
 
 ## Update 2026-09-19 — Dev alignment catch-up
 Source: [2026-09-17 dev alignment](../meeting-minutes/2026-09-17-dev-alignment.md)
@@ -71,3 +71,9 @@ Source: WhatsApp Group Chat (2026-09-17). Technical detail:
 - Graeme shared AfrikaBurn's production identity platform description: **TMI Identity** — applications integrate as **OIDC / OAuth 2.0 clients** (sign-in at `login.afrikaburn.net`); they must not integrate directly with LDAP, PostgreSQL, or the Keycloak database. Named integration conversation: **Havon** (spelling **verify**), Graeme, and the app's developer.
 - Conceptual public repo named: [AfrikaBurn/TMI](https://github.com/AfrikaBurn/TMI). Identity module described as private / NDA.
 - This is org-side identity posture, not Theme Camp App adoption. Status stays **proposed**.
+
+## Update 2026-09-29 — Havon on WhatsApp
+Source: Theme Camp App WhatsApp group, 2026-09-29 (Tim Doyle added Havon August).
+
+- Havon joined the working-group WhatsApp. Graeme described him as running the relevant AfrikaBurn department and under pressure finishing the new backend / submission architecture for the next cycle.
+- Contact channel is open; a dedicated IT / architecture alignment meeting is still the ratification path for this decision. Status stays **proposed**.

@@ -99,4 +99,11 @@ integration as in-cycle product scope.
 Source: [2026-09-17 dev alignment](../meeting-minutes/2026-09-17-dev-alignment.md)
 
 - Finlay agreed to drive the Container Project from an existing user-stories-focused specification (needs a developer or code reviewer). Mad Hatters village (~eight–nine joining camps) was named as an operational driver for getting containers working.
-- The four gates above are unchanged. A verbal GIS-access indication from the acting EDO (via Graeme) does **not** clear gate 3 — see [Decision 012](decision-012-proposed-map-erf-integration-strategy-readiness-gate.md). Status stays **proposed**.
+- The four gates above are unchanged. A verbal GIS-access indication from the acting EDO (via Graeme; later identified as Kristy Derbyshire, Operations Manager) does **not** clear gate 3 — see [Decision 012](decision-012-proposed-map-erf-integration-strategy-readiness-gate.md). Status stays **proposed**.
+
+## Update 2026-10-07 — Hosting and module posture (WhatsApp)
+Source: Theme Camp App WhatsApp group, 2026-10-07 (Finlay Kettlewell, Beyers Nel, Graeme Allan).
+
+- Finlay asked whether Container work for this year should be treated as a separate project (no Container reference found in the Git docs he checked).
+- Beyers: the Container Project is **completely separate** from the Theme Camp App; last known hosting is **Base44** (exportable to a GitHub repo); Michael Hazell is the contact for that codebase. Treat Container as an **optional module** that plugs into the Theme Camp App, like other non-core camp features — not as in-monorepo product scope.
+- This matches the “standalone app / integration only” stance above. It adds the Base44 hosting note and the optional-module framing. The four gates are unchanged. Status stays **proposed**.

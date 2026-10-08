@@ -23,6 +23,7 @@ Parent page: [App Specification](../app-specification.md)
 | 10/09/2026 | Section 8 MVP-observation note replaced with a pointer to Decision 009; Section 13 flagged a new open ambiguity on cross-module erf propagation (ERF-019) |
 | 19/09/2026 | §11 / §13 context notes: GIS workshops held, Decision 012 stays proposed, 2027 spatial work is Container App integration (Decision 016) not the layout tool; §16 context notes Graeme's unratified large-camp enforcement idea. No requirement IDs added, changed, or removed |
 | 19/09/2026 | §16 context notes the ~30-person unratified variant alongside existing >20. `PNP-009` unchanged |
+| 08/10/2026 | §7 context note: Ruchir camp-finance first-slice proposal (Decision 009); §18 context note: Scheepers project-abstraction insight. No requirement IDs added, changed, or removed |
 
 ## 2026-07-29 - Kick-off Alignment Updates
 Owner: Beyers Nel
@@ -256,3 +257,25 @@ Related: [app-specification.md](../app-specification.md#16-plug-and-play-and-tur
 - Expected outcome: the candidate threshold is visible next to `PNP-009` without rewriting it.
 - Drift risk addressed: `PNP-009` is not silently changed from 20 to 30.
 - Follow-up checks: `PNP-009` changes only when a decision accepts a new threshold.
+
+## 2026-10-08 - §7 / §18 context notes from recent WhatsApp capture
+Owner: Beyers Nel
+Type: spec-change
+Status: active
+Related: [app-specification.md](../app-specification.md), [Decision 009](../decisions-record/decision-009-proposed-payment-direction-tracking-vs-gateway.md), [2026-09-22 Ruchir camp finance](../meeting-minutes/2026-09-22-ruchir-camp-finance-proposal.md), [2026-09-19 Scheepers notes](../meeting-minutes/2026-09-19-scheepers-project-abstraction-notes.md)
+
+### What changed
+- §7 Working Budget context notes Ruchir’s proposed first camp-finance slice (tracking only; no fund holding) and points at Decision 009 / the 2026-09-22 minutes.
+- §18 Creative Project Mode context notes Scheepers’ shared project-submodule insight and named gaps (project management, resource/inventory). No `PREFIX-NNN` IDs added, changed, or removed.
+
+### Why it changed
+- Recent WhatsApp discussion produced durable product signal that belongs next to the relevant sections without pretending Options A–D or a project-abstraction decision are settled.
+
+### Impact
+- Affected features: §7 Working Budget, §18 Creative Project Mode (context notes only)
+- Affected decisions: 009 (cited); no new creative-project decision opened
+
+### Validation / Gap Analysis
+- Expected outcome: readers see the proposed finance slice and project-abstraction insight without new requirements appearing settled.
+- Drift risk addressed: payment Options A–D stay proposed; no CREATIVE-* IDs invented for Scheepers’ gaps.
+- Follow-up checks: Decision 009 accept/reject; optional future decision if project-type abstraction becomes binding.

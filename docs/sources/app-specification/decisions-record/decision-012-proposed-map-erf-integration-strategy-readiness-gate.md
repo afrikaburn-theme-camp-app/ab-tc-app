@@ -56,6 +56,16 @@ Source: [2026-08-11 first GIS meeting](../meeting-minutes/2026-08-11-first-gis-m
 ## Update 2026-09-19 — Dev alignment catch-up
 Source: [2026-09-17 dev alignment](../meeting-minutes/2026-09-17-dev-alignment.md)
 
-- Graeme reported a meeting with AfrikaBurn's acting EDO (production manager Christie / Christy — **verify** spelling) who supported incremental ("baby steps") progress and indicated access to a GIS layer useful for containers and camp placement.
+- Graeme reported a meeting with AfrikaBurn's acting EDO (production manager Christie / Christy — spelling unresolved at the time) who supported incremental ("baby steps") progress and indicated access to a GIS layer useful for containers and camp placement.
 - That report is **second-hand** and mixes "given" / "will be given" language. It is **not** the formal grant this decision requires (nor a substitute for Roger's read-only Postgres vector-layer commitment from 2026-09-09).
 - Status stays **proposed** until access is formally granted and recorded.
+
+## Update 2026-10-07 — Stakeholder priority signal
+Source: direct message from Graeme Allan, 2026-10-07 (WhatsApp).
+
+- Graeme restated that bringing payment/cash flows into the wider logistics picture matters because GIS is integrated with container and gas work, any water delivery, and theme-camp submissions for spatial planning.
+- This is a **priority signal**, not a formal GIS access grant. Status stays **proposed**.
+
+## Update 2026-10-08 — Org contacts confirmed on WhatsApp
+- Kristy Derbyshire (Operations Manager) and Roger Van Wyk (Spatial Planning and DPW Ground Control) joined the Theme Camp App WhatsApp working group. Kristy is the person earlier transcripts named Christy/Christie / acting EDO.
+- Presence on the channel does **not** clear the formal GIS access grant. Status stays **proposed**.
