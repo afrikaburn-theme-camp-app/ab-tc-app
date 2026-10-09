@@ -24,7 +24,7 @@
     "test:watch": "vitest"
   },
   "dependencies": {
-    "@neondatabase/serverless": "^1.1.0",
+    "@neondatabase/serverless": "^1.2.0",
     "@quagga/core": "workspace:*",
     "@quagga/types": "workspace:*",
     "drizzle-orm": "^0.45.3"
@@ -35,7 +35,7 @@
     "@types/node": "^25.9.1",
     "@vitest/coverage-v8": "^4.1.10",
     "drizzle-kit": "^0.31.11",
-    "eslint": "^10.11.0",
+    "eslint": "^10.12.0",
     "tsx": "^4.23.15",
     "typescript": "^6.0.3",
     "vitest": "^4.1.7"
