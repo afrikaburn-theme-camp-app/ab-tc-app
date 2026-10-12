@@ -1,4 +1,4 @@
-// Notifications & bulletins domain logic (docs/technical-spec/11-bulletins-and-notifications.md).
+// Notifications & bulletins domain logic (docs/notifications-spec.md).
 //
 // PURITY CONTRACT (same as the rest of @quagga/core): no I/O, no env, no DB.
 // These builders turn already-safe event facts into notification PAYLOADS, and
@@ -313,16 +313,21 @@ export function buildBulletinNotifications(
 
 /**
  * Immediate transactional email is sent ONLY for registration decisions and
- * BLOCKING questionnaire releases (docs/technical-spec/11-bulletins-and-notifications.md §Email). Every
+ * BLOCKING questionnaire releases (docs/notifications-spec.md §Email). Every
  * other notification waits for the daily unread digest. In-app is the source of
  * truth (offline law) — email is a courtesy nudge.
  */
 export function shouldSendImmediateEmail(
   kind: NotificationKind,
-  opts?: { blocking?: boolean },
+  opts?: { blocking?: boolean; mustAcknowledge?: boolean },
 ): boolean {
   if (kind === "registration") return true;
   if (kind === "questionnaire") return opts?.blocking === true;
+  // A MUST-ACKNOWLEDGE camp announcement (epic #56) is a gate in front of the
+  // recipient's app — the announcement analogue of a blocking questionnaire —
+  // so it earns the same immediate nudge. Ordinary (feed) announcements and
+  // org bulletins wait for the digest.
+  if (kind === "bulletin") return opts?.mustAcknowledge === true;
   return false;
 }
 

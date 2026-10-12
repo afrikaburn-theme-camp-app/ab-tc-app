@@ -1,6 +1,6 @@
 import "server-only";
 
-import { and, eq, inArray, lte, sql } from "drizzle-orm";
+import { and, eq, inArray, lte, or, sql } from "drizzle-orm";
 import {
   assessDeletionEligibility,
   buildSanitizationPlan,
@@ -15,7 +15,7 @@ import { sendEmail } from "@/lib/email";
 import { deleteAvatarBlob } from "@/lib/avatar-store";
 
 // The sanitization runner — the business end of account deletion
-// (docs/technical-spec/02-accounts-and-account-security.md §Deletion, the Camp 404 "Lost Cat" precedent).
+// (docs/accounts-security-spec.md §Deletion, the Camp 404 "Lost Cat" precedent).
 //
 // This is the ONLY place application rows are erased, and it never deletes our
 // own `users` row (it survives as the "Departed Burner" stub). It DOES hard-delete
@@ -232,6 +232,27 @@ export async function sanitizeAccount(
     await tx
       .delete(schema.securityEvents)
       .where(eq(schema.securityEvents.userId, userId));
+
+    // 2b. DIRECT MESSAGES (epic #69). Every message this account SENT is
+    //     hard-deleted, whatever its conversation's timer says — the timer is a
+    //     ceiling on how long a message lives, never a floor that outlasts the
+    //     person. The other participant's own messages are theirs and stay (the
+    //     conversation then shows the "Departed Burner" stub, and nobody can
+    //     post into it: @quagga/core `canSendMessage`). Blocks go in both
+    //     directions. A REPORT'S COPY of this account's messages is kept to its
+    //     own fixed retention on purpose, so deleting an account cannot erase
+    //     the evidence of a report against it.
+    await tx
+      .delete(schema.messages)
+      .where(eq(schema.messages.senderId, userId));
+    await tx
+      .delete(schema.userBlocks)
+      .where(
+        or(
+          eq(schema.userBlocks.blockerId, userId),
+          eq(schema.userBlocks.blockedId, userId),
+        ),
+      );
 
     // 3. Erase every bio row (one per edition). The plan's patch nulls all
     //    personal columns including the hard-locked classes, and replaces the
