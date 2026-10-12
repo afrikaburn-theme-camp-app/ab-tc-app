@@ -140,7 +140,7 @@ Config: [`.github/dependabot.yml`](../../.github/dependabot.yml),
 
 | ID  | Threat                                      | L / I | Coverage  | Primary controls                                                                 | Residual / open                                                                 |
 | --- | ------------------------------------------- | ----- | --------- | -------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- |
-| E1  | Direct push / unreviewed merge to `main`    | M / H | Open      | Convention: branch + PR; `CODEOWNERS` file exists                                | Branch protection **not enabled** — CODEOWNERS is inert until it is             |
+| E1  | Direct push / unreviewed merge to `main`    | M / H | Partial   | Branch protection: PR + ≥1 approving review; flat maintainer ownership (no `CODEOWNERS`) | `CI pass` not yet a required status check; stale-review / last-push approval off |
 | E2  | Hand-written migration breaks generator / prod | M / H | Partial | Rule: edit `schema.ts`, `db:generate`, commit snapshot; deploy-time migrate      | Social enforcement; damage is cumulative if broken                              |
 | E3  | CI permissions over-broad                   | L / M | Covered   | Default `contents: read` on workflows                                            | Individual jobs may elevate; review on change                                   |
 | E4  | Public issue leaks PII from in-app reporter | M / M | Partial   | Pattern-based redaction; no reporter identity on issue                           | Redaction fails open; diagnose before quoting (`docs/triage.md`)                |
@@ -183,7 +183,7 @@ A2, A3, A7, B4†, B5†, B7, C1, C3, C4, D1, D2, E2, E4
 | --- | --------------------------------------------------------- | ------------------------------------------------------------- |
 | A6  | No `BETTER_AUTH_SECRET` drift detection                   | Alert or boot-time cross-app check                            |
 | C5  | No SBOM in CI                                             | Generate CycloneDX/SPDX from the lockfile on `main` builds    |
-| E1  | Branch protection off → CODEOWNERS inert                  | Enable as in `SECURITY.md` §Repository settings               |
+| E1  | Required `CI pass` / stale-review gates incomplete        | Finish settings in `SECURITY.md` §Repository settings         |
 | F1  | No auth/ops alerting                                      | Minimal failed-login + secret-drift signals                   |
 | F3  | SEC-018 restore procedure undocumented                    | Short Neon PITR note in `docs/deploy.md`                      |
 

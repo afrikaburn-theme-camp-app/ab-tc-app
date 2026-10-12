@@ -48,11 +48,10 @@ project happens to run that camp is not, and should be flagged in review.
   needed to become one.
 - **Maintainers** — listed in `MAINTAINERS.md`. Review and merge pull
   requests, triage issues, and hold (or delegate) the infrastructure accounts
-  below. Added or removed by consensus among existing maintainers.
-- **Code owners** — `.github/CODEOWNERS`. A subset of maintainers whose
-  review is required on the paths listed there. Currently root files,
-  `.github/` and `LICENSE`; expected to widen (migrations, `packages/auth`,
-  `packages/core`) as the maintainer team grows past one person.
+  below. Added or removed by consensus among existing maintainers. Ownership is
+  **flat**: any maintainer may review any path. There is no path-based
+  `CODEOWNERS` file; required PR approval is enforced by branch protection, not
+  by per-path owners.
 - **Design owners** — approve changes to `design/ab-initial-app.pen` (see
   `AGENTS.md` §The design canvas). Named in `MAINTAINERS.md` once more than
   one exists; today the same as the maintainers.
@@ -64,12 +63,16 @@ project happens to run that camp is not, and should be flagged in review.
 
 ## Branch protection
 
-**Deliberately not enabled yet.** It turns on — required status check
-(`CI pass`) plus code-owner review — once the open-source migration PR
-sequence has landed and the repository is genuinely ready for outside
-contribution. Until then, the branch-and-pull-request rule in `AGENTS.md`
-and `CONTRIBUTING.md` is a convention the tooling does not enforce; follow it
-anyway.
+**Enabled on `main`.** Require a pull request and **at least one approving
+review** from someone with write access (any maintainer — flat ownership, no
+`CODEOWNERS`). Authors cannot approve their own PRs. Force-pushes and deletions
+of `main` are blocked; admins are not exempt from the PR+review rule
+(`enforce_admins`).
+
+**Still recommended in `SECURITY.md` and not fully applied yet:** require the
+aggregate status check `CI pass`, dismiss stale reviews, and require approval of
+the most recent push. Path-based code-owner review is **not** used and will not
+be added without an explicit governance change.
 
 ## Infrastructure and secret custody
 

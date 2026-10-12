@@ -114,8 +114,10 @@ specs; POPIA and account/key incident runbooks in
 Not code, so not something a pull request can set. For a maintainer, in
 _Settings_:
 
-- **Branch protection on `main`** — require a pull request, require review from code
-  owners so `CODEOWNERS` has effect, and require **exactly one status check**:
+- **Branch protection on `main`** — require a pull request and **at least one
+  approving review** (flat maintainer ownership: any write-capable maintainer
+  may approve; there is no `.github/CODEOWNERS` and code-owner review is not
+  used). Also require **exactly one status check**:
 
   ```text
   CI pass
@@ -127,6 +129,9 @@ _Settings_:
   checks: the shard list changes as personas are added, and a shard nobody
   remembered to mark required is one that can go red without blocking a merge.
   Adding a shard needs no change here.
+
+  Prefer also: dismiss stale reviews, and require approval of the most recent
+  push, so an approval cannot cover commits added after it.
 
   Leave the three `Vercel – …` checks **unrequired**. They are external statuses,
   not jobs, so the gate cannot cover them — and they fail for reasons that have

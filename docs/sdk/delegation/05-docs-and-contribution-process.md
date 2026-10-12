@@ -10,7 +10,7 @@ given verbatim rather than described. Copy it.
 
 **Scope of this shard.** Thirteen files change: `README.md`, `AGENTS.md`, `CONTRIBUTING.md`,
 `SECURITY.md`, `docs/architecture.md`, `docs/roadmap.md`, `docs/sdk/README.md`,
-`commitlint.config.mjs`, `.github/CODEOWNERS`, `.github/pull_request_template.md`, plus
+`commitlint.config.mjs`, `.github/pull_request_template.md`, plus
 `.github/ISSUE_TEMPLATE/{bug.yml,config.yml}` and `docs/triage.md`. One file is created:
 `docs/sdk/07-consent-and-delegation.md`.
 
@@ -457,13 +457,14 @@ between it and the `canViewMedicalNotes` sentence it annotates.)
 ### 3.12 `## Git` — replace lines 351-353
 
 ```markdown
-- **Some paths need the maintainer's review** (`.github/CODEOWNERS`): migrations,
-  `packages/auth`, `packages/core`, `packages/scopes`, `packages/sdk*`,
-  `apps/web/app/api/v1/`, `.changeset/`, `.github/`, the licence scripts, `README.md`,
-  `commitlint.config.mjs`, the licence. Not a trust statement — a list of places where a
-  mistake is expensive or cannot be undone. **Branch protection is a prerequisite of the
-  SDK workstream, not a follow-up**: an Apache-2.0 grant on a published version cannot be
-  withdrawn, and CODEOWNERS does nothing until protection requires code-owner review.
+- **Some paths need careful maintainer review** (flat ownership — any maintainer may
+  approve; there is no `.github/CODEOWNERS`): migrations, `packages/auth`,
+  `packages/core`, `packages/scopes`, `packages/sdk*`, `apps/web/app/api/v1/`,
+  `.changeset/`, `.github/`, the licence scripts, `README.md`, `commitlint.config.mjs`,
+  the licence. Not a path-ownership file — a list of places where a mistake is expensive
+  or cannot be undone. **Branch protection (PR + ≥1 maintainer approval + `CI pass`) is a
+  prerequisite of the SDK workstream, not a follow-up**: an Apache-2.0 grant on a
+  published version cannot be withdrawn.
 ```
 
 ---
@@ -513,7 +514,7 @@ docs/ the specs. Where a spec and the code disagree, say so in your PR.
 If you are changing how something **looks**, you are almost certainly in
 `apps/*/components/` or `packages/ui/`. If you find yourself in `packages/core`
 or `packages/db`, pause — those change behaviour in three apps at once, and they
-need a review from the maintainer (see [`.github/CODEOWNERS`](.github/CODEOWNERS)).
+need a review from the maintainer (see [`MAINTAINERS.md`](../../../MAINTAINERS.md)).
 
 If you find yourself in `packages/sdk*`, `packages/scopes` or
 `apps/web/app/api/v1/`, **pause harder**. Those change behaviour in applications
@@ -658,7 +659,7 @@ rather than letting it be discovered.
   hand-edit to a generated file passes review and fails the build — which is stated here
   so nobody spends an afternoon on it.
 - **Adding, renaming or removing a scope on an existing operation is a breaking change**
-  for code you cannot deploy, and it is CODEOWNERS-gated.
+  for code you cannot deploy, and it is subject to careful maintainer review.
 ```
 
 ### 4.5 `### Scopes` — replace lines 158-169
@@ -931,12 +932,11 @@ a key you minted yourself locally with rights you gave it.
 Not code, so not something a pull request can set. For a maintainer, in
 _Settings_:
 
-- **Branch protection on `main` — now a prerequisite, not a nicety.** Every path in
-  `.github/CODEOWNERS` is inert until protection requires code-owner review, and that
-  list now includes the published packages and the public API. Once code merged here
-  issues credentials to third parties, "a convention the tooling does not enforce" is
-  not a defensible posture. Require a pull request, require review from code owners, and
-  require **exactly one status check**:
+- **Branch protection on `main` — now a prerequisite, not a nicety.** Ownership is flat
+  (any maintainer may approve any path; there is no `.github/CODEOWNERS`). Once code
+  merged here issues credentials to third parties, an unenforced review convention is
+  not a defensible posture. Require a pull request, require at least one approving
+  review from a maintainer, and require **exactly one status check**:
 ```
 
 …then, after the Dependabot bullet at line 124, append:
@@ -1363,89 +1363,34 @@ third; it is the one that will be missed.
 
 ---
 
-## 10. `.github/CODEOWNERS`
+## 10. Maintainer review checklist (flat ownership)
 
-Everything is `@afrikaburn-theme-camp-app/maintainers` — sole maintainer. **Standing caveat, stated in the file itself
-(`:8-9`) and confirmed at `AGENTS.md:330-333`: none of this does anything until branch
-protection requires code-owner review.** That does not make the additions wrong; it makes
-enabling protection a prerequisite of the workstream (§5.6).
+**There is no `.github/CODEOWNERS` file.** Ownership is flat: any maintainer may approve
+any path. Branch protection on `main` requires a PR and at least one approving review
+(see `SECURITY.md` / `GOVERNANCE.md`). Enabling required `CI pass` (and stale-review /
+last-push approval) remains a prerequisite of the SDK workstream (§5.6).
 
-### 10.1 New comment block + entries — append to the file
+### 10.1 Paths that still need extra scrutiny
 
-```
-# ---------------------------------------------------------------------------
-# THE PUBLISHED SDK AND THE EXTERNAL API — irrevocable in a way nothing else is.
-#
-# An Apache-2.0 grant on a published version cannot be withdrawn; a scope string
-# that shipped is a promise to code in repositories we do not control; and a /v1
-# handler is the one place data leaves the platform to a party that holds no
-# membership. A migration can at least be corrected by another migration.
-/packages/scopes/         @afrikaburn-theme-camp-app/maintainers
-/packages/sdk/            @afrikaburn-theme-camp-app/maintainers
-/packages/sdk-react/      @afrikaburn-theme-camp-app/maintainers
-/apps/web/app/api/v1/     @afrikaburn-theme-camp-app/maintainers
-/apps/web/middleware.ts   @afrikaburn-theme-camp-app/maintainers
-/.changeset/              @afrikaburn-theme-camp-app/maintainers
+Treat these as a **review checklist**, not path-based ownership. A mistake here is
+expensive or hard to undo (Apache-2.0 grants cannot be withdrawn; `/v1` leaves the
+platform; migrations hit production on deploy):
 
-# THE LICENCE WALL — two scripts that ARE the boundary. Weakening one is
-# indistinguishable from weakening /LICENSE, which is already owned.
-/scripts/licence-boundary.mjs  @afrikaburn-theme-camp-app/maintainers
-/scripts/licence-tarball.mjs   @afrikaburn-theme-camp-app/maintainers
+- `packages/scopes/`, `packages/sdk/`, `packages/sdk-react/`
+- `apps/web/app/api/v1/`, `apps/web/middleware.ts`
+- `.changeset/`
+- `scripts/licence-boundary.mjs`, `scripts/licence-tarball.mjs`
+- `scripts/sdk-local.sh` (filename may still be coined here — settle with the runner author)
+- `README.md`, `commitlint.config.mjs`, `scripts/e2e-local.sh`
+- `packages/db/migrations/`, `packages/db/src/schema.ts` — especially migration 0029:
+  `integration_tickets.session_id` must be `ON DELETE CASCADE` (that constraint **is**
+  revocation)
 
-# THE LOCAL KEY MINTER — not a licence control. Its refusal to target anything
-# but the compose stack is the only thing between a convenience and a production
-# key in somebody's shell history.
-/scripts/sdk-local.sh          @afrikaburn-theme-camp-app/maintainers
+### 10.2 Docs are not gated
 
-# Pre-existing gaps, closed in the same pass.
-# README.md carries the licence badge and the licence paragraph, and was unowned
-# while AGENTS.md, CONTRIBUTING.md and SECURITY.md were owned.
-# commitlint.config.mjs holds a vocabulary that is now cross-repo.
-# scripts/e2e-local.sh is invoked verbatim by CI and was unowned.
-/README.md                @afrikaburn-theme-camp-app/maintainers
-/commitlint.config.mjs    @afrikaburn-theme-camp-app/maintainers
-/scripts/e2e-local.sh     @afrikaburn-theme-camp-app/maintainers
-```
-
-### 10.2 Amend the existing migrations comment — replace lines 13-22
-
-```
-# ---------------------------------------------------------------------------
-# MIGRATIONS — the sharpest edge in the repo.
-#
-# This product is DEPLOYED, with real camps and real people in it. Migrations are
-# append-only and the deploy applies them automatically. A migration merged here
-# runs against production on the next deploy; there is no staging step that would
-# catch it first, and an already-applied migration cannot be edited — only
-# corrected by another one.
-#
-# Migration 0029 lands the integration tables. Read every FOREIGN KEY line by
-# line before approving: `integration_tickets.session_id` must be
-# ON DELETE CASCADE, because that constraint IS the revocation mechanism. With
-# SET NULL — which is what a schema generator would plausibly emit — sign-out
-# stops revoking, every test that does not specifically delete a session row
-# still passes, and the property the whole design rests on is silently gone.
-/packages/db/migrations/  @afrikaburn-theme-camp-app/maintainers
-/packages/db/src/schema.ts @afrikaburn-theme-camp-app/maintainers
-```
-
-### 10.3 Not owned, deliberately
-
-`/docs/sdk/` stays unowned. Gating documentation slows down the thing you most want people
-writing, and a wrong sentence in a spec is correctable. Judgement call, recorded so it is
-not mistaken for an omission.
-
-**One path is this shard's own coinage.** `scripts/licence-boundary.mjs` and
-`scripts/licence-tarball.mjs` are named by `docs/sdk/05-publishing-and-licensing.md:598-599`;
-`scripts/sdk-local.sh` is **not named anywhere else in the round** — shard 01 §20 and
-shard 04 refer only to the `pnpm sdk:local` task and "the minter". Settle the filename
-with whoever writes the runner before this line is copied, or the CODEOWNERS entry owns
-a file that never appears.
-
-**One thing to verify before relying on it:** `/apps/web/app/api/v1/` is written as a
-literal path rather than `/apps/*/app/api/v1/`. GitHub's CODEOWNERS supports `*` within a
-path segment, but `/v1` lives in `apps/web` and only `apps/web`, so the literal path is
-both correct and unambiguous. Do not generalise it speculatively.
+`/docs/sdk/` is not on the checklist. Gating documentation slows the thing you most want
+people writing; a wrong sentence in a spec is correctable. Judgement call, recorded so it
+is not mistaken for an omission.
 
 ---
 
@@ -1547,7 +1492,7 @@ options:
 ```markdown
 **Consequence, worth stating because it costs an afternoon otherwise.** `GITHUB_LABELS`
 lives in `packages/core/src/report.ts` (the `area:` entries at `:237-288`), and
-`packages/core/` is CODEOWNERS-gated. Adding one label is a maintainer-reviewed change
+`packages/core/` changes need careful maintainer review. Adding one label is a maintainer-reviewed change
 plus a `pnpm labels:sync` run — not a click in the GitHub UI, which the reporter would
 then not know about.
 ```
@@ -1624,7 +1569,7 @@ follow them.
 | #   | Lands                                                                    | Blocks                                   | Why                                                                                                    |
 | --- | ------------------------------------------------------------------------ | ---------------------------------------- | ------------------------------------------------------------------------------------------------------ |
 | 1   | `commitlint.config.mjs` + `CONTRIBUTING.md` §4.5 + PR template §11.1     | **Everything.**                          | `scope-enum` is severity 2 and CI lints the PR title. `feat(sdk):` fails before review.                |
-| 2   | Branch protection enabled (`SECURITY.md` §5.6)                           | Every CODEOWNERS entry in §10            | The entries are inert until protection requires code-owner review.                                     |
+| 2   | Branch protection complete (`SECURITY.md` §Repository settings)          | Merging SDK / `/v1` work without CI+review gates       | PR + maintainer approval already on; finish required `CI pass` / stale-review settings.                |
 | 3   | `docs/sdk/README.md` §8.1-8.3                                            | Any reader sent to `docs/sdk/`           | The current front page tells them to go read the argument against.                                     |
 | 4   | `README.md` §2.11 + `CONTRIBUTING.md` §4.1 + `docs/architecture.md` §6.8 | Nothing, but it is the reachability fix  | Seven documents currently have zero inbound links.                                                     |
 | 5   | `AGENTS.md` rule 9 (§3.8)                                                | Stage 1 of the build                     | The law has to exist in a file agents read by default before the code that implements it.              |
