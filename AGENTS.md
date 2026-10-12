@@ -370,15 +370,14 @@ So, in this repo:
   `.github/PULL_REQUEST_TEMPLATE/` are the **fill-in source of truth**
   (`feature`, `fix`, `database`, `security`, `docs`, `chore`). Use
   `gh pr create --body-file .github/PULL_REQUEST_TEMPLATE/<type>.md`.
-  **Summary** is for the human. You fill the single agent blockquote in that
-  typed file — do **not** invent a universal skeleton. Process detail for humans:
+  **Summary** is for the human. You fill the agent sections in that typed
+  file — do **not** invent a universal skeleton. Process detail for humans:
   `CONTRIBUTING.md` §"Pull request descriptions".
 
-  Put **one** `🤖` on the first heading only. **What Changed** ≤3 sentences /
-  ≤500 characters. Keep type-specific load-bearing fields scannable (do not bury
-  them under essay prose). `None.` under Database / Notes means you checked.
-  Requirements modes, Risk Matrix dimensions, and required sections: **read the
-  typed template you picked**.
+  **What Changed** ≤3 sentences / ≤500 characters. Keep type-specific
+  load-bearing fields scannable (do not bury them under essay prose). `None.`
+  under Database / Notes means you checked. Requirements modes, Risk Matrix
+  dimensions, and required sections: **read the typed template you picked**.
 - **Issues are labelled, and two labels change how you read one.** The taxonomy and
   the triage routine are `docs/triage.md`. `needs-triage` means nobody has reviewed
   it — the stated `type:` may be wrong. `source: in-app` means the in-app reporter
