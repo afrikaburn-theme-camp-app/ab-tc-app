@@ -23,6 +23,9 @@ mkdir -p "$LOG_DIR"
 export DATABASE_URL="postgres://postgres:postgres@postgres:5432/quagga"
 export DATABASE_URL_UNPOOLED="$DATABASE_URL"
 export NEON_LOCAL_PROXY=1
+# One knob per proxy for both sides: compose publishes it, the app dials it.
+export NEON_LOCAL_WS_PORT="${NEON_LOCAL_WS_PORT:-5433}"
+export NEON_LOCAL_HTTP_PORT="${NEON_LOCAL_HTTP_PORT:-4444}"
 export PGCRYPTO_KEY="${PGCRYPTO_KEY:-local-dev-pgcrypto-key-not-a-secret}"
 export BETTER_AUTH_SECRET="${BETTER_AUTH_SECRET:-local-dev-better-auth-secret-not-a-secret-32b}"
 export ACCOUNT_SWEEP_SECRET="${ACCOUNT_SWEEP_SECRET:-local-dev-sweep}"
@@ -104,11 +107,13 @@ echo "==> apps (web:3000 org:3001 suppliers:3002) — serve mode: $E2E_SERVE"
 # ALWAYS fresh. A long-lived dev server keeps a stale module graph after a file
 # is deleted and then serves 500s while `turbo build` still passes, which once
 # produced 104 phantom E2E failures that looked like product bugs.
-pkill -f "next dev" >/dev/null 2>&1 || true
-pkill -f "next start" >/dev/null 2>&1 || true
+# Only THIS checkout's servers: a bare `pkill -f "next dev"` also killed other
+# projects' dev servers on the same machine.
+REPO_NEXT="$(pwd)/apps/[a-z]*/node_modules/\.bin/\.\./next/dist/bin/next (dev|start)"
+pkill -f "$REPO_NEXT" >/dev/null 2>&1 || true
 sleep 2
 
-# …AND THEN CHECK, because those two pkills do not do what they say.
+# …AND THEN CHECK, because that pkill does not do what it says.
 #
 # Next renames its own process to `next-server (v16.2.11)` once it boots, so the
 # pattern only ever matched the `sh -c next start --port 3001` wrapper — the
@@ -150,36 +155,10 @@ if [ "$E2E_SERVE" = "build" ]; then
   # or OOM a 4-core CI runner, and they took down a 32GB dev machine outright
   # while this script was being written. Serialising costs a couple of minutes
   # and removes a whole class of "CI died for no visible reason".
-  #
-  # One automatic retry ONLY when the log looks like a transport blip
-  # (ECONNRESET, DNS, TLS, …). Compile/type errors fail immediately — a blind
-  # retry would hide real breakage and burn minutes.
-  build_apps() {
-    pnpm exec turbo run build --concurrency=1 \
-      --filter=@quagga/web --filter=@quagga/org --filter=@quagga/suppliers \
-      > "$LOG_DIR/build.log" 2>&1
-  }
-  # Keep this list transport-shaped. Do NOT add "Module not found" / "Error:".
-  BUILD_NETWORK_RE='ECONNRESET|ECONNREFUSED|ETIMEDOUT|ENOTFOUND|EAI_AGAIN|socket hang up|network (timeout|error)|fetch failed|getaddrinfo|UNABLE_TO_VERIFY_LEAF_SIGNATURE|CERT_|SSL_|TLS|UND_ERR_|Client network socket disconnected'
-  if ! build_apps; then
-    if grep -Eqi "$BUILD_NETWORK_RE" "$LOG_DIR/build.log"; then
-      echo
-      echo "!! NETWORK FAILURE during app build (transient transport error in log)."
-      echo "   Matched one of: ECONNRESET / DNS / TLS / fetch failed / …"
-      echo "   Retrying the build once."
-      echo
-      if ! build_apps; then
-        echo
-        echo "!! NETWORK FAILURE again — build still failing after one retry."
-        echo "!! Last 30 lines of build.log:"
-        tail -30 "$LOG_DIR/build.log"
-        exit 1
-      fi
-      echo "==> build recovered after network retry"
-    else
-      echo "!! build failed:"; tail -30 "$LOG_DIR/build.log"; exit 1
-    fi
-  fi
+  pnpm exec turbo run build --concurrency=1 \
+    --filter=@quagga/web --filter=@quagga/org --filter=@quagga/suppliers \
+    > "$LOG_DIR/build.log" 2>&1 || {
+      echo "!! build failed:"; tail -30 "$LOG_DIR/build.log"; exit 1; }
   # `start` is not a turbo task — run each app's own script directly. One log,
   # so a failure in any of the three is visible in the same place as before.
   ( pnpm --filter @quagga/web start & \

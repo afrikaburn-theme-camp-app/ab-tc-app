@@ -52,3 +52,4 @@ Review of that PR *is* Spec approval (Decision 017 for already-built clusters).
 | [`04-archive-former-camp-members.md`](04-archive-former-camp-members.md) | `in review` | membership archive | Spec 03 |
 | [`05-camp-shifts.md`](05-camp-shifts.md) | `in review` | `CORE-003` shifts | Spec 04 |
 | [`06-camp-onboarding-preset.md`](06-camp-onboarding-preset.md) | `in review` | `ONBOARD-019/020` | Spec 05 |
+| [`07-hardening-invite-revoke-id-retention.md`](07-hardening-invite-revoke-id-retention.md) | `in review` | `SEC-020`; invite revoke | Spec 06 |
