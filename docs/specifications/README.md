@@ -54,6 +54,7 @@ land in a separate PR from the feature work: the PR author chooses.
 
 ## Index
 
-| Spec | Status | Requirements (primary) |
-| ---- | ------ | ---------------------- |
-| [`01-access-expiry-carry-forward-projects-campmates.md`](01-access-expiry-carry-forward-projects-campmates.md) | `in review` | `SEC-019`, `PREVYR-*`, `CREATIVE-014/017/019`, `CORE-002`, `CDB-007` |
+| Spec | Status | Requirements (primary) | Depends on |
+| ---- | ------ | ---------------------- | ---------- |
+| [`01-access-expiry-carry-forward-projects-campmates.md`](01-access-expiry-carry-forward-projects-campmates.md) | `in review` | `SEC-019`, `PREVYR-*`, `CREATIVE-014/017/019`, `CORE-002`, `CDB-007` | — |
+| [`02-camp-announcements-and-direct-messages.md`](02-camp-announcements-and-direct-messages.md) | `in review` | `COMM-*` / bulletins spine | Spec 01 |

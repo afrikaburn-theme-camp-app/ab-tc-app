@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 
-// Unread-notification email DIGEST — DESIGN STUB (docs/technical-spec/11-bulletins-and-notifications.md
+// Unread-notification email DIGEST — DESIGN STUB (docs/notifications-spec.md
 // §Email). In-app notifications are the source of truth (offline law); the
 // digest is a once-a-day courtesy nudge, NOT the delivery mechanism. Immediate
 // email is handled inline in the two hooks that warrant it (registration
@@ -16,6 +16,11 @@ import { NextResponse } from "next/server";
 //      when RESEND_API_KEY is unset, so this stays env-less-safe).
 //   3. Record a per-user "last digested at" marker to enforce the 1/day cap.
 //      (No column exists yet; add append-only when the cron lands.)
+//   4. DIRECT MESSAGES (epic #69) — the seam. Add one line per sender with
+//      unread messages, built by @quagga/core `unreadMessagesLine` ("you have
+//      N new messages from X") from the same per-conversation counts
+//      `lib/messages-store.ts` computes for the inbox. Sender and count ONLY —
+//      never a message body, which must not leave the app by email.
 //
 // Until the cron + secret + marker land, this route intentionally does NOTHING
 // that sends mail: it returns a 200 describing its own status so a smoke test /

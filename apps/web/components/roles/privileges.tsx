@@ -11,7 +11,7 @@ import { toast } from "@quagga/ui/components/toast";
 import type { RoleVM, SetRolePermissionsAction } from "./types";
 
 // The privilege block of a role editor (canvas ZyKzw "Priv Box"): one labelled
-// switch per privilege from docs/technical-spec/05-camp-roles-and-officers.md §"Roles v2" privileges table,
+// switch per privilege from questionnaire-spec §"Roles v2" privileges table,
 // with `manage_questionnaires` expanding into its sub-scopes (audience_roles +
 // may_block). UI-only — every write goes through `setRolePermissionsAction`,
 // which re-checks `manage_roles` server-side and runs `enforceKindPermissions`
@@ -27,6 +27,14 @@ export function privilegeSummary(p: ProjectPermissions): string {
       scope === "all"
         ? "Can send questionnaires"
         : `Can send questionnaires (${scope.length} audience${scope.length === 1 ? "" : "s"})`,
+    );
+  }
+  if (p.post_announcements) {
+    const scope = p.post_announcements.audienceRoles;
+    parts.push(
+      scope === "all"
+        ? "Can post announcements"
+        : `Can post announcements (${scope.length} audience${scope.length === 1 ? "" : "s"})`,
     );
   }
   if (p.manage_roles) parts.push("Manages roles");
@@ -111,6 +119,42 @@ export function PrivilegeToggles({
     const { manage_questionnaires: _dropped, ...rest } = value;
     void _dropped;
     onChange(rest);
+  }
+
+  // `post_announcements` carries the same shape of limit as
+  // `manage_questionnaires` (epic #56): audience roles + may-require-ack.
+  const pa = value.post_announcements;
+  const annAll = pa?.audienceRoles === "all";
+  const annIds = pa && pa.audienceRoles !== "all" ? pa.audienceRoles : [];
+
+  function toggleAnnouncements(on: boolean) {
+    if (on) {
+      onChange({
+        ...value,
+        post_announcements: {
+          audienceRoles: baseline ? [baseline.id] : "all",
+          mayRequireAck: false,
+        },
+      });
+      return;
+    }
+    const { post_announcements: _dropped, ...rest } = value;
+    void _dropped;
+    onChange(rest);
+  }
+
+  function setAnnouncementScopeAll() {
+    if (!pa) return;
+    onChange({ ...value, post_announcements: { ...pa, audienceRoles: "all" } });
+  }
+
+  function toggleAnnouncementRole(roleId: string) {
+    if (!pa) return;
+    const current = pa.audienceRoles === "all" ? [] : pa.audienceRoles;
+    const next = current.includes(roleId)
+      ? current.filter((id) => id !== roleId)
+      : [...current, roleId];
+    onChange({ ...value, post_announcements: { ...pa, audienceRoles: next } });
   }
 
   function setScopeAll() {
@@ -211,6 +255,60 @@ export function PrivilegeToggles({
       </PrivilegeRow>
 
       <PrivilegeRow
+        label="Can post announcements"
+        checked={!!pa}
+        disabled={disabled}
+        onChange={toggleAnnouncements}
+      >
+        {pa && (
+          <div className="mt-1 flex flex-col gap-2 rounded-md bg-muted/40 p-3">
+            <span className="text-[11px] font-semibold uppercase tracking-wide text-muted-foreground">
+              Who they can announce to
+            </span>
+            <div className="flex flex-wrap gap-1.5">
+              <button
+                type="button"
+                disabled={disabled}
+                onClick={setAnnouncementScopeAll}
+                className={`${chip} ${annAll ? chipOn : chipOff}`}
+                aria-pressed={annAll}
+              >
+                Any audience
+              </button>
+              {audienceRoles.map((r) => {
+                const on = !annAll && annIds.includes(r.id);
+                return (
+                  <button
+                    key={`${idPrefix}-ann-${r.id}`}
+                    type="button"
+                    disabled={disabled}
+                    onClick={() => toggleAnnouncementRole(r.id)}
+                    className={`${chip} ${on ? chipOn : chipOff}`}
+                    aria-pressed={on}
+                  >
+                    {r.emoji ? `${r.emoji} ` : ""}
+                    {r.name}
+                  </button>
+                );
+              })}
+            </div>
+            <PrivilegeRow
+              label="May send must-acknowledge announcements"
+              hint="Must-acknowledge fills the screen until people tick that they've read it — leads only, usually."
+              checked={!!pa.mayRequireAck}
+              disabled={disabled}
+              onChange={(v) =>
+                onChange({
+                  ...value,
+                  post_announcements: { ...pa, mayRequireAck: v },
+                })
+              }
+            />
+          </div>
+        )}
+      </PrivilegeRow>
+
+      <PrivilegeRow
         label="Can assign roles to members"
         hint={
           value.manage_roles
@@ -261,7 +359,7 @@ export function PrivilegeEditor({
     role.permissions,
   );
   // Captain privileges are locked to all — the kind predicate decides, never a
-  // hardcoded role name (docs/technical-spec/05-camp-roles-and-officers.md §"Role kinds").
+  // hardcoded role name (questionnaire-spec §"Role kinds").
   const locked = isPermissionsLockedKind(role.kind);
   const disabled = !canManageRoles || locked;
   const dirty = JSON.stringify(perms) !== JSON.stringify(role.permissions);
