@@ -278,14 +278,12 @@ skeleton; fill only what that type ships.
 
 - **Summary** (human only) — why we are doing this. Plain Markdown, no length
   cap. This is the only section a human must write.
-- **Everything after Summary** (agent) — one continuous blockquote from the
-  typed template. HTML comments mark `HUMAN START/END` and `AGENT START/END`;
-  they do not render in the published PR.
+- **Everything after Summary** (agent) — the typed template sections. HTML
+  comments mark `HUMAN START/END` and `AGENT START/END`; they do not render in
+  the published PR.
 
-Put **one** `🤖` on the first heading only (`### 🤖 What Changed`); later
-headings stay plain inside the quote. **What Changed** is ≤3 sentences and
-≤500 characters. Longer reasoning belongs in **Summary** or **Notes for the
-Reviewer**.
+**What Changed** is ≤3 sentences and ≤500 characters. Longer reasoning belongs
+in **Summary** or **Notes for the Reviewer**.
 
 ### Cross-cutting rules (templates enforce the detail)
 
@@ -306,7 +304,7 @@ Reviewer**.
   `meta/NNNN_snapshot.json` it writes. If generator output looks absurd, the
   snapshot chain is broken — repair it (`AGENTS.md` rule 1), do not write around it.
 - **Risk Matrix / omit rule** — when filling, delete unused labeled lines; do not
-  write "n/a". Pipe tables and GitHub task lists do not render inside `>` quotes.
+  write "n/a".
 
 "None." under Database and Notes for the Reviewer means you checked; silence
 does not.

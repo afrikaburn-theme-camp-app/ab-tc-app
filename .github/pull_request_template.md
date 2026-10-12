@@ -15,7 +15,7 @@ The typed template is the fill-in source of truth (Requirements modes, sections)
 
 GitHub does not offer a PR template chooser. Click the type that matches this
 change — the compare page reloads with that body. Then fill **Summary** yourself;
-leave the single agent blockquote after it for the agent (see CONTRIBUTING.md).
+leave the agent sections after it for the agent (see CONTRIBUTING.md).
 
 - [Feature](?expand=1&template=feature.md) — new user-visible behaviour · prove **Implements** + who is affected
 - [Fix](?expand=1&template=fix.md) — correcting broken behaviour · prove the bug is real (**Regression proof**)

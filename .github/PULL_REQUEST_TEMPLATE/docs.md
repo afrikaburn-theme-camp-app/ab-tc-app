@@ -7,7 +7,7 @@ Prove: either change the product north star (Modifies) or document against it.
 Requirements: Modifies (default for Requirements / decisions / meeting notes) OR Implements OR Exempt —
   fill EXACTLY ONE, delete the other two. Never mix Implements and Modifies.
 No Database section — migration in the diff → use the database template.
-Agent: one continuous blockquote after Summary. One 🤖 only, on the first heading.
+Agent: fill the sections after Summary.
 -->
 
 <!-- ===== HUMAN START: Summary ===== -->
@@ -18,45 +18,44 @@ Agent: one continuous blockquote after Summary. One 🤖 only, on the first head
 <!-- ===== HUMAN END: Summary ===== -->
 
 <!-- ===== AGENT START ===== -->
-<!-- One continuous blockquote below. One 🤖 only — on the first ### line. Do not open a second quote. -->
 
->  <!-- What Changed: which docs changed and the reader-facing effect. ≤3 sentences AND ≤500 characters. -->
->  ### 🤖 What Changed
->
->  <!-- Requirements (docs/requirements/requirements.md):
->       Modifies — Requirements / meeting notes / decisions: list PREFIX-NNN (added|changed|removed). Preferred for Requirements PRs.
->       Implements — technical-spec / process docs citing existing PREFIX-NNN IDs.
->       Exempt — process / repo-hygiene docs with no product requirement impact.
->       Fill EXACTLY ONE — delete the other two lines. Never mix Implements and Modifies. -->
->  ### Requirements
->  **Modifies:**
->  **Implements:**
->  **Exempt:**
->
->  <!-- Corpus: pick the primary home of the change. -->
->  ### Corpus
->  requirements | specifications | technical-spec | engineering-decisions | process (CONTRIBUTING/AGENTS) | other
->
->  <!-- Change Record: required when Mode = Modifies. -->
->  ### Change Record
->  **Entry:** (requirements-change-record.md name / N/A — decision-only / N/A — not Modifies)
->
->  <!-- Paths under docs/ (or process files). Deploy is docs-only. -->
->  ### Blast Radius
->  **Paths:**
->  **Deploy:** docs-only
->
->  <!-- Reader impact replaces the full Risk Matrix for docs. -->
->  ### Reader impact
->  none | contributors | maintainers | working-group
->
->  <!-- Testing: no runtime behaviour expected. -->
->  ### Testing
->  **Docs review:** [ ] accuracy / broken links
->  **Gate (optional):** [ ] `pnpm -w exec turbo run lint typecheck test build`
->
->  <!-- Notes: decisions, tradeoffs, follow-ups, known tech debt. Default "None." -->
->  ### Notes for the Reviewer
->  None.
+<!-- What Changed: which docs changed and the reader-facing effect. ≤3 sentences AND ≤500 characters. -->
+### What Changed
+
+<!-- Requirements (docs/requirements/requirements.md):
+     Modifies — Requirements / meeting notes / decisions: list PREFIX-NNN (added|changed|removed). Preferred for Requirements PRs.
+     Implements — technical-spec / process docs citing existing PREFIX-NNN IDs.
+     Exempt — process / repo-hygiene docs with no product requirement impact.
+     Fill EXACTLY ONE — delete the other two lines. Never mix Implements and Modifies. -->
+### Requirements
+**Modifies:**
+**Implements:**
+**Exempt:**
+
+<!-- Corpus: pick the primary home of the change. -->
+### Corpus
+requirements | specifications | technical-spec | engineering-decisions | process (CONTRIBUTING/AGENTS) | other
+
+<!-- Change Record: required when Mode = Modifies. -->
+### Change Record
+**Entry:** (requirements-change-record.md name / N/A — decision-only / N/A — not Modifies)
+
+<!-- Paths under docs/ (or process files). Deploy is docs-only. -->
+### Blast Radius
+**Paths:**
+**Deploy:** docs-only
+
+<!-- Reader impact replaces the full Risk Matrix for docs. -->
+### Reader impact
+none | contributors | maintainers | working-group
+
+<!-- Testing: no runtime behaviour expected. -->
+### Testing
+**Docs review:** [ ] accuracy / broken links
+**Gate (optional):** [ ] `pnpm -w exec turbo run lint typecheck test build`
+
+<!-- Notes: decisions, tradeoffs, follow-ups, known tech debt. Default "None." -->
+### Notes for the Reviewer
+None.
 
 <!-- ===== AGENT END ===== -->
