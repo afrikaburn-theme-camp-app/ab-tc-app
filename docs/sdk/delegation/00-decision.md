@@ -544,7 +544,7 @@ Sections not listed below stand unchanged.
 
 ### `05-publishing-and-licensing.md`
 
-Stands. Additions only: `commitlint.config.mjs` `SCOPES` gains `sdk`, `react`, `scopes`, `api` (and its doc-comment must be rewritten, not quietly falsified — two of those are not workspaces); the same list is copied in `CONTRIBUTING.md` and `.github/pull_request_template.md` and all three move together; `.github/CODEOWNERS` gains `/packages/sdk*/`, `/packages/scopes/`, `/apps/web/app/api/v1/`, `/.changeset/`, `/scripts/licence-*.mjs`, `/README.md`, `/commitlint.config.mjs` — all inert until branch protection is enabled, which is therefore a prerequisite of the workstream, not a follow-up; `pnpm sdk:local` mints a local key **and drives a local consent to produce a ticket**.
+Stands. Additions only: `commitlint.config.mjs` `SCOPES` gains `sdk`, `react`, `scopes`, `api` (and its doc-comment must be rewritten, not quietly falsified — two of those are not workspaces); the same list is copied in `CONTRIBUTING.md` and `.github/pull_request_template.md` and all three move together; `MAINTAINERS.md` (flat ownership; no path-based maintainer-review checklist file) gains `/packages/sdk*/`, `/packages/scopes/`, `/apps/web/app/api/v1/`, `/.changeset/`, `/scripts/licence-*.mjs`, `/README.md`, `/commitlint.config.mjs` — all inert until branch protection is enabled, which is therefore a prerequisite of the workstream, not a follow-up; `pnpm sdk:local` mints a local key **and drives a local consent to produce a ticket**.
 
 ### `06-review.md`
 
@@ -559,7 +559,7 @@ Unchanged as a record. Its findings resolve as: **C1 closed structurally** (no f
 1. `apps/web/lib/medical-access.ts`: `?? "org_staff"` **fails closed**; the strongest-role fold becomes rank-aware (`god > org_staff > engineer > none`).
 2. Extract `packages/db/src/actors.ts`; `apps/org/lib/session.ts` and `apps/web/lib/medical-access.ts` both call it.
 3. Build `stripHardLocked` as closed `z.object()` output schemas in `packages/types/src/responses/*`, plus the build-failing forbidden-field walk and the open-ended-zod ban.
-4. Enable branch protection with code-owner review.
+4. Enable branch protection with maintainer review.
 
 **Proof:** a new fixture — an `engineer` plus a later `member` row on a second org group, asserted in **both** row orders — goes red on the current code and green after; the existing `god` test cannot fail on this. A planted `phone` in a response schema fails the build, and the commit hash where it did is recorded in the README.
 

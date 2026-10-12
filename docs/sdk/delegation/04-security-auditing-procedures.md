@@ -66,11 +66,10 @@ approving it is already thinking about that edition.
 ### 2.1 Every merge — automated only
 
 No human step. §10 is the complete list of what runs and what each check fails on.
-The only human obligation attached to a merge is the review requirement on the
-CODEOWNERS paths, which is **inert until branch protection requires review from
-code owners** — `.github/CODEOWNERS` says so in its own header, pointing at
-`SECURITY.md:95-112` ("Repository settings"). Enabling it is the fourth blocking
-prerequisite in §5.5.
+The only human obligation attached to a merge is **at least one maintainer approving
+review** under branch protection (flat ownership; no `.github/CODEOWNERS`) — see
+`GOVERNANCE.md` and `SECURITY.md` §"Repository settings". Completing required `CI pass`
+(and related review settings) remains a blocking prerequisite in §5.5.
 
 ### 2.2 Monthly — the Integrations review
 
@@ -225,8 +224,8 @@ and `PGCRYPTO_KEY`; outstanding GHSA/Dependabot advisories; `better-auth`
 explicitly, which is pinned 1.6.25 exactly (`AGENTS.md:118`, `SECURITY.md:83-86`)
 and whose watch we own.
 → _Standing gap:_ there is **no `.github/dependabot.yml`** in the tree (verified —
-`.github/` holds only `CODEOWNERS`, `ISSUE_TEMPLATE`, `pull_request_template.md`,
-`workflows`). `SECURITY.md:123-124` describes Dependabot as a repository setting,
+`.github/` holds `ISSUE_TEMPLATE`, `pull_request_template.md`, `workflows`, and related
+config — there is no `CODEOWNERS` file). `SECURITY.md:123-124` describes Dependabot as a repository setting,
 so the `better-auth` auto-merge exclusion exists only as prose. Commit it as
 config so it is reviewable.
 

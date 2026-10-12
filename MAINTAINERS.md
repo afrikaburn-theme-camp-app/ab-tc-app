@@ -10,7 +10,7 @@ There is no published email alias yet.
 
 | Handle                                     | Areas                                                         | Notes                              |
 | ------------------------------------------ | ------------------------------------------------------------- | ---------------------------------- |
-| [@BeyersNel](https://github.com/BeyersNel) | All (code owner on root, `.github/`, `LICENSE`; design owner) | Sole maintainer at time of writing |
+| [@BeyersNel](https://github.com/BeyersNel) | All (flat ownership — any maintainer may review any path; design owner) | Sole maintainer at time of writing |
 
 `GOVERNANCE.md`'s two-person custody rule for infrastructure and secrets is
 not yet met with a single maintainer — it becomes enforceable as soon as a

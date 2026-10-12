@@ -77,8 +77,9 @@ docs/              the specs. Where a spec and the code disagree, say so in your
 If you are changing how something **looks**, you are almost certainly in
 `apps/*/components/` or `packages/ui/`. If you find yourself in `packages/core`
 or `packages/db`, pause — those change behaviour in three apps at once, and they
-need a review from a code owner (see [`.github/CODEOWNERS`](.github/CODEOWNERS);
-that list is expected to widen to these paths as the maintainer team grows).
+need a careful maintainer review (see [`MAINTAINERS.md`](MAINTAINERS.md)).
+Ownership is flat: any maintainer may approve any path; there is no path-based
+`CODEOWNERS` file.
 
 ## The house rule
 
@@ -343,12 +344,15 @@ on forks too**, because none of it needs a secret.
 
 ## Review
 
-Every pull request needs a review from a code owner (see
-[`.github/CODEOWNERS`](.github/CODEOWNERS)). That list currently covers root
-files, `.github/` and `LICENSE`, and is expected to widen to migrations,
-`packages/auth`, `packages/core` and CI as the maintainer team grows — those
-are the places where a mistake is expensive or cannot be undone, and migrations
-in particular run against the live database on the next deploy.
+Every pull request needs **at least one approving review** from a maintainer
+(branch protection on `main`; authors cannot approve their own PRs). Ownership is
+**flat**: any maintainer listed in [`MAINTAINERS.md`](MAINTAINERS.md) may review
+any path. There is no `.github/CODEOWNERS` and no path-specialist gate.
+
+Migrations, `packages/auth`, `packages/core`, and CI still deserve extra scrutiny
+— a mistake there is expensive or cannot be undone, and migrations run against
+the live database on the next deploy — but that is review judgment, not a separate
+ownership file.
 
 Expect questions about _why_, not just _what_. The comments in this codebase
 carry a lot of history — most of them exist because something went wrong once —

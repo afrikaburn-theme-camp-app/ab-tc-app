@@ -77,9 +77,10 @@ legible:
     **Held for a person.** banner and **routines must not act on it at all** —
     not triage it, not propose a fix.
   - **From triage**, for exactly one of four reasons: the fix lands in a
-    CODEOWNERS path; it is a product decision; the routine investigated and
-    could not name a cause; or a safety gate fired. Here it means a human must
-    decide and review — an agent may still propose a diff for them to read.
+    high-blast-radius path (migrations, auth, core privacy/authz, CI/deploy);
+    it is a product decision; the routine investigated and could not name a
+    cause; or a safety gate fired. Here it means a human must decide and review
+    — an agent may still propose a diff for them to read.
 - **`agent: ready`** — triaged, scoped, a cause named with a file and line, and
   safe for an autonomous agent to implement. Never applied at ingest.
 

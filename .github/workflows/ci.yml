@@ -95,7 +95,7 @@ jobs:
               docs/*|design/*) return 0 ;;
               README.md|CONTRIBUTING.md|AGENTS.md|GOVERNANCE.md|MAINTAINERS.md|SECURITY.md|LICENSE) return 0 ;;
               .github/PULL_REQUEST_TEMPLATE/*|.github/pull_request_template.md) return 0 ;;
-              .github/ISSUE_TEMPLATE/*|.github/CODEOWNERS|.github/dependabot.yml) return 0 ;;
+              .github/ISSUE_TEMPLATE/*|.github/dependabot.yml) return 0 ;;
               commitlint.config.mjs|.husky/*) return 0 ;;
               *) return 1 ;;
             esac

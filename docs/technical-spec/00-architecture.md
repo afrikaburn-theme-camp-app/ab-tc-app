@@ -162,7 +162,8 @@ declarations). `auditEvents` spans all four.
 - **The deployment is live**, with real participants' phone numbers,
   emergency contacts and medical notes in it. There is no staging database.
 - **Migrations are append-only.** An applied migration cannot be edited, only
-  corrected by another one. `packages/db/migrations/` is CODEOWNERS-gated.
+  corrected by another one. Changes under `packages/db/migrations/` need careful
+  maintainer review (flat ownership; no path-based `CODEOWNERS`).
 - **Sessions are per-app.** One account pool, but cookies do not cross
   `*.vercel.app` — the Public Suffix List forbids it. Shared sign-on needs a
   configured apex; see [`01-auth-and-identity.md`](01-auth-and-identity.md).

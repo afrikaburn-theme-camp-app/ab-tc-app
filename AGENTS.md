@@ -37,9 +37,9 @@ There is no staging environment. Three things follow, and none of them are optio
    the snapshot chain is broken — repair it, do not write around it. Rule 1 under
    Hard engineering rules has the detail and the repair recipe.
 3. **This is a shared, community-owned repository.** Branch, open a pull request,
-   and get a code-owner review — never commit to `main`. (Branch protection is
-   deliberately not switched on yet — see `GOVERNANCE.md` for when it turns on —
-   so nothing _stops_ you. That makes the rule more important, not less.)
+   and get a maintainer review — never commit to `main`. Branch protection on
+   `main` requires a PR and at least one approving review (flat ownership: any
+   maintainer; no `CODEOWNERS`). See `GOVERNANCE.md` and `SECURITY.md`.
 
 If you find a security or privacy problem, report it privately — `SECURITY.md`.
 
@@ -432,10 +432,10 @@ JSON" rule, not an encryption one.
 opened to contributors (Aug 2026); the old "commit on main" instruction is gone,
 because `main` is what deploys to a live product.
 
-Checked 3 Aug 2026: branch protection is **not** enabled yet, so this is a
-convention the tooling does not currently enforce. Follow it anyway — and note
-that `.github/CODEOWNERS` does nothing at all until protection requires
-code-owner review (`SECURITY.md` §"Repository settings" has the list).
+Branch protection on `main` requires a pull request and at least one approving
+review. Ownership is flat (any maintainer may approve any path); there is no
+`.github/CODEOWNERS`. Required CI and stale-review settings: `SECURITY.md`
+§"Repository settings".
 
 ```bash
 git checkout main && git pull --ff-only
@@ -455,11 +455,10 @@ accounts as live`. Lowercase, imperative, no full stop, ≤72 chars, scope from 
   leaving it blank is not. Use the `database` template when a migration is in the
   diff. For Risk Matrix, omit any dimension that does not apply (delete the line)
   — do not write "n/a" or explain the omission.
-- **Some paths need a code-owner review** (`.github/CODEOWNERS`): currently root
-  files, `.github/` and `LICENSE`; expected to widen to migrations, `packages/auth`
-  and `packages/core` as the maintainer team grows (see `MAINTAINERS.md`). Not a
-  trust statement — a list of places where a mistake is expensive or cannot be
-  undone.
+- **Every PR needs a maintainer approval** (branch protection). High-blast-radius
+  paths — migrations, `packages/auth`, `packages/core`, root governance files —
+  still deserve careful review; that is judgment and the Risk Matrix on the PR
+  template, not a separate code-owners gate (see `MAINTAINERS.md`).
 - The repo is PUBLIC: no real personal contact data in new fixtures, no naming
   real businesses in negative demo states (use fictional names like "LosKop
   Catering").
