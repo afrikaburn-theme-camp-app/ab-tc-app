@@ -19,7 +19,7 @@ surfaces).
 | Requirements §                   | IDs                                          | Status | Notes                                                                              |
 | ---------------------------- | -------------------------------------------- | ------ | ---------------------------------------------------------------------------------- |
 | §19 Permissions and security | SEC-011 (organisation reviewer)              | ✅     |                                                                                    |
-| §19                          | SEC-019 (access expiration)                  | 🚧     | Sessions and invites expire; org-role assignments and department membership do not |
+| §19                          | SEC-019 (access expiration)                  | ✅     | Optional `org_role_assignments.expires_at` (inclusive last day, SAST); `liveRoles` / SQL predicates grant nothing after the boundary; sessions and invites already expire |
 | —                            | The department/domain permission model below | —      | Extends the Requirements; no section names this design                                 |
 
 ## The three ranks
