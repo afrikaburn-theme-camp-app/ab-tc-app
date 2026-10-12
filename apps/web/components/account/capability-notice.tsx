@@ -5,7 +5,7 @@ import { AccountCapabilityNotice } from "@quagga/ui/components/account-capabilit
 // The honest "we can't do this yet" block — @quagga/core's capability matrix
 // resolved into the shared presentation (roadmap M4-21).
 //
-// THE RULE (docs/technical-spec/02-accounts-and-account-security.md §"Capability matrix"): a
+// THE RULE (docs/accounts-security-spec.md §"Provider capability probe"): a
 // surface for a capability our auth server does not expose must say so plainly
 // and offer NO control that pretends otherwise. Every word comes from
 // `AUTH_CAPABILITIES` — the single machine-readable authority — so the day a
@@ -14,7 +14,7 @@ import { AccountCapabilityNotice } from "@quagga/ui/components/account-capabilit
 //
 // The wording now lives in core's `capabilityVerdict` rather than here, because
 // the org console and the supplier portal render the same refusal and a second
-// copy of "Not finished yet" is a second copy that can drift.
+// copy of that label is a second copy that can drift.
 
 export function CapabilityNotice({
   capability,
