@@ -6,7 +6,7 @@
 | **Doc status**         | Active                                                                |
 | **Normative language** | Descriptive only until a feature-spec format is accepted              |
 | **Requirement IDs**    | N/A — index; each future spec cites Requirements IDs                  |
-| **Owner / Updated**    | Repo maintainers, 2026-10-08                                          |
+| **Owner / Updated**    | Repo maintainers, 2026-10-12                                          |
 
 Feature **Specifications** describe how a change will work, scoped enough to
 implement and review. They are **generated from**
@@ -33,11 +33,17 @@ templates (see `CONTRIBUTING.md`); there is no CI check yet.
 | `approved` | Ready to implement; feature PRs must link this file |
 | `implemented` | Delivered; keep for history / drift checks |
 
-Exact file naming and body format are **provisional until the Product Owner /
-Designer defines them**. Do not impose a template here yet. Legacy as-built
-docs remain under [`../technical-spec/`](../technical-spec/README.md) and will
-migrate into this folder once the format is settled.
+Exact file naming and body format remain **provisional**. The first port-wave
+Spec below is the working pattern (metadata header, behaviour sections,
+Requirements IDs, surfaces, out of scope, acceptance). Legacy as-built docs
+remain under [`../technical-spec/`](../technical-spec/README.md).
+
+**Port-wave convention:** Spec + implementation MAY ship in one PR; Spec
+status is `in review` on the branch and becomes `implemented` on merge.
+Review of that PR *is* Spec approval (Decision 017 for already-built clusters).
 
 ## Index
 
-_No feature Specifications yet._
+| Spec | Status | Requirements (primary) |
+| ---- | ------ | ---------------------- |
+| [`01-access-expiry-carry-forward-projects-campmates.md`](01-access-expiry-carry-forward-projects-campmates.md) | `in review` | `SEC-019`, `PREVYR-*`, `CREATIVE-014/017/019`, `CORE-002`, `CDB-007` |
