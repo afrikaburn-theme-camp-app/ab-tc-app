@@ -1,4 +1,4 @@
-// Questionnaire RESULTS aggregation (docs/technical-spec/10-questionnaire-engine.md §"Author/admin
+// Questionnaire RESULTS aggregation (questionnaire-spec §"Author/admin
 // features": "response summary view with per-question charts"). One aggregate
 // per question, shaped for the chart the question type deserves — choice
 // counts as bars, scales/ratings as histograms with an average.
@@ -223,6 +223,9 @@ function aggregateOne(
       return { ...base, chart: "choice", options, other };
     }
 
+    // An acknowledgement is a tick (true) or nothing — tallied as a yes/no
+    // split so "how many ticked" reads like every other boolean.
+    case "acknowledgement":
     case "boolean": {
       let yes = 0;
       let no = 0;

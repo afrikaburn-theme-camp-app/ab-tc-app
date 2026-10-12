@@ -54,7 +54,7 @@ export type CreateQuestionnaireResult =
 
 /**
  * Create a project questionnaire and send it (build + activate in one step,
- * docs/technical-spec/10-questionnaire-engine.md §Surfaces). Lead/admin only — authorised through the core
+ * questionnaire-spec §Surfaces). Lead/admin only — authorised through the core
  * `canAuthorAudience` predicate against the actor's membership.
  */
 export async function createQuestionnaireAction(
@@ -69,6 +69,17 @@ export async function createQuestionnaireAction(
   }
   const { slug, title, description, definition, mode, roleIds, blocking } =
     parsed.data;
+  // The onboarding preset is written ONLY by the onboarding actions, which
+  // enforce what an onboarding may contain and that it is a camp's (epic #54).
+  // Accepting the marker here would let any questionnaire — on any group —
+  // pose as one: skip those rules, swap its results for totals and be sent to
+  // late joiners.
+  if (definition.preset !== undefined) {
+    return {
+      ok: false,
+      error: "Start an onboarding from “Onboarding”, not a blank questionnaire.",
+    };
+  }
 
   const user = await requireCampUser();
   const group = await projectGroupForSlug(slug);
@@ -87,7 +98,7 @@ export async function createQuestionnaireAction(
   }
 
   // Authz + scope: lead/admin OR a member holding manage_questionnaires WITHIN
-  // their configured audience_roles + may_block scope (docs/technical-spec/05-camp-roles-and-officers.md
+  // their configured audience_roles + may_block scope (questionnaire-spec
   // §"Roles v2" — server-side enforcement).
   const permissionMembership = await getMemberPermissions(groupId, user.id);
   if (!permissionMembership) {
@@ -201,6 +212,14 @@ export async function closeQuestionnaireAction(
     activation.audience?.kind !== "project"
   ) {
     return { ok: false, error: "That questionnaire isn't this camp's." };
+  }
+  // An unsent draft (camp onboarding, epic #54) reached nobody, so there is
+  // nothing to recall — and "closed" would misreport it as having been sent.
+  if (activation.status === "draft") {
+    return {
+      ok: false,
+      error: "This hasn't been sent yet — discard the draft instead.",
+    };
   }
 
   // You may recall what you could have sent: the same scope check the send ran,

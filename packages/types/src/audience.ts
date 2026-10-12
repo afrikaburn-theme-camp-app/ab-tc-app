@@ -2,7 +2,7 @@ import { z } from "zod";
 import { Questionnaire } from "./questionnaire";
 import { OfficerKey } from "./roles";
 
-// Questionnaire audience targeting + activation inputs (docs/technical-spec/10-questionnaire-engine.md
+// Questionnaire audience targeting + activation inputs (questionnaire-spec
 // §"Authoring levels & audiences"). The builder writes a
 // `questionnaire_definitions` row (a `Questionnaire` — see ./questionnaire);
 // an ACTIVATION pairs that definition with an edition, an audience spec, and
@@ -28,7 +28,7 @@ export type QuestionnaireAuthoredScope = z.infer<
 >;
 
 /**
- * Org-level OUTBOUND audience selectors (docs/technical-spec/10-questionnaire-engine.md table). An outbound
+ * Org-level OUTBOUND audience selectors (questionnaire-spec table). An outbound
  * activation targets one or more of these; each resolves to a set of user ids
  * in @quagga/core's `resolveAudience`. Grant-requester selectors resolve to
  * empty sets until the MV/art registration flows ship — that is expected.
@@ -83,7 +83,7 @@ export const OrgOutboundAudience = z.object({
 export type OrgOutboundAudience = z.infer<typeof OrgOutboundAudience>;
 
 /**
- * Org OFFICER audience (docs/technical-spec/05-camp-roles-and-officers.md §"Officer roles"): target the members
+ * Org OFFICER audience (questionnaire-spec §"Officer roles"): target the members
  * assigned a given officer role across every REGISTERED camp, regardless of
  * camp-level aliases (officers are never aliasable). E.g. "All registered Sound
  * Officers". Only ACCEPTED officer assignments in registered camps resolve.
@@ -124,11 +124,32 @@ export type OrgSuppliersAudience = z.infer<typeof OrgSuppliersAudience>;
  * custom project role. `groupId` is the project group; `roleIds` are
  * `project_roles.id` values (ignored when `mode` is `everyone`).
  */
+/** How long someone has been with THIS camp (epic #54, Ryan 28 Sep 2026):
+ * `new` = no earlier edition with the camp; `returning` = has been with it
+ * before. Relative to the camp, never to AfrikaBurn — a ten-burn veteran who
+ * joined this camp this year is new to it. */
+export const CampTenure = z.enum(["new", "returning"]);
+export type CampTenure = z.infer<typeof CampTenure>;
+
+/** The structural roles a project audience may be narrowed to. `admin` is the
+ * co-lead. */
+export const ProjectStructuralRole = z.enum(["lead", "admin", "member"]);
+export type ProjectStructuralRole = z.infer<typeof ProjectStructuralRole>;
+
 export const ProjectAudience = z.object({
   kind: z.literal("project"),
   groupId: z.string().min(1),
   mode: z.enum(["everyone", "roles"]),
   roleIds: z.array(z.string().min(1)).default([]),
+  // --- Narrowing filters (camp onboarding, epic #54) ----------------------
+  // Both OPTIONAL and both only ever SUBTRACT from what mode/roleIds reach:
+  // absent means "no filter", which is exactly how every audience written
+  // before them resolves, so no stored row changes meaning. Because they can
+  // only narrow, the send-scope check on mode/roleIds stays sufficient.
+  /** Only people new to / returning to the camp. Absent = both. */
+  tenure: z.array(CampTenure).min(1).max(2).optional(),
+  /** Only people holding one of these structural roles. Absent = all three. */
+  structuralRoles: z.array(ProjectStructuralRole).min(1).max(3).optional(),
 });
 export type ProjectAudience = z.infer<typeof ProjectAudience>;
 
