@@ -6,7 +6,7 @@
 | **Doc status**         | Active                                                                |
 | **Normative language** | Descriptive only until a feature-spec format is accepted              |
 | **Requirement IDs**    | N/A — index; each future spec cites Requirements IDs                  |
-| **Owner / Updated**    | Repo maintainers, 2026-10-12                                          |
+| **Owner / Updated**    | Repo maintainers, 2026-10-14                                          |
 
 Feature **Specifications** describe how a change will work, scoped enough to
 implement and review. They are **generated from**
@@ -46,10 +46,14 @@ Review of that PR *is* Spec approval (Decision 017 for already-built clusters).
 
 | Spec | Status | Requirements (primary) | Depends on |
 | ---- | ------ | ---------------------- | ---------- |
-| [`01-access-expiry-carry-forward-projects-campmates.md`](01-access-expiry-carry-forward-projects-campmates.md) | `in review` | `SEC-019`, `PREVYR-*`, `CREATIVE-014/017/019`, `CORE-002`, `CDB-007` | — |
-| [`02-camp-announcements-and-direct-messages.md`](02-camp-announcements-and-direct-messages.md) | `in review` | `COMM-*` / bulletins spine | Spec 01 |
-| [`03-camp-roster-and-placement-notify.md`](03-camp-roster-and-placement-notify.md) | `in review` | roster logistics; placement notify | Spec 02 |
-| [`04-archive-former-camp-members.md`](04-archive-former-camp-members.md) | `in review` | membership archive | Spec 03 |
-| [`05-camp-shifts.md`](05-camp-shifts.md) | `in review` | `CORE-003` shifts | Spec 04 |
-| [`06-camp-onboarding-preset.md`](06-camp-onboarding-preset.md) | `in review` | `ONBOARD-019/020` | Spec 05 |
-| [`07-hardening-invite-revoke-id-retention.md`](07-hardening-invite-revoke-id-retention.md) | `in review` | `SEC-020`; invite revoke | Spec 06 |
+| [`01-access-expiry-carry-forward-projects-campmates.md`](01-access-expiry-carry-forward-projects-campmates.md) | `in review` | `SEC-019`; `PREVYR-001/009/010/014`; `CREATIVE-007/014/017/019`; `CORE-002`; `CDB-007` | — |
+| [`02-camp-announcements-and-direct-messages.md`](02-camp-announcements-and-direct-messages.md) | `in review` | `COMM-008`, `COMM-012`, `COMM-018` | Spec 01 |
+| [`03-camp-roster-and-placement-notify.md`](03-camp-roster-and-placement-notify.md) | `in review` | `CDB-011`–`014`, `CDB-028`, `CDB-030`–`033`; placement notify (no ID) | Spec 02 |
+| [`04-archive-former-camp-members.md`](04-archive-former-camp-members.md) | `in review` | `CDB-036` | Spec 03 |
+| [`05-camp-shifts.md`](05-camp-shifts.md) | `in review` | `CORE-003`; in-wave `SHIFT-001`–`005`, `008`, `010`, `012`–`013`, `017`–`022`, `025`–`026` | Spec 04 |
+| [`06-camp-onboarding-preset.md`](06-camp-onboarding-preset.md) | `in review` | `ONBOARD-019`, `ONBOARD-020` (+ `015`–`018`, `022`) | Spec 05 |
+| [`07-hardening-invite-revoke-id-retention.md`](07-hardening-invite-revoke-id-retention.md) | `in review` | `SEC-020`; invite lifecycle (`CDB-027` hardening) | Spec 06 |
+
+Each Spec includes an **Implementation gaps / drift** section: review notes
+against Behaviour and Requirements; they do not change Behaviour and do not
+authorize code fixes in the same PR.
