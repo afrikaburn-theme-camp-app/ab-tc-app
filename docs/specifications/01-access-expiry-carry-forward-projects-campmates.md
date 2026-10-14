@@ -101,8 +101,23 @@ ported onto this repo's IA without adopting the source's flat `docs/` layout.
 Findings from reading this PR’s branch against Behaviour + cited Requirements.
 These are review notes; they do **not** change Behaviour above.
 
-- **None found.** Inclusive last-day UI (`expiresOn` / SAST calendar day) maps to an
-  exclusive `expires_at` instant in `@quagga/core` `isOrgRoleAssignmentLive` and
-  org loaders — consistent with Behaviour §1. Carry-forward history, creative
-  WAP/safety/questionnaires, campmates privacy, and avatar paths match the
-  Behaviour bullets on this branch.
+- **Drift (org review WAP):** Behaviour §3 says org review MUST surface WAP
+  counts **and** safety documents only to actors with the personal-information
+  registrations capability. Safety docs are gated
+  (`getReviewSafetyDocuments` → `canReadPersonalInformationIn(..., "registrations")`
+  in `apps/org/lib/project-registration.ts`). WAP counts
+  (`registration.s4WorkAccessPasses` / `wapField` in
+  `apps/org/app/(console)/registrations/[id]/page.tsx` and
+  `apps/org/lib/project-review.ts`) are **not** capability-gated — any org
+  actor who can open the review page sees them.
+- **Drift (carry-forward source status):** Behaviour §2 says leads MAY choose
+  any strictly earlier same-camp **submitted** edition. Code lists prior rows
+  via `listPriorRegistrations` and `findCarryForwardSource`
+  (`apps/web/lib/registration-store.ts`) accepts **any** prior status
+  (including never-submitted drafts). Server re-check
+  `isValidCarryForwardSource` (`packages/core/src/registration-carry-forward.ts`)
+  only requires same camp + earlier year — no `submittedAt`.
+- **Aligned (for reviewers):** Inclusive last-day UI → exclusive `expires_at`
+  in `isOrgRoleAssignmentLive`; registration history / YoY comparison;
+  creative-project questionnaires kind-gating; campmates privacy and avatar
+  paths match Behaviour §§1–4 aside from the two drifts above.
