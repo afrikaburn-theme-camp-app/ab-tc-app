@@ -50,3 +50,4 @@ Review of that PR *is* Spec approval (Decision 017 for already-built clusters).
 | [`02-camp-announcements-and-direct-messages.md`](02-camp-announcements-and-direct-messages.md) | `in review` | `COMM-*` / bulletins spine | Spec 01 |
 | [`03-camp-roster-and-placement-notify.md`](03-camp-roster-and-placement-notify.md) | `in review` | roster logistics; placement notify | Spec 02 |
 | [`04-archive-former-camp-members.md`](04-archive-former-camp-members.md) | `in review` | membership archive | Spec 03 |
+| [`05-camp-shifts.md`](05-camp-shifts.md) | `in review` | `CORE-003` shifts | Spec 04 |
