@@ -95,3 +95,14 @@ Additive migration `0030_epics_expiry_safety_docs_campmates`:
 Reference implementation: `feature-source` commit `4eb47b7`
 (`feat(core,db,web,org): access expiry, carry-forward, projects, campmates (#73)`),
 ported onto this repo's IA without adopting the source's flat `docs/` layout.
+
+## Implementation gaps / drift
+
+Findings from reading this PR’s branch against Behaviour + cited Requirements.
+These are review notes; they do **not** change Behaviour above.
+
+- **None found.** Inclusive last-day UI (`expiresOn` / SAST calendar day) maps to an
+  exclusive `expires_at` instant in `@quagga/core` `isOrgRoleAssignmentLive` and
+  org loaders — consistent with Behaviour §1. Carry-forward history, creative
+  WAP/safety/questionnaires, campmates privacy, and avatar paths match the
+  Behaviour bullets on this branch.
