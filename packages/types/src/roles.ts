@@ -195,7 +195,7 @@ export const OrgPermissions = z.object({
 });
 export type OrgPermissions = z.infer<typeof OrgPermissions>;
 
-// --- Roles v2: kinds, colors, permissions (docs/technical-spec/05-camp-roles-and-officers.md §"Roles v2") ---
+// --- Roles v2: kinds, colors, permissions (questionnaire-spec §"Roles v2") ---
 // Custom project roles carry a KIND (permanence + assignment semantics), a
 // COLOR (curated palette key, token-mapped at render), an emoji, and a
 // PERMISSIONS object. Keep these tuples in sync with the DB enums in
@@ -203,7 +203,7 @@ export type OrgPermissions = z.infer<typeof OrgPermissions>;
 // authority.
 
 /**
- * A project role's kind (docs/technical-spec/05-camp-roles-and-officers.md §"Role kinds"):
+ * A project role's kind (questionnaire-spec §"Role kinds"):
  * - `captain`  — seeded Captain 🎩; permissions LOCKED to all; not deletable.
  * - `baseline` — seeded Burner 🔥; every member implicitly holds it (derived,
  *                never stored per-member); not deletable; permissions editable.
@@ -256,7 +256,7 @@ export type RoleColor = z.infer<typeof RoleColor>;
 export const ROLE_COLORS = RoleColor.options;
 
 /**
- * Project permission keys (docs/technical-spec/05-camp-roles-and-officers.md §"Roles v2" privileges table).
+ * Project permission keys (questionnaire-spec §"Roles v2" privileges table).
  * `manage_roles` implies `assign_roles`.
  */
 export const ProjectPermissionKey = z.enum([
@@ -265,6 +265,7 @@ export const ProjectPermissionKey = z.enum([
   "assign_roles",
   "manage_roles",
   "manage_members",
+  "post_announcements",
 ]);
 export type ProjectPermissionKey = z.infer<typeof ProjectPermissionKey>;
 
@@ -286,9 +287,25 @@ export type ManageQuestionnairesScope = z.infer<
 >;
 
 /**
+ * Config for `post_announcements` (camp announcements, epic #56) — the SAME
+ * shape of limit `manage_questionnaires` carries: which role audiences the
+ * holder may address (`"all"`, or an explicit set of project_role ids, where
+ * the baseline role's id means the whole camp), and whether they may send a
+ * MUST-ACKNOWLEDGE announcement. Must-acknowledge puts a full-screen gate in
+ * front of every recipient's app, so it is its own switch, exactly as
+ * `mayBlock` is for blocking questionnaires.
+ */
+export const PostAnnouncementsScope = z.object({
+  audienceRoles: z.union([z.literal("all"), z.array(z.string().min(1))]),
+  mayRequireAck: z.boolean(),
+});
+export type PostAnnouncementsScope = z.infer<typeof PostAnnouncementsScope>;
+
+/**
  * The permissions OBJECT stored on `project_roles.permissions` (jsonb). Each
- * boolean privilege is present+true when granted; `manage_questionnaires` holds
- * its scope config when granted (absent = not granted).
+ * boolean privilege is present+true when granted; `manage_questionnaires` and
+ * `post_announcements` hold their scope config when granted (absent = not
+ * granted).
  */
 export const ProjectPermissions = z.object({
   view_member_details: z.boolean().optional(),
@@ -296,6 +313,7 @@ export const ProjectPermissions = z.object({
   assign_roles: z.boolean().optional(),
   manage_roles: z.boolean().optional(),
   manage_members: z.boolean().optional(),
+  post_announcements: PostAnnouncementsScope.optional(),
 });
 export type ProjectPermissions = z.infer<typeof ProjectPermissions>;
 
@@ -306,9 +324,10 @@ export const PROJECT_PERMISSION_LABELS: Record<ProjectPermissionKey, string> = {
   assign_roles: "Assign roles",
   manage_roles: "Manage roles",
   manage_members: "Manage members",
+  post_announcements: "Post announcements",
 };
 
-// --- Officer catalog (docs/technical-spec/05-camp-roles-and-officers.md §"Officer roles") -----------------
+// --- Officer catalog (questionnaire-spec §"Officer roles") -----------------
 // Org-defined, condition-triggered roles with a STABLE key (the org targeting
 // anchor). Camps may not alias them. Display name/emoji/color are fixed here.
 
@@ -324,7 +343,7 @@ export type OfficerKey = z.infer<typeof OfficerKey>;
 export const OFFICER_KEYS = OfficerKey.options;
 
 /**
- * Consent state of an officer assignment (docs/technical-spec/05-camp-roles-and-officers.md §"Officers are ALSO
+ * Consent state of an officer assignment (questionnaire-spec §"Officers are ALSO
  * registrations"). Assigning creates a `pending` state the member must ACCEPT
  * (sharing contact details with the org) or DECLINE. Non-officer role
  * assignments are always `accepted` (no consent moment).

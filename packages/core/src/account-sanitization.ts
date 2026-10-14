@@ -1,6 +1,6 @@
 // Account sanitization — the Camp 404 "Lost Cat" precedent.
 //
-// docs/technical-spec/02-accounts-and-account-security.md §Deletion: deleting an account is NEVER a row
+// docs/accounts-security-spec.md §Deletion: deleting an account is NEVER a row
 // delete. After the 14-day grace period we ERASE the person and KEEP the shape:
 // every personal field is nulled or replaced with a stub, while `memberships`,
 // `questionnaire_responses`, `required_actions`, `supplier_document_acks` and
@@ -198,6 +198,14 @@ export const SANITIZATION_PURGED_TABLES = [
   "profile_keys",
   "email_change_requests",
   "security_events",
+  // Direct messages (epic #69): the account's OWN sent messages are deleted
+  // whatever the conversation's timer says, and its blocks (in both
+  // directions) go with it. The other participant's messages are theirs and
+  // stay. A report's COPY of a message is the documented exception — it keeps
+  // its own fixed retention (@quagga/core `REPORT_COPY_RETENTION_DAYS`) so
+  // deleting an account cannot erase the evidence of a report against it.
+  "messages",
+  "user_blocks",
 ] as const;
 
 /**
