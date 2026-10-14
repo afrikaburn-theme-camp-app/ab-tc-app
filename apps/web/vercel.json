@@ -8,10 +8,6 @@
     {
       "path": "/api/account/id-retention-sweep",
       "schedule": "30 3 * * *"
-    },
-    {
-      "path": "/api/messages/expiry-sweep",
-      "schedule": "45 3 * * *"
     }
   ]
 }
