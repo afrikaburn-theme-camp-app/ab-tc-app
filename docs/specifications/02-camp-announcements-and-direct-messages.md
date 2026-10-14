@@ -75,9 +75,9 @@ org safety queue that sees report *copies* — never live conversations.
 
 | App | Audience | Notable routes |
 | --- | -------- | -------------- |
-| `web` | Camp leads / members with `post_announcements`; all members as recipients | `/camps/[slug]/announcements`, `/camps/[slug]/announcements/new`, `/camps/[slug]/announcements/[id]`, `/api/announcements/dispatch` |
-| `web` | Contactable burners | `/messages`, `/messages/[id]`, `/api/messages/expiry-sweep` |
-| `org` | Staff with personal-information registrations capability | `/safety`, `/safety/[id]`; bulletin composer pin/order (org bulletins) |
+| `web` | Camp leads / members with `post_announcements`; all members as recipients | `/camps/[slug]/announcements`, `/camps/[slug]/announcements/new`, `/camps/[slug]/announcements/[id]`, `/bulletins/[id]` (recipient read + must-ack), `/api/announcements/dispatch` |
+| `web` | Contactable burners | `/messages`, `/messages/[id]`, `/api/messages/expiry-sweep`; `/profile` (contactable + default timer); Message/block CTAs on `/burners/[id]` |
+| `org` | Staff with personal-information registrations capability | `/safety`, `/safety/[id]`; org bulletin composer pin/order (`/bulletins`, …) — camp rows refused |
 
 ## Database
 
@@ -136,3 +136,7 @@ These are review notes; they do **not** change Behaviour above.
   personal-information registrations capability (`packages/core/src/messaging.ts`
   `canReviewMessageReports`) — confirm reviewers treat that as the correct
   audience for DM report copies.
+- **Gap (e2e breadth):** Persona coverage is thin —
+  `camp-announcements.spec.ts` (must-ack role gate) and
+  `direct-messaging.spec.ts` (contactable chat + inbox preview). Blocks,
+  reports, `/safety`, schedule/dispatch, and pin paths rely on unit tests.
