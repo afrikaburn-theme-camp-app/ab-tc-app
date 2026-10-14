@@ -1,7 +1,7 @@
-import { Info } from "lucide-react";
+import { Info, PlayCircle } from "lucide-react";
 import type { ContentBlock } from "@quagga/types";
 
-// Builder v2 content blocks (docs/technical-spec/10-questionnaire-engine.md §"Content & structure blocks").
+// Builder v2 content blocks (questionnaire-spec §"Content & structure blocks").
 // These take NO answer: they never appear in the response map, never count
 // towards progress, and never gate completion — `pageQuestions()` /
 // `visibleQuestions()` filter them out upstream, so this component is purely
@@ -27,6 +27,23 @@ export function ContentBlockView({ block }: { block: ContentBlock }) {
           </p>
         </div>
       </div>
+    );
+  }
+
+  if (block.kind === "video_link") {
+    // A video LINK card (camp onboarding). The console's palette doesn't offer
+    // it; rendered as a plain external link if one is ever shown here — never
+    // an embed.
+    return (
+      <a
+        href={block.url}
+        target="_blank"
+        rel="noopener noreferrer nofollow"
+        className="flex items-center gap-2 rounded-md border border-border bg-muted/40 p-3 text-sm underline-offset-4 hover:underline"
+      >
+        <PlayCircle className="h-4 w-4 shrink-0 text-accent" aria-hidden />
+        {block.title}
+      </a>
     );
   }
 
