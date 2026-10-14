@@ -31,6 +31,11 @@ import {
   getMemberPermissions,
   type RoleMutationResult,
 } from "@/lib/roles-store";
+import {
+  archiveMember,
+  restoreMember,
+  type MemberArchiveResult,
+} from "@/lib/member-archive-store";
 import { db, schema } from "@/lib/db";
 import { eq } from "drizzle-orm";
 
@@ -46,7 +51,7 @@ async function groupIdForSlug(slug: string): Promise<string | null> {
 /**
  * Resolve the slug to a group and confirm the caller holds a given project
  * permission (lead/admin always pass via the backstop). The single authz gate
- * the role/officer actions share (docs/technical-spec/05-camp-roles-and-officers.md §"Roles v2" CRUD).
+ * the role/officer actions share (questionnaire-spec §"Roles v2" CRUD).
  */
 async function requirePermission(
   slug: string,
@@ -138,7 +143,55 @@ export async function leaveCampAction(
   return result;
 }
 
-// --- Custom project roles (docs/technical-spec/05-camp-roles-and-officers.md §"Custom project roles") ----
+// --- Former members (App Spec CDB-036, epic #55) --------------------------
+// Archiving revokes camp access; history stays. The ONLY input is the
+// membership id — who may act on it, and whether they may, is decided by
+// @quagga/core `canArchiveMember` / `canRestoreMember` over facts the store
+// loads from the database for the camp named by `slug`.
+
+const MemberArchiveInput = z
+  .object({
+    slug: z.string().min(1).max(200),
+    membershipId: z.string().uuid(),
+  })
+  .strict();
+
+async function runMemberArchive(
+  raw: unknown,
+  run: typeof archiveMember,
+): Promise<MemberArchiveResult> {
+  const parsed = MemberArchiveInput.safeParse(raw);
+  if (!parsed.success) return { ok: false, error: "Invalid request." };
+  const user = await requireCampUser();
+  const groupId = await groupIdForSlug(parsed.data.slug);
+  if (!groupId) return { ok: false, error: "Camp not found." };
+  const result = await run({
+    actorUserId: user.id,
+    groupId,
+    membershipId: parsed.data.membershipId,
+  });
+  if (result.ok) {
+    revalidatePath(`/camps/${parsed.data.slug}`);
+    revalidatePath(`/camps/${parsed.data.slug}/roster`);
+  }
+  return result;
+}
+
+/** Make a member a former member of the camp (CDB-036). */
+export async function archiveMemberAction(
+  raw: unknown,
+): Promise<MemberArchiveResult> {
+  return runMemberArchive(raw, archiveMember);
+}
+
+/** Bring a former member back into the camp (CDB-036). */
+export async function restoreMemberAction(
+  raw: unknown,
+): Promise<MemberArchiveResult> {
+  return runMemberArchive(raw, restoreMember);
+}
+
+// --- Custom project roles (questionnaire-spec §"Custom project roles") ----
 
 const CreateRoleInput = z.object({
   slug: z.string().min(1),
