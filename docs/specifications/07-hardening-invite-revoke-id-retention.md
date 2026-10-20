@@ -3,7 +3,7 @@
 | Field                  | Value |
 | ---------------------- | ----- |
 | **Category**           | Engineering / fix |
-| **Doc status**         | `in review` — Spec review is this PR; on merge → `implemented` |
+| **Doc status**         | `in review` — shipped with the feature work in this PR; `approved` once a reviewer accepts it as a Spec, `implemented` when the feature work merges |
 | **Normative language** | RFC 2119 / RFC 8174 applies |
 | **Requirement IDs**    | `SEC-020` (ID retention); invite lifecycle (no dedicated Requirement ID — hardens `CDB-027` invite path) |
 | **Owner / Updated**    | Repo maintainers, 2026-10-14 |
@@ -90,8 +90,7 @@ ciphertext per `buildIdPurgePatch`.
   `apps/org/lib/__tests__/placement-panel-resync.test.ts`
 - E2E (when run): invite revoke still works under hydration; god access-expiry
   / camp-lead roles·officers specs adjusted in this PR stay green
-- Spec status → `implemented` on merge; tech-spec SEC-020 notes should flip
-  from “no scheduled caller” to “caller wired”
+- Spec status → `approved` when a reviewer accepts it as a Spec, `implemented` once the feature work merges; the SEC-020 tech-spec notes are already updated in this PR
 
 ## Provenance
 
