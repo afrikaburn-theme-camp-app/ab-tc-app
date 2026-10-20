@@ -3,7 +3,7 @@
 | Field                  | Value |
 | ---------------------- | ----- |
 | **Category**           | Product |
-| **Doc status**         | `in review` — Spec review is this PR; on merge → `implemented` |
+| **Doc status**         | `in review` — shipped with the feature work in this PR; `approved` once a reviewer accepts it as a Spec, `implemented` when the feature work merges |
 | **Normative language** | RFC 2119 / RFC 8174 applies |
 | **Requirement IDs**    | `CORE-003`; in-wave `SHIFT-001`, `SHIFT-002` (bounded repeat), `SHIFT-003`–`SHIFT-005`, `SHIFT-008`, `SHIFT-010`, `SHIFT-012`, `SHIFT-013`, `SHIFT-017`–`SHIFT-022`, `SHIFT-025`–`SHIFT-026` (as shipped) |
 | **Owner / Updated**    | Repo maintainers, 2026-10-14 |
@@ -107,7 +107,7 @@ Additive `0034_camp_shifts.sql`:
 - Gate: `pnpm -w exec turbo run lint typecheck test build` for touched workspaces
 - E2E (when run): `e2e/specs/camp-lead/shifts.spec.ts`
 - Unit: `packages/core` shifts tests + web shifts-store coverage
-- Spec status → `implemented` on merge
+- Spec status → `approved` when a reviewer accepts it as a Spec, `implemented` once the feature work merges
 
 ## Provenance
 
