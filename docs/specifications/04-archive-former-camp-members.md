@@ -3,7 +3,7 @@
 | Field                  | Value |
 | ---------------------- | ----- |
 | **Category**           | Product |
-| **Doc status**         | `in review` — Spec review is this PR; on merge → `implemented` |
+| **Doc status**         | `in review` — shipped with the feature work in this PR; `approved` once a reviewer accepts it as a Spec, `implemented` when the feature work merges |
 | **Normative language** | RFC 2119 / RFC 8174 applies |
 | **Requirement IDs**    | `CDB-036` |
 | **Owner / Updated**    | Repo maintainers, 2026-10-14 |
@@ -89,7 +89,7 @@ SQL helpers: `activeMembership()` / `formerMembership()` in `@quagga/db`.
   helper tests; web membership-archive-guard / roster store coverage
 - E2E: `e2e/specs/camp-lead/former-members.spec.ts` (archive removes camp
   access; restore returns a plain member without their custom role)
-- Spec status → `implemented` on merge
+- Spec status → `approved` when a reviewer accepts it as a Spec, `implemented` once the feature work merges
 
 ## Provenance
 

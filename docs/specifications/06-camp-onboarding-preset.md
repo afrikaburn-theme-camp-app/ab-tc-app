@@ -3,7 +3,7 @@
 | Field                  | Value |
 | ---------------------- | ----- |
 | **Category**           | Product |
-| **Doc status**         | `in review` — Spec review is this PR; on merge → `implemented` |
+| **Doc status**         | `in review` — shipped with the feature work in this PR; `approved` once a reviewer accepts it as a Spec, `implemented` when the feature work merges |
 | **Normative language** | RFC 2119 / RFC 8174 applies |
 | **Requirement IDs**    | `ONBOARD-019`, `ONBOARD-020`; also touches `ONBOARD-015`–`018`, `ONBOARD-022` (carry-forward draft), `ONBOARD-023`–`025` (new campers / returning campers / camp leads — the tenure audience and the lead's totals); theme-camp only |
 | **Owner / Updated**    | Repo maintainers, 2026-10-14 |
@@ -104,7 +104,7 @@ questionnaire JSON — no new definition table.
 - E2E (when run): `e2e/specs/camp-lead/onboarding.spec.ts`
 - Unit: `packages/core` camp-onboarding tests; web onboarding-store /
   onboarding-actions tests
-- Spec status → `implemented` on merge
+- Spec status → `approved` when a reviewer accepts it as a Spec, `implemented` once the feature work merges
 
 ## Provenance
 
