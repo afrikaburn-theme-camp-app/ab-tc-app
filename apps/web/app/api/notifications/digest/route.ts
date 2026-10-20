@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 
-// Unread-notification email DIGEST — DESIGN STUB (docs/notifications-spec.md
+// Unread-notification email DIGEST — DESIGN STUB (docs/technical-spec/11-bulletins-and-notifications.md
 // §Email). In-app notifications are the source of truth (offline law); the
 // digest is a once-a-day courtesy nudge, NOT the delivery mechanism. Immediate
 // email is handled inline in the two hooks that warrant it (registration

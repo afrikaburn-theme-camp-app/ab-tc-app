@@ -50,7 +50,7 @@ async function campNameAndSlug(
   return g ?? null;
 }
 
-// Custom per-project roles (questionnaire-spec §"Roles v2" + §"Officer roles").
+// Custom per-project roles (docs/technical-spec/05-camp-roles-and-officers.md §"Roles v2" + §"Officer roles").
 // Labels for organisation + questionnaire audiences + officer registrations —
 // separate from the structural `memberships.role` ladder. All authz is enforced
 // by the calling server actions (via @quagga/core predicates); this store is the
@@ -362,7 +362,7 @@ export async function setRolePermissions(
 
 /**
  * Remove a role — CUSTOM roles only (its assignments cascade). Captain/baseline/
- * default/officer are permanent fixtures (questionnaire-spec §"Role kinds").
+ * default/officer are permanent fixtures (docs/technical-spec/05-camp-roles-and-officers.md §"Role kinds").
  */
 export async function removeRole(
   groupId: string,
@@ -394,7 +394,7 @@ export async function removeRole(
  * `allowElevated` guards privilege escalation: an `assign_roles`-only caller may
  * NOT hand out (or self-assign) a role that carries manage_roles/manage_members
  * or the Captain role (all permissions). Only a manage_roles holder / structural
- * lead·admin passes `allowElevated: true` (questionnaire-spec §"Roles v2" — the
+ * lead·admin passes `allowElevated: true` (docs/technical-spec/05-camp-roles-and-officers.md §"Roles v2" — the
  * escalation clause sanctions only manage_roles holders).
  */
 export async function setMemberRoles(
@@ -487,7 +487,7 @@ export async function setMemberRoles(
 
 /**
  * Assign a member to an OFFICER role — creates a PENDING officer registration
- * the member must accept (questionnaire-spec §"Officers are ALSO
+ * the member must accept (docs/technical-spec/05-camp-roles-and-officers.md §"Officers are ALSO
  * registrations"). Re-assigning resets to pending (not org-visible).
  *
  * `allowElevated` means the same thing it means on `setMemberRoles`: the caller
