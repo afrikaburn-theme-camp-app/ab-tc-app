@@ -16,20 +16,24 @@ SP 800-63B-4 and OWASP authentication guidance.
 
 | Requirements §                   | IDs                                                                     | Status  | Notes                                                                                                                              |
 | ---------------------------- | ----------------------------------------------------------------------- | ------- | ---------------------------------------------------------------------------------------------------------------------------------- |
-| §19 Permissions and security | SEC-013 (POPIA-compliant processing), SEC-020 (data-retention controls) | ✅ / 🚧 | Lawful purpose documented on the schema; account deletion is scheduled, ID-document purge is written but has no caller (see Drift) |
+| §19 Permissions and security | SEC-013 (POPIA-compliant processing), SEC-020 (data-retention controls) | ✅ / 🚧 | Lawful purpose documented on the schema; account deletion is scheduled, ID-document purge is built (`/api/account/id-retention-sweep`) and scheduled daily by Vercel Cron (see Drift) |
 | §4 Camper database           | CDB-002 (contact details self-managed)                                  | ✅      | Extends the self-owned Burner Bio model — see [`03-burner-bio-and-profiles.md`](03-burner-bio-and-profiles.md)                     |
 
 ## Drift
 
 > ⚠️ **SEC-020 — partial, correctly.** Account deletion is scheduled (14-day
-> grace, `apps/web/vercel.json` cron). ID/passport purge
-> (`packages/core/src/id-retention.ts`) is a pure, tested rule with **no
-> caller anywhere in the codebase** — nothing invokes `buildIdPurgePatch()`
-> on a schedule, so ID ciphertext accumulates one row per user per edition
-> with no automated removal. This is a known, deliberately accepted gap
-> (`docs/roadmap.md` records the reasoning) rather than an oversight — but it
-> means "bounded retention" is a rule that exists in code, not a behaviour
-> the running system exhibits yet.
+> grace, `apps/web/vercel.json` cron). ID/passport purge is built: the pure
+> rule (`packages/core/src/id-retention.ts`) is applied by
+> `sweepExpiredIdDocuments` behind `/api/account/id-retention-sweep`, and
+> `apps/web/vercel.json` schedules it daily (03:30 UTC) alongside
+> `/api/messages/expiry-sweep`. Cron is available on the project's current
+> Hobby plan (`vercel crons list` already shows the deletion sweep), which is
+> limited to daily schedules, and it runs on production deployments only. The
+> web app also needs `CRON_SECRET` set, since Vercel Cron authenticates by
+> injecting it. Verify after the first production deploy that a run appears in
+> the logs and that it audits one `bio.id_retention_purge` audit row; until then
+> "bounded retention" is a behaviour the code performs, not one observed in
+> production.
 
 ## What we run
 
@@ -113,7 +117,7 @@ nothing else — the lawful basis that makes the collection POPIA-defensible.
 The retention rule (`packages/core/src/id-retention.ts`) ages an edition's ID
 data out `ID_RETENTION_GRACE_DAYS` (30) after its end date, and
 `identifyPurgeableIdBios` computes which rows qualify. As noted in Drift
-above, nothing schedules the purge yet.
+above, the purge runs from a daily cron (`apps/web/vercel.json`).
 
 ## Security events log
 

@@ -100,7 +100,7 @@ Detail: [`01-auth-and-identity.md`](01-auth-and-identity.md),
 | B4  | Undetected medical disclosure (audit drop)       | L / M | Accepted  | `audit_events` via `after()`; emergency read must not block on log                                                    | Silent missed audit row possible under serverless/DB blip                       |
 | B5  | Org staff over-collection / enumeration          | M / M | Accepted  | No volume/alerting on medical reads (monitoring ban); detail-only surfaces                                            | Relies on organisational trust + audit reconstruction after the fact            |
 | B6  | UI hiding treated as the security boundary       | M / H | Covered   | Authz predicates live in `@quagga/core`, enforced server-side                                                         | Contributor discipline — see `SECURITY.md`                                      |
-| B7  | ID / passport retention unbounded in practice    | M / M | Partial   | Encryption; retention rule in code (`id-retention.ts`)                                                                | Purge has **no scheduled caller** — ciphertext accumulates (SEC-020)            |
+| B7  | ID / passport retention unbounded in practice    | M / M | Partial   | Encryption; retention rule in code (`id-retention.ts`)                                                                | Purge runs from a daily Vercel Cron; **unverified in production** until first run (SEC-020) |
 | B8  | Free-camp discovery by strangers                 | M / L | Covered   | Directory / type-ahead / profile visibility rules                                                                     | Repo-built rule; Decision Record still desirable before treating as permanent   |
 | B9  | Org permission model self-escalation             | L / H | Covered   | `god` resolves all; `manage_accounts` refused by resolver; System panel gated                                         | Lockout tests in `org-role-lockout.test.ts`                                     |
 
@@ -188,7 +188,7 @@ A2, A3, A7, B4†, B5†, B7, C1, C3, C4, D1, D2, E2, E4
 | F3  | SEC-018 restore procedure undocumented                    | Short Neon PITR note in `docs/deploy.md`                      |
 
 Plus the **Open** half of Partial rows that matter most in production: **B7**
-(ID purge caller), **C3** (SCA severity gate beyond Dependabot + Safe Chain).
+(confirm the ID purge cron has run in production), **C3** (SCA severity gate beyond Dependabot + Safe Chain).
 
 ### Deferred
 

@@ -47,17 +47,17 @@ import type { PrivacyFlags } from "./privacy";
 //      edition (`expiredEditionIds.has(bio.editionId)`). A new edition's row
 //      cannot extend an older row's window; it would have its own.
 //
-//   2. **THERE IS NO PURGE JOB.** ./id-retention is a pure, tested RULE with no
-//      caller anywhere in this repo — nothing reads it, and nothing ever writes
-//      `buildIdPurgePatch()` to the database. docs/technical-spec/02-accounts-and-account-security.md
-//      says so explicitly ("Wiring a scheduled purge job that applies this is a
-//      LATER task"). So no ID data is currently deleted on any schedule, and any
-//      argument here that leans on one being deleted is unsound.
+//   2. The purge is `sweepExpiredIdDocuments` (apps/web/lib/id-retention-sweep.ts),
+//      served by /api/account/id-retention-sweep. It only erases rows that
+//      `identifyPurgeableIdBios` says are expired, and nothing invokes the route
+//      unless a scheduler is wired to it (see docs/technical-spec/02-accounts-and-account-security.md
+//      §Drift) — so do not argue from ID data having already been deleted.
 //
-// The honest consequence: ID ciphertext accumulates one row per user per edition
-// and nothing removes it. Carrying forward does not create that gap — a returning
-// burner would type the same number into the new edition's row anyway — but it
-// does make the missing purge job more worth building, not less.
+// The honest consequence: carrying forward copies ID ciphertext into every new
+// edition's row, so rows accumulate until the sweep runs. Carrying forward does
+// not create that gap — a returning burner would type the same number into the
+// new edition's row anyway — but it is why the sweep must select only EXPIRED
+// editions' rows before it applies its batch limit.
 //
 // **Medical notes carry** for a related reason: the failure mode of dropping
 // them is a returning burner with a real condition arriving on-site with an empty
