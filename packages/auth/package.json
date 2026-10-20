@@ -20,12 +20,12 @@
     "test:watch": "vitest"
   },
   "dependencies": {
-    "@better-auth/passkey": "1.7.5",
+    "@better-auth/passkey": "1.7.10",
     "@quagga/core": "workspace:*",
     "@quagga/db": "workspace:*",
     "@quagga/types": "workspace:*",
     "better-auth": "1.6.25",
-    "drizzle-orm": "^0.45.3"
+    "drizzle-orm": "^0.45.4"
   },
   "devDependencies": {
     "@quagga/eslint-config": "workspace:*",
@@ -33,7 +33,7 @@
     "@simplewebauthn/server": "^13.3.2",
     "@types/node": "^25.9.1",
     "@vitest/coverage-v8": "^4.1.10",
-    "eslint": "^10.11.0",
+    "eslint": "^10.13.0",
     "tsx": "^4.23.15",
     "typescript": "^6.0.3",
     "vitest": "^4.1.7"
