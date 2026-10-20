@@ -3,7 +3,7 @@
 | Field                  | Value |
 | ---------------------- | ----- |
 | **Category**           | Product |
-| **Doc status**         | `in review` — Spec review is this PR; on merge → `implemented` |
+| **Doc status**         | `in review` — shipped with the feature work in this PR; `approved` once a reviewer accepts it as a Spec, `implemented` when the feature work merges |
 | **Normative language** | RFC 2119 / RFC 8174 applies |
 | **Requirement IDs**    | `COMM-008`, `COMM-012`, `COMM-018` |
 | **Owner / Updated**    | Repo maintainers, 2026-10-14 |
@@ -109,7 +109,7 @@ Additive migration `0031_announcements_and_direct_messages`:
 - E2E (when run): `e2e/specs/camp-member/camp-announcements.spec.ts`;
   `e2e/specs/camp-member/direct-messaging.spec.ts`; org bulletin targeting
   specs remain green for org-scoped bulletins
-- Spec status flips to `implemented` on merge; as-built notes land in
+- Spec status → `approved` when a reviewer accepts it as a Spec, `implemented` once the feature work merges; as-built notes land in
   `docs/technical-spec/11-bulletins-and-notifications.md` (and related)
 
 ## Provenance
