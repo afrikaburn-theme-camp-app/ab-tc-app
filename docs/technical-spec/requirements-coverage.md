@@ -223,7 +223,7 @@ deadline reminders (built, unscheduled) — see
 
 ## 15. Previous-year submissions ✅
 
-**Requirement IDs:** ✅ PREVYR-002, PREVYR-003, PREVYR-011, PREVYR-012, PREVYR-013 · 🚧 PREVYR-001, PREVYR-008, PREVYR-009, PREVYR-010, PREVYR-016, PREVYR-022, PREVYR-024, PREVYR-025 · ❌ PREVYR-004–007, PREVYR-014, PREVYR-015, PREVYR-017, PREVYR-019–021, PREVYR-023 _(Requirements §15)_
+**Requirement IDs:** ✅ PREVYR-001, PREVYR-002, PREVYR-003, PREVYR-009, PREVYR-010, PREVYR-011, PREVYR-012, PREVYR-013, PREVYR-014 · 🚧 PREVYR-008, PREVYR-016, PREVYR-022, PREVYR-024, PREVYR-025 · ❌ PREVYR-004–007, PREVYR-015, PREVYR-017, PREVYR-019–021, PREVYR-023 _(Requirements §15)_
 
 Full detail: [`07-previous-year-carry-forward.md`](07-previous-year-carry-forward.md).
 
@@ -235,6 +235,12 @@ all shipped in the registration-season release (before this correction).
 The rollover rule (blank every Form-2 field, carry only Form-1) is a
 deliberate design choice, not an oversight — see the drift note in the
 feature doc.
+
+**Updated by port-wave cluster 1 (Spec 01).** PREVYR-001 (view all previous
+submissions), PREVYR-009/010 (year-on-year comparison, changed vs unchanged)
+and PREVYR-014 (duplicate from any earlier same-camp submission) are ✅:
+`/registration/history`, a chooser for the carry-forward source (any strictly
+earlier same-camp edition, whatever its status) and `/registration/changes`.
 
 ## 16. Plug-and-play and turnkey prevention 🚧
 
@@ -262,14 +268,16 @@ value and a new relation table, neither of which exists today.
 
 ## 18. Creative Project Mode 🚧
 
-**Requirement IDs:** ✅ CREATIVE-001, CREATIVE-002, CREATIVE-009, CREATIVE-018 · 🚧 CREATIVE-005, CREATIVE-007 · ❌ CREATIVE-003, CREATIVE-004, CREATIVE-006, CREATIVE-010, CREATIVE-012, CREATIVE-013, CREATIVE-014, CREATIVE-015, CREATIVE-017, CREATIVE-019 · ⚠️ CREATIVE-008, CREATIVE-011, CREATIVE-016 _(Requirements §18)_
+**Requirement IDs:** ✅ CREATIVE-001, CREATIVE-002, CREATIVE-009, CREATIVE-018, CREATIVE-014, CREATIVE-017, CREATIVE-019 · 🚧 CREATIVE-005, CREATIVE-007 · ❌ CREATIVE-003, CREATIVE-004, CREATIVE-006, CREATIVE-010, CREATIVE-012, CREATIVE-013, CREATIVE-015 · ⚠️ CREATIVE-008, CREATIVE-011, CREATIVE-016 _(Requirements §18)_
 
 Full detail: [`19-creative-projects.md`](19-creative-projects.md).
-**Corrected 2026-09-11**: CREATIVE-014 (Work Access Passes) and
-CREATIVE-017 (safety documents) moved 🚧 → ❌ — projects have no WAP field
-and no safety-document upload at all, contradicting this section's earlier
-"arrives roughly free" framing; camps got carry-forward in the
-registration-season release and creative projects did not (CREATIVE-019).
+**Updated by port-wave cluster 1 (Spec 01).** CREATIVE-014 (Work Access
+Passes), CREATIVE-017 (safety documents) and CREATIVE-019 (previous-year
+duplication) moved ❌ → ✅: projects now carry a WAP request, safety documents
+with expiry, and a carry-forward action, and the questionnaire routes mount on
+`/artworks` and `/vehicles` (CREATIVE-007 stays 🚧). Known limits, both listed
+in the Spec: WAP counts on org review are not capability-gated, and safety
+documents are stored as public (unguessable-URL) blobs.
 
 ## 19. Permissions and security ✅
 
