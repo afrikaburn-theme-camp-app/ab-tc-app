@@ -1,6 +1,6 @@
 // What our identity provider ACTUALLY supports (the capability matrix).
 //
-// As of the self-hosted migration (docs/auth-platform-spec.md) we run our OWN
+// As of the self-hosted migration (docs/technical-spec/01-auth-and-identity.md) we run our OWN
 // Better Auth (1.6.x), mounted in-process in each app by @quagga/auth against our
 // own Neon database — NOT managed Neon Auth. Self-hosting removes the managed
 // provider's fixed-subset limitation: every core email/password + session +

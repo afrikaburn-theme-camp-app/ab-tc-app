@@ -859,7 +859,7 @@ describe("cross-camp ids answer like ids that do not exist", () => {
   });
 
   it("a team is added to the caller's own camp, never one named in the request", async () => {
-    dbMock.queue([actorRow(ALICE)], [{ n: 0 }], [{ id: "t-new" }]);
+    dbMock.queue([actorRow(ALICE)], [{ id: CAMP }], [{ n: 0 }], [{ id: "t-new" }]);
     expect(
       await addShiftTeam({ actorUserId: ALICE, groupId: CAMP, name: "Sound" }),
     ).toEqual({ ok: true, id: "t-new" });
@@ -1655,15 +1655,26 @@ describe("shift teams — lead only, one name per camp", () => {
   });
 
   it("addShiftTeam refuses a camp at the team limit", async () => {
-    dbMock.queue([actorRow(ALICE)], [{ n: 30 }]);
+    dbMock.queue([actorRow(ALICE)], [{ id: CAMP }], [{ n: 30 }]);
     expect(
       await addShiftTeam({ actorUserId: ALICE, groupId: CAMP, name: "Sound" }),
     ).toEqual({ ok: false, error: "A camp can have up to 30 teams." });
     expect(dbMock.writesTo(schema.shiftTeams)).toHaveLength(0);
   });
 
+  it("addShiftTeam locks the camp row FOR UPDATE before counting, so two leads cannot both pass the cap", async () => {
+    dbMock.queue([actorRow(ALICE)], [{ id: CAMP }], [{ n: 29 }], [{ id: "t-new" }]);
+    await addShiftTeam({ actorUserId: ALICE, groupId: CAMP, name: "Sound" });
+    // queries[0] is the actor lock; [1] must be the camp row, locked, and it
+    // must come BEFORE the count that the cap check reads.
+    const lock = dbMock.queries[1]!;
+    expect(lock.arg("for")).toBe("update");
+    expect(boundStrings(lock)).toEqual(expect.arrayContaining([CAMP]));
+    expect(dbMock.queries[2]!.called("for")).toBe(false);
+  });
+
   it("addShiftTeam sorts the new team last and marks the camp's list as edited", async () => {
-    dbMock.queue([actorRow(ALICE)], [{ n: 3 }], [{ id: "t-new" }]);
+    dbMock.queue([actorRow(ALICE)], [{ id: CAMP }], [{ n: 3 }], [{ id: "t-new" }]);
     expect(
       await addShiftTeam({ actorUserId: ALICE, groupId: CAMP, name: "  Sound " }),
     ).toEqual({ ok: true, id: "t-new" });
@@ -1676,7 +1687,7 @@ describe("shift teams — lead only, one name per camp", () => {
   });
 
   it("addShiftTeam maps a duplicate name — even one wrapped as a cause — to a message", async () => {
-    dbMock.queue([actorRow(ALICE)], [{ n: 0 }], uniqueViolation("shift_teams_name_idx"));
+    dbMock.queue([actorRow(ALICE)], [{ id: CAMP }], [{ n: 0 }], uniqueViolation("shift_teams_name_idx"));
     expect(
       await addShiftTeam({ actorUserId: ALICE, groupId: CAMP, name: "Sound" }),
     ).toEqual({ ok: false, error: "The camp already has a team with that name." });

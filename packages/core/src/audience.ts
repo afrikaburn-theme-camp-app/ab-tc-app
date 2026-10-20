@@ -1,4 +1,4 @@
-// Audience resolution (questionnaire-spec §"Authoring levels & audiences").
+// Audience resolution (docs/technical-spec/10-questionnaire-engine.md §"Authoring levels & audiences").
 // `resolveAudience(spec, ctx)` turns a stored audience spec into the concrete
 // set of user ids to target — the send-time expansion that becomes
 // `required_actions` rows.

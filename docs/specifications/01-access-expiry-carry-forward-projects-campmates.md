@@ -29,11 +29,13 @@ approve Spec and code together in one PR.
 
 ### 2. Carry-forward v2 + history (`PREVYR-*`)
 
-- Camp leads/admins MUST be able to view past submitted registrations for
-  their camp (`/registration/history`), including years that are not the
-  most recent prior.
-- They MAY choose any strictly earlier same-camp submitted edition as the
-  carry-forward source (server re-validates).
+- Camp leads/admins MUST be able to view past registrations for their camp
+  (`/registration/history`), including years that are not the most recent
+  prior.
+- They MAY choose any strictly earlier same-camp edition as the carry-forward
+  source, whatever its status (server re-validates same camp + earlier year;
+  a never-submitted draft is a valid source — deliberate, so a camp that
+  started but never submitted can still reuse its answers).
 - Year-on-year comparison (`/registration/changes` and org review) MUST use
   the carried source when set, otherwise the most recent earlier submitted
   edition for that camp — never another camp's row.
@@ -47,8 +49,10 @@ approve Spec and code together in one PR.
   carry-forward (including capped, de-duplicated safety-doc merge).
 - Questionnaire list/builder/results MUST mount on `/artworks` and
   `/vehicles` as well as `/camps`, kind-gated (wrong kind → redirect/404).
-- Org review MUST surface WAP counts and safety documents only to actors
-  with the personal-information registrations capability.
+- Org review MUST surface safety documents only to actors with the
+  personal-information registrations capability. WAP counts are shown to any
+  org actor who can open the review page (they are counts, not personal
+  information).
 
 ### 4. Campmates + avatar (`CORE-002`, `CDB-007`)
 
@@ -95,3 +99,29 @@ Additive migration `0030_epics_expiry_safety_docs_campmates`:
 Reference implementation: `feature-source` commit `4eb47b7`
 (`feat(core,db,web,org): access expiry, carry-forward, projects, campmates (#73)`),
 ported onto this repo's IA without adopting the source's flat `docs/` layout.
+
+## Implementation gaps / drift
+
+Findings from reading this PR’s branch against Behaviour + cited Requirements.
+These are review notes; they do **not** change Behaviour above.
+
+- **Resolved in Behaviour (org review WAP):** an earlier draft of §3 required
+  WAP counts to be capability-gated like safety documents. Safety docs are gated
+  (`getReviewSafetyDocuments` → `canReadPersonalInformationIn(..., "registrations")`
+  in `apps/org/lib/project-registration.ts`). WAP counts
+  (`registration.s4WorkAccessPasses` / `wapField` in
+  `apps/org/app/(console)/registrations/[id]/page.tsx` and
+  `apps/org/lib/project-review.ts`) are **not** capability-gated — any org
+  actor who can open the review page sees them. Behaviour §3 now says so;
+  a reviewer who wants WAP counts gated must change the code and this line.
+- **Resolved in Behaviour (carry-forward source status):** an earlier draft of
+  §2 said **submitted** editions only. Code lists prior rows
+  via `listPriorRegistrations` and `findCarryForwardSource`
+  (`apps/web/lib/registration-store.ts`) accepts **any** prior status
+  (including never-submitted drafts). Server re-check
+  `isValidCarryForwardSource` (`packages/core/src/registration-carry-forward.ts`)
+  only requires same camp + earlier year — no `submittedAt`.
+- **Aligned (for reviewers):** Inclusive last-day UI → exclusive `expires_at`
+  in `isOrgRoleAssignmentLive`; registration history / YoY comparison;
+  creative-project questionnaires kind-gating; campmates privacy and avatar
+  paths match Behaviour §§1–4 aside from the two drifts above.

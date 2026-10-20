@@ -1,7 +1,7 @@
 import { z } from "zod";
 import { AudienceSpec } from "./audience";
 
-// Notifications & bulletins (docs/notifications-spec.md). One inbox, two
+// Notifications & bulletins (docs/technical-spec/11-bulletins-and-notifications.md). One inbox, two
 // origins: personal event notifications + org `bulletin` broadcasts. This file
 // is the VALIDATION authority for the notification shapes; the storage
 // authority is `notifications` / `bulletins` in @quagga/db schema.ts, and the

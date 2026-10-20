@@ -50,7 +50,7 @@ const AssignInput = z.object({
  *
  * Recipients are the camp's structural `lead`/`admin` memberships — the same
  * audience as a registration decision and a wrangler assignment. In-app, plus
- * an immediate email (docs/notifications-spec.md §Email): the payload's kind is
+ * an immediate email (docs/technical-spec/11-bulletins-and-notifications.md §Email): the payload's kind is
  * `registration`, which `shouldSendImmediateEmail` passes — the same path a
  * registration decision emails through. Env-less, `sendEmail` logs instead of
  * sending.
