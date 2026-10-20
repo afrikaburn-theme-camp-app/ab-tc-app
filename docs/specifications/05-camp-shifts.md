@@ -53,6 +53,16 @@ approval. This Spec is the ratification contract for that port
 - Hand-on and offer are mutually exclusive on a row (DB check
   `shift_assignments_one_hand_on`).
 
+### Effects on membership and account lifecycle
+
+- Archiving a member MUST delete their shift spots and cancel hand-on
+  requests made to them (`member-archive-store.ts`); restoring them MUST
+  clear their shift state (`clearShiftsOnRestore`).
+- Account sanitisation MUST delete the person's shift spots
+  (`account-sanitize.ts`).
+- "Swap" in this port (`SHIFT-020`) means give-away or hand-on to a named
+  campmate, not a two-way exchange.
+
 ### Notifications
 
 - In-app shift notifications MUST fire for assign / unassign / handover /
@@ -86,7 +96,8 @@ Additive `0034_camp_shifts.sql`:
 - `SHIFT-014`–`016` attendance / late cancel / no-show recording
 - `SHIFT-023` administrator approval for swaps (explicitly refused by this
   port)
-- `SHIFT-024`, `SHIFT-027`–`029` email / WhatsApp / SMS reminders
+- `SHIFT-024`, `SHIFT-026`–`029` reminder channels (email / WhatsApp / SMS);
+  attendance and reminders were dropped deliberately (source `a5aae27`)
 - Custom-role `manage_shifts` privilege (callout in `shifts.ts` — Ryan’s
   call to add later)
 - Cross-camp / Village shift boards
@@ -116,6 +127,9 @@ These are review notes; they do **not** change Behaviour above.
   compulsory flag, and non-in-app reminders (`SHIFT-014`–`016`, `011`, `009`,
   `027`–`029`) are unimplemented — listed Out of scope, not accidental
   omissions.
+- **Gap (edit after assignment):** `updateShift` (`shifts-store.ts`) does not
+  re-check people already on a shift for clashes or the required role after
+  a lead changes its time or role. Document it or refuse the edit.
 - **Gap (permissions):** Only structural lead/admin manage shifts; there is
   no `manage_shifts` custom-role grant yet (`packages/core/src/shifts.ts`
   header). Camps that want a “shift captain” custom role cannot grant manage
