@@ -5,7 +5,7 @@
 | **Category**           | Product |
 | **Doc status**         | `in review` — Spec review is this PR; on merge → `implemented` |
 | **Normative language** | RFC 2119 / RFC 8174 applies |
-| **Requirement IDs**    | `ONBOARD-019`, `ONBOARD-020`; also touches `ONBOARD-015`–`018`, `ONBOARD-022` (carry-forward draft); theme-camp only |
+| **Requirement IDs**    | `ONBOARD-019`, `ONBOARD-020`; also touches `ONBOARD-015`–`018`, `ONBOARD-022` (carry-forward draft), `ONBOARD-023`–`025` (new campers / returning campers / camp leads — the tenure audience and the lead's totals); theme-camp only |
 | **Owner / Updated**    | Repo maintainers, 2026-10-14 |
 | **Depends on**         | Spec 05 / cluster-5 (`0034`) |
 
@@ -27,13 +27,21 @@ product. This Spec is the ratification contract for that port
 - An onboarding definition MAY contain only `info_block`, `video_link`, and
   `acknowledgement` blocks (bounded by `ONBOARDING_LIMITS`). Free-form answer
   collection belongs on an ordinary questionnaire.
-- Default audience MUST be everyone in the camp (leads included). Blocking
+- Default audience MUST be everyone in the camp (leads and co-leads
+  included); the lead can switch any of them off. Blocking
   choice follows the same `may_block` / `canAuthorOnboarding` rules as other
   camp questionnaires.
 - Sending rides the existing activation → `required_actions` → responses
   path. A blocking onboarding MUST gate the **app** until done (copy MUST
   NOT claim it blocks registration).
-- Members MUST walk sections one step at a time; acknowledgements come last.
+- Members MUST walk sections one step at a time (a definition MUST NOT use
+  branching or shuffled sections). The preset places acknowledgements in the
+  last section, but `validateOnboardingDefinition` does not enforce that
+  order for edited definitions.
+- Closed (recalled) sends MUST be refused for **all** camp questionnaires,
+  not only onboarding (`questionnaire-store.ts`); the org status board no
+  longer lists camp questionnaires; members are told leads can see their
+  progress.
 
 ### Progress and completion totals (`ONBOARD-020`)
 
@@ -47,6 +55,8 @@ product. This Spec is the ratification contract for that port
 
 ### Carry-forward (`ONBOARD-022`)
 
+- A camp MAY have only one onboarding per edition, enforced on carry-forward
+  only (not when starting from the preset).
 - Camps MAY carry the previous edition’s onboarding forward as a **draft**
   for editing — returning campers SHOULD NOT be forced to repeat unchanged
   material unnecessarily (Requirements §3 closing prose); exact send
@@ -63,7 +73,8 @@ product. This Spec is the ratification contract for that port
 | App | Audience | Notable routes |
 | --- | -------- | -------------- |
 | `web` | Camp leads / `manage_questionnaires` | `/camps/[slug]/questionnaires` start chooser (blank vs preset); onboarding builder; onboarding-actions |
-| `web` | Members | `/questionnaires/[activationId]` runner; `/camps/.../questionnaires/onboarding/[activationId]` completion |
+| `web` | Members | `/questionnaires/[activationId]` runner (the member page) |
+| `web` | Camp leads / `manage_questionnaires` | `/camps/[slug]/questionnaires/onboarding/[activationId]` — the lead-only draft builder, not a member page |
 
 ## Database
 

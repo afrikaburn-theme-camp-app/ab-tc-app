@@ -110,7 +110,8 @@ async function insertDraft(input: OnboardingDraftInput): Promise<string> {
 }
 
 /** Start an onboarding from the preset (A1 → A2). NOT blocking by default
- * (Ryan, 27 Sep 2026); leads and co-leads off the audience by default. */
+ * (Ryan, 27 Sep 2026); leads and co-leads are IN the audience by default
+ * (Ryan, 1 Oct 2026) and the lead can switch them off. */
 export async function createOnboardingDraft(input: {
   groupId: string;
   editionId: string;

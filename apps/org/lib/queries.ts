@@ -1902,7 +1902,7 @@ export async function getStatusBoard(
   // required-action statuses. Org-authored only: a camp's questionnaire (and
   // its onboarding, epic #54) is the camp's business — its title and how many
   // of its members finished are visible to that camp's leads, never the
-  // console (questionnaire-spec §Guardrails: results never cross scope).
+  // console (docs/technical-spec/10-questionnaire-engine.md §Guardrails: results never cross scope).
   const activationRows = await db
     .select({
       id: schema.questionnaireActivations.id,
