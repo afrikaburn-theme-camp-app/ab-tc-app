@@ -5,7 +5,7 @@
 | **Category**           | Product |
 | **Doc status**         | `in review` — Spec review is this PR; on merge → `implemented` |
 | **Normative language** | RFC 2119 / RFC 8174 applies |
-| **Requirement IDs**    | `CDB-011`, `CDB-012`, `CDB-013`, `CDB-014`, `CDB-028` (self-edit logistics), `CDB-030`–`CDB-033` (export/filter/search/missing-info as shipped); placement notify (no dedicated Requirement ID — extends staff erf/camp-code assignment) |
+| **Requirement IDs**    | `CDB-011`, `CDB-012`, `CDB-013`, `CDB-014`, `CDB-028` (self-edit logistics only; admin-edits-camper is out of scope), `CDB-030`–`CDB-033` (export/filter/search/missing-info as shipped); placement notify (no dedicated Requirement ID — extends staff erf/camp-code assignment) |
 | **Owner / Updated**    | Repo maintainers, 2026-10-14 |
 | **Depends on**         | Spec 02 / cluster-2 (`0031`) |
 
@@ -52,11 +52,26 @@ is the ratification contract for that port (Decision 017).
 - Plain members MUST NOT receive placement notifications (leads/admins
   only).
 
-### 3. Canvas UI fixes (#80)
+### 3. Camp page placement card
 
-- Shipped announcement / DM / roster / safety screens MUST reflect the
-  canvas review answers applied in this cluster (layout/copy/control
-  fixes only — no new product Behaviour beyond §§1–2).
+- A camp's members (not strangers) MUST see the camp code and erf on the
+  participant camp page, with "Placement allocated" derived from the erf
+  being set (`canViewCampPlacement`, `CampPlacementCard`). The data is not
+  loaded for non-members.
+
+### 4. Canvas UI fixes (#80) and other behaviour that ships with them
+
+The canvas-review commit (#80) is not layout/copy only. It also ships:
+
+- **Reopening a message report** (`reopenMessageReportAction`,
+  audit `dm.report.reopen`) in the org safety queue.
+- **SA ID checksum on bio save** (`packages/core/src/sa-id.ts`): a bio save
+  is refused while a stored SA ID number is invalid.
+- **Phone-input paste fix.**
+- **Roster stats card** (`STATS-017`/`018`/`019`/`022`/`024`/`025`) via
+  `deriveCampRosterStats`.
+- Layout, copy and control fixes on the shipped announcement / DM / roster /
+  safety screens.
 
 ## Surfaces
 
@@ -86,9 +101,8 @@ existed; this cluster adds notify behaviour only for those writes.
 - Admin editing another camper’s logistics (`CDB-028` admin-managed model
   remains proposed under Decision 008)
 - Spreadsheet import (`CDB-029`)
-- Showing erf/camp_code on the participant app camp page (org-assigned;
-  notify text carries the change, not a persistent camp-facing placement
-  panel in this port)
+- A camp-side approve / reject / comment loop on placement (`ERF-019`–`023`);
+  the camp page card in §3 is read-only.
 
 ## Acceptance
 
@@ -108,18 +122,15 @@ existed; this cluster adds notify behaviour only for those writes.
 Findings from reading this PR’s branch against Behaviour + cited Requirements.
 These are review notes; they do **not** change Behaviour above.
 
-- **Drift (as-built docs):** [`docs/technical-spec/08-placement-codes-and-erf.md`](../technical-spec/08-placement-codes-and-erf.md)
-  still says assigning/changing an erf is **“Deliberately not notified.”**
-  This PR reverses that decision (`apps/org/lib/actions/placement.ts`
-  header: notify on first assignment, every change, and removal). Tech-spec
-  08 is stale relative to Behaviour §2 — update on merge, do not treat the
-  old sentence as governing.
+- **Resolved (as-built docs):** [`docs/technical-spec/08-placement-codes-and-erf.md`](../technical-spec/08-placement-codes-and-erf.md)
+  said erf assignment was “org-only” and “not notified”; it is updated in
+  this PR to match Behaviour §§2–3.
 - **Drift (notify channel):** Stub Spec said “in-app” only; shipped Behaviour
   also sends immediate email to leads when the registration email path is on.
 - **Gap (Requirements):** There is **no** Requirement ID for
   “notify camp leads when erf/camp_code changes.” Closest framing is §13
   camp feedback on placement (`ERF-019`–`023`), which still expects a
   camp-side approve/reject/comment loop that this port does **not** build.
-- **Gap (visibility):** Camp leads are notified of placement text but still
-  have no durable erf/camp_code surface under `apps/web` (tech-spec 08’s
-  “org-only” note remains true for persistent UI).
+- **Gap (roster stats):** `deriveCampRosterStats` still counts deleted
+  (sanitised) accounts; source `b3bcb7f` (#97) fixed that and is not ported
+  here. Track as a follow-up.
