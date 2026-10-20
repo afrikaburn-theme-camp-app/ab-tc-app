@@ -7,7 +7,7 @@ import { deriveCampPrefix } from "./member-ref-code";
 // THIS IS DELIBERATELY NOT A PLACEMENT TOOL. The layout/erf work is parked
 // because no structured map data exists to build against and the official map is
 // a late-arriving PDF that changes every year (roadmap §"Placement & layout
-// tooling", Requirements §13). What container booking and on-site logistics actually
+// tooling", App Spec §13). What container booking and on-site logistics actually
 // need from placement is far smaller: a short stable handle for the camp, and
 // somewhere to write down the erf once a human has decided it. Both are strings
 // a staff member types.
@@ -129,4 +129,113 @@ export function parsePlacementAssignment(input: {
     throw new Error(`An erf label is at most ${MAX_ERF_LENGTH} characters.`);
   }
   return { campCode, erf };
+}
+
+// --- Reading a camp's placement (epic #48) ------------------------------------
+//
+// ONE SOURCE, READ — NEVER COPIED (ERF-019). The camp code and erf live on the
+// camp's registration for the edition and nowhere else. The camp page, the
+// registration summary and, later, every logistics module (container, gas,
+// water, wood) READ them through this shape; none of them keeps its own copy.
+// A copied erf is a second truth that goes stale the first time Placements
+// revises it, and erfs are revised several times before the map is final.
+
+/** A camp's placement for one edition, as every reader sees it. */
+export interface CampPlacement {
+  campCode: string | null;
+  erf: string | null;
+  /**
+   * DERIVED, not stored: an erf has been written down. There is no
+   * "placement allocated" status value — adding one would make a second
+   * source that could disagree with the erf column.
+   */
+  placementAllocated: boolean;
+}
+
+/** Whether a stored erf means the camp has a placement. */
+export function isPlacementAllocated(erf: string | null | undefined): boolean {
+  return normalizeErf(erf) !== null;
+}
+
+/**
+ * The placement to show for a registration row, or null when there is nothing
+ * to show yet (no registration, or neither field assigned). Re-normalises on
+ * the way out, so a reader never depends on how carefully a writer stored it.
+ */
+export function campPlacementOf(
+  row: { campCode: string | null; erf: string | null } | null | undefined,
+): CampPlacement | null {
+  if (!row) return null;
+  const campCode = normalizeCampCode(row.campCode);
+  const erf = normalizeErf(row.erf);
+  if (campCode === null && erf === null) return null;
+  return { campCode, erf, placementAllocated: erf !== null };
+}
+
+/**
+ * Who may read a camp's placement: its members, and nobody else in the
+ * participant app. An erf is where a camp will be on site — not something a
+ * stranger browsing the directory needs, and for a free camp not something a
+ * stranger may even learn exists. Org staff read it in the console under their
+ * own capability.
+ */
+export function canViewCampPlacement(viewerIsMember: boolean): boolean {
+  return viewerIsMember;
+}
+
+// --- Telling the camp its placement moved (epic #48) --------------------------
+//
+// Ryan, 27 Sep 2026: notify the camp's leads when the camp code or erf is FIRST
+// ASSIGNED, and on EVERY CHANGE. Ryan, 28 Sep 2026: CLEARING notifies too — a
+// camp that planned around an erf needs to hear that it is gone. The rules
+// below are the whole of "did it change", in one pure place, so the console
+// action cannot drift from its tests.
+
+/** What a placement save means to the camp, or null when it means nothing new. */
+export interface PlacementChange {
+  /**
+   * `set` when every field that moved was previously empty (a first
+   * assignment); `removed` when the save left the camp with neither a code
+   * nor an erf; `changed` otherwise — a moved field replaced or cleared a value
+   * the camp already had, and something is still assigned.
+   */
+  verb: "set" | "changed" | "removed";
+  /** The camp's placement AFTER the save, one line: "MAH · C-14". Empty for `removed`. */
+  line: string;
+}
+
+/**
+ * Compare a registration's placement before and after a save.
+ *
+ * Returns null — no notification — only when nothing moved: re-saving the same
+ * values, or a value that only differs in case/whitespace and so normalizes to
+ * the same stored form.
+ *
+ * Both fields are compared in one call, so a save that moves both produces ONE
+ * notice, not two. Clearing one field while the other stays is a `changed`
+ * showing what remains; clearing everything is `removed`.
+ */
+export function placementChange(
+  before: { campCode: string | null; erf: string | null },
+  after: { campCode: string | null; erf: string | null },
+): PlacementChange | null {
+  const prev = {
+    campCode: normalizeCampCode(before.campCode),
+    erf: normalizeErf(before.erf),
+  };
+  const next = {
+    campCode: normalizeCampCode(after.campCode),
+    erf: normalizeErf(after.erf),
+  };
+  const fields = ["campCode", "erf"] as const;
+  const moved = fields.filter((f) => prev[f] !== next[f]);
+  if (moved.length === 0) return null;
+
+  const line = [next.campCode, next.erf]
+    .filter((v): v is string => v !== null)
+    .join(" · ");
+  if (line === "") return { verb: "removed", line };
+
+  const verb = moved.some((f) => prev[f] !== null) ? "changed" : "set";
+  return { verb, line };
 }
