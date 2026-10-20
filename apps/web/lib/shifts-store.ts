@@ -66,7 +66,7 @@ import { insertNotifications } from "./notifications";
 // refused.
 //
 // NOTIFICATIONS are inserted AFTER the transaction commits, best effort — a
-// failed notice never un-does a shift change (docs/notifications-spec.md).
+// failed notice never un-does a shift change (docs/technical-spec/11-bulletins-and-notifications.md).
 
 export type ShiftResult<T = object> =
   ({ ok: true } & T) | { ok: false; error: string };
@@ -1390,6 +1390,14 @@ export async function addShiftTeam(input: {
     return await withTransaction(async (tx) => {
       const actor = await lockActor(tx, input.groupId, input.actorUserId);
       if (!mayManage(actor)) return refused("not_manager");
+      // Serialise concurrent adds on the camp's own row: the memberships
+      // `FOR SHARE` above does not exclude a second lead, so without this two
+      // leads at 29 teams could both pass the cap check and insert.
+      await tx
+        .select({ id: schema.groups.id })
+        .from(schema.groups)
+        .where(eq(schema.groups.id, input.groupId))
+        .for("update");
       const [count] = await tx
         .select({ n: sql<number>`count(*)::int` })
         .from(schema.shiftTeams)
