@@ -3,7 +3,7 @@
 | Field                  | Value |
 | ---------------------- | ----- |
 | **Category**           | Product |
-| **Doc status**         | `in review` — Spec review is this PR; on merge → `implemented` |
+| **Doc status**         | `in review` — shipped with the feature work in this PR; `approved` once a reviewer accepts it as a Spec, `implemented` when the feature work merges |
 | **Normative language** | RFC 2119 / RFC 8174 applies |
 | **Requirement IDs**    | `CDB-011`, `CDB-012`, `CDB-013`, `CDB-014`, `CDB-028` (self-edit logistics only; admin-edits-camper is out of scope), `CDB-030`–`CDB-033` (export/filter/search/missing-info as shipped); placement notify (no dedicated Requirement ID — extends staff erf/camp-code assignment) |
 | **Owner / Updated**    | Repo maintainers, 2026-10-14 |
@@ -111,7 +111,7 @@ existed; this cluster adds notify behaviour only for those writes.
   review placement notify cases in
   `e2e/specs/org-staff/registration-review.spec.ts` (set/change/remove;
   no notify on no-op; leads not plain members)
-- Spec status → `implemented` on merge
+- Spec status → `approved` when a reviewer accepts it as a Spec, `implemented` once the feature work merges
 
 ## Provenance
 
