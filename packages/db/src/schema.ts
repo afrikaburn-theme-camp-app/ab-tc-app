@@ -761,8 +761,9 @@ export const burnerBios = pgTable(
     // data is PURGEABLE after an edition ends. The purge rule (which editions are
     // expired, plus a small post-event grace) is the pure @quagga/core
     // `id-retention` module (`identifyPurgeableIdBios` / `buildIdPurgePatch`);
-    // wiring a scheduled purge job that applies `{ saIdEncrypted: null,
-    // passportEncrypted: null }` to expired editions' bios is a LATER task.
+    // `sweepExpiredIdDocuments` (apps/web/lib/id-retention-sweep.ts) applies
+    // `{ saIdEncrypted: null, passportEncrypted: null }` to expired editions'
+    // bios when something calls /api/account/id-retention-sweep.
     saIdEncrypted: text("sa_id_encrypted"),
     passportEncrypted: text("passport_encrypted"),
 

@@ -2,7 +2,7 @@ import { readFileSync } from "node:fs";
 import { fileURLToPath } from "node:url";
 import { describe, it, expect, beforeEach, vi } from "vitest";
 import { schema } from "@quagga/db";
-import { dbMock } from "@/test/db-mock";
+import { dbMock, boundStrings } from "@/test/db-mock";
 
 vi.mock("@/lib/db", async () => (await import("@/test/db-mock")).dbModuleMock());
 vi.mock("@/lib/config", () => ({ isDatabaseConfigured: () => true }));
@@ -168,6 +168,35 @@ describe("sweepExpiredIdDocuments", () => {
     expect(result.failures).toHaveLength(1);
     expect(result.failures[0]?.bioId).toBe(BIO_A);
     expect(result.failures[0]?.error).toContain("connection reset");
+  });
+
+  // REGRESSION: the batch `limit` used to be applied BEFORE the edition filter,
+  // which ran in JS. Carry-forward gives every live edition's rows an ID too, so
+  // more than `limit` of them could fill the window and a run answered
+  // `identified: 0` forever while the expired backlog never drained. The mock
+  // cannot run the SQL, so this pins the shape that prevents it: the bios
+  // SELECT carries the EXPIRED editions' ids (and only those) and an ORDER BY.
+  it("scopes the bios query to expired editions, in a stable order, before the limit", async () => {
+    dbMock.queue(EDITIONS, []);
+
+    await sweepExpiredIdDocuments(NOW, 2);
+
+    const select = dbMock.queries[1]!;
+    const bound = boundStrings(select);
+    expect(bound).toContain(EXPIRED_EDITION);
+    expect(bound, "a live edition must never share the batch window").not.toContain(
+      CURRENT_EDITION,
+    );
+    expect(select.called("orderBy"), "the batch must be deterministic").toBe(true);
+  });
+
+  it("does not read any bios when no edition has aged out", async () => {
+    dbMock.queue([{ id: CURRENT_EDITION, endDate: "2027-04-30" }]);
+
+    const result = await sweepExpiredIdDocuments(NOW);
+
+    expect(result.identified).toBe(0);
+    expect(dbMock.queries, "only the editions were read").toHaveLength(1);
   });
 
   it("issues no write when nothing has aged out", async () => {

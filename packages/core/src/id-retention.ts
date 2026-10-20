@@ -9,8 +9,8 @@
 //
 // PURITY CONTRACT (as with the rest of @quagga/core): no I/O, no env, no DB, no
 // crypto. This module owns the RULE — which editions' ID data has aged out, and
-// what a purge patch looks like — so a scheduled purge job (a LATER task) has one
-// tested implementation to apply. Nothing here reads or writes the database; the
+// what a purge patch looks like — so the purge job
+// (apps/web/lib/id-retention-sweep.ts) has one tested implementation to apply. Nothing here reads or writes the database; the
 // job supplies rows and applies the returned patch.
 
 /** An edition, reduced to what the retention rule needs. `endDate` is the ISO

@@ -1,10 +1,11 @@
 import "server-only";
 
-import { and, inArray, isNotNull, or } from "drizzle-orm";
+import { and, asc, inArray, isNotNull, or } from "drizzle-orm";
 import {
   ID_RETENTION_GRACE_DAYS,
   buildIdPurgePatch,
   identifyPurgeableIdBios,
+  isIdRetentionExpired,
   type RetentionBio,
   type RetentionEdition,
 } from "@quagga/core";
@@ -85,9 +86,20 @@ export async function sweepExpiredIdDocuments(
     endDate: e.endDate,
   }));
 
-  // Only rows that still hold something to purge. The `or(isNotNull…)` is the
-  // same condition `bioHasIdData` applies, pushed into SQL so a sweep on a
-  // fully-purged database reads nothing.
+  // EXPIRED EDITIONS FIRST, then the batch. Carry-forward copies ID ciphertext
+  // into every new edition's row, so rows in live editions hold IDs forever. If
+  // the `limit` were applied before the edition filter, more than `limit` live
+  // rows could fill the window and a run would report `identified: 0` (HTTP 200)
+  // every day while the real backlog never drained.
+  const expiredEditionIds = editions
+    .filter((e) => isIdRetentionExpired(e, now, graceDays))
+    .map((e) => e.id);
+  if (expiredEditionIds.length === 0) return empty;
+
+  // Only rows that still hold something to purge, in an expired edition. The
+  // `or(isNotNull…)` is the same condition `bioHasIdData` applies, pushed into
+  // SQL so a sweep on a fully-purged database reads nothing. `orderBy` makes
+  // each batch deterministic so repeated runs drain the same backlog.
   const bioRows = await db()
     .select({
       id: schema.burnerBios.id,
@@ -97,11 +109,15 @@ export async function sweepExpiredIdDocuments(
     })
     .from(schema.burnerBios)
     .where(
-      or(
-        isNotNull(schema.burnerBios.saIdEncrypted),
-        isNotNull(schema.burnerBios.passportEncrypted),
+      and(
+        inArray(schema.burnerBios.editionId, expiredEditionIds),
+        or(
+          isNotNull(schema.burnerBios.saIdEncrypted),
+          isNotNull(schema.burnerBios.passportEncrypted),
+        ),
       ),
     )
+    .orderBy(asc(schema.burnerBios.id))
     .limit(limit);
 
   // PRESENT-OR-ABSENT, not the value. See the note at the top of this file.

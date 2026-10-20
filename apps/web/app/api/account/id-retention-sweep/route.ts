@@ -4,7 +4,7 @@ import { timingSafeEqual } from "node:crypto";
 import { sweepExpiredIdDocuments } from "@/lib/id-retention-sweep";
 import { isDatabaseConfigured } from "@/lib/config";
 
-// The ID-retention purge (docs/accounts-security-spec.md §"ID document — lawful
+// The ID-retention purge (docs/technical-spec/02-accounts-and-account-security.md §"ID document — lawful
 // purpose + retention"). Finds every bio whose edition ended more than
 // ID_RETENTION_GRACE_DAYS ago and nulls its SA ID / passport ciphertext.
 //
