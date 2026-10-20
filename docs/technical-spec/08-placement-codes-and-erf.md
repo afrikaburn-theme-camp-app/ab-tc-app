@@ -48,14 +48,16 @@ itself. Shipped, but previously undocumented outside a roadmap bullet.
 - `registrations.camp_code` (unique per edition) and `registrations.erf`
   (free text) — staff-assigned, `packages/core/src/placement-codes.ts` +
   `apps/org/lib/actions/placement.ts`.
-- **Deliberately org-only.** No route or component under `apps/web`
-  references `erf` or `campCode` — a camp cannot see its own assigned erf,
-  let alone approve, reject or comment on it. This is a real gap against
-  ERF-019 (the camp side of the approve/reject/comment loop), not merely
-  an unbuilt nicety.
-- **Deliberately not notified.** Assigning or changing an erf does not fire
-  a notification — an erf that will be revised multiple times before it
-  settles should not generate repeated pushes.
+- **Visible to the camp's members.** `canViewCampPlacement` gates a
+  read-only Placement card on the participant camp page
+  (`apps/web/components/camp-placement.tsx`); non-members never have the
+  data loaded. There is still no camp-side approve, reject or comment loop —
+  a real gap against ERF-019.
+- **Notified.** First assignment, every change and removal notifies the
+  camp's structural lead/admin memberships in-app (and by immediate email
+  when the registration email path is on) — best-effort after commit; a
+  no-op re-save does not notify
+  (`apps/org/lib/actions/placement.ts`).
 - Feeds the placement CSV export — see
   [`09-exports-and-scheduled-jobs.md`](09-exports-and-scheduled-jobs.md).
 
