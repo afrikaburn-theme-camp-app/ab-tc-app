@@ -59,3 +59,4 @@ land in a separate PR from the feature work: the PR author chooses.
 | [`01-access-expiry-carry-forward-projects-campmates.md`](01-access-expiry-carry-forward-projects-campmates.md) | `in review` | `SEC-019`, `PREVYR-*`, `CREATIVE-014/017/019`, `CORE-002`, `CDB-007` | — |
 | [`02-camp-announcements-and-direct-messages.md`](02-camp-announcements-and-direct-messages.md) | `in review` | `COMM-*` / bulletins spine | Spec 01 |
 | [`03-camp-roster-and-placement-notify.md`](03-camp-roster-and-placement-notify.md) | `in review` | roster logistics; placement notify | Spec 02 |
+| [`04-archive-former-camp-members.md`](04-archive-former-camp-members.md) | `in review` | membership archive | Spec 03 |
