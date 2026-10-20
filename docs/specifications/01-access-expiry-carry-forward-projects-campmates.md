@@ -3,7 +3,7 @@
 | Field                  | Value |
 | ---------------------- | ----- |
 | **Category**           | Product |
-| **Doc status**         | `in review` — Spec review is this PR; on merge → `implemented` |
+| **Doc status**         | `in review` — shipped with the feature work in this PR; `approved` once a reviewer accepts it as a Spec, `implemented` when the feature work merges |
 | **Normative language** | RFC 2119 / RFC 8174 applies |
 | **Requirement IDs**    | `SEC-019`; `PREVYR-001`, `PREVYR-009`, `PREVYR-010`, `PREVYR-014`; `CREATIVE-007`, `CREATIVE-014`, `CREATIVE-017`, `CREATIVE-019`; `CORE-002`, `CDB-007` |
 | **Owner / Updated**    | Repo maintainers, 2026-10-12 |
@@ -91,7 +91,7 @@ Additive migration `0030_epics_expiry_safety_docs_campmates`:
 - Gate: `pnpm -w exec turbo run lint typecheck test build` for touched workspaces
 - E2E (when run): god role access-expiry; registration history; campmate
   profiles / three-level privacy; creative-project WAP / safety / questionnaires
-- Spec status flips to `implemented` on merge; as-built notes land in
+- Spec status → `approved` when a reviewer accepts it as a Spec, `implemented` once the feature work merges; as-built notes land in
   `docs/technical-spec/` for the affected feature docs
 
 ## Provenance
