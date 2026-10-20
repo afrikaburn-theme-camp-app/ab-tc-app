@@ -38,6 +38,11 @@ ratification contract for that port (Decision 017).
   list: `member` | `admin` only).
 - Restore MUST return the person as a plain `member` with **no** custom
   project roles restored — re-promotion is deliberate.
+- Archiving MUST also, in the same transaction: waive the person's pending
+  **camp** questionnaires for this camp; revoke every unused invite to this
+  camp that **they** minted (invites are bearer tokens); and remove them from
+  the camp-announcement must-acknowledge gate. A former member MUST NOT be
+  able to fill or submit that camp's questionnaires.
 - Archiving MUST waive pending **org** questionnaires that reached the
   person *only because* of their role in this camp (audience re-derived
   with vs without this membership). Forms that still apply without this
@@ -82,8 +87,8 @@ SQL helpers: `activeMembership()` / `formerMembership()` in `@quagga/db`.
 - Gate: `pnpm -w exec turbo run lint typecheck test build` for touched workspaces
 - Unit: `packages/core` member-archive tests; `packages/db` membership-archive
   helper tests; web membership-archive-guard / roster store coverage
-- E2E: no dedicated persona file named for archive on this branch — exercise
-  via roster ops if present; otherwise unit gate is the primary check
+- E2E: `e2e/specs/camp-lead/former-members.spec.ts` (archive removes camp
+  access; restore returns a plain member without their custom role)
 - Spec status → `implemented` on merge
 
 ## Provenance
@@ -95,10 +100,20 @@ SQL helpers: `activeMembership()` / `formerMembership()` in `@quagga/db`.
 Findings from reading this PR’s branch against Behaviour + cited Requirements.
 These are review notes; they do **not** change Behaviour above.
 
-- **Gap (e2e):** No dedicated `e2e/specs/**/*archiv*` persona suite on this
-  branch; Behaviour relies on unit/integration tests. Reviewers should not
-  assume browser coverage for archive/restore races or org-questionnaire
-  waiver.
+- **Gap (e2e):** `former-members.spec.ts` covers the archive/restore round
+  trip only. Archive/restore races and the org-questionnaire waiver have
+  unit/integration coverage but no browser coverage.
+- **Gap (restore by invite):** an admin can restore a co-lead the lead
+  archived by sending a member invite (`invites-store.ts`); the person comes
+  back only as a plain `member`. Behaviour above allows this; decide whether
+  to refuse it.
+- **Gap (race):** camp questionnaire targets are worked out outside the
+  archive transaction (`questionnaire-store.ts`), so an archive landing in
+  between can leave a former member gated on a form they cannot fill;
+  `listRequiredActions` should also require active membership.
+- **Gap (leave after archive):** `leaveCamp` counts only active members, so a
+  lead can archive everyone and then leave, leaving no lead and no way to
+  restore anyone.
 - **Drift (coverage matrix):** `docs/technical-spec/requirements-coverage.md`
   may still list `CDB-036` as ❌ relative to pre-port as-built — this cluster
   is the implementation; flip coverage on merge.
