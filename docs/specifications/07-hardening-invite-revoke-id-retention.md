@@ -102,16 +102,17 @@ ciphertext per `buildIdPurgePatch`.
 Findings from reading this PR’s branch against Behaviour + cited Requirements.
 These are review notes; they do **not** change Behaviour above.
 
-- **Drift (as-built docs):** [`docs/technical-spec/02-accounts-and-account-security.md`](../technical-spec/02-accounts-and-account-security.md)
+- **Resolved (as-built docs):** [`docs/technical-spec/02-accounts-and-account-security.md`](../technical-spec/02-accounts-and-account-security.md)
   and [`23-security-threat-model.md`](../technical-spec/23-security-threat-model.md)
-  (B7) still describe the ID purge as a pure rule with **no scheduled
-  caller**. This PR wires the caller — those docs are stale until updated on
-  merge.
-- **Drift (cron tip):** This PR’s `apps/web/vercel.json` **removes** the
-  `/api/messages/expiry-sweep` cron entry while keeping/adding
-  `id-retention-sweep`. Spec 02 Behaviour still requires an expiry sweep for
-  disappearing DMs — confirm whether that schedule moves elsewhere or is an
-  accidental Gap on the stack tip before merge.
+  (B7) described the ID purge as a pure rule with no caller; both are updated
+  in this PR to say it is wired and scheduled (unverified in production until
+  the first run).
+- **Resolved (cron tip):** an earlier version of this PR's
+  `apps/web/vercel.json` dropped the `/api/messages/expiry-sweep` entry that
+  Spec 02 relies on (the whole file was copied from before that entry
+  existed). It is restored; both sweeps run daily on Vercel Cron, which the
+  project's Hobby plan supports (daily schedules only). `CRON_SECRET` must be
+  set on the web app for the cron to authenticate.
 - **Gap (Requirements):** Invite revoke has no `PREFIX-NNN` ID; Behaviour is
   engineering hardening of the invite path (`CDB-027`), not a new
   Requirements statement.
