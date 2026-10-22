@@ -6,7 +6,7 @@
 | **Doc status**         | Active                                                                |
 | **Normative language** | Descriptive only until a feature-spec format is accepted              |
 | **Requirement IDs**    | N/A — index; each future spec cites Requirements IDs                  |
-| **Owner / Updated**    | Repo maintainers, 2026-10-08                                          |
+| **Owner / Updated**    | Repo maintainers, 2026-10-12                                          |
 
 Feature **Specifications** describe how a change will work, scoped enough to
 implement and review. They are **generated from**
@@ -33,11 +33,27 @@ templates (see `CONTRIBUTING.md`); there is no CI check yet.
 | `approved` | Ready to implement; feature PRs must link this file |
 | `implemented` | Delivered; keep for history / drift checks |
 
-Exact file naming and body format are **provisional until the Product Owner /
-Designer defines them**. Do not impose a template here yet. Legacy as-built
-docs remain under [`../technical-spec/`](../technical-spec/README.md) and will
-migrate into this folder once the format is settled.
+Exact file naming and body format remain **provisional**. The first port-wave
+Spec below is the working pattern (metadata header, behaviour sections,
+Requirements IDs, surfaces, out of scope, acceptance). Legacy as-built docs
+remain under [`../technical-spec/`](../technical-spec/README.md).
+
+**Spec and feature work.** Every feature that is built MUST have an
+accompanying Spec that follows these conventions. The Spec does not have to
+land in a separate PR from the feature work: the PR author chooses.
+
+- **Preferred:** get the Spec approved *before* the feature work, so a
+  reviewer's objection costs a document edit, not re-work.
+- **Allowed:** Spec and implementation in one PR (as the port-wave PRs do,
+  where the code was already built elsewhere). The Spec stays `in review`
+  until a reviewer has actually reviewed it as a Spec.
+- **Either way, the two stay in step.** If a reviewer objects to the Spec and
+  it changes, the feature work MUST change to match, in the same PR or a
+  later one. A Spec that no longer describes the code, or code that no longer
+  matches its Spec, is a defect.
 
 ## Index
 
-_No feature Specifications yet._
+| Spec | Status | Requirements (primary) |
+| ---- | ------ | ---------------------- |
+| [`01-access-expiry-carry-forward-projects-campmates.md`](01-access-expiry-carry-forward-projects-campmates.md) | `in review` | `SEC-019`, `PREVYR-*`, `CREATIVE-014/017/019`, `CORE-002`, `CDB-007` |
