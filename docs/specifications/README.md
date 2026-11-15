@@ -38,20 +38,6 @@ Spec below is the working pattern (metadata header, behaviour sections,
 Requirements IDs, surfaces, out of scope, acceptance). Legacy as-built docs
 remain under [`../technical-spec/`](../technical-spec/README.md).
 
-**Spec and feature work.** Every feature that is built MUST have an
-accompanying Spec that follows these conventions. The Spec does not have to
-land in a separate PR from the feature work: the PR author chooses.
-
-- **Preferred:** get the Spec approved *before* the feature work, so a
-  reviewer's objection costs a document edit, not re-work.
-- **Allowed:** Spec and implementation in one PR (as the port-wave PRs do,
-  where the code was already built elsewhere). The Spec stays `in review`
-  until a reviewer has actually reviewed it as a Spec.
-- **Either way, the two stay in step.** If a reviewer objects to the Spec and
-  it changes, the feature work MUST change to match, in the same PR or a
-  later one. A Spec that no longer describes the code, or code that no longer
-  matches its Spec, is a defect.
-
 ## Index
 
 | Spec | Status | Requirements (primary) |

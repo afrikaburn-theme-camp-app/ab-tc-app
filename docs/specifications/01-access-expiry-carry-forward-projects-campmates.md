@@ -11,8 +11,9 @@
 ## Purpose
 
 Port the already-built cluster from `feature-source` PR #73 into this repo.
-This Spec is the ratification contract for that port (Decision 017). Reviewers
-approve Spec and code together in one PR.
+This Spec is the ratification contract for that port (Decision 017). It stays
+`in review` until a reviewer has reviewed it as a Spec; it is not approved by
+the code merging.
 
 ## Behaviour (WHAT ships)
 
