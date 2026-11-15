@@ -59,3 +59,26 @@ The Specification file format itself remains provisional until the Product Owner
 
 - Review date: after the first feature delivered under this process.
 - Do not track people-to-do items in this corpus; engineering work stays on GitHub issues.
+
+## Amendment 1 (2026-11-15): Spec and implementation may share a PR
+
+Raised in review of the first port-wave PR (#39), where the code was already
+built and tested in another repo and the Spec was written to ratify it.
+
+Decision point 3 is clarified, not reversed. The review phase MUST still
+happen, and objections MUST still be able to change the outcome. What this
+amendment adds is a second permitted path:
+
+- **Preferred (unchanged):** the Spec is `approved` in its own PR before the
+  feature work starts, so an objection costs a document edit, not re-work.
+- **Permitted:** the PR author MAY ship the Spec and the implementation in one
+  PR. The Spec stays `in review` until a reviewer has reviewed it as a Spec,
+  and MUST be `approved` before that PR merges. Merging the code does not
+  approve the Spec.
+- **Either way:** the Spec and the code stay in step. If a reviewer's objection
+  changes the Spec, the feature work MUST change to match. A Spec that no
+  longer describes the code, or code that no longer matches its Spec, is a
+  defect.
+
+Point 5 is unchanged: no new behaviour or product feature without an approved
+Specification.
