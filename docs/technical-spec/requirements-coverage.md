@@ -104,7 +104,7 @@ implemented, it is deliberately replaced by non-exposure.
 
 ## 4a. Camper communications
 
-**Requirement IDs:** ❌ COMM-001, COMM-002, COMM-005, COMM-008–COMM-011, COMM-018, COMM-020 · 🚧 COMM-003, COMM-012, COMM-013–COMM-016 · ✅ COMM-004, COMM-006, COMM-007, COMM-017, COMM-019 _(Requirements §4a — added to the Requirements 2026-08-10; absent from earlier versions of this document, which is corrected here)_
+**Requirement IDs:** ❌ COMM-001, COMM-002, COMM-005, COMM-009–COMM-011, COMM-020 · 🚧 COMM-003, COMM-008, COMM-012, COMM-013–COMM-016, COMM-018 · ✅ COMM-004, COMM-006, COMM-007, COMM-017, COMM-019 _(Requirements §4a — added to the Requirements 2026-08-10; absent from earlier versions of this document, which is corrected here)_
 
 - ✅ **COMM-004/005/007** (burner details, bio, home location on request):
   a privacy-gated public profile projection exists — see
@@ -117,18 +117,30 @@ implemented, it is deliberately replaced by non-exposure.
 - 🚧 **COMM-003** (selecting a tile opens a shared profile): works from a
   camp roster row; there is no cross-camp people directory to select a tile
   from in the first place.
-- 🚧 **COMM-012** (group communications): org → audience broadcasts exist
-  (bulletins); no camp-level announcement channel — see
-  [`11-bulletins-and-notifications.md`](11-bulletins-and-notifications.md).
+- 🚧 **COMM-012** (group communications): org → audience broadcasts
+  (bulletins) and camp announcements (draft, publish, pin, must-acknowledge)
+  exist. Scheduled send ships OFF until something calls
+  `/api/announcements/dispatch` (`ANNOUNCEMENT_DISPATCH_ENABLED`) — see
+  [`11-bulletins-and-notifications.md`](11-bulletins-and-notifications.md) and
+  [Spec 02](../specifications/02-camp-announcements-and-direct-messages.md).
 - 🚧 **COMM-013–016** (group formation — shifts, functions, friends):
   custom project roles are the only grouping mechanism — see
   [`05-camp-roles-and-officers.md`](05-camp-roles-and-officers.md).
 - ❌ **COMM-001/002** (photo-tile dashboard): blocked on there being no
   photo column on `burner_bios` at all.
-- ❌ **COMM-008–011** (messaging, calling, video invites, scheduling),
-  **COMM-018** (control over being contacted at all), **COMM-020**
-  (cross-camp Village visibility): none of these exist; there is no contact
-  channel built to control in the first place.
+- 🚧 **COMM-008** (in-app messaging): one-to-one direct messages between
+  burners exist (`/messages`): participant-only reads, blocks, disappearing
+  timers, and reports to an org safety queue. There are no group threads — see
+  [Spec 02](../specifications/02-camp-announcements-and-direct-messages.md).
+- 🚧 **COMM-018** (control over being contacted at all): each burner sets who
+  may message them (nobody / camp-mates / anyone) and can block; the
+  cross-camp directory this was meant to govern does not exist yet
+  (COMM-001/002/020).
+- ❌ **COMM-009–011** (calling, video invites, scheduling), **COMM-020**
+  (cross-camp Village visibility): not built.
+
+**Updated by port-wave cluster 2 (Spec 02).** COMM-008 and COMM-018 moved from ❌
+to 🚧; COMM-012 stays 🚧 with its gap description updated.
 
 ## 5. Camper statistics ❌
 

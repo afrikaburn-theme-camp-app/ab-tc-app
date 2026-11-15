@@ -16,7 +16,7 @@ inbox.
 
 | Requirements §                | IDs                                               | Status | Notes                                                                                                                            |
 | ------------------------- | ------------------------------------------------- | ------ | -------------------------------------------------------------------------------------------------------------------------------- |
-| §4a Camper communications | COMM-012 (group communications and announcements) | 🚧     | Org → audience broadcast exists; no camp-level announcement surface — a camp's only broadcast channel is a project questionnaire |
+| §4a Camper communications | COMM-012 (group communications and announcements) | ✅     | Camp announcements on the bulletin spine (`group_id`, pin, must-ack, schedule); DMs are a separate messaging surface (see Spec 02) |
 
 ## Model
 
