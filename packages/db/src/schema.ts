@@ -399,7 +399,7 @@ export const users = pgTable(
 //               → `user.id`.
 // The join stays LOGICAL — there is intentionally NO database foreign key from
 // `users.auth_user_id` to `user.id`. That is what protects the "Lost Cat"
-// sanitization design (accounts-security-spec §Deletion): the sanitizer
+// sanitization design (docs/technical-spec/02-accounts-and-account-security.md §Deletion): the sanitizer
 // (`sanitizeAccount`) hard-deletes the Better Auth `user` row (cascading its
 // `session`/`account` rows, and erasing the identity's email PII + password hash),
 // while our `users` row SURVIVES in its sanitized "Departed Burner" stub form so

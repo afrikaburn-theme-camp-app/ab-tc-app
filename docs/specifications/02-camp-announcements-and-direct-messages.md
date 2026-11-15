@@ -13,7 +13,8 @@
 
 Port the already-built cluster from `feature-source` PR #74 into this repo
 (migration `0031`). This Spec is the ratification contract for that port
-(Decision 017). Reviewers approve Spec and code together in one PR.
+(Decision 017). It stays `in review` until a reviewer has reviewed it as a
+Spec; it is not approved by the code merging.
 
 Camp announcements reuse the org bulletin spine with a camp `group_id`.
 Direct messages are 1:1 only, with blocks, disappearing-message timers, and an
@@ -60,6 +61,12 @@ org safety queue that sees report *copies* — never live conversations.
 - Conversations MAY set a disappearing timer (`off` | `24h` | `7d` | `90d`);
   users MAY set `users.default_message_timer`. Unknown timer values MUST
   decode to `off`. Expiry sweep MUST hard-delete messages past `expires_at`.
+- The sweep (`/api/messages/expiry-sweep`) is registered as a daily Vercel
+  Cron in `apps/web/vercel.json`. It runs only when `CRON_SECRET` or
+  `ACCOUNT_SWEEP_SECRET` is set in the deployment (`CRON_SECRET` alone is
+  enough). Until one is set, expired messages stay hidden from every read
+  but are not deleted from the database; production has neither set yet
+  (#63).
 - Only conversation participants MAY read the thread. Org staff, System
   managers, and camp leads MUST be refused like strangers for live
   conversations.
@@ -67,8 +74,9 @@ org safety queue that sees report *copies* — never live conversations.
   safety MAY review *copies* in `message_report_items` when
   `canReviewMessageReports` (personal-information / registrations tier —
   same class as medical). Resolve requires update rights in that domain.
-  Report copies expire after the retention window; org MUST NOT gain live
-  conversation access via reports.
+  Report copies expire after the retention window (180 days, open or
+  resolved, with no hold; whether that is right is undecided, see #66); org
+  MUST NOT gain live conversation access via reports.
 - DM start/send/report MUST be rate-limited per account (`DM_RATE_LIMITS`).
 
 ## Surfaces
@@ -129,9 +137,8 @@ These are review notes; they do **not** change Behaviour above.
   delivery rows.
 - **Gap (Requirements breadth):** `COMM-008` / `COMM-012` / `COMM-018` are
   the ratified slice; the rest of §4a `COMM-*` remains out of scope (see
-  above). `docs/technical-spec/requirements-coverage.md` may still mark
-  messaging coverage as incomplete relative to the full directory vision —
-  that is intentional for this port, not a code defect in this PR.
+  above). `docs/technical-spec/requirements-coverage.md` records all three as
+  partly built (🚧), updated by this PR.
 - **Note:** Org safety queue is under `/safety` and uses the medical /
   personal-information registrations capability (`packages/core/src/messaging.ts`
   `canReviewMessageReports`) — confirm reviewers treat that as the correct
