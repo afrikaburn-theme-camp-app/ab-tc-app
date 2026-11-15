@@ -38,6 +38,13 @@ Designer defines them**. Do not impose a template here yet. Legacy as-built
 docs remain under [`../technical-spec/`](../technical-spec/README.md) and will
 migrate into this folder once the format is settled.
 
+**Spec and feature work.** Every built feature MUST have an accompanying Spec
+([Decision 017](../requirements/decisions-record/decision-017-accepted-spec-driven-feature-delivery.md),
+Amendment 1). Preferred: the Spec is `approved` before the feature work starts.
+Permitted: Spec and implementation in one PR, provided the Spec is reviewed as
+a Spec and is `approved` before that PR merges. Merging code never approves a
+Spec, and the two must stay in step.
+
 ## Index
 
 _No feature Specifications yet._
