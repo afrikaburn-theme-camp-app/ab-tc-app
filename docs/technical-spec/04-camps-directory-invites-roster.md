@@ -16,8 +16,8 @@ invite link; a directory of registered camps is public.
 | Requirements §                | IDs                                                                | Status | Notes                                                                                                          |
 | ------------------------- | ------------------------------------------------------------------ | ------ | -------------------------------------------------------------------------------------------------------------- |
 | §2 Core modules           | CORE-002                                                           | ✅     |                                                                                                                |
-| §4a Camper communications | COMM-001, COMM-002 (photo-tile dashboard, name/location/camp tile) | ❌     | No photo column exists on `burner_bios` at all; blocked on that, not on the directory                          |
-| §4a                       | COMM-003 (tile opens shared profile)                               | 🚧     | Works from a camp roster row → public profile; entry point is a camp roster, not a cross-camp people directory |
+| §4a Camper communications | COMM-001, COMM-002 (photo-tile dashboard, name/location/camp tile) | 🚧     | Opt-in `/camps/[slug]/people` lists camp-mates who set `listed_in_camp_people`; avatar is `users.avatar_key`, not a bio photo column |
+| §4a                       | COMM-003 (tile opens shared profile)                               | ✅     | People list and roster open `/burners/[id]` with camp-mate privacy audience applied                                              |
 
 ## How it is built
 
